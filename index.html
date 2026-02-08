@@ -2120,6 +2120,7 @@ details .inner {
 .home-card.card-vador { --card-accent: #ff453a; }
 .home-card.card-leon { --card-accent: #30d158; }
 .home-card.card-genereux { --card-accent: #5e5ce6; }
+.home-card.card-houette { --card-accent: #ff9f0a; }
 .home-card.card-outils { --card-accent: #ff9f0a; }
 .home-card.card-guide { --card-accent: #30d158; }
 .home-card.card-formules { --card-accent: #64d2ff; }
@@ -2245,6 +2246,10 @@ details .inner {
     <div class="tab" data-case="genereux" onclick="switchCase('genereux')">
       <span class="tab-icon">💼</span>
       <span>GÉNÉREUX</span>
+    </div>
+    <div class="tab" data-case="houette" onclick="switchCase('houette')">
+      <span class="tab-icon">🏠</span>
+      <span>HOUETTE</span>
     </div>
   </div>
   <div class="tab-divider"></div>
@@ -2561,6 +2566,11 @@ details .inner {
   <a class="sidebar-item" onclick="goTo('out-s1')">
     <span class="num">1</span> Méthodologie Exam
   </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('out-s1-stocks')">Tableau des Stocks</a>
+    <a class="sidebar-item" onclick="goTo('out-s1-flux')">Flux d'Activité</a>
+    <a class="sidebar-item" onclick="goTo('out-s1-retraite')">Flux de Retraite</a>
+  </div>
   <a class="sidebar-item" onclick="goTo('out-s2')">
     <span class="num">2</span> Assurance Vie
     <span class="progress-chip key">CLÉ</span>
@@ -2831,6 +2841,89 @@ details .inner {
   </a>
 </div>
 
+
+<!-- HOUETTE sidebar -->
+<div id="sidebar-houette" style="display:none">
+  <div class="sidebar-label">Cas HOUETTE — E61 & E62</div>
+  <a class="sidebar-item active" onclick="goTo('houette-intro')">
+    <span class="num">0</span> Vue d'ensemble
+  </a>
+
+  <div class="sidebar-label" style="margin-top: 12px;">E61 — Phase Activité</div>
+  <a class="sidebar-item" onclick="goTo('houette-s1')">
+    <span class="num">1</span> Bilan patrimonial
+    <span class="progress-chip exam">4 PTS</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('houette-s1-stocks')">Tableau des stocks</a>
+    <a class="sidebar-item" onclick="goTo('houette-s1-commentaires')">Commentaires</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('houette-s2')">
+    <span class="num">2</span> Micro BIC vs Micro Foncier
+  </a>
+  <a class="sidebar-item" onclick="goTo('houette-s3')">
+    <span class="num">3</span> PV CTO — PFU vs IR
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('houette-s3-pfu')">Option PFU</a>
+    <a class="sidebar-item" onclick="goTo('houette-s3-ir')">Option IR</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('houette-s4')">
+    <span class="num">4</span> Calcul IR + Malraux + IFI
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('houette-s4-ir')">Nouvel IR 2027</a>
+    <a class="sidebar-item" onclick="goTo('houette-s4-malraux')">Réduction Malraux</a>
+    <a class="sidebar-item" onclick="goTo('houette-s4-ifi')">Calcul IFI</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('houette-s5')">
+    <span class="num">5</span> PER — Disponible fiscal
+  </a>
+  <a class="sidebar-item" onclick="goTo('houette-s6')">
+    <span class="num">6</span> Donation grands-parents → Tim
+  </a>
+
+  <div class="sidebar-label" style="margin-top: 12px;">E62 — Phase Retraite (+20 ans)</div>
+  <a class="sidebar-item" onclick="goTo('houette-e62-intro')">
+    <span class="num">📊</span> Bilan 2046
+  </a>
+  <a class="sidebar-item" onclick="goTo('houette-s7')">
+    <span class="num">7</span> DDS — Succession Mr
+    <span class="progress-chip exam">6 PTS</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('houette-s7-tableau')">Tableau DDS</a>
+    <a class="sidebar-item" onclick="goTo('houette-s7-analyse')">Analyse & options</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('houette-s8')">
+    <span class="num">8</span> Réduction pression fiscale
+  </a>
+  <a class="sidebar-item" onclick="goTo('houette-s9')">
+    <span class="num">9</span> PV Malraux + Donation Tim
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('houette-s9-pv')">Calcul PV immobilière</a>
+    <a class="sidebar-item" onclick="goTo('houette-s9-donation')">Donation avec prise en charge</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('houette-s10')">
+    <span class="num">10</span> Réinvestissement 800k€
+    <span class="progress-chip exam">6 PTS</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('houette-s10-multi')">Stratégie multi-contrats</a>
+    <a class="sidebar-item" onclick="goTo('houette-s10-amelio')">Amélioration + Capi</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('houette-s11')">
+    <span class="num">11</span> Transmission NP Cortina
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('houette-s11-droits')">Calcul des droits</a>
+    <a class="sidebar-item" onclick="goTo('houette-s11-transgen')">Donation transgénérationnelle</a>
+  </div>
+</div>
     <!-- MONTAGES sidebar -->
     <div id="sidebar-montages" style="display:none">
       <div class="sidebar-label">Montages patrimonaux</div>
@@ -2925,6 +3018,11 @@ details .inner {
   <a class="sidebar-item" onclick="goTo('form-s9')"><span class="num">9</span> PER & Retraite</a>
   <a class="sidebar-item" onclick="goTo('form-s10')"><span class="num">10</span> Réserve & QD</a>
   <a class="sidebar-item" onclick="goTo('form-s11')"><span class="num">11</span> Régimes Matrimoniaux</a>
+  <div class="sidebar-label" style="margin-top: 12px;">Info Pratiques</div>
+  <a class="sidebar-item" onclick="goTo('form-s12')"><span class="num">12</span> Plus-Values Immo</a>
+  <a class="sidebar-item" onclick="goTo('form-s13')"><span class="num">13</span> Réductions d'Impôt</a>
+  <a class="sidebar-item" onclick="goTo('form-s14')"><span class="num">14</span> Crédits d'Impôt</a>
+  <a class="sidebar-item" onclick="goTo('form-s15')"><span class="num">15</span> Déductions</a>
 </div>
 
 </nav>
@@ -2949,8 +3047,8 @@ details .inner {
         <div class="home-card card-audit" onclick="enterCourse('audit')">
           <span class="home-card-icon">📊</span>
           <div class="home-card-title">Audit patrimonial</div>
-          <div class="home-card-desc">8 cas pratiques complets (SNOW, STARK, NIOTE, MENGERE, NORRIS, VADOR, LEON, GÉNÉREUX), boîte à outils, guide stratégique et formules.</div>
-          <div class="home-card-badge">8 cas · 3 outils</div>
+          <div class="home-card-desc">9 cas pratiques complets (SNOW, STARK, NIOTE, MENGERE, NORRIS, VADOR, LEON, GÉNÉREUX, HOUETTE), boîte à outils, guide stratégique, montages et formules.</div>
+          <div class="home-card-badge">9 cas · 4 outils</div>
         </div>
 
         <div class="home-card card-disabled">
@@ -2986,7 +3084,7 @@ details .inner {
       <div class="home-hero">
         <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
         <h1>Audit patrimonial</h1>
-        <p>8 cas pratiques détaillés avec calculs pas à pas, outils de révision et fiches stratégiques.</p>
+        <p>9 cas pratiques détaillés avec calculs pas à pas, outils de révision et fiches stratégiques.</p>
       </div>
 
       <div class="home-section-title">📚 Cas pratiques</div>
@@ -3038,6 +3136,12 @@ details .inner {
           <span class="home-card-icon">💼</span>
           <div class="home-card-title">Cas GÉNÉREUX</div>
           <div class="home-card-desc">Famille GÉNÉREUX — Donation, transmission, stratégie successorale.</div>
+        </div>
+
+        <div class="home-card card-houette" onclick="switchCase('houette')">
+          <span class="home-card-icon">🏠</span>
+          <div class="home-card-title">Cas HOUETTE</div>
+          <div class="home-card-desc">Mr & Mme HOUETTE — Séparation de biens, LMNP, Malraux, IFI, PER, succession & stratégie retraite.</div>
         </div>
 
       </div>
@@ -8821,6 +8925,235 @@ details .inner {
                 <td>Comptes courants • Placements liquides • PEA/PEL • Épargne retraite • Obligations</td>
                 <td>Revenu net imposable • Tranches IR • Abattements/Déficits • Mécanismes d'optimisation</td>
                 <td>Participations • Droits sociaux • Régime social • Cessions & évaluations</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ═══ DÉTAIL TABLEAU DES STOCKS ═══ -->
+    <h3 id="out-s1-stocks" style="margin-top: 30px; color: var(--primary);">Détail — Tableau des Stocks</h3>
+
+    <div class="alert alert-danger">
+        <strong>OBJECTIF :</strong> Photographier le patrimoine à un instant T. Chaque ligne du tableau doit contenir : désignation du bien, valeur brute, passif associé, valeur nette, détention (PP/NP/US), régime juridique, valorisation IFI.
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 30%;">Colonne</th>
+                <th style="width: 70%;">Contenu & Règles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Désignation</strong></td>
+                <td>Nom du bien (RP, immeuble locatif, AV n°X, PEA, CTO, SCPI…)</td>
+            </tr>
+            <tr>
+                <td><strong>Valeur brute</strong></td>
+                <td>Valeur vénale ou de rachat à la date de l'audit</td>
+            </tr>
+            <tr>
+                <td><strong>Passif</strong></td>
+                <td>Capital restant dû (CRD) sur emprunts liés au bien</td>
+            </tr>
+            <tr>
+                <td><strong>Valeur nette</strong></td>
+                <td>= Valeur brute − Passif</td>
+            </tr>
+            <tr>
+                <td><strong>PP / NP / US</strong></td>
+                <td>Pleine propriété, nue-propriété ou usufruit. <span class="red">NP suite au décès d'un des 2 parents → assujettie à IFI</span></td>
+            </tr>
+            <tr>
+                <td><strong>Valorisation IFI</strong></td>
+                <td>Valeur retenue pour l'IFI (abattement 30% sur RP, exclusion des biens professionnels…)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Commentaires à rédiger sur les Stocks</h4>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 30%;">Indicateur</th>
+                <th style="width: 70%;">Analyse attendue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Patrimoine total</strong></td>
+                <td>Actifs bruts − Passifs = Patrimoine net. Commenter l'évolution et la solidité</td>
+            </tr>
+            <tr>
+                <td><strong>Valorisation IFI</strong></td>
+                <td>Seuil 1,3 M€ (taxation dès 800 k€). Abattement 30% RP. NP reçue par décès = taxable IFI</td>
+            </tr>
+            <tr>
+                <td><strong>Équilibre classes d'actifs</strong></td>
+                <td>Répartition immobilier / financier / professionnel. <div class="f" style="margin-top:4px;">% = Valeur du bien ÷ Total de la classe × 100</div></td>
+            </tr>
+            <tr>
+                <td><strong>Rentabilité</strong></td>
+                <td>Pour chaque bien immobilier : <div class="f" style="margin-top:4px;">R = (Loyer annuel ÷ Valeur du bien) × 100</div></td>
+            </tr>
+            <tr>
+                <td><strong>Taux d'équipement</strong></td>
+                <td>Couverture retraite (PER, AV, PERP), prévoyance (GAV, mutuelle, décès), épargne de précaution</td>
+            </tr>
+            <tr>
+                <td><strong>ISR / ESG</strong></td>
+                <td>Part des investissements responsables dans le patrimoine financier</td>
+            </tr>
+            <tr>
+                <td><strong>Disponibilités</strong></td>
+                <td>Liquidités immédiatement mobilisables (comptes courants, livrets, fonds €). Ratio par rapport au train de vie annuel</td>
+            </tr>
+            <tr>
+                <td><strong>Profil de risque</strong></td>
+                <td>Prudent / Équilibré / Dynamique. Adéquation entre profil déclaré et allocation réelle</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="formula-card" style="margin-top: 15px;">
+        <h4>NP suite à décès — Valorisation</h4>
+        <div class="f">Valeur NP = Valeur du bien × % NP selon barème art. 669-1 (âge de l'usufruitier)</div>
+        <div class="note" style="margin-top: 8px;">
+            <span class="red">⚠️ Attention :</span> La nue-propriété reçue suite au décès d'un des parents est <strong>assujettie à l'IFI</strong> (à la différence de la NP reçue par donation entre vifs).
+        </div>
+    </div>
+
+    <!-- ═══ DÉTAIL TABLEAU DES FLUX D'ACTIVITÉ ═══ -->
+    <h3 id="out-s1-flux" style="margin-top: 30px; color: var(--primary);">Détail — Tableau des Flux d'Activité</h3>
+
+    <div class="alert alert-danger">
+        <strong>OBJECTIF :</strong> Mesurer la capacité d'épargne et d'endettement du foyer en phase d'activité professionnelle.
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 35%;">Poste</th>
+                <th style="width: 65%;">Calcul & Règles fiscales</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Salaires nets imposables</strong></td>
+                <td>Déduction forfaitaire <strong>10%</strong> (min 509€, max 14 426€ par personne) ou frais réels si plus avantageux</td>
+            </tr>
+            <tr>
+                <td><strong>Pensions alimentaires reçues</strong></td>
+                <td>Imposables après abattement de <strong>10%</strong> (plafond <strong>4 399€</strong> pour le foyer)</td>
+            </tr>
+            <tr>
+                <td><strong>Pensions alimentaires versées</strong></td>
+                <td>Déductibles : <strong>6 804€/enfant</strong> majeur détaché du foyer fiscal</td>
+            </tr>
+            <tr>
+                <td><strong>Frais de scolarité</strong></td>
+                <td>Réduction d'impôt : <strong>61€</strong> (collège) · <strong>153€</strong> (lycée) · <strong>183€</strong> (enseignement supérieur)</td>
+            </tr>
+            <tr>
+                <td><strong>Revenus fonciers — Micro</strong></td>
+                <td>Abattement forfaitaire <strong>30%</strong> si revenus bruts ≤ 15 000€. Déclaration 2042</td>
+            </tr>
+            <tr>
+                <td><strong>Revenus fonciers — Réel</strong></td>
+                <td>Déduction des charges réelles (intérêts, travaux, assurance, gestion, taxe foncière). Déclaration 2044</td>
+            </tr>
+            <tr>
+                <td><strong>IR + PS</strong></td>
+                <td>Barème progressif (0% → 45%) + prélèvements sociaux 17,2%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Indicateurs clés des Flux d'Activité</h4>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 35%;">Indicateur</th>
+                <th style="width: 65%;">Formule</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Solde budgétaire</strong></td>
+                <td><div class="f">= Revenus nets − Charges − IR − PS</div></td>
+            </tr>
+            <tr>
+                <td><strong>Train de vie</strong></td>
+                <td><div class="f">≈ 85% du solde budgétaire</div></td>
+            </tr>
+            <tr>
+                <td><strong>Capacité d'épargne</strong></td>
+                <td><div class="f">≈ 15% du solde budgétaire</div></td>
+            </tr>
+            <tr class="bold-row">
+                <td><strong>Capacité d'endettement</strong></td>
+                <td><div class="f">= 35% × (Revenus nets + 70% × Revenus fonciers) ÷ 12</div>
+                <div class="note" style="margin-top: 4px;">Mensualité maximale d'emprunt supportable</div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ═══ DÉTAIL TABLEAU DES FLUX DE RETRAITE ═══ -->
+    <h3 id="out-s1-retraite" style="margin-top: 30px; color: var(--primary);">Détail — Tableau des Flux de Retraite</h3>
+
+    <div class="alert alert-danger">
+        <strong>OBJECTIF :</strong> Anticiper le différentiel de revenus entre activité et retraite pour dimensionner les préconisations de reconstitution.
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 35%;">Poste</th>
+                <th style="width: 65%;">Calcul & Règles fiscales</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Pensions de retraite</strong></td>
+                <td>Abattement <strong>10%</strong> (min 442€, plafond <strong>4 399€</strong> pour l'ensemble du foyer)</td>
+            </tr>
+            <tr>
+                <td><strong>Revenus fonciers</strong></td>
+                <td>Inchangés par rapport à la phase d'activité (micro 30% ou réel)</td>
+            </tr>
+            <tr>
+                <td><strong>Revenus financiers</strong></td>
+                <td>Rachats AV, dividendes, intérêts — PFU 30% ou barème progressif</td>
+            </tr>
+            <tr>
+                <td><strong>IR + PS retraite</strong></td>
+                <td>Recalcul avec les nouvelles bases (pensions remplacent salaires)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Indicateurs clés des Flux de Retraite</h4>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 35%;">Indicateur</th>
+                <th style="width: 65%;">Formule</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Solde budgétaire retraite</strong></td>
+                <td><div class="f">= Pensions nettes + Rev. fonciers + Rev. financiers − IR − PS − Charges</div></td>
+            </tr>
+            <tr class="bold-row">
+                <td><strong>Différentiel activité/retraite</strong></td>
+                <td><div class="f">= Solde budgétaire retraite − Solde budgétaire activité</div>
+                <div class="note" style="margin-top: 4px;"><span class="red">Si négatif</span> → besoin de reconstitution de revenus (AV, SCPI, PER, immobilier locatif…)</div></td>
+            </tr>
+            <tr>
+                <td><strong>Taux de remplacement</strong></td>
+                <td><div class="f">= Pensions nettes ÷ Derniers revenus d'activité nets × 100</div>
+                <div class="note" style="margin-top: 4px;">Cadres supérieurs : souvent 50-60%. Objectif cible : maintenir le train de vie</div></td>
             </tr>
         </tbody>
     </table>
@@ -17987,6 +18320,791 @@ Droit (20%) = 3 000€
 <!-- FIN CAS GÉNÉREUX -->
 
 
+
+<!-- ══════════════════════════════════════
+     CAS HOUETTE
+     ══════════════════════════════════════ -->
+<div class="case-content" id="case-houette" style="display:none">
+
+  <!-- INTRO -->
+  <div class="section" id="houette-intro">
+    <div class="welcome">
+      <h1>Cas HOUETTE 🏠</h1>
+      <div class="subtitle">Mr HOUETTE (51 ans) & Mme HOUETTE (44 ans) — Mariés sous séparation de biens (2002)</div>
+      <p>Cas complet en 2 épreuves : E61 (phase activité) et E62 (phase retraite, +20 ans).<br>
+      LMNP, Malraux ASL, IFI, PER, PV mobilières, succession, stratégie multi-contrats AV, donation-partage transgénérationnelle.<br>
+      Tous les calculs sont détaillés pas à pas pour obtenir 20/20.</p>
+      <div class="meta">
+        Corrigé E61 + E62 — Épreuve officielle<br>
+        Barème IR 2025 · PASS 2025 : 47 100€
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+      <h3 style="margin-top:0">👨‍👩‍👦 Situation familiale</h3>
+      <table>
+        <thead>
+          <tr><th>Élément</th><th>Mr HOUETTE</th><th>Mme HOUETTE</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Âge</strong></td><td>51 ans</td><td>44 ans</td></tr>
+          <tr><td><strong>Profession</strong></td><td>Directeur salarié concession Porsche (Nice)</td><td>Professeure des écoles</td></tr>
+          <tr><td><strong>Revenus bruts</strong></td><td>120 000 €/an</td><td>35 000 €/an</td></tr>
+          <tr><td><strong>Régime matrimonial</strong></td><td colspan="2" style="text-align:center"><strong>Séparation de biens</strong> (mariage 2002)</td></tr>
+          <tr><td><strong>Enfant</strong></td><td colspan="2" style="text-align:center">Tim, 20 ans, études ingénieur robotique (Lyon), détaché fiscalement, 2 000€/mois pour études</td></tr>
+          <tr><td><strong>IR 2026 (rev. 2025)</strong></td><td colspan="2" style="text-align:center">31 640€ IR + 4 600€ PS</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3 style="margin-top:0">👪 Parents</h3>
+      <table>
+        <thead><tr><th>Parents de</th><th>Âge</th><th>Situation</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Mr</strong></td><td>75 ans (les 2)</td><td>Situation confortable, <span class="red">aucune libéralité anticipée</span></td></tr>
+          <tr><td><strong>Mme</strong></td><td>65 ans (les 2)</td><td>Ont donné en 2024 la NP du chalet de Cortina à Mme (PP estimée 1 500k€, coût fiscal 170k€)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3 style="margin-top:0">🏗️ Investissement Malraux en cours</h3>
+      <table>
+        <tbody>
+          <tr><td><strong>Localisation</strong></td><td>Grasse — montage ASL (Association Syndicale Libre)</td></tr>
+          <tr><td><strong>Prix global</strong></td><td>450 000€ dont <strong>300 000€ de travaux</strong></td></tr>
+          <tr><td><strong>Réduction applicable</strong></td><td><strong>30%</strong> (SPR/AVAP)</td></tr>
+          <tr><td><strong>Loyer prévisionnel</strong></td><td>1 100€/mois</td></tr>
+          <tr><td><strong>Prêt</strong></td><td>350 000€ · 3,85% + 0,34% assurance DC PTIA · 20 ans · 2 131€/mois</td></tr>
+          <tr><td><strong>Apport</strong></td><td>100 000€ (vente CTO)</td></tr>
+          <tr><td><strong>Taxe foncière</strong></td><td>2 500€</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-tip">
+      <span class="alert-icon">✅</span>
+      <div><strong>Points clés du cas :</strong> Ce cas combine tous les thèmes majeurs — LMNP vs location nue, Malraux ASL, arbitrage PFU/IR, calcul IFI, PER salarié, donation immobilier neuf LF2025, DDS avec option 100% usufruit, coefficient de capitalisation de rente, contrat de capitalisation en NP, et donation-partage transgénérationnelle.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 1: BILAN PATRIMONIAL (4 PTS) -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Bilan patrimonial — Tableau des stocks (4 pts)</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Établissez et commentez le bilan patrimonial.
+    </div>
+
+    <h3 id="houette-s1-stocks" style="color: var(--primary);">Tableau des stocks</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Actifs</th>
+          <th style="text-align:right">Mr</th>
+          <th style="text-align:right">Mme</th>
+          <th style="text-align:right">%</th>
+          <th style="text-align:right">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Résidence principale</td><td style="text-align:right">650 000</td><td style="text-align:right">—</td><td></td><td style="text-align:right">650 000</td></tr>
+        <tr><td>4 Studios Nice (LMNP)</td><td style="text-align:right">600 000</td><td style="text-align:right">—</td><td></td><td style="text-align:right">600 000</td></tr>
+        <tr><td>NP Chalet Cortina</td><td style="text-align:right">—</td><td style="text-align:right">900 000</td><td></td><td style="text-align:right">900 000</td></tr>
+        <tr style="font-weight:600; background: rgba(var(--primary-rgb), 0.08);"><td><strong>Sous-total Immobilier</strong></td><td style="text-align:right">1 250 000</td><td style="text-align:right">900 000</td><td style="text-align:right"><span class="red"><strong>90%</strong></span></td><td style="text-align:right">2 150 000</td></tr>
+        <tr><td>Assurance Vie (2010)</td><td style="text-align:right">—</td><td style="text-align:right">50 000</td><td></td><td style="text-align:right">50 000</td></tr>
+        <tr style="background: rgba(var(--primary-rgb), 0.04);"><td><strong>Sous-total AV</strong></td><td style="text-align:right">—</td><td style="text-align:right">50 000</td><td style="text-align:right">2%</td><td style="text-align:right">50 000</td></tr>
+        <tr><td>CTO (actions, achat 30k€ en 2008)</td><td style="text-align:right">100 000</td><td style="text-align:right">—</td><td></td><td style="text-align:right">100 000</td></tr>
+        <tr style="background: rgba(var(--primary-rgb), 0.04);"><td><strong>Sous-total VM</strong></td><td style="text-align:right">100 000</td><td style="text-align:right">—</td><td style="text-align:right">4%</td><td style="text-align:right">100 000</td></tr>
+        <tr><td>Livret A</td><td style="text-align:right">23 000</td><td style="text-align:right">22 000</td><td></td><td style="text-align:right">45 000</td></tr>
+        <tr><td>LDDS</td><td style="text-align:right">12 000</td><td style="text-align:right">12 000</td><td></td><td style="text-align:right">24 000</td></tr>
+        <tr><td>Compte courant</td><td style="text-align:right">20 000</td><td style="text-align:right">5 000</td><td></td><td style="text-align:right">25 000</td></tr>
+        <tr style="background: rgba(var(--primary-rgb), 0.04);"><td><strong>Sous-total Disponibilités</strong></td><td style="text-align:right">55 000</td><td style="text-align:right">39 000</td><td style="text-align:right">4%</td><td style="text-align:right">94 000</td></tr>
+        <tr class="bold-row" style="font-size: 1.05em;"><td><strong>TOTAL</strong></td><td style="text-align:right"><strong>1 405 000</strong></td><td style="text-align:right"><strong>989 000</strong></td><td style="text-align:right"><strong>100%</strong></td><td style="text-align:right"><strong>2 394 000</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="formula-card" style="margin-top: 10px;">
+      <h4>NP Cortina — Valorisation</h4>
+      <div class="f">Parents Mme : 65 ans → US = 40% · NP = 60%</div>
+      <div class="f">NP = 1 500 000 × 60% = 900 000 €</div>
+      <div class="note">NP conventionnelle (donation entre vifs) → <strong>non assujettie à l'IFI</strong> (seul l'usufruitier déclare)</div>
+    </div>
+
+    <h3 id="houette-s1-commentaires" style="margin-top: 25px; color: var(--primary);">Commentaires du bilan</h3>
+
+    <table>
+      <thead><tr><th>Indicateur</th><th>Analyse</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Déséquilibre classes d'actifs</strong></td><td><span class="red">90% immobilier</span> — Surexposition au risque immobilier, sous-pondération financière et AV</td></tr>
+        <tr><td><strong>Déséquilibre Mr / Mme</strong></td><td>Mr détient 416k€ de plus (225k€ immo, 100k€ VM, 16k€ liquidités). Risque successoral si Mr DC1</td></tr>
+        <tr><td><strong>Taux d'équipement</strong></td><td><span class="red">Faible</span> — Mr n'a <strong>aucune AV</strong>, couple sans <strong>aucune épargne retraite</strong> ni salariale</td></tr>
+        <tr><td><strong>Rentabilité CTO</strong></td><td>PV de 70k€ sur 18 ans = <strong>~13%/an</strong> de rendement. Excellente performance</td></tr>
+        <tr><td><strong>Rendement studios</strong></td><td>35 000 / 600 000 = <strong>5,83%</strong> brut. Moyenne du marché niçois en meublé</td></tr>
+        <tr><td><strong>NP Cortina (Mme)</strong></td><td>Aucun rendement (nue-propriété). Capitalisation pure sur revalorisation du bien</td></tr>
+        <tr><td><strong>Épargne de précaution</strong></td><td>94k€ de disponibilités immédiates ≈ 3 mois de salaires. Correct</td></tr>
+        <tr><td><strong>Profil de risque</strong></td><td>Patrimoine sécurisé dans la pierre. Profil supposé <strong>dynamique sur CTO</strong> (100% actions)</td></tr>
+        <tr><td><strong>ISR / ESG</strong></td><td>Pas d'informations sur appétence ISR/ESG</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 2: MICRO BIC vs MICRO FONCIER -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Micro BIC vs Micro Foncier — LMNP résidence principale</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Mr a entendu dire que l'abattement micro BIC allait s'aligner sur le micro foncier. Détaillez ces dispositifs et rassurez-le.
+    </div>
+
+    <h3 style="color: var(--primary);">Tableau de synthèse — Nouvelle fiscalité Micro BIC 2025</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Type de location</th>
+          <th style="text-align:center">Plafond 2024</th>
+          <th style="text-align:center">Abattement 2024</th>
+          <th style="text-align:center">Plafond 2025</th>
+          <th style="text-align:center">Abattement 2025</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Meublé tourisme <strong>classé</strong></td><td style="text-align:center">188 700</td><td style="text-align:center">71%</td><td style="text-align:center">77 700</td><td style="text-align:center"><strong>50%</strong></td></tr>
+        <tr style="background: rgba(255,100,100,0.08);"><td>Meublé tourisme <strong>non classé</strong></td><td style="text-align:center">77 700</td><td style="text-align:center">50%</td><td style="text-align:center"><span class="red">15 000</span></td><td style="text-align:center"><span class="red"><strong>30%</strong></span></td></tr>
+        <tr><td>Chambres d'hôtes</td><td style="text-align:center">188 700</td><td style="text-align:center">71%</td><td style="text-align:center">77 700</td><td style="text-align:center"><strong>50%</strong></td></tr>
+        <tr style="background: rgba(100,210,255,0.08);"><td><strong>Meublé longue durée (RP) & résidences services</strong></td><td style="text-align:center">77 700</td><td style="text-align:center">50%</td><td style="text-align:center">77 700</td><td style="text-align:center"><span class="green"><strong>50%</strong></span></td></tr>
+        <tr><td>Para-hôtellerie</td><td style="text-align:center">188 700</td><td style="text-align:center">71%</td><td style="text-align:center">188 700</td><td style="text-align:center"><strong>71%</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-tip" style="margin-top: 15px;">
+      <span class="alert-icon">✅</span>
+      <div>
+        <strong>Conclusion :</strong> L'alignement du micro BIC sur le micro foncier (abattement 30%, plafond 15k€) <strong>ne concerne que les locations meublées saisonnières non classées</strong>.<br><br>
+        Les LMNP en <strong>résidence principale conservent l'abattement de 50%</strong> dans la limite de 77 700€ de recettes brutes. Idem pour les résidences services (hors tourisme, affaires et séniors).<br><br>
+        <span class="green"><strong>Mr peut donc être rassuré… pour l'instant.</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 3: PV CTO — PFU vs IR -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Plus-value CTO — PFU vs option IR</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Mr va vendre son CTO pour financer l'apport. Calculez l'impôt sur la PV et conseillez sur l'option à prendre.
+    </div>
+
+    <div class="formula-card">
+      <h4>Plus-value brute</h4>
+      <div class="f">PV = Prix de cession − Prix d'acquisition = 100 000 − 30 000 = <strong>70 000 €</strong></div>
+    </div>
+
+    <h3 id="houette-s3-pfu" style="margin-top: 20px; color: var(--primary);">Option 1 : PFU (Flat Tax 30%)</h3>
+
+    <table>
+      <thead><tr><th>Poste</th><th style="text-align:right">Calcul</th><th style="text-align:right">Montant</th></tr></thead>
+      <tbody>
+        <tr><td>PFU sur PV actions</td><td style="text-align:right">70 000 × 30%</td><td style="text-align:right"><strong>21 000 €</strong> (PS compris)</td></tr>
+        <tr><td>Revenu net imposable</td><td style="text-align:right">108 000 + 31 500 + 17 500 (LMNP)</td><td style="text-align:right">157 000 €</td></tr>
+        <tr><td>QF</td><td style="text-align:right">157 000 / 2</td><td style="text-align:right">78 500 → <strong>TMI 30%</strong></td></tr>
+        <tr><td>IR</td><td style="text-align:right">157 000 × 0,30 − 6 834,52 × 2</td><td style="text-align:right"><strong>33 431 €</strong></td></tr>
+        <tr><td>PS (LMNP seul)</td><td style="text-align:right">17 500 × 17,2%</td><td style="text-align:right">3 010 €</td></tr>
+        <tr class="bold-row"><td><strong>TOTAL Option PFU</strong></td><td style="text-align:right">33 431 + 21 000 + 3 010</td><td style="text-align:right"><strong>57 441 €</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="houette-s3-ir" style="margin-top: 25px; color: var(--primary);">Option 2 : IR (barème progressif + abattement 65%)</h3>
+
+    <div class="alert alert-tip">
+      <strong>Abattement pour durée de détention :</strong> Actions achetées en 2008 (< 2018) → abattement de <strong>65%</strong> sur la PV taxable à l'IR (détention > 8 ans, art. 150-0 D ter CGI).
+    </div>
+
+    <table>
+      <thead><tr><th>Poste</th><th style="text-align:right">Calcul</th><th style="text-align:right">Montant</th></tr></thead>
+      <tbody>
+        <tr><td>PV nette après abattement</td><td style="text-align:right">70 000 × (1 − 65%) = 70 000 × 35%</td><td style="text-align:right">24 500 €</td></tr>
+        <tr><td>Nouveau revenu imposable</td><td style="text-align:right">157 000 + 24 500</td><td style="text-align:right">181 500 €</td></tr>
+        <tr><td>QF</td><td style="text-align:right">181 500 / 2</td><td style="text-align:right">90 750 → <span class="red"><strong>TMI 41% !!</strong></span></td></tr>
+        <tr><td>IR</td><td style="text-align:right">181 500 × 0,41 − 16 055,05 × 2</td><td style="text-align:right"><strong>42 305 €</strong></td></tr>
+        <tr><td>PS (LMNP + PV totale)</td><td style="text-align:right">(17 500 + 70 000) × 17,2%</td><td style="text-align:right">15 050 €</td></tr>
+        <tr class="bold-row"><td><strong>TOTAL Option IR</strong></td><td style="text-align:right">42 305 + 15 050</td><td style="text-align:right"><strong>57 355 €</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="formula-card" style="margin-top: 15px;">
+      <h4>Bonus CSG déductible en N+1</h4>
+      <div class="f">CSG déductible = 70 000 × 6,8% = 4 760 €</div>
+      <div class="f">Économie d'impôt N+1 = 4 760 × 30% (TMI) = <strong>1 428 €</strong></div>
+    </div>
+
+    <div class="alert alert-danger" style="margin-top: 15px;">
+      <strong>CONCLUSION :</strong> <span class="green"><strong>L'option IR est préférable</strong></span> malgré le passage en TMI 41% !
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li>PFU : <strong>57 441 €</strong></li>
+        <li>IR : <strong>57 355 €</strong> (soit 86€ de moins, + 1 428€ CSG déductible en N+1)</li>
+        <li>Gain total option IR : <strong>~1 514 €</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 4: CALCUL IR + MALRAUX + IFI -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Nouvel IR 2027 (revenus 2026) avec Malraux + Calcul IFI</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Sur la base d'un loyer prévisionnel de 1 100€/mois pour le Malraux, calculez le nouvel IR 2027 sur les revenus 2026.
+    </div>
+
+    <h3 id="houette-s4-ir" style="color: var(--primary);">Calcul du revenu net imposable</h3>
+
+    <h4 style="color: var(--accent);">Revenus fonciers — 2 options</h4>
+
+    <table>
+      <thead><tr><th>Option</th><th>Calcul</th><th style="text-align:right">Résultat</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Micro-foncier</strong></td><td>13 200 × (1 − 30%)</td><td style="text-align:right">9 240 €</td></tr>
+        <tr class="bold-row"><td><strong>Réel (obligatoire !)</strong></td><td>13 200 − 12 188 (intérêts + assurance emprunt)</td><td style="text-align:right"><strong>1 012 €</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-danger" style="margin-top: 12px;">
+      <strong>⚠️ PIÈGE EXAM — Malraux impose le régime réel !</strong><br>
+      <em>BOFiP – BOI-IR-RICI-230-20 § 90 :</em> « Le bénéfice de la réduction d'impôt Malraux est subordonné à l'application du régime réel d'imposition des revenus fonciers. <strong>Le régime micro-foncier n'est pas applicable.</strong> »<br>
+      → Pas d'autre choix que la <strong>déclaration 2044</strong> (régime réel).
+    </div>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Revenus LMNP</h4>
+    <table>
+      <tbody>
+        <tr><td><strong>Micro BIC (résidence principale)</strong></td><td>35 000 × 50% = <strong>17 500€</strong> net imposable</td></tr>
+        <tr><td>Plafond recettes brutes</td><td>77 700€ → OK (35 000 < 77 700)</td></tr>
+        <tr><td>Déclaration</td><td>Cerfa 2042 C PRO</td></tr>
+      </tbody>
+    </table>
+    <div class="note" style="margin-top: 8px;">
+      NB : L'option au réel (cerfa 2031 + expert-comptable) reste possible avec amortissement comptable potentiellement > 50%.<br>
+      NB : La réduction 2/3 des frais comptables (limite 915€) est <strong>supprimée pour 2026</strong>.
+    </div>
+
+    <h4 id="houette-s4-malraux" style="margin-top: 25px; color: var(--accent);">Calcul IR et réduction Malraux</h4>
+
+    <table>
+      <thead><tr><th>Poste</th><th style="text-align:right">Calcul</th><th style="text-align:right">Montant</th></tr></thead>
+      <tbody>
+        <tr><td>Revenus activité nets</td><td style="text-align:right">108 000 + 31 500</td><td style="text-align:right">139 500 €</td></tr>
+        <tr><td>Revenu foncier (réel)</td><td style="text-align:right">13 200 − 12 188</td><td style="text-align:right">1 012 €</td></tr>
+        <tr><td>LMNP micro BIC</td><td style="text-align:right">35 000 × 50%</td><td style="text-align:right">17 500 €</td></tr>
+        <tr style="font-weight:600;"><td><strong>Revenu net global</strong></td><td style="text-align:right"></td><td style="text-align:right"><strong>158 012 €</strong></td></tr>
+        <tr><td>QF</td><td style="text-align:right">158 012 / 2</td><td style="text-align:right">79 006 → TMI 30%</td></tr>
+        <tr><td><strong>IR brut</strong></td><td style="text-align:right">158 012 × 0,30 − 6 834,52 × 2</td><td style="text-align:right"><strong>33 735 €</strong></td></tr>
+        <tr><td>PS</td><td style="text-align:right">(17 500 + 1 012) × 17,2%</td><td style="text-align:right">3 184 €</td></tr>
+      </tbody>
+    </table>
+
+    <div class="formula-card" style="margin-top: 15px;">
+      <h4>Réduction Malraux (Cerfa 2042 RICI)</h4>
+      <div class="f">Réduction = 300 000 × 30% = <strong>90 000 €</strong></div>
+      <div class="f">IR avant réduction = 33 735 € → <span class="green"><strong>Aucun IR pour les revenus 2026 !</strong></span> (sauf PS)</div>
+      <div class="note" style="margin-top: 8px;">
+        <strong>Report sur 2 ans :</strong><br>
+        • Revenus 2026 : IR annulé (33 735€ absorbés)<br>
+        • Revenus 2027 : IR annulé (33 735€ absorbés)<br>
+        • Revenus 2028 : solde = 90 000 − (33 735 × 2) = <strong>22 530€</strong> de réduction restante
+      </div>
+    </div>
+
+    <h3 id="houette-s4-ifi" style="margin-top: 30px; color: var(--primary);">Calcul IFI — Suite à investissement Malraux</h3>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Le couple va-t-il devenir assujetti à l'IFI suite à l'investissement Malraux de 450k€ ?
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Actifs immobiliers</th><th style="text-align:right">Brut IFI</th><th style="text-align:right">Net IFI</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Résidence principale *</td><td style="text-align:right">650 000</td><td style="text-align:right">455 000</td><td>Décote 30%</td></tr>
+        <tr><td>Studios Nice</td><td style="text-align:right">600 000</td><td style="text-align:right">600 000</td><td></td></tr>
+        <tr><td>NP Cortina **</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td>NP conventionnelle → exonérée</td></tr>
+        <tr><td>Malraux Grasse ***</td><td style="text-align:right">450 000</td><td style="text-align:right">111 251</td><td>CRD 338 749€ déductible</td></tr>
+        <tr class="bold-row"><td><strong>TOTAL</strong></td><td style="text-align:right"><strong>1 700 000</strong></td><td style="text-align:right"><strong>1 166 251</strong></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top: 8px;">
+      * RP : décote de 30% → 650 000 × 70% = 455 000€<br>
+      ** NP conventionnelle (donation entre vifs) : seul l'usufruitier déclare pour 100% de la valeur<br>
+      *** CRD au 01/01/2027 = 338 749€ déductible de la masse taxable IFI
+    </div>
+
+    <div class="alert alert-tip" style="margin-top: 15px;">
+      <span class="alert-icon">✅</span>
+      <div><strong>1 166 251 < 1 300 000 → NON ÉLIGIBLE IFI</strong><br>Le couple n'est pas assujetti à l'IFI.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 5: PER — Disponible fiscal -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">PER — Disponible fiscal et points de vigilance</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Calculez leur disponible fiscal PER respectif maximum et soulignez les points de vigilance.
+    </div>
+
+    <div class="note" style="margin-bottom: 15px;">
+      Mr et Mme sont tous deux salariés → disponible fiscal PER défini par l'<strong>article 163 quatervicies du CGI</strong>.
+    </div>
+
+    <h4 style="color: var(--accent);">Disponible PER Mr</h4>
+    <table>
+      <tbody>
+        <tr><td>Revenus nets</td><td style="text-align:right">120 000 × 90% = 108 000</td></tr>
+        <tr><td>10% revenus nets</td><td style="text-align:right">108 000 / 10 = 10 800</td></tr>
+        <tr><td>Report 3 ans (2024-2022)</td><td style="text-align:right">10 800 × 4 = <strong>43 200 €</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Disponible PER Mme</h4>
+    <table>
+      <tbody>
+        <tr><td>Revenus nets</td><td style="text-align:right">35 000 × 90% = 31 500</td></tr>
+        <tr><td>10% revenus nets</td><td style="text-align:right">31 500 / 10 = 3 150</td></tr>
+        <tr><td>Plancher 10% PASS</td><td style="text-align:right">3 150 < 4 710 → <strong>plancher = 4 710 €</strong></td></tr>
+        <tr><td>+ Rappel 3 ans</td><td style="text-align:right">4 710 + 4 637 + 4 399 + 4 114</td></tr>
+        <tr class="bold-row"><td><strong>Disponible Mme</strong></td><td style="text-align:right"><strong>17 860 €</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="formula-card" style="margin-top: 15px;">
+      <h4>Total mutualisable entre conjoints</h4>
+      <div class="f">43 200 + 17 860 = <strong>61 060 €</strong></div>
+    </div>
+
+    <div class="alert alert-danger" style="margin-top: 15px;">
+      <strong>⚠️ Points de vigilance :</strong>
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li><strong>Ne pas baisser de TMI</strong> en déduisant trop (rester en TMI 30%)</li>
+        <li>Ne placer que des sommes <strong>blocables jusqu'à la retraite</strong> : <strong>13 ans pour Mr</strong> et <strong>20 ans pour Mme</strong></li>
+      </ul>
+    </div>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Quand ouvrir le PER ?</h4>
+    <p>Avec la réduction Malraux, l'IR est annulé sur les revenus 2026 et 2027, avec un report de 22 530€ pour 2028.</p>
+    <div class="formula-card">
+      <h4>Conseil : ouvrir les PER à partir des revenus 2028</h4>
+      <div class="f">Versement max PER 2028 = (33 735 − 22 530) / 0,30 = <strong>37 350 €</strong></div>
+      <div class="note">Au-delà de 37 350€, la réduction PER serait « perdue » car absorbée par le solde Malraux.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 6: DONATION GRANDS-PARENTS → TIM -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Donation grands-parents paternels → Tim (immobilier neuf LF2025)</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Les grands-parents paternels souhaitent aider Tim à acheter sa RP. Combien peuvent-ils donner hors droits de donation, dans le cadre d'un investissement en immobilier neuf ?
+    </div>
+
+    <table>
+      <thead><tr><th>Dispositif</th><th>Article CGI</th><th style="text-align:right">Par GP</th><th style="text-align:right">× 2 GP</th></tr></thead>
+      <tbody>
+        <tr><td>Abattement de droit commun GP → petit-enfant</td><td>Art. 790 B</td><td style="text-align:right">31 865</td><td style="text-align:right">63 730</td></tr>
+        <tr><td>Dons familiaux de sommes d'argent</td><td>Art. 790 G</td><td style="text-align:right">31 865</td><td style="text-align:right">63 730</td></tr>
+        <tr><td>Dons spécifiques temporaires pour achat immo neuf</td><td>LF 2025 (< 31/12/2026)</td><td style="text-align:right">100 000</td><td style="text-align:right">200 000</td></tr>
+        <tr class="bold-row"><td colspan="2"><strong>TOTAL exonéré de droits</strong></td><td></td><td style="text-align:right"><strong>327 460 €</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PARTIE 2 : E62 — PHASE RETRAITE (+20 ans)                -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
+  <div class="section" id="houette-e62-intro" style="border-top: 3px solid var(--primary); padding-top: 20px;">
+    <div class="welcome">
+      <h1>E62 — Phase Retraite (+20 ans) 🏠</h1>
+      <div class="subtitle">Mr (71 ans) & Mme (64 ans) — Crédits terminés</div>
+      <p>Retrouvons le couple 20 ans plus tard. Mr a hérité 800k€ de ses parents. Pensions de retraite : Mr 54 000€, Mme 26 000€.<br>
+      Besoin supplémentaire de 24k€ nets/an pour maintenir le train de vie.</p>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3 style="margin-top:0">📊 Bilan patrimonial 2046</h3>
+      <table>
+        <thead><tr><th>Patrimoine 2046</th><th style="text-align:right">Mr</th><th style="text-align:right">Mme</th></tr></thead>
+        <tbody>
+          <tr><td>RP</td><td style="text-align:right">650 000</td><td></td></tr>
+          <tr><td>NP Cortina (PP = 2 000 000)</td><td></td><td style="text-align:right">NP de 2 000 000</td></tr>
+          <tr><td>Malraux Grasse</td><td style="text-align:right">450 000</td><td></td></tr>
+          <tr><td>Studios Nice</td><td style="text-align:right">720 000</td><td></td></tr>
+          <tr><td>AV 1 (2010)</td><td></td><td style="text-align:right">85 000</td></tr>
+          <tr><td>AV 2 (2029)</td><td style="text-align:right">90 000</td><td style="text-align:right">32 000</td></tr>
+          <tr><td>PER (2029)</td><td style="text-align:right">250 000</td><td style="text-align:right">90 000</td></tr>
+          <tr><td>Livret A</td><td style="text-align:right">22 000</td><td style="text-align:right">22 000</td></tr>
+          <tr><td>LDDS</td><td style="text-align:right">12 000</td><td style="text-align:right">12 000</td></tr>
+          <tr><td>C/C</td><td style="text-align:right">820 000</td><td style="text-align:right">105 000</td></tr>
+        </tbody>
+      </table>
+      <div class="note" style="margin-top: 8px;">
+        Mr a hérité 800k€ de ses parents. Les AV ont été alimentées par les réductions fiscales PER. Le couple n'a pas réinvesti sur les marchés.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 7: DDS — SUCCESSION MR (6 PTS) -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">DDS — Droits des héritiers et fiscalité (6 pts)</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Déterminez les droits des héritiers de Mr et leur fiscalité correspondante.<br>
+      NB : Option 100% en usufruit pour le CJS. Négliger forfait mobilier et obsèques.
+    </div>
+
+    <div class="note" style="margin-bottom: 15px;">
+      Régime : <strong>séparation de biens</strong> → pas de masse commune. Chaque époux conserve ses biens propres.<br>
+      Option CJS : 100% usufruit (art. 757 CC) → Tim reçoit 100% en <strong>nue-propriété</strong>.
+    </div>
+
+    <h3 id="houette-s7-tableau" style="color: var(--primary);">Tableau de dévolution successorale</h3>
+
+    <table style="font-size: 0.88em;">
+      <thead>
+        <tr><th>Actifs</th><th style="text-align:right">Mr</th><th style="text-align:right">Mme</th><th style="text-align:right">Masse Civile</th><th style="text-align:right">Masse Fiscale</th><th style="text-align:right">CJS 40%</th><th style="text-align:right">Tim 60%</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>RP</td><td style="text-align:right">650 000</td><td></td><td style="text-align:right">650 000</td><td style="text-align:right">455 000</td><td style="text-align:right">182 000</td><td style="text-align:right">273 000</td></tr>
+        <tr><td>NP Cortina</td><td></td><td style="text-align:right">1 600 000</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="text-align:right">—</td><td style="text-align:right">—</td></tr>
+        <tr><td>Malraux Grasse</td><td style="text-align:right">450 000</td><td></td><td style="text-align:right">450 000</td><td style="text-align:right">450 000</td><td style="text-align:right">180 000</td><td style="text-align:right">270 000</td></tr>
+        <tr><td>Studios Nice</td><td style="text-align:right">720 000</td><td></td><td style="text-align:right">720 000</td><td style="text-align:right">720 000</td><td style="text-align:right">288 000</td><td style="text-align:right">432 000</td></tr>
+        <tr><td>AV 1 (2010)</td><td></td><td style="text-align:right">85 000</td><td style="text-align:right" colspan="4">N/A (bien propre Mme)</td></tr>
+        <tr><td>AV 2 (2029)</td><td style="text-align:right">90 000</td><td style="text-align:right">32 000</td><td style="text-align:right" colspan="4">Hors succession (clause bénéficiaire)</td></tr>
+        <tr><td>PER (2029)</td><td style="text-align:right">250 000</td><td style="text-align:right">90 000</td><td style="text-align:right" colspan="4">Hors succession (clause bénéficiaire)</td></tr>
+        <tr><td>Livret A</td><td style="text-align:right">22 000</td><td style="text-align:right">22 000</td><td style="text-align:right">22 000</td><td style="text-align:right">22 000</td><td style="text-align:right">8 800</td><td style="text-align:right">13 200</td></tr>
+        <tr><td>LDDS</td><td style="text-align:right">12 000</td><td style="text-align:right">12 000</td><td style="text-align:right">12 000</td><td style="text-align:right">12 000</td><td style="text-align:right">4 800</td><td style="text-align:right">7 200</td></tr>
+        <tr><td>C/C</td><td style="text-align:right">820 000</td><td style="text-align:right">105 000</td><td style="text-align:right">820 000</td><td style="text-align:right">820 000</td><td style="text-align:right">328 000</td><td style="text-align:right">492 000</td></tr>
+        <tr class="bold-row"><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td style="text-align:right"><strong>2 479 000</strong></td><td style="text-align:right"><strong>991 600</strong></td><td style="text-align:right"><strong>1 487 400</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="formula-card" style="margin-top: 12px;">
+      <h4>Calcul des DDS — Tim</h4>
+      <div class="f">CJS (100% US) : <strong>Exonéré</strong> (TEPA 2007)</div>
+      <div class="f">Tim : 1 487 400 − 100 000 (abattement) = <strong>1 387 400 € base taxable</strong></div>
+      <div class="f">DDS Tim = barème ligne directe sur 1 387 400 → <strong>407 638 €</strong></div>
+    </div>
+
+    <h3 id="houette-s7-analyse" style="margin-top: 25px; color: var(--primary);">Analyse et options pour Tim</h3>
+
+    <div class="card">
+      <h4>Situation de Tim</h4>
+      <ul style="padding-left: 20px;">
+        <li>Tim ne récupère que la <strong>NP</strong> → attendra le décès de Mme pour la PP (<strong>art. 1133 CGI : sans nouveaux droits</strong>)</li>
+        <li><strong>Dépourvu de liquidités</strong> et héritant en 100% NP → peut demander un <strong>différé de paiement des DDS</strong></li>
+      </ul>
+      <h4 style="margin-top: 12px;">2 options de différé</h4>
+      <table>
+        <thead><tr><th>Option</th><th>Mécanisme</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Avec intérêts</strong></td><td>Crédit in fine de 407 638€ par l'administration fiscale (taux 2,3% en 2026)</td></tr>
+          <tr><td><strong>Sans intérêts</strong></td><td>Recalcul des droits sur la PP des biens (valorisés au 1er décès) lors de la fin du démembrement</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top: 12px;">
+      <h4>Droits de Mme (CJS)</h4>
+      <ul style="padding-left: 20px;">
+        <li>100% de la jouissance et des revenus du patrimoine de Mr</li>
+        <li>Capitaux AV (bénéficiaire désignée)</li>
+        <li>Pension de réversion : <strong>54% régime de base SS</strong> + <strong>60% complémentaire</strong></li>
+        <li>Capital décès SS (sur demande) + garantie prévoyance entreprise</li>
+        <li><strong>Droit viager sur la résidence principale</strong></li>
+      </ul>
+    </div>
+
+    <div class="alert alert-tip" style="margin-top: 12px;">
+      <strong>NB Rappel :</strong> Si le régime avait été communautaire, 50% du contrat AV de Mme aurait dû être réintégré fictivement dans la masse civile → droits supplémentaires en NP à Tim, <strong>sans droits de succession supplémentaires</strong> (réintégration civile et non fiscale — réponse ministérielle CIOT 2016).
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 8: RÉDUCTION PRESSION FISCALE -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s8">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title">Stratégies de réduction de la pression fiscale successorale (2 pts)</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Que pourriez-vous suggérer pour réduire la pression fiscale successorale sur les 2 décès ?
+    </div>
+
+    <table>
+      <thead><tr><th>Stratégie</th><th>Effet</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Faire une DDV (donation entre époux)</strong></td><td>Augmentation des droits du CJS → <strong>non imposable</strong></td></tr>
+        <tr><td><strong>Donation NP de biens immobiliers</strong></td><td>Avec ou sans réversion d'usufruit → purge de la base taxable</td></tr>
+        <tr><td><strong>Augmenter les versements AV au profit de Tim</strong></td><td>Ou clause bénéficiaire démembrée → hors succession</td></tr>
+        <tr><td><strong>Clause de préciput sur RP</strong></td><td>RP sort de la masse successorale</td></tr>
+        <tr><td><strong>Passage en CRA ou CU</strong></td><td>Sans clause d'attribution intégrale → optimiser la masse commune</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 9: PV MALRAUX + DONATION TIM -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s9">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-title">PV immobilière Malraux ASL + Donation à Tim (4 pts)</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Mr vend son Malraux (acquis en 2026, 450k€ dont 300k€ travaux ASL). Calculez la PV immobilière et le montant de la donation à Tim.
+    </div>
+
+    <h3 id="houette-s9-pv" style="color: var(--primary);">Calcul de la plus-value immobilière</h3>
+
+    <div class="alert alert-danger">
+      <strong>⚠️ CAS PARTICULIER Malraux ASL :</strong> Les travaux ayant bénéficié d'un avantage fiscal <strong>ne peuvent pas être repris dans le prix d'achat</strong> pour le calcul de la PV.
+    </div>
+
+    <div class="formula-card">
+      <h4>PV Brute</h4>
+      <div class="f">PV = Prix vente − [Prix achat hors travaux + 7,5% forfait acquisition + 15% forfait travaux (si > 5 ans)]</div>
+      <div class="f">= 450 000 − [150 000 + (7,5% × 150 000) + (15% × 150 000)]</div>
+      <div class="f">= 450 000 − [150 000 + 11 250 + 22 500] = 450 000 − 183 750</div>
+      <div class="f"><strong>PV Brute = 266 250 €</strong></div>
+    </div>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Abattements — Durée de détention 20 ans</h4>
+
+    <table>
+      <thead><tr><th></th><th style="text-align:center">IR (19%)</th><th style="text-align:center">PS (17,2%)</th></tr></thead>
+      <tbody>
+        <tr><td>PV brute</td><td style="text-align:center">266 250</td><td style="text-align:center">266 250</td></tr>
+        <tr><td><strong>Abattement</strong></td><td style="text-align:center"><strong>90%</strong></td><td style="text-align:center"><strong>24,75%</strong></td></tr>
+        <tr><td>Base taxable</td><td style="text-align:center">26 625</td><td style="text-align:center">200 353</td></tr>
+        <tr><td><strong>Droits</strong></td><td style="text-align:center"><strong>5 059 €</strong></td><td style="text-align:center"><strong>34 461 €</strong></td></tr>
+        <tr class="bold-row"><td colspan="2"><strong>TOTAL PV immo</strong></td><td style="text-align:center"><strong>39 520 €</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="houette-s9-donation" style="margin-top: 25px; color: var(--primary);">Donation à Tim — Avec prise en charge des droits</h3>
+
+    <div class="formula-card">
+      <h4>Produit net de la vente</h4>
+      <div class="f">450 000 − 39 520 = <strong>410 480 € de liquidités</strong></div>
+    </div>
+
+    <table style="margin-top: 12px;">
+      <thead><tr><th>Étape</th><th style="text-align:right">Montant</th></tr></thead>
+      <tbody>
+        <tr><td>Don familial (< 80 ans, Tim majeur) — art. 790 G</td><td style="text-align:right">31 865 € (exonéré)</td></tr>
+        <tr><td>Abattement parent → enfant — art. 779 I</td><td style="text-align:right">100 000 € (exonéré)</td></tr>
+        <tr><td>Reste à transmettre avec droits</td><td style="text-align:right">410 480 − 100 000 − 31 865 = <strong>278 615 €</strong></td></tr>
+        <tr><td>TMI droits de donation</td><td style="text-align:right"><strong>20%</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Si Mr prend en charge les droits</h4>
+    <div class="formula-card">
+      <div class="f">Donation nette à Tim = (278 615 + 1 806) / 1,20 = <strong>233 684 €</strong></div>
+      <div class="f">Droits pris en charge = 233 684 × 20% − 1 806 = <strong>44 931 €</strong></div>
+      <div class="f">Vérification : 233 684 + 44 931 = 278 615 ✅</div>
+    </div>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Comparaison : si Tim paie lui-même les droits</h4>
+    <div class="formula-card">
+      <div class="f">Tim reçoit = 410 480 − (310 480 × 20% − 1 806) = <strong>350 190 €</strong></div>
+      <div class="f">Prise en charge par Mr : Tim reçoit 233 684 + 131 865 = <strong>365 549 €</strong></div>
+      <div class="f">Gain prise en charge = <span class="green"><strong>15 359 € de plus pour Tim</strong></span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 10: RÉINVESTISSEMENT 800k€ (6 PTS) -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s10">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title">Réinvestissement 800k€ — Stratégie multi-contrats AV (6 pts)</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Proposez le réinvestissement des 800k€ de Mr pour répondre au besoin de revenus supplémentaires (24k€/an) tout en optimisant la fiscalité successorale pour Tim.
+    </div>
+
+    <div class="note" style="margin-bottom: 15px;">
+      Mr a <strong>plus de 70 ans</strong> → versements après 70 ans → <strong>art. 757 B</strong> : 30 500€ abattement global, mais <strong>produits (intérêts/PV) exonérés de droits</strong>. Stratégie multi-contrats très opportune.
+    </div>
+
+    <h3 id="houette-s10-multi" style="color: var(--primary);">Stratégie bi-contrats : Distribution + Capitalisation</h3>
+
+    <h4 style="color: var(--accent);">Calcul du capital à placer (coefficient de capitalisation de rente)</h4>
+
+    <div class="formula-card">
+      <h4>Formule</h4>
+      <div class="f">K = Rachat × (1 − (1 + taux)<sup>−N</sup>) / taux</div>
+      <div class="note">K = capital à placer, N = nombre d'années, taux = rendement net</div>
+    </div>
+
+    <div class="formula-card" style="margin-top: 10px;">
+      <h4>Application : 24 000€/an sur 20 ans à 3% net</h4>
+      <div class="f">K = 24 000 × (1 − (1,03)<sup>−20</sup>) / 0,03 = 24 000 × 14,8775 = <strong>357 060 € ≈ 360 000 €</strong></div>
+    </div>
+
+    <h4 style="margin-top: 20px; color: var(--accent);">Répartition des 800 000€</h4>
+
+    <table>
+      <thead><tr><th>Contrat</th><th>Capital</th><th>Objectif</th><th>Durée</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AV n°1 — Distribution</strong></td><td><strong>360 000 €</strong></td><td>Rachats de 24k€/an · TRI 3% nets PS</td><td>20 ans → solde 0€</td></tr>
+        <tr><td><strong>AV n°2 — Capitalisation</strong></td><td><strong>440 000 €</strong></td><td>Capitalisation pure (produits exonérés DDS art. 757 B)</td><td>20 ans → <strong>794 000 €</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="formula-card" style="margin-top: 15px;">
+      <h4>Comparaison DDS à 20 ans</h4>
+      <div class="f">Stratégie bi-contrats : DDS = (440 000 − 100 000 − 30 500) × 40% = <strong>123 800 €</strong></div>
+      <div class="f">Mono-contrat (naïf) : DDS = (800 000 − 100 000 − 30 500) × 40% = <strong>267 800 €</strong></div>
+      <div class="f"><span class="green"><strong>Gain = 267 800 − 123 800 = 144 000 € d'économie sur DDS !</strong></span></div>
+    </div>
+
+    <div class="note" style="margin-top: 10px;">
+      <strong>Avantage supplémentaire :</strong> La fiscalité sur les rachats (AV n°1) sera d'autant moins importante que chaque année les intérêts diminuent (contrairement à un mono-contrat).
+    </div>
+
+    <h3 id="houette-s10-amelio" style="margin-top: 30px; color: var(--primary);">Amélioration : AV + Contrat de capitalisation en NP</h3>
+
+    <table>
+      <thead><tr><th>Enveloppe</th><th>Capital</th><th>Objectif</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AV n°1 — Distribution</strong></td><td>360 000 €</td><td>Rachats 24k€/an (inchangé)</td></tr>
+        <tr><td><strong>AV n°2 — Capitalisation</strong></td><td>130 500 €</td><td>Exonéré DDS : 100 000€ (abattement 779 I) + 30 500€ (757 B)</td></tr>
+        <tr><td><strong>Contrat de capitalisation — NP donnée à Tim</strong></td><td>309 500 €</td><td>NP donnée à Tim avec réversion d'usufruit pour CJS</td></tr>
+      </tbody>
+    </table>
+
+    <div class="formula-card" style="margin-top: 15px;">
+      <h4>DDS Contrat de capitalisation</h4>
+      <div class="f">Donation NP à Tim : 309 500 − 100 000 (abattement) = 209 500 × 20% − 1 806 = <strong>40 094 €</strong></div>
+      <div class="f">PP transmise à Tim lors du décès de l'usufruitier → <strong>art. 1133 CGI : sans nouveaux droits</strong></div>
+    </div>
+
+    <div class="formula-card" style="margin-top: 12px;">
+      <h4>Bilan final de la stratégie améliorée</h4>
+      <div class="f">AV n°2 : DDS = <strong>0 €</strong> (abattements couvrent)</div>
+      <div class="f">Contrat capi NP : DDS = <strong>40 094 €</strong></div>
+      <div class="f">Gain supplémentaire = 123 800 − 40 094 = <strong>83 706 €</strong></div>
+      <div class="f" style="font-size: 1.1em;"><span class="green"><strong>Économie totale = 144 000 + 83 706 = 227 706 € sur les DDS !!</strong></span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 11: TRANSMISSION NP CORTINA -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="section" id="houette-s11">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title">Transmission NP Cortina — Donation-partage transgénérationnelle</div>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>QUESTION :</strong> Mme souhaite transmettre la NP de Cortina à Tim. Calculez les droits et conseillez.
+    </div>
+
+    <h3 id="houette-s11-droits" style="color: var(--primary);">Calcul des droits — Donation classique</h3>
+
+    <div class="formula-card">
+      <h4>Valorisation NP</h4>
+      <div class="f">Parents Mme : 85 ans en 2046 → NP = 80% de la PP (art. 669-1)</div>
+      <div class="f">NP = 2 000 000 × 80% = <strong>1 600 000 €</strong></div>
+    </div>
+
+    <div class="formula-card" style="margin-top: 10px;">
+      <h4>DDS — Donation classique Mme → Tim</h4>
+      <div class="f">1 600 000 − 100 000 (abattement) = 1 500 000 base taxable</div>
+      <div class="f">DDS = 1 500 000 × 40% − 147 322 = <strong>452 678 €</strong></div>
+      <div class="note">(Sans compter les frais de notaire…)</div>
+    </div>
+
+    <h3 id="houette-s11-transgen" style="margin-top: 30px; color: var(--primary);">Conseil : Réincorporation + Donation-partage transgénérationnelle</h3>
+
+    <div class="alert alert-tip">
+      <strong>Fondements juridiques :</strong>
+      <ul style="margin: 8px 0; padding-left: 20px;">
+        <li><strong>Art. 1078-4 et 1075-1 du Code civil</strong></li>
+        <li><strong>Art. 746 CGI</strong> — droit de partage de 2,5%</li>
+        <li><strong>Doctrine BOFiP (ENR-DMTG-10-20-40)</strong> : « Lorsqu'une donation antérieure est réincorporée dans une donation-partage, <strong>il ne s'agit PAS d'une nouvelle donation</strong>, mais d'un remaniement de droits entre copartagés. »</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top: 12px;">
+      <h4>Mécanisme</h4>
+      <ol style="padding-left: 20px;">
+        <li>Les parents de Mme réincorporent (fictivement) la donation de la NP de Cortina pour sa valeur PP de 2046 = <strong>2 000 000€</strong></li>
+        <li>Puis retransmettent : <strong>usufruit → Mme</strong>, <strong>NP → Tim</strong></li>
+      </ol>
+    </div>
+
+    <div class="formula-card" style="margin-top: 12px;">
+      <h4>Coût de l'opération</h4>
+      <div class="f">Droit de partage = 2 000 000 × 2,5% = <strong>50 000 €</strong></div>
+      <div class="f"><span class="green"><strong>Gain = 452 678 − 50 000 = 402 678 € d'économie !!</strong></span></div>
+    </div>
+
+    <div class="alert alert-danger" style="margin-top: 12px;">
+      <strong>⚠️ Condition :</strong> Il faut avoir passé le <strong>délai de rappel fiscal des 15 ans</strong> pour bénéficier du droit de partage à 2,5%. Sinon, recalcul des droits en déduisant ceux déjà payés lors de la première donation (170k€).
+    </div>
+  </div>
+
+</div>
+<!-- FIN CAS HOUETTE -->
+
+
 <!-- ══════════════════════════════════════
      MONTAGES FINANCIERS, FISCAUX & JURIDIQUES
      ══════════════════════════════════════ -->
@@ -20038,6 +21156,297 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
   <div class="note" style="margin-top: 8px; font-size: .77em;">
     <sup>*</sup> Avec clause attribution intégrale
   </div>
+</div>
+
+<!-- SECTION 12: Plus-Values Immobilières -->
+<div class="section section-divider" id="form-s12">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <div class="section-title">Plus-Values Immobilières</div>
+  </div>
+
+  <div class="formula-card">
+    <h4>Calcul de la plus-value brute</h4>
+    <div class="f">PV brute = Prix de cession − Prix d'acquisition corrigé</div>
+    <div class="note" style="margin-top: 6px;">
+      Prix d'acquisition corrigé = Prix d'achat + frais d'acquisition (7,5% forfait ou réels) + travaux (15% forfait après 5 ans ou réels)
+    </div>
+  </div>
+
+  <h4 style="margin-top: 20px; color: var(--accent);">Abattements pour durée de détention — IR (19%)</h4>
+  <table class="compact-table">
+    <thead>
+      <tr>
+        <th>Durée de détention</th>
+        <th>Abattement annuel</th>
+        <th>Abattement cumulé</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>0 à 5 ans</td><td>0%</td><td>0%</td></tr>
+      <tr><td>6e à 21e année</td><td><strong>6% / an</strong></td><td>6% → 96%</td></tr>
+      <tr><td>22e année</td><td><strong>4%</strong></td><td>100%</td></tr>
+      <tr class="bold-row"><td><strong>Après 22 ans</strong></td><td>—</td><td><span class="green"><strong>Exonération totale IR</strong></span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-top: 20px; color: var(--accent);">Abattements pour durée de détention — PS (17,2%)</h4>
+  <table class="compact-table">
+    <thead>
+      <tr>
+        <th>Durée de détention</th>
+        <th>Abattement annuel</th>
+        <th>Abattement cumulé</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>0 à 5 ans</td><td>0%</td><td>0%</td></tr>
+      <tr><td>6e à 21e année</td><td><strong>1,65% / an</strong></td><td>1,65% → 26,40%</td></tr>
+      <tr><td>22e année</td><td><strong>1,60%</strong></td><td>28%</td></tr>
+      <tr><td>23e à 30e année</td><td><strong>9% / an</strong></td><td>37% → 100%</td></tr>
+      <tr class="bold-row"><td><strong>Après 30 ans</strong></td><td>—</td><td><span class="green"><strong>Exonération totale PS</strong></span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-tip" style="margin-top: 15px;">
+    <strong>Résumé :</strong> Exonération IR après <strong>22 ans</strong>, exonération PS après <strong>30 ans</strong>. La résidence principale est <strong>totalement exonérée</strong> de PV (pas de condition de durée).
+  </div>
+</div>
+
+<!-- SECTION 13: Réductions d'Impôt -->
+<div class="section section-divider" id="form-s13">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <div class="section-title">Réductions d'Impôt</div>
+  </div>
+
+  <div class="alert alert-danger">
+    <strong>Plafond global des niches fiscales :</strong> <strong>10 000€/an</strong> (reportable 4 ans si non utilisé). Certains dispositifs sont <strong>hors plafond</strong> (Malraux, Monuments Historiques, Girardin).
+  </div>
+
+  <table class="compact-table">
+    <thead>
+      <tr>
+        <th style="font-size: .8em;">Dispositif</th>
+        <th style="font-size: .8em;">Taux</th>
+        <th style="font-size: .8em;">Plafond / Conditions</th>
+        <th style="font-size: .8em;">Niche 10k€</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="font-size: .8em;">
+        <td><strong>GFI / GFF</strong></td>
+        <td>18 à 25%</td>
+        <td>Conservation parts 8 ans minimum</td>
+        <td>DANS</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Denormandie</strong></td>
+        <td>12 / 18 / 21%</td>
+        <td>Ancien rénové en zone ORT. Travaux ≥ 25% du prix</td>
+        <td>DANS</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Loc'Avantages</strong></td>
+        <td>15 à 65%</td>
+        <td>Convention ANAH 6 ans. Loyer plafonné</td>
+        <td>DANS</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Dons associations</strong></td>
+        <td><strong>66%</strong></td>
+        <td>Max 20% du revenu net imposable</td>
+        <td>DANS</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Frais de scolarité</strong></td>
+        <td>Forfait</td>
+        <td><strong>61€</strong> (collège) · <strong>153€</strong> (lycée) · <strong>183€</strong> (sup.)</td>
+        <td>DANS</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Réduction par ½ part</strong></td>
+        <td>Forfait</td>
+        <td><strong>1 742€</strong> de réduction forfaitaire par ½ part additionnelle (plafond QF <strong>1 791€</strong>)</td>
+        <td>—</td>
+      </tr>
+      <tr style="font-size: .8em; background: rgba(var(--primary-rgb), 0.08);">
+        <td><strong>Malraux</strong></td>
+        <td><strong>22% / 30%</strong></td>
+        <td>Max 400 000€ travaux / 4 ans · 5 500€/m²</td>
+        <td><span class="green"><strong>HORS</strong></span></td>
+      </tr>
+      <tr style="font-size: .8em; background: rgba(var(--primary-rgb), 0.08);">
+        <td><strong>Girardin (outre-mer)</strong></td>
+        <td><strong>30%</strong></td>
+        <td>Max 2 538€/m² · Plafond alternatif <strong>18 000€</strong></td>
+        <td><span class="green"><strong>HORS</strong></span></td>
+      </tr>
+      <tr style="font-size: .8em; background: rgba(var(--primary-rgb), 0.08);">
+        <td><strong>Monuments Historiques</strong></td>
+        <td>100% travaux</td>
+        <td>Conservation 15 ans. Déduction sans plafond</td>
+        <td><span class="green"><strong>HORS</strong></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 14: Crédits d'Impôt -->
+<div class="section section-divider" id="form-s14">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <div class="section-title">Crédits d'Impôt</div>
+  </div>
+
+  <div class="formula-card">
+    <h4>Différence réduction vs crédit</h4>
+    <div class="note">
+      <strong>Réduction :</strong> diminue l'impôt dû (pas de remboursement si impôt = 0)<br/>
+      <strong>Crédit :</strong> diminue l'impôt dû ET remboursement du surplus si impôt insuffisant
+    </div>
+  </div>
+
+  <table class="compact-table" style="margin-top: 15px;">
+    <thead>
+      <tr>
+        <th style="font-size: .8em;">Crédit d'impôt</th>
+        <th style="font-size: .8em;">Taux</th>
+        <th style="font-size: .8em;">Plafond</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="font-size: .8em;">
+        <td><strong>Emploi à domicile</strong></td>
+        <td><strong>50%</strong></td>
+        <td><strong>12 000€</strong> + 1 500€/enfant (max 15 000€). 1ère année : 15 000€ + 1 500€/enfant (max 18 000€)</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Frais de garde</strong> (enfant < 6 ans)</td>
+        <td><strong>50%</strong></td>
+        <td><strong>3 500€/enfant</strong> (dépenses retenues max 7 000€/enfant)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-tip" style="margin-top: 15px;">
+    <strong>Piège exam :</strong> L'emploi à domicile est un <strong>crédit</strong> d'impôt (pas une réduction) → remboursable même si non imposable. Il est <strong>dans</strong> le plafond des niches de 10 000€.
+  </div>
+</div>
+
+<!-- SECTION 15: Déductions du Revenu Imposable -->
+<div class="section section-divider" id="form-s15">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <div class="section-title">Déductions du Revenu Imposable</div>
+  </div>
+
+  <div class="formula-card">
+    <h4>Principe</h4>
+    <div class="note">
+      Les déductions s'imputent <strong>avant</strong> le calcul de l'IR. Elles réduisent le revenu net imposable (RNI), ce qui diminue l'impôt au taux marginal (TMI).
+    </div>
+  </div>
+
+  <table class="compact-table" style="margin-top: 15px;">
+    <thead>
+      <tr>
+        <th style="font-size: .8em;">Déduction</th>
+        <th style="font-size: .8em;">Montant / Taux</th>
+        <th style="font-size: .8em;">Conditions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="font-size: .8em;">
+        <td><strong>Abattement 10% salaires</strong></td>
+        <td>10% (min <strong>509€</strong>, max <strong>14 426€</strong>)</td>
+        <td>Par personne. Ou option frais réels</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Abattement 10% pensions</strong></td>
+        <td>10% (plafond <strong>4 399€</strong>)</td>
+        <td>Pour l'ensemble du foyer fiscal</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Pension alimentaire — enfant détaché</strong></td>
+        <td><strong>6 794€/enfant</strong></td>
+        <td>Enfant majeur non rattaché au foyer fiscal</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Pension alimentaire — enfant au domicile</strong></td>
+        <td><strong>4 039€/enfant</strong></td>
+        <td>Enfant majeur hébergé, évaluation forfaitaire (pas de justificatifs)</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Déficit foncier</strong></td>
+        <td><strong>10 700€/an</strong></td>
+        <td>Location nue uniquement. Solde reportable 10 ans sur revenus fonciers</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Micro-foncier</strong></td>
+        <td>Abattement <strong>30%</strong></td>
+        <td>Revenus fonciers bruts ≤ 15 000€. Location nue</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>PER — Versements déductibles</strong></td>
+        <td>10% revenus N−1</td>
+        <td>Min <strong>4 637€</strong> · Max <strong>37 094€</strong>. Report 3 ans + mutualisation couple</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Abattement 85% titres SAS</strong></td>
+        <td><strong>85%</strong> de la PV</td>
+        <td>Titres détenus > 8 ans, acquis <strong>avant 01/01/2018</strong>. Régime dérogatoire</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Frais d'accueil personne âgée</strong></td>
+        <td><strong>3 786€/personne</strong></td>
+        <td>Personne de + 75 ans hébergée, revenus ≤ plafond ASH</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-top: 20px; color: var(--accent);">Abattements spéciaux — IFI & Succession</h4>
+  <table class="compact-table">
+    <thead>
+      <tr>
+        <th style="font-size: .8em;">Abattement</th>
+        <th style="font-size: .8em;">Taux / Montant</th>
+        <th style="font-size: .8em;">Contexte</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="font-size: .8em;">
+        <td><strong>Résidence principale — IFI</strong></td>
+        <td><strong>30%</strong></td>
+        <td>Abattement automatique sur la valeur vénale de la RP</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Résidence principale — Succession</strong></td>
+        <td><strong>20%</strong></td>
+        <td>Si CJS ou enfant y réside au décès (occupation effective)</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>GFF / GFI — Donation</strong></td>
+        <td><strong>75%</strong></td>
+        <td>Exonération 75% des droits de donation sur parts de GFF/GFI</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>GFF / GFI — IFI</strong></td>
+        <td><strong>75%</strong></td>
+        <td>Exonération 75% de la valeur pour l'assiette IFI</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>AV avant 70 ans (990 I)</strong></td>
+        <td><strong>152 500€/bénéficiaire</strong></td>
+        <td>Versements avant 70 ans. Puis 20% jusqu'à 700k€, 31,25% au-delà</td>
+      </tr>
+      <tr style="font-size: .8em;">
+        <td><strong>Donation parent → enfant</strong></td>
+        <td><strong>100 000€</strong></td>
+        <td>Par parent et par enfant. Renouvelable tous les <strong>15 ans</strong></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 </div>
