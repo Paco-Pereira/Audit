@@ -404,18 +404,20 @@ body::before {
 }
 
 .sidebar-toggle-btn {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   display: none;
   align-items: center;
   justify-content: center;
   transition: all var(--transition);
-  font-size: 16px;
+  font-size: 18px;
+  position: fixed;
+  z-index: 1000;
 }
 
 .sidebar-toggle-btn:hover {
@@ -1373,32 +1375,55 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
    ============================================================================ */
 
 @media (max-width: 900px) {
-  :root {
-    --sidebar-w: 0px;
-  }
-
   .app-body {
     flex-direction: column;
   }
 
   .sidebar {
-    position: absolute;
-    left: -100%;
-    top: 0;
-    height: 100%;
-    width: var(--sidebar-w);
+    position: fixed;
+    left: 0;
+    top: var(--header-h);
+    height: calc(100vh - var(--header-h));
+    width: 260px;
     z-index: 100;
-    transition: left var(--transition);
+    transform: translateX(-100%);
+    transition: transform var(--transition);
   }
 
   .sidebar.active {
-    left: 0;
-    width: 260px;
-    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+    transform: translateX(0);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.25);
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+  }
+
+  .sidebar-overlay.active {
+    opacity: 1;
+    pointer-events: all;
   }
 
   .sidebar-toggle-btn {
     display: flex;
+    position: fixed;
+    left: 8px;
+    top: 8px;
+    z-index: 1001;
+  }
+
+  .header {
+    padding-left: 52px;
+  }
+
+  .main {
+    width: 100%;
   }
 
   .cols {
@@ -1692,9 +1717,10 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
   </div>
 </div>
 
-<button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Fermer le menu">✕</button>
+<button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Ouvrir le menu">☰</button>
 
 <!-- ============ APP BODY ============ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <div class="app-body">
 
   <!-- ===== SIDEBAR ===== -->
@@ -12547,19 +12573,19 @@ function switchCase(caseName) {
 // ============ SIDEBAR TOGGLE FUNCTION ============
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
-  const appBody = document.querySelector('.app-body');
   const toggleBtn = document.getElementById('sidebarToggleBtn');
+  const overlay = document.getElementById('sidebarOverlay');
 
-  sidebar.classList.toggle('collapsed');
-  appBody.classList.toggle('sidebar-collapsed');
+  sidebar.classList.toggle('active');
+  if (overlay) overlay.classList.toggle('active');
 
   // Update toggle button icon
-  if (sidebar.classList.contains('collapsed')) {
-    toggleBtn.innerHTML = '☰';
-    toggleBtn.title = 'Ouvrir le menu';
-  } else {
+  if (sidebar.classList.contains('active')) {
     toggleBtn.innerHTML = '✕';
     toggleBtn.title = 'Fermer le menu';
+  } else {
+    toggleBtn.innerHTML = '☰';
+    toggleBtn.title = 'Ouvrir le menu';
   }
 }
 
@@ -12576,7 +12602,16 @@ function goTo(id) {
   }
   // Close mobile sidebar
   if (window.innerWidth <= 900) {
-    document.getElementById('sidebar').classList.remove('open');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebarToggleBtn');
+
+    if (sidebar.classList.contains('active')) {
+      sidebar.classList.remove('active');
+      if (overlay) overlay.classList.remove('active');
+      toggleBtn.innerHTML = '☰';
+      toggleBtn.title = 'Ouvrir le menu';
+    }
   }
 }
 
