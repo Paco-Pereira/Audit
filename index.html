@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GP Exam Prep — Master 2 Gestion de Patrimoine</title>
+<title>M2 - GIP — Gestion et Ingénierie Patrimoniale</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================================
@@ -2123,6 +2123,42 @@ details .inner {
 .home-card.card-outils { --card-accent: #ff9f0a; }
 .home-card.card-guide { --card-accent: #30d158; }
 .home-card.card-formules { --card-accent: #64d2ff; }
+.home-card.card-audit { --card-accent: #0a84ff; }
+
+.home-card.card-disabled {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+}
+.home-card.card-disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.home-card-badge {
+  margin-top: 12px;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  color: var(--text-light);
+  border: 1px solid var(--glass-border);
+}
+
+.breadcrumb {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--primary);
+  margin-bottom: 12px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+.breadcrumb:hover {
+  opacity: 0.7;
+}
 
 @media (max-width: 600px) {
   .home-grid {
@@ -2143,9 +2179,9 @@ details .inner {
 
 <!-- ============ HEADER ============ -->
 <div class="header">
-  <div class="header-logo">
-    <div class="icon">📊</div>
-    <span>GP Exam Prep</span>
+  <div class="header-logo" onclick="switchCase('home')" style="cursor:pointer">
+    <div class="icon">🎓</div>
+    <span>M2 - GIP</span>
   </div>
   <div class="header-right">
     <span class="header-badge">Master 2 — 2025-2026</span>
@@ -2165,10 +2201,14 @@ details .inner {
 </div>
 
 <!-- ============ TAB BAR ============ -->
-<div class="tab-bar">
-  <div class="tab active" data-case="home" onclick="switchCase('home')" style="margin-right:8px;">
+<div class="tab-bar" id="tabBar" style="display:none">
+  <div class="tab" data-case="home" onclick="switchCase('home')" style="margin-right:4px;">
     <span class="tab-icon">🏠</span>
-    <span>Accueil</span>
+    <span>Cours</span>
+  </div>
+  <div class="tab active" data-case="audit" onclick="switchCase('audit')" style="margin-right:4px;">
+    <span class="tab-icon">📊</span>
+    <span>Audit</span>
   </div>
   <div class="tab-divider"></div>
   <div class="tab-group">
@@ -2850,13 +2890,60 @@ details .inner {
   <main class="main" id="main-scroll">
 
     <!-- ══════════════════════════════════════
-         ACCUEIL
+         ACCUEIL M2 - GIP
          ══════════════════════════════════════ -->
     <div class="case-content active" id="case-home" style="display:block">
 
       <div class="home-hero">
-        <h1>GP Exam Prep</h1>
-        <p>Votre guide complet pour le Master 2 Gestion de Patrimoine. Cas pratiques, outils de calcul et fiches de révision.</p>
+        <h1>M2 - GIP</h1>
+        <p>Master 2 — Gestion et Ingénierie Patrimoniale<br>
+        Sélectionnez un cours pour accéder aux cas pratiques, outils et ressources.</p>
+      </div>
+
+      <div class="home-section-title">📚 Cours</div>
+      <div class="home-grid">
+
+        <div class="home-card card-audit" onclick="enterCourse('audit')">
+          <span class="home-card-icon">📊</span>
+          <div class="home-card-title">Audit patrimonial</div>
+          <div class="home-card-desc">8 cas pratiques complets (SNOW, STARK, NIOTE, MENGERE, NORRIS, VADOR, LEON, GÉNÉREUX), boîte à outils, guide stratégique et formules.</div>
+          <div class="home-card-badge">8 cas · 3 outils</div>
+        </div>
+
+        <div class="home-card card-disabled">
+          <span class="home-card-icon">🏛️</span>
+          <div class="home-card-title">Droit du patrimoine</div>
+          <div class="home-card-desc">Prochainement disponible.</div>
+          <div class="home-card-badge">À venir</div>
+        </div>
+
+        <div class="home-card card-disabled">
+          <span class="home-card-icon">📈</span>
+          <div class="home-card-title">Finance & marchés</div>
+          <div class="home-card-desc">Prochainement disponible.</div>
+          <div class="home-card-badge">À venir</div>
+        </div>
+
+        <div class="home-card card-disabled">
+          <span class="home-card-icon">🏠</span>
+          <div class="home-card-title">Immobilier</div>
+          <div class="home-card-desc">Prochainement disponible.</div>
+          <div class="home-card-badge">À venir</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         AUDIT PATRIMONIAL — Page cours
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-audit" style="display:none">
+
+      <div class="home-hero">
+        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <h1>Audit patrimonial</h1>
+        <p>8 cas pratiques détaillés avec calculs pas à pas, outils de révision et fiches stratégiques.</p>
       </div>
 
       <div class="home-section-title">📚 Cas pratiques</div>
@@ -19515,12 +19602,16 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 <script>
 // ============ SWITCH CASE FUNCTION ============
 function switchCase(caseName) {
+  const tabBar = document.getElementById('tabBar');
+  const sidebarEl = document.getElementById('sidebar');
+  const expandBtn = document.getElementById('sidebarExpandBtn');
+
   // Update tabs
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   const targetTab = document.querySelector(`.tab[data-case="${caseName}"]`);
   if (targetTab) targetTab.classList.add('active');
 
-  // Update content — with inline fallback for compatibility
+  // Update content
   document.querySelectorAll('.case-content').forEach(c => {
     c.classList.remove('active');
     c.style.display = 'none';
@@ -19531,14 +19622,22 @@ function switchCase(caseName) {
     target.style.display = 'block';
   }
 
-  // Update sidebar — hide for home page, show & uncollapse for cases
+  // Update sidebar
   document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
-  const sidebarEl = document.getElementById('sidebar');
-  const expandBtn = document.getElementById('sidebarExpandBtn');
+
   if (caseName === 'home') {
+    // Home M2-GIP: hide tab bar + sidebar
+    if (tabBar) tabBar.style.display = 'none';
+    if (sidebarEl) sidebarEl.style.display = 'none';
+    if (expandBtn) expandBtn.classList.remove('visible');
+  } else if (caseName === 'audit') {
+    // Audit course home: show tab bar, hide sidebar
+    if (tabBar) tabBar.style.display = '';
     if (sidebarEl) sidebarEl.style.display = 'none';
     if (expandBtn) expandBtn.classList.remove('visible');
   } else {
+    // Case/tool pages: show tab bar + sidebar
+    if (tabBar) tabBar.style.display = '';
     if (sidebarEl) {
       sidebarEl.style.display = '';
       sidebarEl.classList.remove('collapsed');
@@ -19550,6 +19649,13 @@ function switchCase(caseName) {
 
   // Scroll to top
   document.getElementById('main-scroll').scrollTop = 0;
+}
+
+// ============ ENTER COURSE FUNCTION ============
+function enterCourse(courseName) {
+  if (courseName === 'audit') {
+    switchCase('audit');
+  }
 }
 
 // ============ SIDEBAR TOGGLE FUNCTION (mobile) ============
