@@ -836,6 +836,190 @@ tfoot td {
   color: var(--primary);
 }
 
+/* Calculation header */
+.calc-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary-light);
+}
+
+.calc-header::before {
+  content: "🔢";
+  font-size: 14px;
+}
+
+.calc-step {
+  position: relative;
+  padding-left: 24px;
+}
+
+.calc-step::before {
+  content: "→";
+  position: absolute;
+  left: 4px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ============================================================================
+   QUESTION/RESPONSE CONTAINERS
+   ============================================================================ */
+
+.qr-container {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.qr-box {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+}
+
+.qr-box.question {
+  border-left: 4px solid var(--warning);
+  background: rgba(255, 149, 0, 0.03);
+}
+
+.qr-box.answer {
+  border-left: 4px solid var(--accent);
+  background: rgba(52, 199, 89, 0.03);
+}
+
+.qr-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.qr-header .icon {
+  font-size: 18px;
+}
+
+/* ============================================================================
+   SUMMARY BOXES
+   ============================================================================ */
+
+.summary-box {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.08), rgba(88, 86, 214, 0.08));
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.summary-box h4 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.summary-box h4::before {
+  content: "📋";
+  font-size: 18px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summary-label {
+  font-size: 12px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* ============================================================================
+   PATRIMOINE TABLES
+   ============================================================================ */
+
+.patrimoine-table {
+  font-size: 13px;
+}
+
+.patrimoine-table th {
+  font-size: 11px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.patrimoine-table .category-row {
+  background: rgba(0, 122, 255, 0.12);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+
+.patrimoine-table .category-row td {
+  padding: 10px 16px;
+  color: var(--primary);
+}
+
+.patrimoine-table .total-row {
+  background: rgba(0, 122, 255, 0.15);
+  font-weight: 700;
+  border-top: 2px solid var(--primary);
+  font-size: 14px;
+}
+
+.patrimoine-table .total-row td {
+  padding: 14px 16px;
+  color: var(--primary);
+}
+
+.patrimoine-table .subtotal-row {
+  background: rgba(0, 0, 0, 0.03);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.patrimoine-table .subtotal-row td {
+  padding: 10px 16px;
+}
+
 /* ============================================================================
    TAGS
    ============================================================================ */
@@ -2416,13 +2600,17 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
         </div>
 
         <h3>La famille</h3>
-        <table>
-          <tr><th>Personne</th><th>Détails clés</th></tr>
+        <table class="data-table">
+          <thead>
+            <tr><th>Personne</th><th>Détails clés</th></tr>
+          </thead>
+          <tbody>
           <tr><td><strong>Mr Julien SNOW (70 ans)</strong></td><td>Retraité depuis 7 ans. Ex-directeur commercial. <strong>Retraite : 50 k€/an</strong></td></tr>
           <tr><td><strong>Mme Danny STARK (55 ans)</strong></td><td>DRH même société. <strong>Salaire : 90 k€/an</strong>. Retraite visée à 70 ans</td></tr>
           <tr><td><strong>Arya (40 ans)</strong></td><td>Fille de Mr (1er mariage). Divorcée, institutrice, revenus modestes. Élève seule Jeoffrey (15 ans)</td></tr>
           <tr><td><strong>Bran (25 ans)</strong></td><td>Enfant commun. Études terminées, indépendant fiscalement, <strong>non rattaché</strong></td></tr>
           <tr><td><strong>Mère de Mme (88 ans)</strong></td><td>En dépendance, réside en EHPAD</td></tr>
+          </tbody>
         </table>
 
         <div class="alert alert-danger">
@@ -3440,40 +3628,58 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
           <div class="section-title">E6I — Bilan patrimonial avec commentaires</div>
         </div>
 
+        <div class="summary-box">
+          <h4>Synthèse patrimoniale</h4>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">Patrimoine total</span>
+              <span class="summary-value">4 307 500€</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Immobilier</span>
+              <span class="summary-value">73,7%</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Financier</span>
+              <span class="summary-value">26,3%</span>
+            </div>
+          </div>
+        </div>
+
         <h3>Répartition du patrimoine</h3>
-        <table class="data-table">
+        <table class="data-table patrimoine-table">
           <thead>
             <tr><th>ACTIFS</th><th>M. STARK</th><th>Commun</th><th>Mme STARK</th><th>TOTAL</th><th>%</th></tr>
           </thead>
           <tbody>
-            <tr><td colspan="6"><strong>IMMOBILIER</strong></td></tr>
+            <tr class="category-row"><td colspan="6">IMMOBILIER</td></tr>
             <tr><td>Résidence principale Paris</td><td class="number">—</td><td class="number">1 200 000€</td><td class="number">—</td><td class="number">1 200 000€</td><td class="number"></td></tr>
             <tr><td>R2 Deauville</td><td class="number">—</td><td class="number">475 000€</td><td class="number">—</td><td class="number">475 000€</td><td class="number"></td></tr>
             <tr><td>R2 La Clusaz</td><td class="number">735 000€</td><td class="number">—</td><td class="number">—</td><td class="number">735 000€</td><td class="number"></td></tr>
             <tr><td>Pinel Lyon</td><td class="number">—</td><td class="number">375 000€</td><td class="number">—</td><td class="number">375 000€</td><td class="number"></td></tr>
             <tr><td>Versailles</td><td class="number">—</td><td class="number">—</td><td class="number">390 000€</td><td class="number">390 000€</td><td class="number"></td></tr>
-            <tr><td><strong>SOUS-TOTAL IMMOBILIER</strong></td><td class="number"><strong>735 000€</strong></td><td class="number"><strong>2 050 000€</strong></td><td class="number"><strong>390 000€</strong></td><td class="number"><strong>3 175 000€</strong></td><td class="number"><strong>73,7%</strong></td></tr>
-            <tr><td colspan="6"><strong>ÉPARGNE SALARIALE</strong></td></tr>
+            <tr class="subtotal-row"><td>SOUS-TOTAL IMMOBILIER</td><td class="number">735 000€</td><td class="number">2 050 000€</td><td class="number">390 000€</td><td class="number">3 175 000€</td><td class="number">73,7%</td></tr>
+            <tr class="category-row"><td colspan="6">ÉPARGNE SALARIALE</td></tr>
             <tr><td>PEE M.</td><td class="number">—</td><td class="number">189 000€</td><td class="number">—</td><td class="number">189 000€</td><td class="number"></td></tr>
             <tr><td>PEE Mme</td><td class="number">—</td><td class="number">190 000€</td><td class="number">—</td><td class="number">190 000€</td><td class="number"></td></tr>
-            <tr><td><strong>SOUS-TOTAL PEE</strong></td><td class="number"></td><td class="number"><strong>379 000€</strong></td><td class="number"></td><td class="number"><strong>379 000€</strong></td><td class="number"><strong>8,8%</strong></td></tr>
-            <tr><td colspan="6"><strong>ASSURANCE VIE</strong></td></tr>
+            <tr class="subtotal-row"><td>SOUS-TOTAL PEE</td><td class="number"></td><td class="number">379 000€</td><td class="number"></td><td class="number">379 000€</td><td class="number">8,8%</td></tr>
+            <tr class="category-row"><td colspan="6">ASSURANCE VIE</td></tr>
             <tr><td>AV M.</td><td class="number">—</td><td class="number">202 000€</td><td class="number">—</td><td class="number">202 000€</td><td class="number"></td></tr>
             <tr><td>AV Mme</td><td class="number">—</td><td class="number">245 000€</td><td class="number">—</td><td class="number">245 000€</td><td class="number"></td></tr>
-            <tr><td><strong>SOUS-TOTAL AV</strong></td><td class="number"></td><td class="number"><strong>447 000€</strong></td><td class="number"></td><td class="number"><strong>447 000€</strong></td><td class="number"><strong>10,4%</strong></td></tr>
-            <tr><td colspan="6"><strong>VALEURS MOBILIÈRES</strong></td></tr>
+            <tr class="subtotal-row"><td>SOUS-TOTAL AV</td><td class="number"></td><td class="number">447 000€</td><td class="number"></td><td class="number">447 000€</td><td class="number">10,4%</td></tr>
+            <tr class="category-row"><td colspan="6">VALEURS MOBILIÈRES</td></tr>
             <tr><td>PEA</td><td class="number">—</td><td class="number">61 000€</td><td class="number">—</td><td class="number">61 000€</td><td class="number"></td></tr>
             <tr><td>CTO M.</td><td class="number">—</td><td class="number">95 000€</td><td class="number">—</td><td class="number">95 000€</td><td class="number"></td></tr>
             <tr><td>CTO Mme</td><td class="number">—</td><td class="number">—</td><td class="number">66 000€</td><td class="number">66 000€</td><td class="number"></td></tr>
-            <tr><td><strong>SOUS-TOTAL VM</strong></td><td class="number"></td><td class="number"><strong>156 000€</strong></td><td class="number"><strong>66 000€</strong></td><td class="number"><strong>222 000€</strong></td><td class="number"><strong>5,2%</strong></td></tr>
-            <tr><td colspan="6"><strong>ÉPARGNE BANCAIRE CT</strong></td></tr>
+            <tr class="subtotal-row"><td>SOUS-TOTAL VM</td><td class="number"></td><td class="number">156 000€</td><td class="number">66 000€</td><td class="number">222 000€</td><td class="number">5,2%</td></tr>
+            <tr class="category-row"><td colspan="6">ÉPARGNE BANCAIRE CT</td></tr>
             <tr><td>Livret A + LDDS M.</td><td class="number">—</td><td class="number">23 000€</td><td class="number">—</td><td class="number">23 000€</td><td class="number"></td></tr>
             <tr><td>Livret A + LDDS Mme</td><td class="number">—</td><td class="number">—</td><td class="number">31 500€</td><td class="number">31 500€</td><td class="number"></td></tr>
-            <tr><td><strong>SOUS-TOTAL Épargne CT</strong></td><td class="number"></td><td class="number"><strong>23 000€</strong></td><td class="number"><strong>31 500€</strong></td><td class="number"><strong>54 500€</strong></td><td class="number"><strong>1,3%</strong></td></tr>
+            <tr class="subtotal-row"><td>SOUS-TOTAL Épargne CT</td><td class="number"></td><td class="number">23 000€</td><td class="number">31 500€</td><td class="number">54 500€</td><td class="number">1,3%</td></tr>
             <tr><td>C/C commun</td><td class="number">—</td><td class="number">30 000€</td><td class="number">—</td><td class="number">30 000€</td><td class="number">0,6%</td></tr>
           </tbody>
           <tfoot>
-            <tr><td><strong>TOTAL</strong></td><td class="number"><strong>735 000€</strong></td><td class="number"><strong>3 182 500€</strong></td><td class="number"><strong>390 000€</strong></td><td class="number"><strong>4 307 500€</strong></td><td class="number"><strong>100%</strong></td></tr>
+            <tr class="total-row"><td>TOTAL PATRIMOINE</td><td class="number">735 000€</td><td class="number">3 182 500€</td><td class="number">390 000€</td><td class="number">4 307 500€</td><td class="number">100%</td></tr>
           </tfoot>
         </table>
 
@@ -4284,14 +4490,21 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
           <div class="section-title">Fiscalité micro BIC applicable en 2025</div>
         </div>
 
-        <div class="glass-card">
-          <h3>❓ Question</h3>
-          <p>M. NIOTE a entendu dire que la fiscalité sur les locations meublées allait être alignée sur la fiscalité des revenus fonciers et craint de ne plus pouvoir profiter de l'abattement de 50% en micro BIC.</p>
-          <p><strong>Répondez à cette interrogation sur la fiscalité micro applicable aux revenus de location meublée en 2025.</strong></p>
-        </div>
+        <div class="qr-container">
+          <div class="qr-box question">
+            <div class="qr-header">
+              <span class="icon">❓</span>
+              <span>Question</span>
+            </div>
+            <p>M. NIOTE a entendu dire que la fiscalité sur les locations meublées allait être alignée sur la fiscalité des revenus fonciers et craint de ne plus pouvoir profiter de l'abattement de 50% en micro BIC.</p>
+            <p><strong>Répondez à cette interrogation sur la fiscalité micro applicable aux revenus de location meublée en 2025.</strong></p>
+          </div>
 
-        <div class="glass-card">
-          <h3>✅ Réponse</h3>
+          <div class="qr-box answer">
+            <div class="qr-header">
+              <span class="icon">✅</span>
+              <span>Réponse</span>
+            </div>
           <p>L'inquiétude de M. NIOTE est justifiée mais <strong>partiellement</strong>. Voici la situation en 2025 :</p>
 
           <h4>Régime micro BIC - Situation actuelle</h4>
@@ -4330,14 +4543,15 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
             <li>✓ Simplification administrative (pas de déclaration de charges réelles)</li>
           </ul>
 
-          <h4>Recommandation</h4>
-          <div class="highlight-box">
-            <strong>💡 Conseil :</strong> Surveiller les évolutions législatives et envisager :
-            <ul style="margin-top: 10px;">
-              <li>Passage au réel si abattement réduit ou charges élevées</li>
-              <li>Transition vers LMNP au réel pour optimisation fiscale</li>
-              <li>Diversification des investissements locatifs</li>
-            </ul>
+            <h4>Recommandation</h4>
+            <div class="highlight-box">
+              <strong>💡 Conseil :</strong> Surveiller les évolutions législatives et envisager :
+              <ul style="margin-top: 10px;">
+                <li>Passage au réel si abattement réduit ou charges élevées</li>
+                <li>Transition vers LMNP au réel pour optimisation fiscale</li>
+                <li>Diversification des investissements locatifs</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
