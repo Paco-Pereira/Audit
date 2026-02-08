@@ -482,6 +482,65 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 }
 
 /* ============================================================================
+   COLLAPSIBLE SECTIONS
+   ============================================================================ */
+
+.section.collapsible > .section-title {
+  cursor: pointer;
+  position: relative;
+  padding-right: 44px;
+  user-select: none;
+  transition: color 0.2s;
+}
+.section.collapsible > .section-title:hover {
+  color: var(--primary);
+}
+.section.collapsible > .section-title::after {
+  content: '▾';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  opacity: 0.5;
+  transition: transform 0.3s, opacity 0.2s;
+}
+.section.collapsible > .section-title:hover::after {
+  opacity: 1;
+}
+.section.collapsible.collapsed > .section-title::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+.section.collapsible.collapsed > *:not(.section-title) {
+  display: none !important;
+}
+.section.collapsible.collapsed {
+  padding-bottom: 8px;
+}
+.guide-toggle-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.guide-toggle-bar button {
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 500;
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+.guide-toggle-bar button:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* ============================================================================
    APP LAYOUT
    ============================================================================ */
 
@@ -17830,11 +17889,16 @@ Droit (20%) = 3 000€
         devant le client ou à l'examen.
     </div>
 
+    <div class="guide-toggle-bar">
+        <button onclick="toggleAllGuideSections('expand')">Tout déplier</button>
+        <button onclick="toggleAllGuideSections('collapse')">Tout replier</button>
+    </div>
+
 </div>
 
 <!-- SECTION 1: GÉNÉRER DES REVENUS COMPLÉMENTAIRES -->
-<div class="section" id="gui-s1">
-    <h2 class="section-title">Section 1 : Générer des Revenus Complémentaires</h2>
+<div class="section collapsible" id="gui-s1">
+    <h2 class="section-title" onclick="this.parentElement.classList.toggle(\'collapsed\')">Section 1 : Générer des Revenus Complémentaires</h2>
 
     <p style="margin-bottom: 20px; color: var(--text-light);">
         Votre client dispose de capital excédentaire et souhaite en tirer des revenus réguliers.
@@ -17921,8 +17985,8 @@ Droit (20%) = 3 000€
 </div>
 
 <!-- SECTION 2: RÉDUIRE LES DROITS DE SUCCESSION -->
-<div class="section" id="gui-s2">
-    <h2 class="section-title">Section 2 : Réduire les Droits de Succession (DDS)</h2>
+<div class="section collapsible" id="gui-s2">
+    <h2 class="section-title" onclick="this.parentElement.classList.toggle(\'collapsed\')">Section 2 : Réduire les Droits de Succession (DDS)</h2>
 
     <p style="margin-bottom: 20px; color: var(--text-light);">
         Votre client anticipe sa succession. Quels leviers réduisent les droits ? Quels délais ? Quel coût fiscal ?
@@ -18023,8 +18087,8 @@ Droit (20%) = 3 000€
 </div>
 
 <!-- SECTION 3: OPTIMISER L'IMPÔT SUR LE REVENU -->
-<div class="section" id="gui-s3">
-    <h2 class="section-title">Section 3 : Optimiser l'Impôt sur le Revenu (IR)</h2>
+<div class="section collapsible" id="gui-s3">
+    <h2 class="section-title" onclick="this.parentElement.classList.toggle(\'collapsed\')">Section 3 : Optimiser l'Impôt sur le Revenu (IR)</h2>
 
     <p style="margin-bottom: 20px; color: var(--text-light);">
         Votre client a un TMI élevé. Quels leviers réduisent son IR ? Quel plafond ? Quel mécanisme ?
@@ -18129,8 +18193,8 @@ Droit (20%) = 3 000€
 </div>
 
 <!-- SECTION 4: RÉDUIRE L'IFI -->
-<div class="section" id="gui-s4">
-    <h1 class="section-title">Section 4 : Réduire l'IFI (Impôt sur la Fortune Immobilière)</h1>
+<div class="section collapsible" id="gui-s4">
+    <h2 class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">Section 4 : Réduire l'IFI (Impôt sur la Fortune Immobilière)</h2>
 
     <div class="subsection">
         <h3>Techniques et mécanismes de réduction</h3>
@@ -18238,8 +18302,8 @@ Droit (20%) = 3 000€
 </div>
 
 <!-- SECTION 5: PROTÉGER LE CONJOINT SURVIVANT -->
-<div class="section" id="gui-s5">
-    <h1 class="section-title">Section 5 : Protéger le Conjoint Survivant</h1>
+<div class="section collapsible" id="gui-s5">
+    <h2 class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">Section 5 : Protéger le Conjoint Survivant</h2>
 
     <div class="subsection">
         <h3>Mécanismes de protection du conjoint</h3>
@@ -18342,8 +18406,8 @@ Droit (20%) = 3 000€
 </div>
 
 <!-- SECTION 6: PRÉPARER LA RETRAITE -->
-<div class="section" id="gui-s6">
-    <h1 class="section-title">Section 6 : Préparer la Retraite</h1>
+<div class="section collapsible" id="gui-s6">
+    <h2 class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">Section 6 : Préparer la Retraite</h2>
 
     <div class="subsection">
         <h3>Dispositifs et mécanismes de retraite</h3>
@@ -18496,8 +18560,8 @@ Droit (20%) = 3 000€
 <div class="container">
 
         <!-- SECTION 7: TRANSMETTRE LE PATRIMOINE -->
-        <div class="section" id="gui-s7">
-            <h2 class="section-title">Section 7 : Transmettre le patrimoine <span class="badge green">EXAM</span></h2>
+        <div class="section collapsible" id="gui-s7">
+            <h2 class="section-title" onclick="this.parentElement.classList.toggle(\'collapsed\')">Section 7 : Transmettre le patrimoine <span class="badge green">EXAM</span></h2>
 
             <p style="margin-bottom: 20px; color: var(--text-light);">
                 L'anticipation successorale et les techniques de transmission optimisées constituent l'axe majeur de la planification patrimoniale.
@@ -18594,8 +18658,8 @@ Droit (20%) = 3 000€
 
 
         <!-- SECTION 8: DIVERSIFIER & RESTRUCTURER -->
-        <div class="section" id="gui-s8">
-            <h2 class="section-title">Section 8 : Diversifier et restructurer le patrimoine</h2>
+        <div class="section collapsible" id="gui-s8">
+            <h2 class="section-title" onclick="this.parentElement.classList.toggle(\'collapsed\')">Section 8 : Diversifier et restructurer le patrimoine</h2>
 
             <p style="margin-bottom: 20px; color: var(--text-light);">
                 La diversification géographique, sectorielle et par classe d'actifs permet de réduire les risques tout en optimisant
@@ -18700,8 +18764,8 @@ Droit (20%) = 3 000€
 
 
         <!-- SECTION 9: MATRICE DE SYNTHÈSE CROISÉE -->
-        <div class="section" id="gui-s9">
-            <h2 class="section-title">Section 9 : Matrice de synthèse croisée <span class="badge green">CLÉ</span></h2>
+        <div class="section collapsible" id="gui-s9">
+            <h2 class="section-title" onclick="this.parentElement.classList.toggle(\'collapsed\')">Section 9 : Matrice de synthèse croisée <span class="badge green">CLÉ</span></h2>
 
             <p style="margin-bottom: 20px; color: var(--text-light);">
                 Tableau de pilotage stratégique récapitulant la contribution de chaque technique aux objectifs majeurs de gestion patrimoniale.
@@ -19523,10 +19587,21 @@ function collapseSidebar() {
   }
 }
 
+// ============ GUIDE COLLAPSIBLE SECTIONS ============
+function toggleAllGuideSections(action) {
+  document.querySelectorAll('#case-guide .section.collapsible').forEach(s => {
+    if (action === 'collapse') s.classList.add('collapsed');
+    else s.classList.remove('collapsed');
+  });
+}
+
 // ============ GO TO FUNCTION ============
 function goTo(id) {
   const el = document.getElementById(id);
   if (el) {
+    // Unfold collapsible section if collapsed
+    const section = el.closest('.section.collapsible.collapsed') || (el.classList.contains('collapsible') && el.classList.contains('collapsed') ? el : null);
+    if (section) section.classList.remove('collapsed');
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
     if (event && event.target) {
