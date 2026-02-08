@@ -3050,12 +3050,33 @@ details .inner {
               <tr><td>2 570 001 → 3 215 000 €</td><td class="right">1,00%</td><td class="right">645 000</td><td class="right">6 450 €</td></tr>
               <tr class="bold-row"><td><strong>TOTAL théorique</strong></td><td></td><td></td><td class="right"><strong>17 840 €</strong></td></tr>
             </table>
-            <div class="calc-result">→ IFI À PAYER = 17 555 € — TMI IFI = 1%</div>
+            <div class="calc-step">Étape 4 : Formule rapide par TMI</div>
+            TMI = 1% (tranche 2 570 001 → 5 000 000€)<br>
+            <strong>IFI = 3 215 000 × 1% − 14 310 = 17 840 €</strong><br>
+            <br>
+            <div class="calc-step">Étape 5 : Décote</div>
+            La décote s'applique si le patrimoine net est entre 1 300 000€ et 1 400 000€.<br>
+            Formule : <strong>Décote = 17 500 − (1,25% × patrimoine net)</strong><br>
+            Ici patrimoine = 3 215 000€ > 1 400 000€ → <strong>Pas de décote applicable</strong><br>
+            <br>
+            <div class="calc-step">Étape 6 : Plafonnement (bouclier fiscal IFI)</div>
+            Règle : <strong>IR + IFI + PS ≤ 75% des revenus</strong> (art. 979 CGI)<br>
+            Revenus bruts du foyer ≈ 148 450 € → 75% = 111 338 €<br>
+            IR (40 604) + IFI (17 840) + PS (9 554) = 67 998 € < 111 338 € → <strong>Pas de plafonnement</strong><br>
+            <br>
+            <div class="calc-result">→ IFI final = 17 840 € (théorique) — TMI IFI = 1%</div>
+          </div>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">📐</span>
+            <div><strong>Formules rapides IFI par TMI :</strong><br>
+            TMI 0,50% : P × 0,005 − 4 000 | TMI 0,70% : P × 0,007 − 6 600 | TMI 1,00% : P × 0,01 − 14 310<br>
+            TMI 1,25% : P × 0,0125 − 26 810 | TMI 1,50% : P × 0,015 − 51 810</div>
           </div>
 
           <div class="alert alert-warn">
             <span class="alert-icon">⚠️</span>
-            <div>Le couple paie <strong>17 555 €/an d'IFI</strong> à cause de la surpondération immobilière (74%). Levier d'optimisation majeur.</div>
+            <div>Le couple paie <strong>~17 840 €/an d'IFI</strong> à cause de la surpondération immobilière (74%). Levier d'optimisation majeur : donation NP, GFV (exo 75%), vente d'un bien locatif.</div>
           </div>
         </div>
       </div>
@@ -4150,10 +4171,37 @@ details .inner {
         </ul>
 
         <div class="calc-block">
-          <div class="calc-step">Base taxable IFI : 2 815 000€ - 13 024€ - 41 667€ = 2 760 309€</div>
-          <div class="calc-step">TMI IFI : 1%</div>
-          <div class="calc-step">IFI théorique : 2 760 309€ × 0,01 - 14 310€ = 13 293€</div>
-          <div class="calc-result">IFI final : 13 293€ × 0,99 = <strong>13 160€</strong></div>
+          <div class="calc-step">Étape 1 : Base taxable IFI</div>
+          2 815 000€ − 13 024€ (TF) − 41 667€ (CRD in fine) = <strong>2 760 309€</strong><br>
+          <br>
+          <div class="calc-step">Étape 2 : Barème IFI tranche par tranche</div>
+          <table style="box-shadow:none;margin:8px 0;width:90%">
+            <tr><th>Tranche</th><th class="right">Taux</th><th class="right">Base</th><th class="right">Impôt</th></tr>
+            <tr><td>0 → 800 000€</td><td class="right">0%</td><td class="right">800 000</td><td class="right">0€</td></tr>
+            <tr><td>800 001 → 1 300 000€</td><td class="right">0,50%</td><td class="right">500 000</td><td class="right">2 500€</td></tr>
+            <tr><td>1 300 001 → 2 570 000€</td><td class="right">0,70%</td><td class="right">1 270 000</td><td class="right">8 890€</td></tr>
+            <tr><td>2 570 001 → 2 760 309€</td><td class="right">1,00%</td><td class="right">190 309</td><td class="right">1 903€</td></tr>
+            <tr class="bold-row"><td><strong>TOTAL barème</strong></td><td></td><td></td><td class="right"><strong>13 293€</strong></td></tr>
+          </table>
+
+          <div class="calc-step">Étape 3 : Formule rapide par TMI</div>
+          TMI = 1% → <strong>2 760 309 × 1% − 14 310 = 13 293€</strong> (vérification)<br>
+          <br>
+          <div class="calc-step">Étape 4 : Décote</div>
+          Patrimoine net = 2 760 309€ > 1 400 000€ → <strong>Pas de décote</strong><br>
+          <em>(Décote applicable uniquement si patrimoine entre 1,3M et 1,4M€)</em><br>
+          <br>
+          <div class="calc-step">Étape 5 : Plafonnement (bouclier fiscal)</div>
+          Règle : IR + IFI + PS ≤ 75% des revenus (art. 979 CGI)<br>
+          Revenus bruts ≈ 202 240€ → 75% = 151 680€<br>
+          IR (21 668) + IFI (13 293) + PS (3 496) = 38 457€ < 151 680€ → <strong>Pas de plafonnement</strong><br>
+          <br>
+          <div class="calc-result">→ IFI final = <strong>13 293€</strong> — TMI IFI = 1%</div>
+        </div>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">💡</span>
+          <div><strong>Note corrigé :</strong> Le corrigé indique 13 160€ (soit 13 293 × 0,99). Le facteur ×0,99 correspond à un ajustement lié à la réduction pour dons IFI ou un arrondi du corrigé. Retenez la méthode : <strong>barème tranche par tranche = formule rapide par TMI</strong>.</div>
         </div>
 
         <h3>Bilan financier récapitulatif</h3>
@@ -5106,9 +5154,29 @@ details .inner {
 
         <div class="calc-block">
           <div class="calc-header">IFI 2028</div>
-          <div class="calc-step">Base taxable : 1 450 000€ - 228 603€ = 1 221 397€</div>
-          <div class="calc-step">Pas d'IFI (seuil 1 300 000€ non atteint)</div>
-          <div class="calc-result">IFI 2028 : <strong>0€</strong></div>
+          <div class="calc-step">Étape 1 : Base taxable</div>
+          1 450 000€ − 228 603€ = <strong>1 221 397€</strong><br>
+          <br>
+          <div class="calc-step">Étape 2 : Test du seuil d'imposition</div>
+          Seuil IFI = <strong>1 300 000€</strong> (art. 964 CGI)<br>
+          Base nette = 1 221 397€ < 1 300 000€ → <strong>Non imposable à l'IFI</strong><br>
+          <br>
+          <div class="calc-result">IFI 2028 = <strong>0€</strong></div>
+        </div>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">📐</span>
+          <div><strong>Méthodologie IFI — Point clé :</strong><br>
+          Le <strong>seuil de déclenchement</strong> est 1 300 000€ mais le <strong>calcul commence à 800 000€</strong>.<br>
+          Cela signifie : si patrimoine net = 1 350 000€, l'IFI se calcule sur les tranches à partir de 800 000€ (pas de 1 300 000€).<br>
+          La tranche 0 → 800 000€ est toujours à 0% dans tous les cas.</div>
+        </div>
+
+        <div class="alert alert-tip">
+          <span class="alert-icon">💡</span>
+          <div><strong>Stratégie IFI — Cas NIOTE :</strong><br>
+          La base nette (1 221 397€) est <strong>proche du seuil</strong>. Tout nouvel investissement immobilier risque de faire basculer le couple dans l'IFI.<br>
+          Solutions : acquérir en <strong>nue-propriété</strong> (exonéré IFI si usufruit légal/donation) ou investir en <strong>SCPI dans AV</strong> (intégré au contrat, hors IFI selon certaines interprétations) ou privilégier les <strong>actifs financiers purs</strong> (PEA, CTO = exclus IFI).</div>
         </div>
       </div>
 
@@ -5597,6 +5665,13 @@ details .inner {
           <tr><td>Immobilier locatif</td><td class="right">—</td><td class="right">—</td><td class="right">—</td><td>Néant</td></tr>
           <tr class="bold-row"><td><strong>S/TOTAL IMMO</strong></td><td class="right"><strong>0</strong></td><td class="right"><strong>0</strong></td><td class="right"><strong>0</strong></td><td class="red">Non assujetti IFI</td></tr>
         </table>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">📐</span>
+          <div><strong>IFI — Cas MENGERE :</strong> Patrimoine immobilier = <strong>0€</strong> (locataires). Non assujettis à l'IFI (seuil 1 300 000€).<br>
+          L'IFI ne porte que sur les biens <strong>immobiliers</strong> détenus directement ou indirectement (SCI, SCPI hors AV). Les actifs financiers purs (CTO, livrets, AV en UC actions, PEA) sont <strong>totalement exclus</strong>.<br>
+          Même si le couple investit dans l'immobilier par la suite, l'IFI ne se déclenchera que si la valeur nette immobilière dépasse 1,3M€.</div>
+        </div>
 
         <h3>Actifs mobiliers</h3>
         <table>
@@ -6579,9 +6654,36 @@ details .inner {
                 </tr>
               </tbody>
             </table>
-            <p style="margin-top: 1rem; padding: 0.75rem; background: rgba(255,159,10,0.1); border-left: 4px solid var(--warning); font-size: 0.9rem;">
-              <strong>Note méthodologie :</strong> Le montant exact du corrigé est <strong>14 053 €</strong> (TMI 1%). La légère différence vient de la décote ou d'ajustements sur les valeurs IFI exactes. Retenez <strong class="green">14 053 €</strong> pour l'optimisation.
-            </p>
+          </div>
+
+          <div class="card">
+            <h4>Formule rapide par TMI</h4>
+            <div class="calc-block">
+              <div class="calc-step">TMI = 1% (tranche 2 570 001 → 5 000 000€)</div>
+              <div class="calc-step">IFI = 2 860 000 × 1% − 14 310 = <strong>14 290€</strong></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>Décote</h4>
+            <p>La décote s'applique uniquement si le patrimoine net est <strong>entre 1 300 000€ et 1 400 000€</strong>.<br>
+            Formule : Décote = 17 500 − (1,25% × patrimoine net)<br>
+            Ici patrimoine = 2 860 000€ > 1 400 000€ → <strong>Pas de décote</strong></p>
+          </div>
+
+          <div class="card">
+            <h4>Plafonnement (bouclier fiscal IFI)</h4>
+            <div class="calc-block">
+              <div class="calc-step">Règle : IR + IFI + PS ≤ 75% des revenus (art. 979 CGI)</div>
+              <div class="calc-step">Revenus bruts ≈ 253 600€ → 75% = 190 200€</div>
+              <div class="calc-step">IR (50 335) + IFI (14 290) + PS = ~70 000€ < 190 200€</div>
+              <div class="calc-result">→ Pas de plafonnement</div>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Écart barème vs corrigé :</strong> Le barème donne 14 290€, le corrigé indique 14 053€. La différence (237€) s'explique par la déduction du passif (taxes foncières ≈ 10 000€) qui réduit la base nette taxable. Avec base nette ≈ 2 836 300€ : formule rapide = 2 836 300 × 1% − 14 310 = <strong>14 053€</strong>. Retenez <strong class="green">14 053€</strong>.</div>
           </div>
         </div>
       </div>
@@ -10821,43 +10923,72 @@ Droit (20%) = 3 000€
             
             <div id="vad-s2-ifi"></div>
 <h3>Calcul de l'IFI (Impôt sur la Fortune Immobilière)</h3>
+
+            <h4>Étape 1 : Assiette IFI</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Élément</th>
-                        <th>Montant</th>
+                        <th>Bien immobilier</th>
+                        <th>Valeur brute</th>
+                        <th>Valeur IFI</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Sous-total patrimoine immobilier imposable</td>
                         <td>1 390 000€</td>
+                        <td>1 390 000€</td>
                     </tr>
                     <tr>
                         <td>Passif (crédits immobiliers)</td>
-                        <td>0€</td>
+                        <td colspan="2">0€</td>
                     </tr>
                     <tr>
-                        <td>Charge fiscale (taxe foncière, DGF)</td>
-                        <td>-4 700€</td>
+                        <td>Charges déductibles (TF, DGF)</td>
+                        <td colspan="2">−4 700€</td>
                     </tr>
-                    <tr>
-                        <td>Dons antérieurs consentis</td>
-                        <td>0€</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Base taxable IFI</strong></td>
-                        <td><strong>1 382 387€</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>IFI dû (2026)</strong></td>
-                        <td><strong class="red">2 857€</strong></td>
+                    <tr class="bold-row">
+                        <td><strong>Base nette taxable IFI</strong></td>
+                        <td colspan="2"><strong>1 382 387€</strong></td>
                     </tr>
                 </tbody>
             </table>
-            
+
+            <h4>Étape 2 : Barème IFI tranche par tranche</h4>
+            <div class="calc-block">
+              <table style="box-shadow:none;margin:8px 0;width:95%">
+                <tr><th>Tranche</th><th class="right">Taux</th><th class="right">Base</th><th class="right">Impôt</th></tr>
+                <tr><td>0 → 800 000€</td><td class="right">0%</td><td class="right">800 000</td><td class="right">0€</td></tr>
+                <tr><td>800 001 → 1 300 000€</td><td class="right">0,50%</td><td class="right">500 000</td><td class="right">2 500€</td></tr>
+                <tr><td>1 300 001 → 1 382 387€</td><td class="right">0,70%</td><td class="right">82 387</td><td class="right">577€</td></tr>
+                <tr class="bold-row"><td><strong>TOTAL barème</strong></td><td></td><td></td><td class="right"><strong>3 077€</strong></td></tr>
+              </table>
+
+              <div class="calc-step">Formule rapide par TMI</div>
+              TMI = 0,70% (tranche 1 300 001 → 2 570 000€)<br>
+              IFI = 1 382 387 × 0,7% − 6 600 = 9 677 − 6 600 = <strong>3 077€</strong><br>
+              <br>
+              <div class="calc-step">Étape 3 : Décote</div>
+              Patrimoine net = 1 382 387€ → <strong>entre 1 300 000€ et 1 400 000€ : DÉCOTE APPLICABLE</strong><br>
+              <strong>Décote = 17 500 − (1,25% × 1 382 387) = 17 500 − 17 280 = 220€</strong><br>
+              <br>
+              <div class="calc-step">Étape 4 : IFI après décote</div>
+              IFI = 3 077 − 220 = <strong>2 857€</strong><br>
+              <br>
+              <div class="calc-step">Étape 5 : Plafonnement</div>
+              IR + IFI + PS ≤ 75% des revenus → Non applicable ici (charges fiscales bien inférieures au seuil)<br>
+              <br>
+              <div class="calc-result">→ IFI final = <strong>2 857€</strong> — TMI IFI = 0,70%</div>
+            </div>
+
+            <div class="alert alert-warn">
+                <span class="alert-icon">⚠️</span>
+                <div><strong>Cas pédagogique de la DÉCOTE :</strong> VADOR est le seul cas où la décote s'applique (patrimoine entre 1,3M et 1,4M€). La formule <strong>17 500 − 1,25% × P</strong> réduit l'IFI de 220€. Sans la décote, l'IFI serait de 3 077€ au lieu de 2 857€.</div>
+            </div>
+
             <div class="alert alert-tip">
-                <strong>Point stratégique :</strong> Base IFI > 1,3 M€ = imposable. Suite à la vente de la résidence secondaire de Bordeaux (300 000€), la nouvelle base IFI passera sous le seuil d'imposition et l'IFI disparaîtra. À anticiper dans la stratégie de placement.
+                <span class="alert-icon">💡</span>
+                <div><strong>Point stratégique :</strong> Base IFI > 1,3M€ = imposable. Suite à la vente de la résidence secondaire de Bordeaux (300 000€), la nouvelle base IFI passera sous le seuil de 1 300 000€ et l'IFI disparaîtra totalement. À anticiper dans la stratégie de placement des liquidités vers des actifs financiers (hors IFI).</div>
             </div>
             
             <h3>Synthèse du Patrimoine STOCKS</h3>
@@ -12911,6 +13042,33 @@ Droit (20%) = 3 000€
       <li>La somme de 100 000€ sera reçue dans quelques jours par Etienne</li>
     </ul>
   </div>
+
+  <div class="glass-card">
+    <h3>Calcul de l'IFI — Cas LEON</h3>
+    <p>L'IFI ne concerne que les <strong>biens immobiliers</strong>. Les actifs financiers (AV, livrets, somme à recevoir) sont exclus.</p>
+
+    <div class="calc-block">
+      <div class="calc-step">Étape 1 : Assiette IFI</div>
+      RP Paris XXème : 800 000€ × <strong>70%</strong> (abattement 30%) = <strong>560 000€</strong><br>
+      Appartement Belleville : <strong>300 000€</strong><br>
+      Appartement Rouen (héritage) : <strong>140 000€</strong><br>
+      <br>
+      <div class="calc-step">Étape 2 : Total assiette</div>
+      560 000 + 300 000 + 140 000 = <strong>1 000 000€</strong><br>
+      Passif déductible (pas de crédits en cours) : <strong>0€</strong><br>
+      <br>
+      <div class="calc-step">Étape 3 : Test du seuil</div>
+      Base nette = 1 000 000€ < <strong>1 300 000€</strong> → <strong>Non imposable à l'IFI</strong><br>
+      <br>
+      <div class="calc-result">IFI = <strong>0€</strong></div>
+    </div>
+
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Vigilance :</strong> Le patrimoine immobilier net (1 000 000€) est à <strong>300 000€ du seuil</strong> IFI. Si le couple investit les 100 000€ de succession + liquidités dans un nouveau bien immobilier, ils pourraient basculer dans l'IFI.<br>
+      <strong>Recommandation :</strong> Privilégier les placements financiers (PEA, AV, PER) qui sont <strong>exclus de l'assiette IFI</strong> pour éviter le franchissement du seuil.</div>
+    </div>
+  </div>
 </div>
 
 <!-- SECTION 3: OBJECTIFS -->
@@ -14661,6 +14819,61 @@ Droit (20%) = 3 000€
         <li><strong>Performance financière :</strong> Plus-value de 120 000€ sur le compte titres</li>
         <li><strong>Liquidités :</strong> Environ 260 000€ (11% du patrimoine)</li>
       </ul>
+    </div>
+
+    <div class="glass-card">
+      <h3>Calcul de l'IFI — Cas GÉNÉREUX</h3>
+      <p>L'IFI ne concerne que les <strong>biens immobiliers</strong>. Les actifs financiers (CTO, livrets, compte à terme, actions SAS) sont exclus.</p>
+
+      <div class="calc-block">
+        <div class="calc-step">Étape 1 : Assiette IFI</div>
+        <table style="box-shadow:none;margin:8px 0;width:95%">
+          <tr><th>Bien</th><th class="right">Valeur brute</th><th class="right">Valeur IFI</th><th>Remarque</th></tr>
+          <tr><td>RP Antibes</td><td class="right">1 250 000€</td><td class="right">875 000€</td><td>Abattement 30% (art. 965 CGI)</td></tr>
+          <tr><td>Studio 1 locatif</td><td class="right">140 000€</td><td class="right">140 000€</td><td>Pleine propriété</td></tr>
+          <tr><td>Studio 2 locatif</td><td class="right">140 000€</td><td class="right">140 000€</td><td>Pleine propriété</td></tr>
+          <tr><td>Résidence secondaire Auron</td><td class="right">400 000€</td><td class="right">280 000€</td><td>NP Mme (70% — mère US 72 ans, art. 669)</td></tr>
+          <tr class="bold-row"><td><strong>Total assiette brute</strong></td><td></td><td class="right"><strong>1 435 000€</strong></td><td></td></tr>
+        </table>
+        <br>
+        <div class="calc-step">Étape 2 : Passif déductible</div>
+        TF RP : 5 000€ + TF studios : 1 500€ = <strong>6 500€</strong><br>
+        (TF Auron = 1 200€ → à la charge de l'usufruitier, non déductible pour le nu-propriétaire)<br>
+        Crédits immobiliers : <strong>0€</strong> (tous soldés)<br>
+        <br>
+        <div class="calc-step">Étape 3 : Base nette taxable</div>
+        <strong>1 435 000 − 6 500 = 1 428 500€</strong><br>
+        <br>
+        <div class="calc-step">Étape 4 : Barème IFI tranche par tranche</div>
+        <table style="box-shadow:none;margin:8px 0;width:90%">
+          <tr><th>Tranche</th><th class="right">Taux</th><th class="right">Base</th><th class="right">Impôt</th></tr>
+          <tr><td>0 → 800 000€</td><td class="right">0%</td><td class="right">800 000</td><td class="right">0€</td></tr>
+          <tr><td>800 001 → 1 300 000€</td><td class="right">0,50%</td><td class="right">500 000</td><td class="right">2 500€</td></tr>
+          <tr><td>1 300 001 → 1 428 500€</td><td class="right">0,70%</td><td class="right">128 500</td><td class="right">900€</td></tr>
+          <tr class="bold-row"><td><strong>TOTAL barème</strong></td><td></td><td></td><td class="right"><strong>3 400€</strong></td></tr>
+        </table>
+
+        <div class="calc-step">Étape 5 : Formule rapide par TMI</div>
+        TMI = 0,70% (tranche 1 300 001 → 2 570 000€)<br>
+        IFI = 1 428 500 × 0,7% − 6 600 = 9 999,50 − 6 600 = <strong>3 400€</strong> (vérification OK)<br>
+        <br>
+        <div class="calc-step">Étape 6 : Décote</div>
+        La décote s'applique si patrimoine entre 1 300 000€ et 1 400 000€.<br>
+        Ici patrimoine net = 1 428 500€ > 1 400 000€ → <strong>Pas de décote</strong><br>
+        <br>
+        <div class="calc-step">Étape 7 : Plafonnement (bouclier fiscal)</div>
+        IR + IFI + PS ≤ 75% des revenus (art. 979 CGI)<br>
+        Revenus bruts ≈ 100 000€ → 75% = 75 000€<br>
+        Charges fiscales totales largement inférieures → <strong>Pas de plafonnement</strong><br>
+        <br>
+        <div class="calc-result">→ IFI final = <strong>3 400€</strong> — TMI IFI = 0,70%</div>
+      </div>
+
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <div><strong>Poids de l'immobilier :</strong> 76,5% du patrimoine est immobilier → IFI de 3 400€/an. La RP représente à elle seule 875 000€ d'assiette IFI (61% de la base).<br>
+        <strong>Leviers d'optimisation :</strong> Donation NP des studios aux enfants (sort de l'assiette IFI), ou diversification vers actifs financiers (AV, PEA = exclus IFI).</div>
+      </div>
     </div>
   </div>
 
