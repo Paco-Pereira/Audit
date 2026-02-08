@@ -1878,6 +1878,130 @@ details .inner {
   }
 }
 
+/* ============================================================================
+   HOME PAGE — Cards Grid
+   ============================================================================ */
+
+.home-hero {
+  text-align: center;
+  padding: 48px 24px 32px;
+}
+
+.home-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--primary), var(--purple), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.home-hero p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.home-section-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  padding: 0 24px;
+  margin: 32px 0 16px;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 0 24px 40px;
+}
+
+.home-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--card-accent, var(--primary)), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.home-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.home-card:hover::before {
+  opacity: 1;
+}
+
+.home-card-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.home-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.home-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.home-card.card-snow { --card-accent: #64d2ff; }
+.home-card.card-stark { --card-accent: #ff6b6b; }
+.home-card.card-niote { --card-accent: #0a84ff; }
+.home-card.card-mengere { --card-accent: #ff9f0a; }
+.home-card.card-norris { --card-accent: #bf5af2; }
+.home-card.card-vador { --card-accent: #ff453a; }
+.home-card.card-leon { --card-accent: #30d158; }
+.home-card.card-genereux { --card-accent: #5e5ce6; }
+.home-card.card-outils { --card-accent: #ff9f0a; }
+.home-card.card-guide { --card-accent: #30d158; }
+.home-card.card-formules { --card-accent: #64d2ff; }
+
+@media (max-width: 600px) {
+  .home-grid {
+    grid-template-columns: 1fr;
+    padding: 0 12px 24px;
+  }
+  .home-hero {
+    padding: 32px 16px 20px;
+  }
+  .home-hero h1 {
+    font-size: 1.8rem;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1907,9 +2031,14 @@ details .inner {
 
 <!-- ============ TAB BAR ============ -->
 <div class="tab-bar">
+  <div class="tab active" data-case="home" onclick="switchCase('home')" style="margin-right:8px;">
+    <span class="tab-icon">🏠</span>
+    <span>Accueil</span>
+  </div>
+  <div class="tab-divider"></div>
   <div class="tab-group">
     <span class="tab-group-label">📚 Cas</span>
-    <div class="tab active" data-case="snow" onclick="switchCase('snow')">
+    <div class="tab" data-case="snow" onclick="switchCase('snow')">
       <span class="tab-icon">❄️</span>
       <span>SNOW</span>
     </div>
@@ -2550,9 +2679,97 @@ details .inner {
   <main class="main" id="main-scroll">
 
     <!-- ══════════════════════════════════════
+         ACCUEIL
+         ══════════════════════════════════════ -->
+    <div class="case-content active" id="case-home" style="display:block">
+
+      <div class="home-hero">
+        <h1>GP Exam Prep</h1>
+        <p>Votre guide complet pour le Master 2 Gestion de Patrimoine. Cas pratiques, outils de calcul et fiches de révision.</p>
+      </div>
+
+      <div class="home-section-title">📚 Cas pratiques</div>
+      <div class="home-grid">
+
+        <div class="home-card card-snow" onclick="switchCase('snow')">
+          <span class="home-card-icon">❄️</span>
+          <div class="home-card-title">Cas SNOW</div>
+          <div class="home-card-desc">Mr Julien SNOW & Mme Danny STARK — PACS, IFI, succession, préconisations patrimoniales.</div>
+        </div>
+
+        <div class="home-card card-stark" onclick="switchCase('stark')">
+          <span class="home-card-icon">👨‍👩‍👧‍👦</span>
+          <div class="home-card-title">Cas STARK</div>
+          <div class="home-card-desc">Famille STARK — Patrimoine familial, transmission, optimisation fiscale.</div>
+        </div>
+
+        <div class="home-card card-niote" onclick="switchCase('niote')">
+          <span class="home-card-icon">🏢</span>
+          <div class="home-card-title">Cas NIOTE</div>
+          <div class="home-card-desc">Société NIOTE — Immobilier professionnel, SCI, bilan patrimonial.</div>
+        </div>
+
+        <div class="home-card card-mengere" onclick="switchCase('mengere')">
+          <span class="home-card-icon">🏗️</span>
+          <div class="home-card-title">Cas MENGERE</div>
+          <div class="home-card-desc">Famille MENGERE — Investissement immobilier, défiscalisation, montage.</div>
+        </div>
+
+        <div class="home-card card-norris" onclick="switchCase('norris')">
+          <span class="home-card-icon">💎</span>
+          <div class="home-card-title">Cas NORRIS</div>
+          <div class="home-card-desc">Patrimoine NORRIS — Placements, assurance-vie, stratégie patrimoniale.</div>
+        </div>
+
+        <div class="home-card card-vador" onclick="switchCase('vador')">
+          <span class="home-card-icon">⚔️</span>
+          <div class="home-card-title">Cas VADOR</div>
+          <div class="home-card-desc">Famille VADOR — Cession d'entreprise, plus-values, réinvestissement.</div>
+        </div>
+
+        <div class="home-card card-leon" onclick="switchCase('leon')">
+          <span class="home-card-icon">👨‍💼</span>
+          <div class="home-card-title">Cas LEON</div>
+          <div class="home-card-desc">Mr LEON — Retraite, revenus fonciers, optimisation du patrimoine.</div>
+        </div>
+
+        <div class="home-card card-genereux" onclick="switchCase('genereux')">
+          <span class="home-card-icon">💼</span>
+          <div class="home-card-title">Cas GÉNÉREUX</div>
+          <div class="home-card-desc">Famille GÉNÉREUX — Donation, transmission, stratégie successorale.</div>
+        </div>
+
+      </div>
+
+      <div class="home-section-title">🛠️ Outils & Ressources</div>
+      <div class="home-grid">
+
+        <div class="home-card card-outils" onclick="switchCase('outils')">
+          <span class="home-card-icon">🧰</span>
+          <div class="home-card-title">Boîte à Outils</div>
+          <div class="home-card-desc">Barèmes fiscaux, tableaux de référence, mémos pratiques pour l'examen.</div>
+        </div>
+
+        <div class="home-card card-guide" onclick="switchCase('guide')">
+          <span class="home-card-icon">📋</span>
+          <div class="home-card-title">Guide Stratégique</div>
+          <div class="home-card-desc">Méthodologie de résolution, check-lists, stratégies par thématique.</div>
+        </div>
+
+        <div class="home-card card-formules" onclick="switchCase('formules')">
+          <span class="home-card-icon">📐</span>
+          <div class="home-card-title">Formules</div>
+          <div class="home-card-desc">Toutes les formules de calcul : fiscalité, succession, rendement, plus-values.</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
          CAS SNOW
          ══════════════════════════════════════ -->
-    <div class="case-content active" id="case-snow" style="display:block">
+    <div class="case-content" id="case-snow">
 
       <!-- INTRO / WELCOME -->
       <div class="section" id="snow-intro">
@@ -18425,10 +18642,16 @@ function switchCase(caseName) {
     target.style.display = 'block';
   }
 
-  // Update sidebar
+  // Update sidebar — hide for home page
   document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
-  const sidebar = document.getElementById('sidebar-' + caseName);
-  if (sidebar) sidebar.style.display = 'block';
+  const sidebarEl = document.getElementById('sidebar');
+  if (caseName === 'home') {
+    if (sidebarEl) sidebarEl.style.display = 'none';
+  } else {
+    if (sidebarEl) sidebarEl.style.display = '';
+    const sidebar = document.getElementById('sidebar-' + caseName);
+    if (sidebar) sidebar.style.display = 'block';
+  }
 
   // Scroll to top
   document.getElementById('main-scroll').scrollTop = 0;
@@ -18481,6 +18704,11 @@ function goTo(id) {
 
 // ============ IMPROVED SCROLLSPY ============
 document.addEventListener('DOMContentLoaded', function() {
+  // Hide sidebar on home page (default)
+  const sidebarInit = document.getElementById('sidebar');
+  if (sidebarInit) sidebarInit.style.display = 'none';
+  document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
+
   const mainEl = document.getElementById('main-scroll');
 
   if (mainEl) {
