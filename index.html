@@ -17,39 +17,39 @@
    ============================================================================ */
 
 :root {
-  /* Color Palette — Apple-inspired */
-  --bg: #f5f5f7;
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.45);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  --blur: blur(20px) saturate(180%);
+  /* Color Palette — Professional & Clean */
+  --bg: #f8f9fa;
+  --glass-bg: #ffffff;
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --blur: blur(8px);
 
-  --sidebar-bg: rgba(30, 30, 35, 0.85);
-  --sidebar-active: rgba(255, 255, 255, 0.12);
-  --sidebar-hover: rgba(255, 255, 255, 0.07);
-  --sidebar-text: rgba(255, 255, 255, 0.55);
+  --sidebar-bg: #1e1e23;
+  --sidebar-active: rgba(0, 122, 255, 0.15);
+  --sidebar-hover: rgba(255, 255, 255, 0.08);
+  --sidebar-text: rgba(255, 255, 255, 0.65);
   --sidebar-text-active: #ffffff;
 
   --primary: #007aff;
-  --primary-light: rgba(0, 122, 255, 0.08);
+  --primary-light: rgba(0, 122, 255, 0.1);
   --primary-dark: #0056cc;
   --accent: #34c759;
   --danger: #ff3b30;
   --warning: #ff9500;
-  --purple: #af52de;
+  --purple: #5856d6;
 
   --text: #1d1d1f;
-  --text-light: #86868b;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --border: rgba(0, 0, 0, 0.06);
-  --radius: 14px;
-  --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
+  --text-light: #6e6e73;
+  --card-bg: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
 
   --header-h: 52px;
   --tab-h: 44px;
   --sidebar-w: 260px;
-  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.2s ease;
 }
 
 /* ============================================================================
@@ -72,20 +72,9 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   position: relative;
   overflow: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(ellipse at 20% 50%, rgba(0, 122, 255, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(88, 86, 214, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(52, 199, 89, 0.03) 0%, transparent 50%);
-  z-index: -1;
-  pointer-events: none;
 }
 
 /* ============================================================================
@@ -94,9 +83,8 @@ body::before {
 
 .header {
   height: var(--header-h);
-  background: rgba(30, 30, 35, 0.75);
-  backdrop-filter: var(--blur);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #1e1e23;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -209,15 +197,14 @@ body::before {
 
 .tab-bar {
   height: var(--tab-h);
-  background: var(--glass-bg);
-  backdrop-filter: var(--blur);
-  border-bottom: 1px solid var(--glass-border);
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0 20px;
-  gap: 12px;
+  gap: 8px;
   position: relative;
   z-index: 40;
 }
@@ -256,9 +243,9 @@ body::before {
 }
 
 .tab.active {
-  background: rgba(0, 122, 255, 0.1);
+  background: var(--primary-light);
   color: var(--primary);
-  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.15);
+  font-weight: 600;
 }
 
 .tab .tab-icon {
@@ -309,8 +296,7 @@ body::before {
 .sidebar {
   width: var(--sidebar-w);
   background: var(--sidebar-bg);
-  backdrop-filter: var(--blur);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   overflow-y: auto;
   overflow-x: hidden;
   padding: 12px 8px;
@@ -545,18 +531,12 @@ body::before {
   gap: 12px;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 2px solid transparent;
-  background-image: linear-gradient(to right, var(--primary), var(--purple));
-  background-position: 0 100%;
-  background-size: 0 2px;
-  background-repeat: no-repeat;
-  background-clip: content-box;
-  border-bottom: 2px solid transparent;
-  transition: background-size var(--transition);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  transition: border-color var(--transition);
 }
 
 .section-header:hover {
-  background-size: 100% 2px;
+  border-bottom-color: var(--primary);
 }
 
 .section-num {
@@ -565,13 +545,12 @@ body::before {
   justify-content: center;
   width: 28px;
   height: 28px;
-  background: linear-gradient(135deg, var(--primary), var(--purple));
+  background: var(--primary);
   color: #fff;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: 6px;
+  font-weight: 700;
   font-size: 13px;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
 }
 
 .section-title {
@@ -612,11 +591,10 @@ p {
    ============================================================================ */
 
 .card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 20px;
   margin-bottom: 16px;
   box-shadow: var(--shadow);
   transition: all var(--transition);
@@ -624,7 +602,7 @@ p {
 
 .card:hover {
   box-shadow: var(--shadow-lg);
-  border-color: rgba(0, 122, 255, 0.2);
+  border-color: var(--primary);
 }
 
 /* ============================================================================
@@ -634,9 +612,8 @@ p {
 table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--glass-border);
+  background: #ffffff;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -644,14 +621,16 @@ table {
 }
 
 th {
-  background: rgba(30, 30, 35, 0.85);
-  color: #fff;
-  padding: 12px 16px;
+  background: #1e1e23;
+  color: #ffffff;
+  padding: 14px 16px;
   text-align: left;
   font-weight: 600;
-  font-size: 13px;
-  letter-spacing: -0.02em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #007aff;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 td {
@@ -693,11 +672,10 @@ tr:hover td {
    ============================================================================ */
 
 .alert {
-  padding: 12px 16px;
+  padding: 14px 16px;
   border-radius: var(--radius);
-  border-left: 4px solid var(--primary);
-  background: rgba(0, 122, 255, 0.08);
-  backdrop-filter: blur(8px);
+  border-left: 3px solid var(--primary);
+  background: var(--primary-light);
   margin-bottom: 16px;
   display: flex;
   gap: 12px;
@@ -739,11 +717,10 @@ tr:hover td {
    ============================================================================ */
 
 .calc-block {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  background: #f8f9fa;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 18px;
   margin-bottom: 16px;
   box-shadow: var(--shadow);
   font-family: 'Monaco', 'Courier New', monospace;
@@ -764,12 +741,9 @@ tr:hover td {
   padding: 12px 0;
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  font-weight: 600;
-  background: linear-gradient(90deg, var(--primary), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  border-top: 2px solid var(--primary);
+  font-weight: 700;
+  color: var(--primary);
 }
 
 /* ============================================================================
@@ -874,12 +848,9 @@ details .inner {
 .welcome h1 {
   font-size: 32px;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   margin-bottom: 8px;
-  background: linear-gradient(135deg, var(--primary), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
 }
 
 .welcome .subtitle {
@@ -936,10 +907,9 @@ details .inner {
 .search-input {
   width: 100%;
   padding: 10px 12px 10px 32px;
-  border: 1px solid var(--glass-border);
-  border-radius: 10px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
   color: var(--text);
   font-size: 13px;
   transition: all var(--transition);
@@ -952,8 +922,7 @@ details .inner {
 .search-input:focus {
   outline: none;
   border-color: var(--primary);
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.15);
+  box-shadow: 0 0 0 3px var(--primary-light);
 }
 
 .search-icon {
@@ -1667,10 +1636,6 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
 
 <!-- Print button -->
 <button class="header-btn" onclick="window.print()" title="Imprimer">🖨️</button>
-    <a href="https://github.com" target="_blank" class="header-github" title="GitHub">
-      <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-      Repo
-    </a>
   </div>
 </div>
 
@@ -1698,6 +1663,10 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
       <span class="tab-icon">👨‍💼</span>
       <span>LEON</span>
     </div>
+    <div class="tab" data-case="genereux" onclick="switchCase('genereux')">
+      <span class="tab-icon">💼</span>
+      <span>GÉNÉREUX</span>
+    </div>
   </div>
   <div class="tab-divider"></div>
   <div class="tab-group">
@@ -1713,10 +1682,6 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
     <div class="tab" data-case="formules" onclick="switchCase('formules')">
       <span class="tab-icon">📐</span>
       <span>Formules</span>
-    </div>
-    <div class="tab" data-case="quiz" onclick="switchCase('quiz')">
-      <span class="tab-icon">🧠</span>
-      <span>Quiz</span>
     </div>
   </div>
 </div>
@@ -2086,6 +2051,63 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
   </a>
 </div>
 
+<!-- GÉNÉREUX sidebar -->
+<div id="sidebar-genereux" style="display:none">
+  <div class="sidebar-label">Plan de l'examen</div>
+  <a class="sidebar-item active" onclick="goTo('genereux-intro')">
+    <span class="num">0</span> Vue d'ensemble
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-s1')">
+    <span class="num">1</span> Situation du client
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-s2')">
+    <span class="num">2</span> Patrimoine
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-s3')">
+    <span class="num">3</span> Objectifs
+  </a>
+
+  <div class="sidebar-label" style="margin-top: 20px">E6I — Questions</div>
+  <a class="sidebar-item" onclick="goTo('genereux-e6i-q1')">
+    <span class="num">Q1</span> Question 1
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-e6i-q2')">
+    <span class="num">Q2</span> Question 2
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-e6i-q3')">
+    <span class="num">Q3</span> Question 3
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-e6i-q4')">
+    <span class="num">Q4</span> Question 4
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+
+  <div class="sidebar-label" style="margin-top: 20px">E6II — Questions</div>
+  <a class="sidebar-item" onclick="goTo('genereux-e6ii-q1')">
+    <span class="num">Q1</span> Question 1
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-e6ii-q2')">
+    <span class="num">Q2</span> Question 2
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-e6ii-q3')">
+    <span class="num">Q3</span> Question 3
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('genereux-e6ii-q4')">
+    <span class="num">Q4</span> Question 4
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+
+  <a class="sidebar-item" onclick="goTo('genereux-annexes')">
+    <span class="num">📎</span> Annexes
+  </a>
+</div>
+
     <div id="sidebar-guide" style="display:none">
         <div class="sidebar-label">Guide Stratégique</div>
         <a class="sidebar-item" onclick="goTo('gui-intro')">
@@ -2142,20 +2164,6 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
   <a class="sidebar-item" onclick="goTo('form-s9')"><span class="num">9</span> PER & Retraite</a>
   <a class="sidebar-item" onclick="goTo('form-s10')"><span class="num">10</span> Réserve & QD</a>
   <a class="sidebar-item" onclick="goTo('form-s11')"><span class="num">11</span> Régimes Matrimoniaux</a>
-</div>
-
-<!-- Quiz sidebar -->
-<div id="sidebar-quiz" style="display:none">
-  <div class="sidebar-label">Quiz Flashcards</div>
-  <a class="sidebar-item active" onclick="goTo('quiz-intro')">
-    <span class="num">🧠</span> Commencer
-  </a>
-  <a class="sidebar-item" onclick="goTo('quiz-av')"><span class="num">1</span> Assurance Vie</a>
-  <a class="sidebar-item" onclick="goTo('quiz-donations')"><span class="num">2</span> Donations & Succession</a>
-  <a class="sidebar-item" onclick="goTo('quiz-techniques')"><span class="num">3</span> Techniques Donation</a>
-  <a class="sidebar-item" onclick="goTo('quiz-fiscalite')"><span class="num">4</span> Fiscalité</a>
-  <a class="sidebar-item" onclick="goTo('quiz-immo')"><span class="num">5</span> Immobilier</a>
-  <a class="sidebar-item" onclick="goTo('quiz-retraite')"><span class="num">6</span> Retraite & PER</a>
 </div>
 
 </nav>
@@ -11726,6 +11734,133 @@ Droit (20%) = 3 000€
 </div>
 <!-- FIN CAS LEON -->
 
+<!-- ══════════════════════════════════════
+     CAS GÉNÉREUX
+     ══════════════════════════════════════ -->
+<div class="case-content" id="case-genereux">
+
+  <!-- INTRO -->
+  <div class="section" id="genereux-intro">
+    <div class="welcome">
+      <h1>Cas GÉNÉREUX 💼</h1>
+      <div class="subtitle">Examen E6I & E6II — Gestion de Patrimoine</div>
+
+      <div class="alert alert-info" style="margin-top: 24px;">
+        <span class="alert-icon">ℹ️</span>
+        <div>
+          <strong>Contenu en cours de préparation</strong><br>
+          Ce cas d'étude sera complété avec les détails des épreuves E6I et E6II.
+          Les fichiers PDF du cas GÉNÉREUX sont nécessaires pour finaliser le contenu.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITUATION CLIENT -->
+  <div class="section" id="genereux-s1">
+    <div class="section-header">
+      <span class="section-num">1</span>
+      <h2 class="section-title">Situation du client</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <!-- PATRIMOINE -->
+  <div class="section" id="genereux-s2">
+    <div class="section-header">
+      <span class="section-num">2</span>
+      <h2 class="section-title">Patrimoine</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <!-- OBJECTIFS -->
+  <div class="section" id="genereux-s3">
+    <div class="section-header">
+      <span class="section-num">3</span>
+      <h2 class="section-title">Objectifs</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <!-- E6I QUESTIONS -->
+  <div class="section" id="genereux-e6i-q1">
+    <div class="section-header">
+      <span class="section-num">Q1</span>
+      <h2 class="section-title">E6I — Question 1</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <div class="section" id="genereux-e6i-q2">
+    <div class="section-header">
+      <span class="section-num">Q2</span>
+      <h2 class="section-title">E6I — Question 2</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <div class="section" id="genereux-e6i-q3">
+    <div class="section-header">
+      <span class="section-num">Q3</span>
+      <h2 class="section-title">E6I — Question 3</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <div class="section" id="genereux-e6i-q4">
+    <div class="section-header">
+      <span class="section-num">Q4</span>
+      <h2 class="section-title">E6I — Question 4</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <!-- E6II QUESTIONS -->
+  <div class="section" id="genereux-e6ii-q1">
+    <div class="section-header">
+      <span class="section-num">Q1</span>
+      <h2 class="section-title">E6II — Question 1</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <div class="section" id="genereux-e6ii-q2">
+    <div class="section-header">
+      <span class="section-num">Q2</span>
+      <h2 class="section-title">E6II — Question 2</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <div class="section" id="genereux-e6ii-q3">
+    <div class="section-header">
+      <span class="section-num">Q3</span>
+      <h2 class="section-title">E6II — Question 3</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <div class="section" id="genereux-e6ii-q4">
+    <div class="section-header">
+      <span class="section-num">Q4</span>
+      <h2 class="section-title">E6II — Question 4</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+  <!-- ANNEXES -->
+  <div class="section" id="genereux-annexes">
+    <div class="section-header">
+      <span class="section-num">📎</span>
+      <h2 class="section-title">Annexes</h2>
+    </div>
+    <p><em>Contenu à venir...</em></p>
+  </div>
+
+</div>
+<!-- FIN CAS GÉNÉREUX -->
+
 <div class="case-content" id="case-guide">
 <!-- SECTION 0: INTRODUCTION & MODE D'EMPLOI -->
 <div class="section" id="gui-intro">
@@ -11744,7 +11879,7 @@ Droit (20%) = 3 000€
             <li><strong>Problématique | Techniques</strong> : La situation client et les solutions patrimoniales</li>
             <li><strong>Articles/Seuils clés</strong> : Les références légales (CGI, CMF, Code civil) et les plafonds applicables</li>
             <li><strong>Fiscalité</strong> : Impôt applicable (IR, IFI, DDS, PFU, etc.)</li>
-            <li><strong>Cas d'application</strong> : Croiser avec <span class="badge" style="background-color: #3498db;">SNOW</span> <span class="badge" style="background-color: #2ecc71;">MENGERE</span> <span class="badge" style="background-color: #e74c3c;">NORRIS</span> <span class="badge" style="background-color: #f39c12;">VADOR</span></li>
+            <li><strong>Cas d'application</strong> : Croiser avec <span class="badge" style="background-color: #3498db;">SNOW</span> <span class="badge" style="background-color: #2ecc71;">MENGERE</span> <span class="badge" style="background-color: #e74c3c;">NORRIS</span> <span class="badge" style="background-color: #f39c12;">VADOR</span> <span class="badge" style="background-color: #9b59b6;">LEON</span> <span class="badge" style="background-color: #1abc9c;">GÉNÉREUX</span></li>
         </ul>
     </div>
 
@@ -11754,7 +11889,7 @@ Droit (20%) = 3 000€
             <li><strong>Identifier les problématiques du client</strong> : Revenus complémentaires ? Réduction DDS ? Optimisation IR ? Transmission d'entreprise ?</li>
             <li><strong>Trouver les techniques dans le tableau</strong> : Parcourez les lignes correspondantes à la problématique</li>
             <li><strong>Vérifier les seuils et conditions</strong> : Respectez les plafonds, délais et références légales</li>
-            <li><strong>Croiser avec le cas pratique similaire</strong> : Appliquez le raisonnement du cas <span class="badge" style="background-color: #3498db;">SNOW</span>, <span class="badge" style="background-color: #2ecc71;">MENGERE</span>, <span class="badge" style="background-color: #e74c3c;">NORRIS</span> ou <span class="badge" style="background-color: #f39c12;">VADOR</span></li>
+            <li><strong>Croiser avec le cas pratique similaire</strong> : Appliquez le raisonnement du cas <span class="badge" style="background-color: #3498db;">SNOW</span>, <span class="badge" style="background-color: #2ecc71;">MENGERE</span>, <span class="badge" style="background-color: #e74c3c;">NORRIS</span>, <span class="badge" style="background-color: #f39c12;">VADOR</span>, <span class="badge" style="background-color: #9b59b6;">LEON</span> ou <span class="badge" style="background-color: #1abc9c;">GÉNÉREUX</span></li>
         </ol>
     </div>
 
@@ -13377,856 +13512,7 @@ body.dark-mode .formula-card .f { background: #161825; }
 
 </div>
 
-<div class="case-content" id="case-quiz">
 
-<!-- Quiz styles -->
-<style>
-.quiz-section { margin-bottom: 40px; }
-.quiz-section-title { font-size: 1.3em; font-weight: 700; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #818cf8; color: var(--text); }
-.quiz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 900px) { .quiz-grid { grid-template-columns: 1fr; } }
-.flashcard {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px;
-  cursor: pointer;
-  transition: all .2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06);
-  position: relative;
-  min-height: 120px;
-}
-.flashcard:hover { box-shadow: 0 4px 15px rgba(79,110,247,.12); transform: translateY(-1px); }
-.flashcard-q { font-weight: 600; color: var(--text); font-size: .92em; line-height: 1.5; margin-bottom: 8px; }
-.flashcard-hint { font-size: .78em; color: var(--text-light); font-style: italic; }
-.flashcard-a {
-  display: none;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--border);
-  font-size: .88em;
-  line-height: 1.6;
-  color: var(--text);
-}
-.flashcard-a.show { display: block; }
-.flashcard-tag {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: .68em;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.flashcard-tag.formule { background: rgba(79,110,247,.15); color: #4f6ef7; }
-.flashcard-tag.seuil { background: rgba(245,158,11,.15); color: #d97706; }
-.flashcard-tag.piege { background: rgba(239,68,68,.15); color: #ef4444; }
-.flashcard-tag.technique { background: rgba(16,185,129,.15); color: #10b981; }
-.flashcard-tag.cas { background: rgba(139,92,246,.15); color: #8b5cf6; }
-.quiz-stats {
-  background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
-  padding: 16px 20px; margin-bottom: 24px; display: flex; gap: 24px; align-items: center;
-  font-size: .88em;
-}
-.quiz-stats-btn {
-  background: var(--primary); color: #fff; border: none; border-radius: 8px;
-  padding: 8px 16px; cursor: pointer; font-size: .85em; font-weight: 600;
-  transition: all .2s;
-}
-.quiz-stats-btn:hover { filter: brightness(1.1); }
-</style>
-
-<div class="section" id="quiz-intro">
-  <div class="section-header">
-    <div class="section-num">🧠</div>
-    <div class="section-title">Mode Quiz — Flashcards de Révision</div>
-  </div>
-  <p>Cliquez sur une carte pour révéler la réponse. <strong>60+ questions</strong> couvrant les thèmes clés de l'exam.</p>
-
-  <div class="quiz-stats">
-    <span>Cartes révélées : <strong id="quizCount">0</strong> / <strong id="quizTotal">0</strong></span>
-    <button class="quiz-stats-btn" onclick="resetQuiz()">↺ Recommencer</button>
-    <button class="quiz-stats-btn" onclick="shuffleQuiz()" style="background:#10b981">🔀 Mélanger</button>
-  </div>
-</div>
-
-<!-- SECTION 1: ASSURANCE VIE -->
-<div class="quiz-section">
-  <h3 class="quiz-section-title">1. Assurance Vie</h3>
-  <div class="quiz-grid">
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Quel est l'abattement AV pour les primes versées avant 70 ans ?</div>
-      <div class="flashcard-hint">Art. 990 I CGI</div>
-      <div class="flashcard-a">
-        <strong>152 500 € par bénéficiaire</strong><br>
-        Au-delà : 20% jusqu'à 700 000€ puis 31,25%.<br>
-        <span style="color:var(--danger)">⚠️ Piège : c'est PAR bénéficiaire et TOUS contrats confondus</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Abattement AV pour les primes versées après 70 ans ?</div>
-      <div class="flashcard-hint">Art. 757B CGI</div>
-      <div class="flashcard-a">
-        <strong>30 500 € par bénéficiaire</strong><br>
-        Taxe : 20% jusqu'à 700 000€, puis 31,25%.<br>
-        <span style="color:var(--danger)">⚠️ Très réduit par rapport à avant 70 ans</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Montants de l'abattement de 8 ans en AV (droits de succession) ?</div>
-      <div class="flashcard-hint">Bénéficiaires</div>
-      <div class="flashcard-a">
-        <strong>Conjoint/Enfant : 4 600 €</strong><br>
-        <strong>Frère/Sœur : 1 850 €</strong><br>
-        <strong>Autres : 0 €</strong><br>
-        Applicable si primes + intérêts versés depuis 8+ ans avant décès
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Abattement 8 ans : s'ajoute-t-il à l'abattement 152 500€ ?</div>
-      <div class="flashcard-hint">Cumul ou alternative ?</div>
-      <div class="flashcard-a">
-        <strong>NON, c'est un OU, pas un ET</strong><br>
-        Le bénéficiaire choisit le régime le plus favorable :<br>
-        • OU abattement 152 500€ (ou 30 500€ après 70)<br>
-        • OU abattement 8 ans (4 600€/1 850€)<br>
-        Plus les droits de succession s'ajoute
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Qui a créé la doctrine Praslicka en AV ?</div>
-      <div class="flashcard-hint">Jurisprudence</div>
-      <div class="flashcard-a">
-        <strong>La Cour de Cassation (1988)</strong><br>
-        Doctrine de l'absence de lien d'affection particulier :<br>
-        • Les primes versées par époux pour enfant en tant que bénéficiaire ne constituent pas une donation<br>
-        • ≠ Donation si intention libérale manifeste au moment du versement
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Arrêt Bacquet : quel est le régime fiscal de la clause bénéficiaire ?</div>
-      <div class="flashcard-hint">Cour de Cassation 1998</div>
-      <div class="flashcard-a">
-        <strong>Droits de succession = 60%</strong> (au lieu de droits de donation)<br>
-        Car la clause bénéficiaire en AV produit ses effets au décès<br>
-        (Arrêt Bacquet - CA Reims 1998)
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Arrêt CIOT : clause bénéficiaire démembrée, qui paie les droits ?</div>
-      <div class="flashcard-hint">Fiscalité du nu-propriétaire</div>
-      <div class="flashcard-a">
-        <strong>Le nu-propriétaire paie les droits à son taux</strong><br>
-        (Arrêt CIOT, Cour de Cassation)<br>
-        L'usufruitier est exonéré si bénéficiaire du contrat AV<br>
-        <span style="color:var(--danger)">⚠️ Piège : droits progressifs sur part du NU seul</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Clause démembrée en AV : qui en est bénéficiaire ?</div>
-      <div class="flashcard-hint">Mécanisme</div>
-      <div class="flashcard-a">
-        <strong>Usufruitier : capitaux</strong><br>
-        <strong>Nu-propriétaire : droits de succession</strong><br>
-        Permet transmission patrimoniale avec contrôle temporaire (usufruit)<br>
-        Très utilisée pour époux + enfants
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Rachat partiel AV : comment est fiscalisé l'intérêt retiré ?</div>
-      <div class="flashcard-hint">PFU vs Barème</div>
-      <div class="flashcard-a">
-        <strong>PFU 30% (composé de 12,8% IR + 17,2% PS)</strong><br>
-        OU Barème progressif au choix du contribuable<br>
-        Taxable uniquement sur la part-intérêts (pas le capital repris)<br>
-        S'applique à rachat partiel ou total
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Quasi-usufruit en AV : charges et fiscalité particulière ?</div>
-      <div class="flashcard-hint">Régime spécial</div>
-      <div class="flashcard-a">
-        <strong>Taxe annuelle IFI : oui, sur sa valeur pleine</strong><br>
-        Succession : droits de succession au taux du quasi-usufruitier<br>
-        (Pas de démembrement réel, juste droit aux revenus)<br>
-        <span style="color:var(--danger)">⚠️ Piège fiscal moins avantageux que vrai usufruit</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 2: DONATIONS & SUCCESSION -->
-<div class="quiz-section">
-  <h3 class="quiz-section-title">2. Donations & Succession</h3>
-  <div class="quiz-grid">
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Abattement donation enfant → parent 2025 ?</div>
-      <div class="flashcard-hint">Art. 669-1 CGI</div>
-      <div class="flashcard-a">
-        <strong>100 000 € par parent</strong><br>
-        Renouvelable tous les 15 ans<br>
-        Droit de donation enfant → parent → 60%
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Abattement grand-parent → petit-enfant ?</div>
-      <div class="flashcard-hint">Art. 669-1 CGI</div>
-      <div class="flashcard-a">
-        <strong>31 865 € par bénéficiaire</strong><br>
-        Renouvelable tous les 15 ans<br>
-        Taux de donation : 60% (sauf exception)
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Barème donation par âge du donataire (art. 669-1) : taux réduit ?</div>
-      <div class="flashcard-hint">Décote par plage d'âge</div>
-      <div class="flashcard-a">
-        <strong>Moins de 18 ans : abattement x2</strong><br>
-        <strong>18-35 ans : abattement x1</strong><br>
-        <strong>Plus de 35 ans : abattement x0,5</strong><br>
-        (Progressif par tranches de 5 ans)
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Donation-partage vs donation simple : différence principale ?</div>
-      <div class="flashcard-hint">Fiscalité + succession</div>
-      <div class="flashcard-a">
-        <strong>Donation-partage : figement des valeurs au jour du partage</strong><br>
-        Plus-value ultérieure = aucun droit supplémentaire<br>
-        Donation simple : droits calculés sur valeur au décès<br>
-        <span style="color:var(--danger)">⚠️ Donation-partage plus intéressante en immobilier (+ values futures)</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Réserve héréditaire : part minimum du conjoint survivant ?</div>
-      <div class="flashcard-hint">Art. 757 CGI</div>
-      <div class="flashcard-a">
-        <strong>Enfant(s) : conjoint = 1/4 en pleine propriété</strong><br>
-        <strong>Pas d'enfant : conjoint = 1/2 en usufruit OU 1/4 en pleine propriété</strong><br>
-        Abattement conjoint survivant : 60 000€ (droits succession)
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Quotité disponible succession : répartition avec 2 enfants ?</div>
-      <div class="flashcard-hint">Succession</div>
-      <div class="flashcard-a">
-        <strong>Réserve enfants : 2/3 (1/3 chacun)</strong><br>
-        <strong>Quotité disponible : 1/3</strong><br>
-        (Testable librement ou donation entre vifs)<br>
-        3 enfants : réserve 3/4, quotité 1/4
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Condition Dutreil (787B) : durée minimale de détention ?</div>
-      <div class="flashcard-hint">Exonération droits</div>
-      <div class="flashcard-a">
-        <strong>2 ans avant transmission + 2 ans après transmission = 4 ans minimum</strong><br>
-        Exonération 75% de la valeur de l'entreprise<br>
-        EIRL, SARL, SAS, entreprise individuelle<br>
-        Conjoint/héritier doit conserver 2 ans
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Rapport civil vs rapport fiscal en succession ?</div>
-      <div class="flashcard-hint">Donation antérieure</div>
-      <div class="flashcard-a">
-        <strong>Rapport civil : rapporte donation à succession (partage égal)</strong><br>
-        <strong>Rapport fiscal : ajout fictif à assiette de droits</strong><br>
-        <span style="color:var(--danger)">⚠️ Piège : report d'abattement possible en fiscal (art. 777 CGI)</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Abattement entre époux en donation (non applicable) et succession ?</div>
-      <div class="flashcard-hint">Art. 776 CGI</div>
-      <div class="flashcard-a">
-        <strong>Abattement : 80 724 € en succession</strong><br>
-        (PAR successible, donc x2 si 2 enfants reçoivent)<br>
-        Donation : aucun abattement spécifique (droits succession 60%)
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Démembrement en succession : taxation de l'usufruit restant ?</div>
-      <div class="flashcard-hint">Valeur relative</div>
-      <div class="flashcard-a">
-        <strong>Tableau de Lebret : usufruit = % du capital</strong><br>
-        Moins de 20 ans : 60-90% du capital<br>
-        20-40 ans : 40-60%<br>
-        Plus de 40 ans : 10-40%<br>
-        (Âge du bénéficiaire déterminant)
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 3: TECHNIQUES DE DONATION -->
-<div class="quiz-section">
-  <h3 class="quiz-section-title">3. Techniques de Donation</h3>
-  <div class="quiz-grid">
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">DTUS (Donation Transgénérationnelle Unifiée et Simplifiée) : principe ?</div>
-      <div class="flashcard-hint">Art. 669-2 CGI</div>
-      <div class="flashcard-a">
-        <strong>Abattement enfant ET petit-enfant = 152 500€ à partager</strong><br>
-        Mais réduction droits : 23% par période de 10 ans écoulée<br>
-        Bénéficié d'après enfant décédé : 23% x durée
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">DTUS : comment fonctionne la réduction 23% par période ?</div>
-      <div class="flashcard-hint">Calcul</div>
-      <div class="flashcard-a">
-        <strong>0-10 ans : 0%</strong><br>
-        <strong>10-20 ans : 23%</strong><br>
-        <strong>20-30 ans : 46%</strong><br>
-        <strong>+ 30 ans : 69%</strong><br>
-        S'applique aux droits avant abattement
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Donation avant cession immobilière (NP → PP) : purgement des plus-values ?</div>
-      <div class="flashcard-hint">Technique</div>
-      <div class="flashcard-a">
-        <strong>OUI, donation purge droits d'enregistrement antérieurs</strong><br>
-        Puis cession après donation = prix réel à l'acheteur<br>
-        Économise droit d'enregistrement (7,5%) sur la + value intégrée
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">SCI démembrée : part nue-propriété + usufruit en donation ?</div>
-      <div class="flashcard-hint">Transmission patrimoine</div>
-      <div class="flashcard-a">
-        <strong>Parent donne NP aux enfants, garde usufruit</strong><br>
-        Abattement NP = 60% (taux donation)<br>
-        NP = ~60-80% de la valeur SCI (dépend Lebret)<br>
-        Usufruit reste au donateur (pas d'impôt)
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Donation avec réserve d'usufruit : durée/limitation ?</div>
-      <div class="flashcard-hint">Fiscalité</div>
-      <div class="flashcard-a">
-        <strong>AUCUNE limite de durée</strong><br>
-        Peut durer jusqu'au décès du donateur<br>
-        Fiscalité : NU seul abattu (60% donation)<br>
-        <span style="color:var(--danger)">⚠️ Piège : usufruit revient au nu-propriétaire au décès</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Démembrement croisé (époux) : avantage principal ?</div>
-      <div class="flashcard-hint">Transmission</div>
-      <div class="flashcard-a">
-        <strong>Chaque époux : nu-propriété à enfants + réserve usufruit</strong><br>
-        Au décès premier époux : usufruit passe à conjoint survivant<br>
-        Puis au deuxième décès : enfant reçoit bien en pleine propriété
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Tontine entre 2 époux : condition et fiscalité ?</div>
-      <div class="flashcard-hint">Succession</div>
-      <div class="flashcard-a">
-        <strong>Achat bien en tontine (survivant reçoit l'intégralité)</strong><br>
-        Imposition : sur la part acquise (prix/2)<br>
-        Droit enregistrement : 0,20% (très réduit)<br>
-        <span style="color:var(--danger)">⚠️ Pas de mutation au décès du premier</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Donation entre époux : donation simple entre vifs, droit applicable ?</div>
-      <div class="flashcard-hint">Régime fiscal</div>
-      <div class="flashcard-a">
-        <strong>Droits de succession 60% (NOT donation)</strong><br>
-        Car époux = héritier réservataire<br>
-        Abattement succession : 80 724€ applicable<br>
-        <span style="color:var(--danger)">⚠️ Piège : pas d'abattement donation spécifique époux</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Condition d'abus de droit en donation-partage ?</div>
-      <div class="flashcard-hint">Requalification</div>
-      <div class="flashcard-a">
-        <strong>Si intention principal = éluder droits → requalification donation simple</strong><br>
-        Exemple : donation-partage avec valeurs irréelles ou non-justifiées<br>
-        Administration peut requalifier pour appliquer droits succession
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Donation transgénérationnelle (enfant vivant au jour de la donation) : avantage ?</div>
-      <div class="flashcard-hint">Abattement</div>
-      <div class="flashcard-a">
-        <strong>152 500€ enfant PLUS 152 500€ petit-enfant</strong><br>
-        (Si enfant vivant, le PE est bénéficiaire direct)<br>
-        Vs DTUS : 152 500€ total à partager<br>
-        <span style="color:var(--danger)">⚠️ Avantage : cumul des abattements</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 4: FISCALITÉ IR/IFI/PFU -->
-<div class="quiz-section">
-  <h3 class="quiz-section-title">4. Fiscalité IR/IFI/PFU</h3>
-  <div class="quiz-grid">
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Tranches IR 2025 en France métropolitaine ?</div>
-      <div class="flashcard-hint">Barème</div>
-      <div class="flashcard-a">
-        <strong>0% : 0-11 294€</strong><br>
-        <strong>11% : 11 294-28 797€</strong><br>
-        <strong>30% : 28 797-82 341€</strong><br>
-        <strong>41% : 82 341-231 413€</strong><br>
-        <strong>45% : + 231 413€</strong>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Plafonnement niches fiscales : montant maximum et exceptions ?</div>
-      <div class="flashcard-hint">Art. 200 et suivants CGI</div>
-      <div class="flashcard-a">
-        <strong>Plafond général : 10 000€ de réduction d'impôt</strong><br>
-        <strong>HORS plafond : Malraux, MH, Girardin, Sofica, LME, IFC</strong><br>
-        <span style="color:var(--danger)">⚠️ Piège : niches illimitées très intéressantes pour hauts revenus</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">PFU 30% : composition du taux ?</div>
-      <div class="flashcard-hint">Flat tax</div>
-      <div class="flashcard-a">
-        <strong>12,8% IR + 17,2% Prélèvements Sociaux</strong><br>
-        Applicable sur plus-values (mobilier), intérêts AV<br>
-        Alternative : barème progressif au choix
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Seuil d'assujettissement IFI 2025 ?</div>
-      <div class="flashcard-hint">Patrimoine net</div>
-      <div class="flashcard-a">
-        <strong>1 300 000€ de patrimoine net</strong><br>
-        Déclaration : si > seuil<br>
-        Couples mariés : chacun > 1,3M€<br>
-        Exonération résidence principale : 30% décote
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Barème IFI 2025 : taux progressif par tranche ?</div>
-      <div class="flashcard-hint">Impositions</div>
-      <div class="flashcard-a">
-        <strong>0,55% : 0-800k€</strong><br>
-        <strong>0,75% : 800k-1,3M€</strong><br>
-        <strong>1,00% : 1,3M-2,57M€</strong><br>
-        <strong>1,25% : 2,57M-5M€</strong><br>
-        <strong>1,50% : + 5M€</strong>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Décote RP en IFI : pourcentage et limite ?</div>
-      <div class="flashcard-hint">Exonération partielle</div>
-      <div class="flashcard-a">
-        <strong>30% d'exonération sur valeur RP</strong><br>
-        Uniquement RP (résidence principale)<br>
-        Limite : IFI ne peut dépasser 60% des revenus bruts<br>
-        <span style="color:var(--danger)">⚠️ Bouclier fiscal très avantageux en hauts patrimoines</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Bouclier fiscal 75% : calcul et application ?</div>
-      <div class="flashcard-hint">Limite maximale</div>
-      <div class="flashcard-a">
-        <strong>IFI + IR total ≤ 75% des revenus bruts</strong><br>
-        Crédit d'impôt jusqu'au plafond 75%<br>
-        Extrêmement avantageux pour revenus bas + IFI élevé<br>
-        Très peu de contribuables au plafond
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">QF enfants à charge : plafond d'abattement 2025 ?</div>
-      <div class="flashcard-hint">Demi-parts</div>
-      <div class="flashcard-a">
-        <strong>1 enfant : +1 demi-part (limite 1 759€)</strong><br>
-        <strong>2 enfants : +1 part (limite 3 518€)</strong><br>
-        <strong>3+ enfants : +0,5 part par enfant (limite 3 518€ par enfant)</strong><br>
-        <span style="color:var(--danger)">⚠️ Piège : limite par enfant, pas cumul</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Création CSG/CRDS 2026 : composition sur salaires ?</div>
-      <div class="flashcard-hint">Prélèvements</div>
-      <div class="flashcard-a">
-        <strong>CSG 7,3% (dont 5,1% déductible)</strong><br>
-        <strong>CRDS 0,5%</strong><br>
-        Total : 7,8% sur salaires bruts<br>
-        Partiellement déductible en impôt
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Abattement forfaitaire enfant : montants 2025 ?</div>
-      <div class="flashcard-hint">Dépenses</div>
-      <div class="flashcard-a">
-        <strong>3 854€ par enfant</strong><br>
-        Frais garde enfants de moins de 6 ans<br>
-        Applicable si récupéré en réduction d'impôt (crédit 50%)
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 5: IMMOBILIER & RÉGIMES -->
-<div class="quiz-section">
-  <h3 class="quiz-section-title">5. Immobilier & Régimes</h3>
-  <div class="quiz-grid">
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Seuil micro-foncier (BIC) et abattement ?</div>
-      <div class="flashcard-hint">Régime immobilier</div>
-      <div class="flashcard-a">
-        <strong>Seuil : 15 000€ de loyers annuels</strong><br>
-        <strong>Abattement : 30% automatique</strong><br>
-        Taxable : 70% des loyers (aucune déduction frais)<br>
-        Régime idéal pour petits propriétaires
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Déficit foncier : limite annuelle de déduction ?</div>
-      <div class="flashcard-hint">Art. 156 CGI</div>
-      <div class="flashcard-a">
-        <strong>10 700€ par an déductible du revenu global</strong><br>
-        Au-delà : report sur revenus fonciers futurs (illimité dans le temps)<br>
-        Ne s'applique pas si RP louée<br>
-        Très avantageux en phase d'endettement immobilier
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">LMNP vs LMP : différence de régime ?</div>
-      <div class="flashcard-hint">Location meublée</div>
-      <div class="flashcard-a">
-        <strong>LMP (principal) : loyers + autres activités > 50% CA</strong><br>
-        <strong>LMNP : location meublée accessoire (< 50% CA)</strong><br>
-        LMNP peut bénéficier micro-entreprise (77 700€)<br>
-        LMP = régime réel obligatoire OU micro-BIC<br>
-        <span style="color:var(--danger)">⚠️ Piège : distinction critique pour fiscalité</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Micro-BIC 2025 : seuil et abattement ?</div>
-      <div class="flashcard-hint">BIC LMNP</div>
-      <div class="flashcard-a">
-        <strong>Seuil : 77 700€ de chiffre d'affaires</strong><br>
-        <strong>Abattement : 50%</strong><br>
-        Taxable : 50% du CA (aucune déduction frais)<br>
-        Très simple, idéal LMNP petit/moyen
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Location meublée : amortissement mobilier (LMNP/LMP) ?</div>
-      <div class="flashcard-hint">Déductible</div>
-      <div class="flashcard-a">
-        <strong>Durée : 5-10 ans par type (lit, table, cuisine)</strong><br>
-        <strong>% immeuble : jusqu'à 30% de la valeur</strong><br>
-        Amortissement = déduction fiscale BIC<br>
-        Reprise à la vente si cession
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Dispositif Pinel : taux réduction impôt 2025 (loyer plafonné) ?</div>
-      <div class="flashcard-hint">Immobilier neuf</div>
-      <div class="flashcard-a">
-        <strong>6 ans : 10,5%</strong><br>
-        <strong>9 ans : 15%</strong><br>
-        <strong>12 ans : 17,5%</strong><br>
-        S'applique sur prix d'achat, engages 6/9/12 ans<br>
-        <span style="color:var(--danger)">⚠️ Piège : plafonds loyer stricts (index CGS)</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Dispositif Malraux : réduction d'impôt et durée ?</div>
-      <div class="flashcard-hint">Immobilier ancien</div>
-      <div class="flashcard-a">
-        <strong>Réduction : 22% ou 30% (quartier)</strong><br>
-        <strong>Engagements : 6 ou 9 ans location</strong><br>
-        Apllicable sur dépenses travaux rénovation<br>
-        HORS plafond 10k€ niches
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Monuments Historiques (MH) : déduction dépenses travaux ?</div>
-      <div class="flashcard-hint">100% déductible</div>
-      <div class="flashcard-a">
-        <strong>100% des dépenses travaux déductibles</strong><br>
-        Amortissement + conservation très avantageuse<br>
-        HORS plafond niches 10k€<br>
-        Engagement de non-cession 5-10 ans
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">NP bailleur social (PSLA, PBS, cotisation) : décote IFI applicable ?</div>
-      <div class="flashcard-hint">Immobilier social</div>
-      <div class="flashcard-a">
-        <strong>OUI, 30% de décote sur valeur NP</strong><br>
-        Engagement 9 ans dans bailleur social<br>
-        <span style="color:var(--danger)">⚠️ Piège : très intéressant patrimoinalement + IFI</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Propriété occupée (RP) : impact IFI et droits succession ?</div>
-      <div class="flashcard-hint">Fiscalité différente</div>
-      <div class="flashcard-a">
-        <strong>IFI : 30% décote si RP</strong><br>
-        <strong>Succession : 60% (2/5 de réduction)</strong><br>
-        <strong>Droits enregistrement : 3,6% (vs 5-7% bien non-RP)</strong><br>
-        Très protégée fiscalement
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 6: RETRAITE & PER -->
-<div class="quiz-section">
-  <h3 class="quiz-section-title">6. Retraite & PER</h3>
-  <div class="quiz-grid">
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">Plafond PER : déduction maximum 2025 ?</div>
-      <div class="flashcard-hint">Cotisation déductible</div>
-      <div class="flashcard-a">
-        <strong>10% des revenus professionnels nets</strong><br>
-        <strong>Plafond : 37 500€ environ (salarié cadre 2025)</strong><br>
-        Report sur exercices antérieurs possible (5 ans)<br>
-        Plus avantageux que Madelin
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">TNS Madelin : cotisation supplémentaire par rapport à PER ?</div>
-      <div class="flashcard-hint">Travailleur indépendant</div>
-      <div class="flashcard-a">
-        <strong>PER TNS : 10% revenus net (max ~37k€)</strong><br>
-        <strong>Madelin ancien : peut ajouter cotisations supplémentaires</strong><br>
-        PER + avantageux, migration possible
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Sortie PER : fiscalité rente vs capital ?</div>
-      <div class="flashcard-hint">Modalités</div>
-      <div class="flashcard-a">
-        <strong>Rente : 70% IR progressif + 20% PS</strong><br>
-        <strong>Capital : 12,8% IR + 17,2% PS (PFU 30%)</strong><br>
-        <span style="color:var(--danger)">⚠️ Piège : rente bien moins intéressante fiscalement que capital</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">RVTO (Rente Viagère à Titre Onéreux) : abattement par âge ?</div>
-      <div class="flashcard-hint">Démembrement</div>
-      <div class="flashcard-a">
-        <strong>60-69 ans : 40% de la rente taxable</strong><br>
-        <strong>50-59 ans : 50%</strong><br>
-        <strong>40-49 ans : 60%</strong><br>
-        Moins de 40 ans : 100%<br>
-        Plus de 70 ans : 30%
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Taux de remplacement retraite : par catégorie socioprofessionnelle ?</div>
-      <div class="flashcard-hint">Comparaison revenus</div>
-      <div class="flashcard-a">
-        <strong>Cadre : 50-60% du dernier salaire</strong><br>
-        <strong>Agent public : 75% (+pension garantie)</strong><br>
-        <strong>TNS : 25-40% (très réduit)</strong><br>
-        <strong>Ouvrier/Employé : 45-55%</strong>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">3 compartiments PER : affectation des cotisations ?</div>
-      <div class="flashcard-hint">Segmentation</div>
-      <div class="flashcard-a">
-        <strong>Compartiment 1 : sortie capital à retraite</strong><br>
-        <strong>Compartiment 2 : sortie rente obligatoire</strong><br>
-        <strong>Compartiment 3 : sortie capital avant retraite (décès, PTI)</strong><br>
-        <span style="color:var(--danger)">⚠️ Piège : affectation en début d'année, engagement fiscal</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Transfert PERP → PER 2024 : modalités et impact ?</div>
-      <div class="flashcard-hint">Ancienne retraite</div>
-      <div class="flashcard-a">
-        <strong>Possible depuis 2024 sous conditions</strong><br>
-        Transfert partiel ou total en capital<br>
-        Fiscalité PERP s'applique à la sortie<br>
-        Intérêt : meilleure souplesse PER (capital à retraite)
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag piege">PIÈGE</span>
-      <div class="flashcard-q">Sortie anticipée PER : conditions exceptionnelles ?</div>
-      <div class="flashcard-hint">Déblocage</div>
-      <div class="flashcard-a">
-        <strong>Décès du conjoint ou co-empunteur</strong><br>
-        <strong>Invalidité (catégorie 2-3)</strong><br>
-        <strong>Liquidation judiciaire</strong><br>
-        <strong>PTI (partition du couple)</strong><br>
-        <span style="color:var(--danger)">⚠️ Très restrictif, pas d'accès immédiat</span>
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag formule">FORMULE</span>
-      <div class="flashcard-q">CSG sur pensions 2025 : taux progressif par tranche ?</div>
-      <div class="flashcard-hint">Retraite imposable</div>
-      <div class="flashcard-a">
-        <strong>Exonérée si pension < 1 262€/mois</strong><br>
-        <strong>Partiellement taxée : 1 262-1 750€</strong><br>
-        <strong>Totalement taxée : + 1 750€</strong><br>
-        8,3% CSG (dont 5,9% déductible) ou 8,8% CSG
-      </div>
-    </div>
-
-    <div class="flashcard" onclick="this.querySelector('.flashcard-a').classList.toggle('show'); updateQuizCount();">
-      <span class="flashcard-tag seuil">SEUIL</span>
-      <div class="flashcard-q">Abattement retraite salarié : réduction sur pension ?</div>
-      <div class="flashcard-hint">Déduction IR</div>
-      <div class="flashcard-a">
-        <strong>Abattement : 10% de la pension</strong><br>
-        <strong>Minimum : 0, Maximum : 4 500€</strong><br>
-        Applicable automatiquement<br>
-        Très avantageux pour petites pensions
-      </div>
-    </div>
-  </div>
-</div>
-
-</div>
-
-<script>
-function updateQuizCount() {
-  const total = document.querySelectorAll('#case-quiz .flashcard').length;
-  const revealed = document.querySelectorAll('#case-quiz .flashcard-a.show').length;
-  document.getElementById('quizTotal').textContent = total;
-  document.getElementById('quizCount').textContent = revealed;
-}
-
-function resetQuiz() {
-  document.querySelectorAll('#case-quiz .flashcard-a').forEach(a => a.classList.remove('show'));
-  updateQuizCount();
-}
-
-function shuffleQuiz() {
-  document.querySelectorAll('#case-quiz .quiz-grid').forEach(grid => {
-    const cards = Array.from(grid.children);
-    for (let i = cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      grid.appendChild(cards[j]);
-    }
-  });
-  resetQuiz();
-}
-
-// Init count
-document.addEventListener('DOMContentLoaded', updateQuizCount);
-</script>
 
 </main>
 </div>
