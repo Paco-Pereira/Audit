@@ -379,6 +379,82 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
    SIDEBAR TOGGLE BUTTON
    ============================================================================ */
 
+/* Desktop collapse button — inside sidebar top */
+.sidebar-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-light);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-left: auto;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.sidebar-collapse-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Collapsed state */
+.sidebar.collapsed {
+  width: 0;
+  padding: 0;
+  border-right: none;
+  overflow: hidden;
+}
+
+.sidebar.collapsed .sidebar-collapse-btn,
+.sidebar.collapsed .sidebar-label,
+.sidebar.collapsed .sidebar-item,
+.sidebar.collapsed .sidebar-sub,
+.sidebar.collapsed [id^="sidebar-"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Floating expand button — visible when sidebar is collapsed */
+.sidebar-expand-btn {
+  display: none;
+  position: fixed;
+  left: 12px;
+  bottom: 80px;
+  z-index: 40;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  color: var(--text-light);
+  font-size: 18px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  box-shadow: var(--glass-shadow);
+}
+
+.sidebar-expand-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  transform: scale(1.08);
+}
+
+.sidebar-expand-btn.visible {
+  display: flex;
+}
+
+/* Mobile toggle (unchanged behavior) */
 .sidebar-toggle-btn {
   display: none;
   position: fixed;
@@ -2091,12 +2167,16 @@ details .inner {
 
 <button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Ouvrir le menu">☰</button>
 
+<!-- Floating expand button (visible when sidebar collapsed) -->
+<button class="sidebar-expand-btn" id="sidebarExpandBtn" onclick="collapseSidebar()" title="Afficher le menu">☰</button>
+
 <!-- ============ APP BODY ============ -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <div class="app-body">
 
   <!-- ===== SIDEBAR ===== -->
   <nav class="sidebar" id="sidebar">
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="collapseSidebar()" title="Rétracter le menu">◀</button>
     <!-- Snow sidebar -->
     <div id="sidebar-snow">
       <div class="sidebar-label">Plan de l'examen</div>
@@ -18642,13 +18722,19 @@ function switchCase(caseName) {
     target.style.display = 'block';
   }
 
-  // Update sidebar — hide for home page
+  // Update sidebar — hide for home page, show & uncollapse for cases
   document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
   const sidebarEl = document.getElementById('sidebar');
+  const expandBtn = document.getElementById('sidebarExpandBtn');
   if (caseName === 'home') {
     if (sidebarEl) sidebarEl.style.display = 'none';
+    if (expandBtn) expandBtn.classList.remove('visible');
   } else {
-    if (sidebarEl) sidebarEl.style.display = '';
+    if (sidebarEl) {
+      sidebarEl.style.display = '';
+      sidebarEl.classList.remove('collapsed');
+    }
+    if (expandBtn) expandBtn.classList.remove('visible');
     const sidebar = document.getElementById('sidebar-' + caseName);
     if (sidebar) sidebar.style.display = 'block';
   }
@@ -18657,7 +18743,7 @@ function switchCase(caseName) {
   document.getElementById('main-scroll').scrollTop = 0;
 }
 
-// ============ SIDEBAR TOGGLE FUNCTION ============
+// ============ SIDEBAR TOGGLE FUNCTION (mobile) ============
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
   const toggleBtn = document.getElementById('sidebarToggleBtn');
@@ -18666,13 +18752,29 @@ function toggleSidebar() {
   sidebar.classList.toggle('active');
   if (overlay) overlay.classList.toggle('active');
 
-  // Update toggle button icon
   if (sidebar.classList.contains('active')) {
     toggleBtn.innerHTML = '✕';
     toggleBtn.title = 'Fermer le menu';
   } else {
     toggleBtn.innerHTML = '☰';
     toggleBtn.title = 'Ouvrir le menu';
+  }
+}
+
+// ============ SIDEBAR COLLAPSE FUNCTION (desktop) ============
+function collapseSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const expandBtn = document.getElementById('sidebarExpandBtn');
+  const collapseBtn = document.getElementById('sidebarCollapseBtn');
+
+  sidebar.classList.toggle('collapsed');
+
+  if (sidebar.classList.contains('collapsed')) {
+    expandBtn.classList.add('visible');
+    if (collapseBtn) collapseBtn.title = 'Afficher le menu';
+  } else {
+    expandBtn.classList.remove('visible');
+    if (collapseBtn) collapseBtn.title = 'Rétracter le menu';
   }
 }
 
