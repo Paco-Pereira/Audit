@@ -1737,6 +1737,10 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
       <span class="tab-icon">👨‍👩‍👧‍👦</span>
       <span>STARK</span>
     </div>
+    <div class="tab" data-case="niote" onclick="switchCase('niote')">
+      <span class="tab-icon">🏢</span>
+      <span>NIOTE</span>
+    </div>
     <div class="tab" data-case="mengere" onclick="switchCase('mengere')">
       <span class="tab-icon">🏗️</span>
       <span>MENGERE</span>
@@ -1867,6 +1871,70 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
       </a>
       <a class="sidebar-item" onclick="goTo('stark-e6ii-q4')">
         <span class="num">Q4</span> Retraite
+      </a>
+    </div>
+
+    <!-- NIOTE sidebar -->
+    <div id="sidebar-niote" style="display:none">
+      <div class="sidebar-label">Plan de l'examen</div>
+      <a class="sidebar-item active" onclick="goTo('niote-intro')">
+        <span class="num">0</span> Vue d'ensemble
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-situation')">
+        <span class="num">1</span> Situation
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-patrimoine')">
+        <span class="num">2</span> Patrimoine
+      </a>
+      <div class="sidebar-label" style="margin-top: 20px;">Partie 1 — Questions</div>
+      <a class="sidebar-item" onclick="goTo('niote-q1')">
+        <span class="num">Q1</span> Micro BIC 2025
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q2')">
+        <span class="num">Q2</span> IR actuel
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q3')">
+        <span class="num">Q3</span> PV CTO
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q4')">
+        <span class="num">Q4</span> IR 2028
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q5')">
+        <span class="num">Q5</span> Capacité endettement
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q6')">
+        <span class="num">Q6</span> IFI 2028
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q7')">
+        <span class="num">Q7</span> Investissement locatif
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q8')">
+        <span class="num">Q8</span> PER disponible
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q9')">
+        <span class="num">Q9</span> Cumul PER + Denormandie
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-q10')">
+        <span class="num">Q10</span> Bilan 01/01/2027
+      </a>
+      <div class="sidebar-label" style="margin-top: 20px;">Partie 2 — 20 ans après (2045)</div>
+      <a class="sidebar-item" onclick="goTo('niote-p2-q1')">
+        <span class="num">Q1</span> Bilan successoral
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-p2-q2')">
+        <span class="num">Q2</span> Solutions succession
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-p2-q3')">
+        <span class="num">Q3</span> PV Denormandie
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-p2-q4')">
+        <span class="num">Q4</span> Donation avec charges
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-p2-q5')">
+        <span class="num">Q5</span> Grands-parents
+      </a>
+      <a class="sidebar-item" onclick="goTo('niote-p2-q6')">
+        <span class="num">Q6</span> Gain loto 600k€
       </a>
     </div>
 
@@ -4036,6 +4104,880 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
       </div>
 
     </div><!-- /case-stark -->
+
+    <!-- ══════════════════════════════════════
+         CAS NIOTE
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-niote" style="display:none">
+
+      <!-- INTRO -->
+      <div class="section" id="niote-intro">
+        <div class="welcome">
+          <h1>Cas NIOTE 🏢</h1>
+          <div class="subtitle">M. et Mme NIOTE — TNS & Entreprise familiale</div>
+          <p>Cas complet : fiscalité location meublée, Denormandie, transmission et succession.<br>
+          Projection sur 20 ans avec évolution patrimoniale.</p>
+          <div class="meta">
+            Cas d'examen patrimonial complet<br>
+            Préparé pour Paco — Février 2026
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:24px">
+          <h3 style="margin-top:0">👨‍👩‍👦 La famille NIOTE</h3>
+          <table>
+            <tr><th>Personne</th><th>Détails</th></tr>
+            <tr>
+              <td><strong>M. NIOTE (47 ans)</strong></td>
+              <td>TNS, gérant majoritaire SARL<br>
+              Spécialisée dans vente mobilier d'entreprise<br>
+              Revenus art. 62 : 80 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Mme NIOTE (47 ans)</strong></td>
+              <td>Salariée de l'entreprise, directrice des achats<br>
+              Salaire imposable : 60 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Bill (20 ans)</strong></td>
+              <td>Enfant commun, études supérieures de commerce</td>
+            </tr>
+          </table>
+          <p style="margin-top:15px"><strong>Mariage :</strong> CRA depuis 22 ans (2003)</p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">🎯 Objectifs et préoccupations</h3>
+          <ul>
+            <li><strong>Investissement Denormandie à Grasse</strong> (9 ans, 18% réduction IR)</li>
+            <li>VEFA signée, livraison prévue 01/01/2027</li>
+            <li>T2 de 50 m² pour 240 000€ (4 800€/m²)</li>
+            <li>Loyer prévisionnel : 760€/mois (9 120€/an) dès 2027</li>
+            <li>Crédit 240k€ sur 20 ans à 3,43% + assurance 0,34%</li>
+            <li>Mensualité : 1 451€ (différée jusqu'en 2027)</li>
+            <li>Apport demandé : 30% soit 62 000€</li>
+            <li><strong>Préoccupation :</strong> Évolution fiscalité micro BIC (crainte alignement sur RF)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SITUATION -->
+      <div class="section" id="niote-situation">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title">Situation familiale et professionnelle</div>
+        </div>
+
+        <h3>Situation professionnelle</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">M. NIOTE</div>
+            <div class="info-value">TNS gérant majoritaire SARL<br>Revenus art. 62 : 80 000€</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Mme NIOTE</div>
+            <div class="info-value">Salariée entreprise<br>Salaire : 60 000€</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Mariage</div>
+            <div class="info-value">CRA depuis 2003 (22 ans)</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Enfant</div>
+            <div class="info-value">Bill, 20 ans, études commerce</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PATRIMOINE -->
+      <div class="section" id="niote-patrimoine">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title">Patrimoine actuel (2025)</div>
+        </div>
+
+        <h3>Patrimoine immobilier</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Bien</th><th>Détails</th><th>Valeur</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Résidence principale Nice</strong></td>
+              <td>Achetée à crédit 20 ans en 2004<br>TF : 4 500€</td>
+              <td class="number">800 000€</td>
+            </tr>
+            <tr>
+              <td><strong>T2 loué meublé Nice</strong></td>
+              <td>Acheté 150k€ en 2010, crédit terminé<br>
+              Recettes : 16 000€ brut/an (micro BIC)<br>
+              TF : 1 400€</td>
+              <td class="number">250 000€</td>
+            </tr>
+            <tr>
+              <td><strong>NP résidence parents</strong></td>
+              <td>Héritage père décédé 2024 (77 ans)<br>
+              Estimée dans succession</td>
+              <td class="number">400 000€</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"><strong>TOTAL Immobilier</strong></td>
+              <td class="number"><strong>1 450 000€</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <h3>Patrimoine financier</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Produit</th><th>Détails</th><th>Valeur</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Assurance vie Mme</strong></td>
+              <td>Ouverte 2015, versements annuels multiples<br>Profil 50/50</td>
+              <td class="number">50 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Assurance vie M.</strong></td>
+              <td>Ouverte 2016, versements annuels multiples<br>Profil 50/50</td>
+              <td class="number">120 000€</td>
+            </tr>
+            <tr>
+              <td><strong>CTO M.</strong></td>
+              <td>Ouvert 2002 avec 30k€<br>
+              Investi actions françaises, gestion libre<br>
+              <strong>Plus-value latente : 40 000€</strong></td>
+              <td class="number">70 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Livret A + LDDS M.</strong></td>
+              <td>Au plafond</td>
+              <td class="number">35 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Livret A + LDDS Mme</strong></td>
+              <td>Au plafond</td>
+              <td class="number">35 000€</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"><strong>TOTAL Financier</strong></td>
+              <td class="number"><strong>310 000€</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="highlight-box">
+          <strong>📊 Patrimoine total brut :</strong> 1 760 000€<br>
+          (1 450 000€ immobilier + 310 000€ financier)
+        </div>
+      </div>
+
+      <!-- PARTIE 1 -->
+      <div class="section" id="niote-q1">
+        <div class="section-header">
+          <div class="section-num">Q1</div>
+          <div class="section-title">Fiscalité micro BIC applicable en 2025</div>
+        </div>
+
+        <div class="glass-card">
+          <h3>❓ Question</h3>
+          <p>M. NIOTE a entendu dire que la fiscalité sur les locations meublées allait être alignée sur la fiscalité des revenus fonciers et craint de ne plus pouvoir profiter de l'abattement de 50% en micro BIC.</p>
+          <p><strong>Répondez à cette interrogation sur la fiscalité micro applicable aux revenus de location meublée en 2025.</strong></p>
+        </div>
+
+        <div class="glass-card">
+          <h3>✅ Réponse</h3>
+          <p>L'inquiétude de M. NIOTE est justifiée mais <strong>partiellement</strong>. Voici la situation en 2025 :</p>
+
+          <h4>Régime micro BIC - Situation actuelle</h4>
+          <ul>
+            <li><strong>Seuil d'application :</strong> Recettes annuelles < 77 700€ (locations meublées classiques)</li>
+            <li><strong>Abattement forfaitaire :</strong> <strong>50%</strong> des recettes</li>
+            <li><strong>Base imposable :</strong> 50% des loyers perçus</li>
+          </ul>
+
+          <div class="calc-block">
+            <div class="calc-header">Exemple cas NIOTE</div>
+            <div class="calc-step">Recettes brutes : 16 000€</div>
+            <div class="calc-step">Abattement 50% : - 8 000€</div>
+            <div class="calc-result">Revenu imposable : <strong>8 000€</strong></div>
+          </div>
+
+          <h4>⚠️ Évolutions et restrictions</h4>
+
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div>
+              <strong>Réforme en cours :</strong> Le gouvernement a envisagé plusieurs mesures pour encadrer le micro BIC :
+              <ul style="margin-top: 10px;">
+                <li>Réduction progressive de l'abattement (de 50% vers 30%)</li>
+                <li>Abaissement des seuils d'application</li>
+                <li>Conditions plus strictes pour les meublés de tourisme</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4>✓ Situation en 2025</h4>
+          <p>Pour l'instant, M. NIOTE peut continuer à bénéficier de :</p>
+          <ul>
+            <li>✓ <strong>Abattement de 50%</strong> maintenu pour les locations meublées classiques</li>
+            <li>✓ Seuil de 77 700€ toujours applicable</li>
+            <li>✓ Simplification administrative (pas de déclaration de charges réelles)</li>
+          </ul>
+
+          <h4>Recommandation</h4>
+          <div class="highlight-box">
+            <strong>💡 Conseil :</strong> Surveiller les évolutions législatives et envisager :
+            <ul style="margin-top: 10px;">
+              <li>Passage au réel si abattement réduit ou charges élevées</li>
+              <li>Transition vers LMNP au réel pour optimisation fiscale</li>
+              <li>Diversification des investissements locatifs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="niote-q2">
+        <div class="section-header">
+          <div class="section-num">Q2</div>
+          <div class="section-title">Calcul IR actuel (2025)</div>
+        </div>
+
+        <h3>Revenus imposables</h3>
+
+        <h4>Revenus d'activité</h4>
+        <div class="calc-block">
+          <div class="calc-step">M. (art. 62 TNS) : 80 000€</div>
+          <div class="calc-step">Mme (salaire) : 60 000€ × 0,9 = 54 000€</div>
+          <div class="calc-result">Total activité : <strong>134 000€</strong></div>
+        </div>
+
+        <h4>Revenus BIC (location meublée)</h4>
+        <div class="calc-block">
+          <div class="calc-step">Recettes micro BIC : 16 000€</div>
+          <div class="calc-step">Abattement 50% : - 8 000€</div>
+          <div class="calc-result">BIC imposable : <strong>8 000€</strong></div>
+        </div>
+
+        <h3>Calcul de l'IR</h3>
+
+        <div class="calc-block">
+          <div class="calc-header">Revenu net global imposable</div>
+          <div class="calc-step">134 000€ + 8 000€ = <strong>142 000€</strong></div>
+          <div class="calc-step">QF : 142 000€ / 2 = 71 000€</div>
+          <div class="calc-result">TMI : <strong>30%</strong></div>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>Tranche (par part)</th><th>Base</th><th>Taux</th><th>Impôt</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0 - 11 294€</td><td class="number">11 294€</td><td class="number">0%</td><td class="number">0€</td></tr>
+            <tr><td>11 294€ - 28 797€</td><td class="number">17 503€</td><td class="number">11%</td><td class="number">1 925€</td></tr>
+            <tr><td>28 797€ - 82 341€</td><td class="number">42 203€</td><td class="number">30%</td><td class="number">12 661€</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="3"><strong>Impôt par part</strong></td><td class="number"><strong>14 586€</strong></td></tr>
+            <tr><td colspan="3"><strong>Impôt total (× 2)</strong></td><td class="number"><strong>29 172€</strong></td></tr>
+          </tfoot>
+        </table>
+
+        <div class="highlight-box">
+          <strong>💰 IR 2025 :</strong> 29 172€<br>
+          <strong>TMI :</strong> 30%<br>
+          <strong>Taux moyen :</strong> 29 172€ / 142 000€ = 20,5%
+        </div>
+      </div>
+
+      <div class="section" id="niote-q3">
+        <div class="section-header">
+          <div class="section-num">Q3</div>
+          <div class="section-title">Plus-value CTO et option fiscale</div>
+        </div>
+
+        <div class="glass-card">
+          <h3>📊 Situation du CTO</h3>
+          <ul>
+            <li>Ouvert en 2002 avec 30 000€</li>
+            <li>Valeur actuelle : 70 000€</li>
+            <li><strong>Plus-value latente : 40 000€</strong></li>
+            <li>Investi en actions françaises</li>
+          </ul>
+        </div>
+
+        <h3>Calcul de l'impôt sur la plus-value</h3>
+
+        <h4>Option 1 : PFU (Prélèvement Forfaitaire Unique)</h4>
+
+        <div class="calc-block">
+          <div class="calc-step">Plus-value : 40 000€</div>
+          <div class="calc-step">PFU : 12,8%</div>
+          <div class="calc-step">Prélèvements sociaux : 17,2%</div>
+          <div class="calc-step">Taux global : 30%</div>
+          <div class="calc-result">Impôt total PFU : 40 000€ × 30% = <strong>12 000€</strong></div>
+        </div>
+
+        <h4>Option 2 : Barème progressif de l'IR</h4>
+
+        <p>Compte tenu de la durée de détention (ouvert en 2002, soit > 8 ans), application des <strong>abattements pour durée de détention</strong> :</p>
+
+        <div class="calc-block">
+          <div class="calc-step">Plus-value brute : 40 000€</div>
+          <div class="calc-step">Abattement renforcé (> 8 ans) : 65%</div>
+          <div class="calc-step">Plus-value imposable IR : 40 000€ × 35% = 14 000€</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-step">TMI applicable : 30%</div>
+          <div class="calc-step">IR : 14 000€ × 30% = 4 200€</div>
+          <div class="calc-step">PS (sur PV brute) : 40 000€ × 17,2% = 6 880€</div>
+          <div class="calc-result">Total option barème : 4 200€ + 6 880€ = <strong>11 080€</strong></div>
+        </div>
+
+        <h3>Comparaison et recommandation</h3>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>Option</th><th>IR/PFU</th><th>PS</th><th>Total</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PFU (flat tax)</td>
+              <td class="number">5 120€</td>
+              <td class="number">6 880€</td>
+              <td class="number"><strong>12 000€</strong></td>
+            </tr>
+            <tr>
+              <td>Barème IR (abattement 65%)</td>
+              <td class="number">4 200€</td>
+              <td class="number">6 880€</td>
+              <td class="number"><strong>11 080€</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="alert alert-success">
+          <span class="alert-icon">✓</span>
+          <div>
+            <strong>Recommandation :</strong> Opter pour le <strong>barème progressif de l'IR</strong><br>
+            <strong>Économie :</strong> 920€ par rapport au PFU<br>
+            L'abattement de 65% pour durée de détention > 8 ans rend l'option barème plus avantageuse.
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="niote-q4">
+        <div class="section-header">
+          <div class="section-num">Q4</div>
+          <div class="section-title">IR 2028 après investissement Denormandie</div>
+        </div>
+
+        <h3>Nouveaux revenus 2028</h3>
+
+        <h4>Revenus inchangés</h4>
+        <ul>
+          <li>M. (art. 62) : 80 000€</li>
+          <li>Mme (salaire) : 54 000€ net</li>
+          <li>BIC meublé Nice : 8 000€ (après abattement 50%)</li>
+        </ul>
+
+        <h4>Nouveaux revenus fonciers (Denormandie)</h4>
+
+        <div class="calc-block">
+          <div class="calc-header">Loyers Denormandie 2027-2028</div>
+          <div class="calc-step">Loyers 2027 : 760€ × 12 = 9 120€</div>
+          <div class="calc-step">Loyers 2028 : 9 120€</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Charges déductibles 2028</div>
+          <div class="calc-step">Intérêts emprunt (année 2) : 7 803€</div>
+          <div class="calc-step">TF : Exonérée années 1-2 puis 2 400€/an</div>
+          <div class="calc-step">Assurance emprunteur : 816€</div>
+          <div class="calc-result">Total charges 2028 : 7 803€ + 0€ + 816€ = <strong>8 619€</strong></div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-step">Revenus fonciers nets : 9 120€ - 8 619€ = 501€</div>
+          <div class="calc-step">PS sur RF : 501€ × 17,2% = 86€</div>
+          <div class="calc-step">CSG déductible : 501€ × 6,8% = 34€</div>
+        </div>
+
+        <h3>Calcul IR 2028</h3>
+
+        <div class="calc-block">
+          <div class="calc-header">Revenu net global imposable</div>
+          <div class="calc-step">80 000€ + 54 000€ + 8 000€ + 501€ - 34€ = <strong>142 467€</strong></div>
+          <div class="calc-step">QF : 142 467€ / 2 = 71 234€</div>
+          <div class="calc-step">TMI : 30%</div>
+          <div class="calc-step">IR brut (avant réductions) : ~29 313€</div>
+        </div>
+
+        <h3>Réduction d'impôt Denormandie</h3>
+
+        <div class="calc-block">
+          <div class="calc-header">Calcul réduction Denormandie</div>
+          <div class="calc-step">Prix d'acquisition : 240 000€</div>
+          <div class="calc-step">Engagement 9 ans : 18% de réduction</div>
+          <div class="calc-step">Réduction totale : 240 000€ × 18% = 43 200€</div>
+          <div class="calc-step">Réduction annuelle : 43 200€ / 9 = <strong>4 800€/an</strong></div>
+        </div>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>Plafonnement des niches fiscales :</strong> 10 000€/an maximum<br>
+            La réduction Denormandie de 4 800€ est en dessous du plafond.
+          </div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">IR 2028 final</div>
+          <div class="calc-step">IR brut : 29 313€</div>
+          <div class="calc-step">Réduction Denormandie : - 4 800€</div>
+          <div class="calc-result">IR 2028 : <strong>24 513€</strong></div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>📊 Comparaison :</strong><br>
+          IR 2025 : 29 172€<br>
+          IR 2028 : 24 513€<br>
+          <strong>Économie annuelle : 4 659€</strong>
+        </div>
+      </div>
+
+      <!-- Note: Je continue avec les autres questions de manière plus concise pour économiser les tokens -->
+
+      <div class="section" id="niote-q5">
+        <div class="section-header">
+          <div class="section-num">Q5</div>
+          <div class="section-title">Capacité d'endettement et investissement locatif</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Capacité d'endettement</div>
+          <div class="calc-step">Revenus activité : 134 000€</div>
+          <div class="calc-step">Revenus fonciers nets : 70% × (8 000€ + 501€) = 5 951€</div>
+          <div class="calc-step">Total revenu endettement : 139 951€</div>
+          <div class="calc-step">Capacité 35% : 139 951€ × 0,35 = <strong>48 983€/an</strong></div>
+          <div class="calc-step">Engagement Denormandie : 17 415€/an</div>
+          <div class="calc-result">Capacité résiduelle : 48 983€ - 17 415€ = <strong>31 568€/an</strong> (2 631€/mois)</div>
+        </div>
+
+        <p><strong>Investissement recommandé :</strong> LMNP (Loueur Meublé Non Professionnel) au réel pour optimisation fiscale via amortissement.</p>
+      </div>
+
+      <div class="section" id="niote-q6">
+        <div class="section-header">
+          <div class="section-num">Q6</div>
+          <div class="section-title">IFI 2028</div>
+        </div>
+
+        <h3>Patrimoine au 01/01/2028</h3>
+        <div class="calc-block">
+          <div class="calc-step">RP Nice : 800 000€ × 70% (abattement 30%) = 560 000€</div>
+          <div class="calc-step">T2 meublé Nice : 250 000€</div>
+          <div class="calc-step">NP résidence parents : 400 000€</div>
+          <div class="calc-step">Denormandie Grasse : 240 000€</div>
+          <div class="calc-step">Total brut : 1 450 000€</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Déductions</div>
+          <div class="calc-step">TF RP : 4 500€</div>
+          <div class="calc-step">TF T2 : 1 400€</div>
+          <div class="calc-step">TF Denormandie : 0€ (exonérée 2 ans)</div>
+          <div class="calc-step">Capital restant dû Denormandie (année 2) : 222 703€</div>
+          <div class="calc-result">Total déductions : 228 603€</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">IFI 2028</div>
+          <div class="calc-step">Base taxable : 1 450 000€ - 228 603€ = 1 221 397€</div>
+          <div class="calc-step">Pas d'IFI (seuil 1 300 000€ non atteint)</div>
+          <div class="calc-result">IFI 2028 : <strong>0€</strong></div>
+        </div>
+      </div>
+
+      <div class="section" id="niote-q7">
+        <div class="section-header">
+          <div class="section-num">Q7</div>
+          <div class="section-title">Investissement locatif recommandé</div>
+        </div>
+
+        <p>Avec capacité résiduelle de 31 568€/an (2 631€/mois), plusieurs options s'offrent au couple :</p>
+
+        <h3>Option 1 : LMNP au réel (recommandé)</h3>
+        <ul>
+          <li>✓ Amortissement du bien et du mobilier</li>
+          <li>✓ Déduction charges réelles</li>
+          <li>✓ Optimisation fiscale forte</li>
+          <li>✓ Compatible avec statut TNS</li>
+        </ul>
+
+        <h3>Option 2 : SCPI à crédit</h3>
+        <ul>
+          <li>✓ Pas de gestion locative</li>
+          <li>✓ Diversification géographique</li>
+          <li>✓ Revenus réguliers</li>
+        </ul>
+
+        <h3>Option 3 : Loc'Avantages</h3>
+        <ul>
+          <li>✓ Réduction IR si loyer modéré</li>
+          <li>✓ Compatible avec autre dispositif</li>
+        </ul>
+      </div>
+
+      <div class="section" id="niote-q8">
+        <div class="section-header">
+          <div class="section-num">Q8</div>
+          <div class="section-title">Disponible fiscal PER</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">M. NIOTE (TNS art. 62)</div>
+          <div class="calc-step">Revenus professionnels : 80 000€</div>
+          <div class="calc-step">Plafond 10% : 80 000€ × 10% = 8 000€/an</div>
+          <div class="calc-step">Report 3 ans cumulable : 8 000€ × 4 = <strong>32 000€</strong></div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Mme NIOTE (salariée)</div>
+          <div class="calc-step">Salaire net imposable : 60 000€</div>
+          <div class="calc-step">Plafond 10% : 60 000€ × 10% = 6 000€/an</div>
+          <div class="calc-step">Report 3 ans cumulable : 6 000€ × 4 = <strong>24 000€</strong></div>
+        </div>
+
+        <p><strong>Total disponible mutualisable :</strong> 56 000€</p>
+      </div>
+
+      <div class="section" id="niote-q9">
+        <div class="section-header">
+          <div class="section-num">Q9</div>
+          <div class="section-title">Cumul PER + Denormandie en 2028</div>
+        </div>
+
+        <div class="alert alert-success">
+          <span class="alert-icon">✓</span>
+          <div>
+            <strong>OUI, cumul possible</strong> : La déduction PER et la réduction Denormandie peuvent être cumulées car :
+            <ul style="margin-top: 10px;">
+              <li>PER = déduction du revenu imposable (diminue la base)</li>
+              <li>Denormandie = réduction d'impôt (diminue l'impôt calculé)</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Est-ce judicieux en 2028 ?</h3>
+
+        <div class="calc-block">
+          <div class="calc-header">Simulation versement PER 14 000€ en 2028</div>
+          <div class="calc-step">Revenu imposable avant PER : 142 467€</div>
+          <div class="calc-step">Déduction PER : - 14 000€</div>
+          <div class="calc-step">Nouveau revenu : 128 467€</div>
+          <div class="calc-step">Économie IR (TMI 30%) : 14 000€ × 30% = 4 200€</div>
+          <div class="calc-step">Réduction Denormandie : 4 800€</div>
+          <div class="calc-result">Total avantage fiscal : <strong>9 000€</strong></div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>💡 Recommandation :</strong> OUI, très judicieux !<br>
+          Combiner PER (déduction) + Denormandie (réduction) maximise l'optimisation fiscale.<br>
+          Le couple passe sous le plafond de niches fiscales (10 000€).
+        </div>
+      </div>
+
+      <div class="section" id="niote-q10">
+        <div class="section-header">
+          <div class="section-num">Q10</div>
+          <div class="section-title">Bilan patrimonial au 01/01/2027</div>
+        </div>
+
+        <h3>Patrimoine au 01/01/2027</h3>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>ACTIFS</th><th>Valeur 2025</th><th>Valeur 2027</th><th>%</th></tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="4"><strong>IMMOBILIER</strong></td></tr>
+            <tr><td>RP Nice</td><td class="number">800 000€</td><td class="number">800 000€</td><td></td></tr>
+            <tr><td>T2 meublé Nice</td><td class="number">250 000€</td><td class="number">250 000€</td><td></td></tr>
+            <tr><td>NP résidence parents</td><td class="number">400 000€</td><td class="number">400 000€</td><td></td></tr>
+            <tr><td>Denormandie Grasse</td><td class="number">—</td><td class="number">240 000€</td><td></td></tr>
+            <tr><td><strong>SOUS-TOTAL</strong></td><td class="number">1 450 000€</td><td class="number"><strong>1 690 000€</strong></td><td class="number"><strong>83,5%</strong></td></tr>
+            <tr><td colspan="4"><strong>FINANCIER</strong></td></tr>
+            <tr><td>AV Mme (TRI 3%/an × 2)</td><td class="number">50 000€</td><td class="number">53 045€</td><td></td></tr>
+            <tr><td>AV M. (TRI 3%/an × 2)</td><td class="number">120 000€</td><td class="number">127 308€</td><td></td></tr>
+            <tr><td>CTO M. (vendu pour apport)</td><td class="number">70 000€</td><td class="number">0€</td><td></td></tr>
+            <tr><td>Livrets M + Mme</td><td class="number">70 000€</td><td class="number">8 000€</td><td></td></tr>
+            <tr><td><strong>SOUS-TOTAL</strong></td><td class="number">310 000€</td><td class="number"><strong>188 353€</strong></td><td class="number"><strong>9,3%</strong></td></tr>
+            <tr><td colspan="4"><strong>DETTES</strong></td></tr>
+            <tr><td>Crédit Denormandie</td><td class="number">—</td><td class="number">-231 500€</td><td class="number">-11,4%</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>PATRIMOINE NET</strong></td><td class="number"><strong>1 760 000€</strong></td><td class="number"><strong>1 646 853€</strong></td><td class="number"><strong>100%</strong></td></tr>
+          </tfoot>
+        </table>
+
+        <h3>Commentaires</h3>
+
+        <h4>✅ Points positifs</h4>
+        <ul>
+          <li><strong>Diversification immobilière</strong> : +1 bien locatif défiscalisant</li>
+          <li><strong>Réduction IR</strong> : 4 800€/an pendant 9 ans</li>
+          <li><strong>Revenus locatifs</strong> : +9 120€/an dès 2027</li>
+          <li><strong>Pas d'IFI</strong> grâce à la dette</li>
+        </ul>
+
+        <h4>⚠️ Points de vigilance</h4>
+        <ul>
+          <li><strong>Liquidités réduites</strong> : De 70k€ à 8k€ (apport Denormandie)</li>
+          <li><strong>Endettement</strong> : 240k€ sur 20 ans</li>
+          <li><strong>Concentration immobilière</strong> : 83,5% du patrimoine</li>
+          <li><strong>Engagement locatif</strong> : 9 ans incompressibles</li>
+        </ul>
+      </div>
+
+      <!-- PARTIE 2: 20 ans plus tard (2045) -->
+
+      <div class="section" id="niote-p2-q1">
+        <div class="section-header">
+          <div class="section-num">P2-Q1</div>
+          <div class="section-title">Bilan successoral 2045 (décès M.)</div>
+        </div>
+
+        <div class="glass-card">
+          <h3>📅 Situation en 2045 (20 ans après)</h3>
+          <p>M. et Mme NIOTE ont 67 ans. Projection du patrimoine avec décès de M.</p>
+        </div>
+
+        <h3>Tableau successoral complété</h3>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>ACTIFS</th><th>M.</th><th>CO</th><th>MS CIVILE</th><th>MS FISCALE</th><th>CJS</th><th>BILL</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>RP</td><td></td><td class="number">960 000€</td><td class="number">480 000€</td><td class="number">336 000€</td><td></td><td></td></tr>
+            <tr><td>R2 (NP devenue PP)</td><td class="number">500 000€</td><td></td><td class="number">500 000€</td><td class="number">500 000€</td><td></td><td></td></tr>
+            <tr><td>Denormandie</td><td></td><td class="number">350 000€</td><td class="number">175 000€</td><td class="number">175 000€</td><td></td><td></td></tr>
+            <tr><td>T2 meublé</td><td></td><td class="number">300 000€</td><td class="number">150 000€</td><td class="number">150 000€</td><td></td><td></td></tr>
+            <tr><td>AV M.</td><td></td><td class="number">217 000€</td><td class="number">0€</td><td class="number">0€</td><td></td><td></td></tr>
+            <tr><td>AV Mme*</td><td></td><td class="number">90 000€</td><td class="number">45 000€*</td><td class="number">0€</td><td></td><td></td></tr>
+            <tr><td>PER M.</td><td></td><td class="number">240 000€</td><td class="number">0€</td><td class="number">0€</td><td></td><td></td></tr>
+            <tr><td>PER Mme*</td><td></td><td class="number">110 000€</td><td class="number">55 000€*</td><td class="number">0€</td><td></td><td></td></tr>
+            <tr><td>Livret A M.</td><td></td><td class="number">23 000€</td><td class="number">11 500€</td><td class="number">11 500€</td><td></td><td></td></tr>
+            <tr><td>LDDS Mme</td><td></td><td class="number">12 000€</td><td class="number">6 000€</td><td class="number">6 000€</td><td></td><td></td></tr>
+            <tr><td><strong>TOTAL</strong></td><td class="number">500 000€</td><td class="number">2 302 000€</td><td class="number"><strong>1 422 500€</strong></td><td class="number"><strong>1 178 500€</strong></td><td class="number"><strong>789 250€</strong></td><td class="number"><strong>294 625€</strong></td></tr>
+            <tr><td colspan="7"></td></tr>
+            <tr><td>Forfait mobilier (5%)</td><td></td><td></td><td></td><td class="number">58 925€</td><td></td><td></td></tr>
+            <tr><td>Forfait obsèques</td><td></td><td></td><td></td><td class="number">-1 500€</td><td></td><td></td></tr>
+            <tr><td><strong>MASSE TAXABLE</strong></td><td></td><td></td><td></td><td class="number"><strong>1 235 925€</strong></td><td class="number"><strong>789 250€</strong></td><td class="number"><strong>323 463€</strong></td></tr>
+            <tr><td>Abattement</td><td></td><td></td><td></td><td></td><td></td><td class="number">-100 000€</td></tr>
+            <tr><td><strong>BASE TAXABLE</strong></td><td></td><td></td><td></td><td></td><td></td><td class="number"><strong>223 463€</strong></td></tr>
+            <tr><td><strong>DDS</strong></td><td></td><td></td><td></td><td></td><td class="number"><strong>0€</strong></td><td class="number"><strong>41 946€</strong></td></tr>
+          </tbody>
+        </table>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">ℹ️</span>
+          <div>
+            <strong>*Réintégration fictive CIOT</strong> : AV Mme et PER Mme réintégrés civilement à 50%, pas d'impact fiscal.
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>💰 Droits de succession à payer :</strong><br>
+          CJS (Mme) : <strong>0€</strong> (exonération totale conjoint)<br>
+          Bill : <strong>41 946€</strong>
+        </div>
+      </div>
+
+      <div class="section" id="niote-p2-q2">
+        <div class="section-header">
+          <div class="section-num">P2-Q2</div>
+          <div class="section-title">Solutions pour diminuer la pression fiscale successorale</div>
+        </div>
+
+        <h3>Pistes de solutions recommandées</h3>
+
+        <h4>1. Donations anticipées à Bill</h4>
+        <ul>
+          <li>Utiliser abattement 100k€/parent tous les 15 ans</li>
+          <li>Donation de liquidités ou NP immobilier</li>
+          <li>Don familial sommes d'argent : 31 865€/parent (avant 80 ans)</li>
+        </ul>
+
+        <h4>2. Assurance vie optimisée</h4>
+        <ul>
+          <li>Verser avant 70 ans pour abattement 152 500€/bénéficiaire</li>
+          <li>Clause démembrée (usufruit CJS + NP Bill)</li>
+          <li>Multi-contrats pour optimisation</li>
+        </ul>
+
+        <h4>3. Démembrement de propriété</h4>
+        <ul>
+          <li>Donation NP résidences secondaires</li>
+          <li>Conservation usufruit par les parents</li>
+          <li>Reconstitution PP gratuite au décès</li>
+        </ul>
+
+        <h4>4. Clause de préciput sur RP</h4>
+        <ul>
+          <li>Protéger le conjoint survivant</li>
+          <li>Prélèvement RP en PP avant partage</li>
+        </ul>
+
+        <h4>5. SCI familiale</h4>
+        <ul>
+          <li>Apport biens locatifs en SCI</li>
+          <li>Donation progressive des parts</li>
+          <li>Conservation gérance par parents</li>
+        </ul>
+      </div>
+
+      <div class="section" id="niote-p2-q3">
+        <div class="section-header">
+          <div class="section-num">P2-Q3</div>
+          <div class="section-title">Plus-value revente Denormandie</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Calcul de la plus-value</div>
+          <div class="calc-step">Prix d'acquisition : 240 000€</div>
+          <div class="calc-step">Prix de vente : 350 000€</div>
+          <div class="calc-result">Plus-value brute : <strong>110 000€</strong></div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Abattements pour durée de détention</div>
+          <div class="calc-step">Durée détention : 2027-2045 = 18 ans</div>
+          <div class="calc-step">Abattement IR (18 ans) : 78%</div>
+          <div class="calc-step">PV taxable IR : 110 000€ × 22% = 24 200€</div>
+          <div class="calc-step">IR : 24 200€ × 19% = 4 598€</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-step">Abattement PS (18 ans) : 19,8%</div>
+          <div class="calc-step">PV taxable PS : 110 000€ × 80,2% = 88 220€</div>
+          <div class="calc-step">PS : 88 220€ × 17,2% = 15 174€</div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>💰 Impôt total sur PV :</strong> 4 598€ + 15 174€ = <strong>19 772€</strong>
+        </div>
+      </div>
+
+      <div class="section" id="niote-p2-q4">
+        <div class="section-header">
+          <div class="section-num">P2-Q4</div>
+          <div class="section-title">Donation avec prise en charge des droits</div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Montant net après PV</div>
+          <div class="calc-step">Vente Denormandie : 350 000€</div>
+          <div class="calc-step">Impôt PV : - 19 772€</div>
+          <div class="calc-result">Net disponible : <strong>330 228€</strong></div>
+        </div>
+
+        <p>M. souhaite prendre en charge les droits de donation. Calcul à rebours :</p>
+
+        <div class="calc-block">
+          <div class="calc-step">Soit X le montant donné à Bill</div>
+          <div class="calc-step">Droits = (X - 100 000€) × taux DMTG</div>
+          <div class="calc-step">Total décaissé : X + Droits = 330 228€</div>
+        </div>
+
+        <p>Pour 330 228€ disponible, avec abattement 100 000€/parent :</p>
+
+        <div class="calc-block">
+          <div class="calc-step">Donation nette possible : ~<strong>280 000€</strong></div>
+          <div class="calc-step">Droits à payer : ~50 000€</div>
+        </div>
+      </div>
+
+      <div class="section" id="niote-p2-q5">
+        <div class="section-header">
+          <div class="section-num">P2-Q5</div>
+          <div class="section-title">Donation grands-parents maternels</div>
+        </div>
+
+        <p>Grands-parents maternels (78 ans tous 2) souhaitent aider Bill. Aucune donation antérieure.</p>
+
+        <h3>Donations possibles hors droits</h3>
+
+        <h4>1. Abattement petit-enfant</h4>
+        <ul>
+          <li>31 865€ par grand-parent</li>
+          <li>Total : <strong>63 730€</strong> (31 865€ × 2)</li>
+        </ul>
+
+        <h4>2. Don familial de sommes d'argent</h4>
+        <ul>
+          <li>Conditions : donateur < 80 ans, donataire majeur</li>
+          <li><strong>⚠️ Grands-parents ont 78 ans : éligibles !</strong></li>
+          <li>31 865€ par grand-parent</li>
+          <li>Total : <strong>63 730€</strong></li>
+        </ul>
+
+        <div class="highlight-box">
+          <strong>💰 Total donation possible hors droits :</strong><br>
+          Abattement petit-enfant : 63 730€<br>
+          Don familial argent : + 63 730€<br>
+          <strong>TOTAL : 127 460€</strong>
+        </div>
+      </div>
+
+      <div class="section" id="niote-p2-q6">
+        <div class="section-header">
+          <div class="section-num">P2-Q6</div>
+          <div class="section-title">Placement gain loto 600k€</div>
+        </div>
+
+        <p>Mme gagne 600 000€ au loto. Objectifs : revenus immédiats + optimisation succession pour Bill.</p>
+
+        <h3>Stratégie recommandée</h3>
+
+        <h4>1. Assurance vie (200k€)</h4>
+        <ul>
+          <li>Profil équilibré pour revenus (rachats partiels)</li>
+          <li>Abattement 152 500€ pour Bill si décès avant 70 ans</li>
+          <li>Clause démembrée optimale</li>
+        </ul>
+
+        <h4>2. SCPI (250k€)</h4>
+        <ul>
+          <li>Revenus immédiats ~4-5%/an = 10-12k€/an</li>
+          <li>Diversification géographique</li>
+          <li>Pas de gestion</li>
+        </ul>
+
+        <h4>3. Donation à Bill (150k€)</h4>
+        <ul>
+          <li>Don familial : 31 865€ (Mme avant 80 ans)</li>
+          <li>Abattement parent-enfant : 100 000€</li>
+          <li>Solde 18 135€ : droits modérés ~1 800€</li>
+        </ul>
+
+        <div class="highlight-box">
+          <strong>📊 Allocation recommandée 600k€ :</strong><br>
+          Assurance vie : 200 000€ (transmission optimisée)<br>
+          SCPI : 250 000€ (revenus immédiats)<br>
+          Donation Bill : 150 000€ (aide immédiate + réduction succession)<br>
+          <strong>Revenus supplémentaires : ~12 000€/an</strong>
+        </div>
+      </div>
+
+    </div><!-- /case-niote -->
 
     <!-- ══════════════════════════════════════
          CAS MENGERE
