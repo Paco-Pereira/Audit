@@ -1733,6 +1733,10 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
       <span class="tab-icon">❄️</span>
       <span>SNOW</span>
     </div>
+    <div class="tab" data-case="stark" onclick="switchCase('stark')">
+      <span class="tab-icon">👨‍👩‍👧‍👦</span>
+      <span>STARK</span>
+    </div>
     <div class="tab" data-case="mengere" onclick="switchCase('mengere')">
       <span class="tab-icon">🏗️</span>
       <span>MENGERE</span>
@@ -1823,6 +1827,46 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
       </a>
       <a class="sidebar-item" onclick="goTo('snow-s8')">
         <span class="num">8</span> Synthèse examen
+      </a>
+    </div>
+
+    <!-- STARK sidebar -->
+    <div id="sidebar-stark" style="display:none">
+      <div class="sidebar-label">Plan de l'examen</div>
+      <a class="sidebar-item active" onclick="goTo('stark-intro')">
+        <span class="num">0</span> Vue d'ensemble
+      </a>
+      <a class="sidebar-item" onclick="goTo('stark-situation')">
+        <span class="num">1</span> Situation
+      </a>
+      <a class="sidebar-item" onclick="goTo('stark-patrimoine')">
+        <span class="num">2</span> Patrimoine
+      </a>
+      <div class="sidebar-label" style="margin-top: 20px;">E6I — Questions</div>
+      <a class="sidebar-item" onclick="goTo('stark-e6i-q1')">
+        <span class="num">Q1</span> Bilan patrimonial
+      </a>
+      <a class="sidebar-item" onclick="goTo('stark-e6i-q2')">
+        <span class="num">Q2</span> Bilan successoral
+      </a>
+      <a class="sidebar-item" onclick="goTo('stark-e6i-q3')">
+        <span class="num">Q3</span> Bilan financier
+      </a>
+      <a class="sidebar-item" onclick="goTo('stark-e6i-q4')">
+        <span class="num">Q4</span> Préconisations
+      </a>
+      <div class="sidebar-label" style="margin-top: 20px;">E6II — Suivi (12 ans après)</div>
+      <a class="sidebar-item" onclick="goTo('stark-e6ii-q1')">
+        <span class="num">Q1</span> Profil de risque
+      </a>
+      <a class="sidebar-item" onclick="goTo('stark-e6ii-q2')">
+        <span class="num">Q2</span> Préconisations
+      </a>
+      <a class="sidebar-item" onclick="goTo('stark-e6ii-q3')">
+        <span class="num">Q3</span> Donation NP
+      </a>
+      <a class="sidebar-item" onclick="goTo('stark-e6ii-q4')">
+        <span class="num">Q4</span> Retraite
       </a>
     </div>
 
@@ -2981,6 +3025,1017 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
       </div>
 
     </div><!-- /case-snow -->
+
+    <!-- ══════════════════════════════════════
+         CAS STARK
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-stark" style="display:none">
+
+      <!-- INTRO / WELCOME -->
+      <div class="section" id="stark-intro">
+        <div class="welcome">
+          <h1>Cas STARK 👨‍👩‍👧‍👦</h1>
+          <div class="subtitle">M. et Mme STARK — Mariés, Communauté réduite aux acquêts</div>
+          <p>Cas complet d'examen : bilan patrimonial, succession, fiscalité et préconisations.<br>
+          Suivi 12 ans après avec évolution des besoins.</p>
+          <div class="meta">
+            Examen M2 Banque ISCAE CGPC 2024-2025<br>
+            Préparé pour Paco — Février 2026
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:24px">
+          <h3 style="margin-top:0">👨‍👩‍👧‍👦 La famille STARK</h3>
+          <table>
+            <tr><th>Personne</th><th>Détails</th></tr>
+            <tr>
+              <td><strong>M. STARK (41 ans)</strong></td>
+              <td>Né le 12.04.1983, Cadre agroalimentaire<br>
+              Salaire : 72 000€ net (96 000€ brut)<br>
+              Dividendes : 4 500€</td>
+            </tr>
+            <tr>
+              <td><strong>Mme STARK (44 ans)</strong></td>
+              <td>Née le 23.06.1980, Ingénieure aéronautique<br>
+              Salaire : 87 000€ net (116 000€ brut)<br>
+              Loyers location nue : 21 450€ (Versailles)<br>
+              Dividendes : 6 200€</td>
+            </tr>
+            <tr>
+              <td><strong>Jules (5 ans)</strong></td>
+              <td>Né le 12.01.2020</td>
+            </tr>
+            <tr>
+              <td><strong>Jim (6 ans)</strong></td>
+              <td>Né le 22.09.2018</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">ℹ️</span>
+          <div>
+            <strong>Régime matrimonial :</strong> Communauté réduite aux acquêts (mariage le 30.06.2007). Aucune disposition particulière.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">📋 Structure de l'examen</h3>
+          <table>
+            <tr><th style="width:100px">Partie</th><th>Contenu</th></tr>
+            <tr>
+              <td><strong>E6I</strong></td>
+              <td>
+                <strong>Q1 :</strong> Bilan patrimonial avec commentaires<br>
+                <strong>Q2 :</strong> Bilan successoral (décès M. avec 100% usufruit CJS)<br>
+                <strong>Q3 :</strong> Bilan financier et capacité d'épargne/endettement<br>
+                <strong>Q4 :</strong> Préconisations protection mutuelle et préparation retraite
+              </td>
+            </tr>
+            <tr>
+              <td><strong>E6II</strong></td>
+              <td>
+                Suivi 12 ans après : nouveaux besoins (études enfants, transmission, réduction risque)<br>
+                <strong>Q1-Q4 :</strong> Révision profil + préconisations adaptées
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ==================== SECTION: SITUATION ==================== -->
+      <div class="section" id="stark-situation">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title">Situation familiale et professionnelle</div>
+        </div>
+
+        <h3>Situation professionnelle</h3>
+
+        <h4>Monsieur STARK</h4>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Date de naissance</div>
+            <div class="info-value">12.04.1983 (41 ans)</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Début d'activité</div>
+            <div class="info-value">01.01.2005</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Profession</div>
+            <div class="info-value">Cadre agroalimentaire</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Revenus</div>
+            <div class="info-value">72 000€ net + 4 500€ dividendes</div>
+          </div>
+        </div>
+
+        <h4>Madame STARK</h4>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Date de naissance</div>
+            <div class="info-value">23.06.1980 (44 ans)</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Début d'activité</div>
+            <div class="info-value">01.02.2006</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Profession</div>
+            <div class="info-value">Ingénieure aéronautique</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Revenus</div>
+            <div class="info-value">87 000€ net + 21 450€ loyers + 6 200€ dividendes</div>
+          </div>
+        </div>
+
+        <h3>Situation familiale</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date mariage</th>
+              <th>Régime matrimonial</th>
+              <th>Enfants</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>30.06.2007</td>
+              <td>Communauté réduite aux acquêts<br>Aucune disposition particulière</td>
+              <td>Jules (5 ans) né le 12.01.2020<br>Jim (6 ans) né le 22.09.2018</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ==================== SECTION: PATRIMOINE ==================== -->
+      <div class="section" id="stark-patrimoine">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title">Situation patrimoniale</div>
+        </div>
+
+        <h3>Biens de Monsieur STARK</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Nature</th><th>Détails</th><th>Valeur</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Appt La Clusaz</strong></td>
+              <td>Hérité du père en 2022<br>Résidence secondaire d'hiver</td>
+              <td class="number">735 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Assurance vie</strong></td>
+              <td>UC actions, ouverte en 2015</td>
+              <td class="number">202 000€</td>
+            </tr>
+            <tr>
+              <td><strong>PEE</strong></td>
+              <td>Épargne salariale (€)</td>
+              <td class="number">189 000€</td>
+            </tr>
+            <tr>
+              <td><strong>PEA</strong></td>
+              <td>Ouvert en 2010</td>
+              <td class="number">61 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Compte titres</strong></td>
+              <td>Actions, ouvert en 2010</td>
+              <td class="number">95 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Livret A</strong></td>
+              <td>Ouvert en 2008</td>
+              <td class="number">15 000€</td>
+            </tr>
+            <tr>
+              <td><strong>LDDS</strong></td>
+              <td>Ouvert en 2008</td>
+              <td class="number">8 000€</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"><strong>TOTAL M. STARK (biens propres)</strong></td>
+              <td class="number"><strong>1 305 000€</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <h3>Biens de Madame STARK</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Nature</th><th>Détails</th><th>Valeur</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Appt Versailles</strong></td>
+              <td>Donation parents 2019, mis en location nue<br>Valeur actuelle = valeur déclarée en donation</td>
+              <td class="number">390 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Assurance vie</strong></td>
+              <td>UC actions/obligations, ouverte en 2015</td>
+              <td class="number">245 000€</td>
+            </tr>
+            <tr>
+              <td><strong>PEE</strong></td>
+              <td>Épargne salariale (€)</td>
+              <td class="number">190 000€</td>
+            </tr>
+            <tr>
+              <td><strong>CTO</strong></td>
+              <td>Ouvert en 2012</td>
+              <td class="number">66 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Livret A</strong></td>
+              <td>Ouvert en 2008</td>
+              <td class="number">21 000€</td>
+            </tr>
+            <tr>
+              <td><strong>LDDS</strong></td>
+              <td>Ouverte en 2008</td>
+              <td class="number">10 500€</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"><strong>TOTAL Mme STARK (biens propres)</strong></td>
+              <td class="number"><strong>922 500€</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <h3>Acquisitions communes</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Nature</th><th>Détails</th><th>Valeur</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Résidence principale Paris</strong></td>
+              <td>Achetée en 2019</td>
+              <td class="number">1 200 000€</td>
+            </tr>
+            <tr>
+              <td><strong>R2 Deauville</strong></td>
+              <td>Résidence secondaire d'été, achetée en 2018</td>
+              <td class="number">475 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Appt Lyon (Pinel)</strong></td>
+              <td>Engagement 9 ans, acquis 12.05.2016<br>
+              Achèvement travaux 30.12.2016<br>
+              Loyers bruts : 10 640€/an<br>
+              Crédit in fine 9 ans (1,9%) contre nantissement PEE</td>
+              <td class="number">375 000€</td>
+            </tr>
+            <tr>
+              <td><strong>Compte courant commun</strong></td>
+              <td>Disponibilités</td>
+              <td class="number">30 000€</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"><strong>TOTAL biens communs</strong></td>
+              <td class="number"><strong>2 080 000€</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>Crédit en cours :</strong> Prêt in fine de 9 ans pour l'appartement Pinel de Lyon (375 000€) au taux de 1,9%. Annuité de remboursement : 7 125€. Prêt nananti par les PEE de Monsieur et Madame.
+          </div>
+        </div>
+
+        <h3>Charges de la famille</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Poste</th><th>Montant annuel</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TF + TH</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>→ Résidence principale (Paris)</td>
+              <td class="number">4 500€ (TF)</td>
+            </tr>
+            <tr>
+              <td>→ Deauville</td>
+              <td class="number">4 100€ (TF 1 900€ + TH 2 200€)</td>
+            </tr>
+            <tr>
+              <td>→ La Clusaz</td>
+              <td class="number">3 985€ (TF 1 985€ + TH 2 000€)</td>
+            </tr>
+            <tr>
+              <td>→ Versailles</td>
+              <td class="number">2 400€ (TF)</td>
+            </tr>
+            <tr>
+              <td>→ Lyon</td>
+              <td class="number">2 239€ (TF)</td>
+            </tr>
+            <tr>
+              <td><strong>Intérêts crédit in fine</strong></td>
+              <td class="number">7 125€</td>
+            </tr>
+            <tr>
+              <td><strong>Salarié à domicile</strong></td>
+              <td class="number">17 124€ (1 427€/mois × 12)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="highlight-box">
+          <strong>📊 Patrimoine total brut :</strong> 4 307 500€<br>
+          (1 305 000€ M. + 922 500€ Mme + 2 080 000€ commun)
+        </div>
+      </div>
+
+      <!-- ==================== E6I Q1 : BILAN PATRIMONIAL ==================== -->
+      <div class="section" id="stark-e6i-q1">
+        <div class="section-header">
+          <div class="section-num">Q1</div>
+          <div class="section-title">E6I — Bilan patrimonial avec commentaires</div>
+        </div>
+
+        <h3>Répartition du patrimoine</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>ACTIFS</th><th>M. STARK</th><th>Commun</th><th>Mme STARK</th><th>TOTAL</th><th>%</th></tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6"><strong>IMMOBILIER</strong></td></tr>
+            <tr><td>Résidence principale Paris</td><td class="number">—</td><td class="number">1 200 000€</td><td class="number">—</td><td class="number">1 200 000€</td><td class="number"></td></tr>
+            <tr><td>R2 Deauville</td><td class="number">—</td><td class="number">475 000€</td><td class="number">—</td><td class="number">475 000€</td><td class="number"></td></tr>
+            <tr><td>R2 La Clusaz</td><td class="number">735 000€</td><td class="number">—</td><td class="number">—</td><td class="number">735 000€</td><td class="number"></td></tr>
+            <tr><td>Pinel Lyon</td><td class="number">—</td><td class="number">375 000€</td><td class="number">—</td><td class="number">375 000€</td><td class="number"></td></tr>
+            <tr><td>Versailles</td><td class="number">—</td><td class="number">—</td><td class="number">390 000€</td><td class="number">390 000€</td><td class="number"></td></tr>
+            <tr><td><strong>SOUS-TOTAL IMMOBILIER</strong></td><td class="number"><strong>735 000€</strong></td><td class="number"><strong>2 050 000€</strong></td><td class="number"><strong>390 000€</strong></td><td class="number"><strong>3 175 000€</strong></td><td class="number"><strong>73,7%</strong></td></tr>
+            <tr><td colspan="6"><strong>ÉPARGNE SALARIALE</strong></td></tr>
+            <tr><td>PEE M.</td><td class="number">—</td><td class="number">189 000€</td><td class="number">—</td><td class="number">189 000€</td><td class="number"></td></tr>
+            <tr><td>PEE Mme</td><td class="number">—</td><td class="number">190 000€</td><td class="number">—</td><td class="number">190 000€</td><td class="number"></td></tr>
+            <tr><td><strong>SOUS-TOTAL PEE</strong></td><td class="number"></td><td class="number"><strong>379 000€</strong></td><td class="number"></td><td class="number"><strong>379 000€</strong></td><td class="number"><strong>8,8%</strong></td></tr>
+            <tr><td colspan="6"><strong>ASSURANCE VIE</strong></td></tr>
+            <tr><td>AV M.</td><td class="number">—</td><td class="number">202 000€</td><td class="number">—</td><td class="number">202 000€</td><td class="number"></td></tr>
+            <tr><td>AV Mme</td><td class="number">—</td><td class="number">245 000€</td><td class="number">—</td><td class="number">245 000€</td><td class="number"></td></tr>
+            <tr><td><strong>SOUS-TOTAL AV</strong></td><td class="number"></td><td class="number"><strong>447 000€</strong></td><td class="number"></td><td class="number"><strong>447 000€</strong></td><td class="number"><strong>10,4%</strong></td></tr>
+            <tr><td colspan="6"><strong>VALEURS MOBILIÈRES</strong></td></tr>
+            <tr><td>PEA</td><td class="number">—</td><td class="number">61 000€</td><td class="number">—</td><td class="number">61 000€</td><td class="number"></td></tr>
+            <tr><td>CTO M.</td><td class="number">—</td><td class="number">95 000€</td><td class="number">—</td><td class="number">95 000€</td><td class="number"></td></tr>
+            <tr><td>CTO Mme</td><td class="number">—</td><td class="number">—</td><td class="number">66 000€</td><td class="number">66 000€</td><td class="number"></td></tr>
+            <tr><td><strong>SOUS-TOTAL VM</strong></td><td class="number"></td><td class="number"><strong>156 000€</strong></td><td class="number"><strong>66 000€</strong></td><td class="number"><strong>222 000€</strong></td><td class="number"><strong>5,2%</strong></td></tr>
+            <tr><td colspan="6"><strong>ÉPARGNE BANCAIRE CT</strong></td></tr>
+            <tr><td>Livret A + LDDS M.</td><td class="number">—</td><td class="number">23 000€</td><td class="number">—</td><td class="number">23 000€</td><td class="number"></td></tr>
+            <tr><td>Livret A + LDDS Mme</td><td class="number">—</td><td class="number">—</td><td class="number">31 500€</td><td class="number">31 500€</td><td class="number"></td></tr>
+            <tr><td><strong>SOUS-TOTAL Épargne CT</strong></td><td class="number"></td><td class="number"><strong>23 000€</strong></td><td class="number"><strong>31 500€</strong></td><td class="number"><strong>54 500€</strong></td><td class="number"><strong>1,3%</strong></td></tr>
+            <tr><td>C/C commun</td><td class="number">—</td><td class="number">30 000€</td><td class="number">—</td><td class="number">30 000€</td><td class="number">0,6%</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>TOTAL</strong></td><td class="number"><strong>735 000€</strong></td><td class="number"><strong>3 182 500€</strong></td><td class="number"><strong>390 000€</strong></td><td class="number"><strong>4 307 500€</strong></td><td class="number"><strong>100%</strong></td></tr>
+          </tfoot>
+        </table>
+
+        <h3>Analyse et commentaires</h3>
+
+        <h4>✅ Équilibre entre les patrimoines</h4>
+        <p>Le patrimoine de Madame (45,5%) est inférieur à celui de Monsieur, mais la situation reste globalement <strong>équilibrée</strong>. Pas de déséquilibre majeur à corriger.</p>
+
+        <h4>✅ Diversification</h4>
+        <p>Le patrimoine global est <strong>bien diversifié</strong> avec présence de différentes catégories d'actifs :</p>
+        <ul>
+          <li><strong>Immobilier</strong> : 73,7% (dont RP fortement représenté)</li>
+          <li><strong>Assurance vie</strong> : 10,4%</li>
+          <li><strong>Épargne salariale</strong> : 8,8%</li>
+          <li><strong>Valeurs mobilières</strong> : 5,2% (PEA + CTO)</li>
+          <li><strong>Épargne bancaire</strong> : 1,3% + 0,6% de disponibilités</li>
+        </ul>
+        <p>Mme possède moins d'immobilier que M. sans toutefois constituer un point de correction majeur. Le couple bénéficie d'une épargne à court terme et moyen/long terme bien répartie.</p>
+
+        <h4>💰 Rentabilité</h4>
+        <ul>
+          <li><strong>Appartement Versailles</strong> : Rentabilité brute de <strong>5,5%</strong> (21 450€ / 390 000€)</li>
+          <li><strong>Pinel Lyon</strong> : Rentabilité moindre de <strong>2,8%</strong> (10 640€ / 375 000€), mais avec réduction d'impôt de 21% (ramené à 17,5% en 2023 puis 14% en 2024)</li>
+          <li><strong>Livrets réglementés</strong> (LDDS et Livret A) : Rentabilité de <strong>3% net</strong>, exonérés de fiscalité et PS</li>
+          <li>Présence de <strong>dividendes</strong> pour M. et Mme (pas d'info sur investissement réalisé)</li>
+        </ul>
+
+        <h4>🛡️ Sécurité</h4>
+        <p>La présence d'épargne bancaire (22% pour M. / 23% pour Mme) et d'immobilier (66% / 56%) ainsi que les contrats en € caractérisent un bilan patrimonial <strong>peu risqué</strong>.</p>
+
+        <h4>💧 Disponibilité</h4>
+        <p>La présence d'épargne bancaire, de disponibilités sur les comptes (22% pour M. / 23% pour Mme) et d'assurance vie (12% et 23%) assure une <strong>liquidité certaine</strong> en cas de nécessité.</p>
+      </div>
+
+      <!-- ==================== E6I Q2 : BILAN SUCCESSORAL ==================== -->
+      <div class="section" id="stark-e6i-q2">
+        <div class="section-header">
+          <div class="section-num">Q2</div>
+          <div class="section-title">E6I — Bilan successoral (décès M., option 100% usufruit CJS)</div>
+        </div>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">ℹ️</span>
+          <div>
+            <strong>Hypothèse :</strong> Décès de Monsieur STARK avec option pour 100% en usufruit pour le conjoint survivant (Madame).
+          </div>
+        </div>
+
+        <h3>Tableau successoral</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>ACTIFS</th><th>M.</th><th>Mme</th><th>CO</th><th>MS CIVILE</th><th>MS FISCALE</th><th>CJS</th><th>E1</th><th>E2</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>RP</td><td></td><td></td><td class="number">1 200 000€</td><td class="number">600 000€</td><td class="number">480 000€</td><td></td><td></td><td></td></tr>
+            <tr><td>R2 Deauville</td><td></td><td></td><td class="number">475 000€</td><td class="number">237 500€</td><td class="number">237 500€</td><td></td><td></td><td></td></tr>
+            <tr><td>R2 La Clusaz</td><td class="number">735 000€</td><td></td><td></td><td class="number">735 000€</td><td class="number">735 000€</td><td></td><td></td><td></td></tr>
+            <tr><td>Pinel Lyon</td><td></td><td></td><td class="number">375 000€</td><td class="number">187 500€</td><td class="number">187 500€</td><td></td><td></td><td></td></tr>
+            <tr><td>Versailles</td><td></td><td class="number">390 000€</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>PEE M.</td><td></td><td></td><td class="number">189 000€</td><td class="number">94 500€</td><td class="number">94 500€</td><td></td><td></td><td></td></tr>
+            <tr><td>PEE Mme</td><td></td><td class="number">190 000€</td><td></td><td class="number">95 000€</td><td class="number">94 500€</td><td></td><td></td><td></td></tr>
+            <tr><td>AV M.</td><td class="number">202 000€</td><td></td><td></td><td class="number">0€</td><td class="number">0€</td><td></td><td></td><td></td></tr>
+            <tr><td>AV Mme*</td><td></td><td class="number">245 000€</td><td></td><td class="number">122 500€*</td><td class="number">0€</td><td></td><td></td><td></td></tr>
+            <tr><td>PEA</td><td></td><td></td><td class="number">61 000€</td><td class="number">30 500€</td><td class="number">30 500€</td><td></td><td></td><td></td></tr>
+            <tr><td>CTO M.</td><td></td><td></td><td class="number">95 000€</td><td class="number">47 500€</td><td class="number">47 500€</td><td></td><td></td><td></td></tr>
+            <tr><td>CTO Mme</td><td></td><td class="number">66 000€</td><td></td><td class="number">33 000€</td><td class="number">33 000€</td><td></td><td></td><td></td></tr>
+            <tr><td>Livrets M.</td><td></td><td></td><td class="number">23 000€</td><td class="number">11 500€</td><td class="number">11 500€</td><td></td><td></td><td></td></tr>
+            <tr><td>Livrets Mme</td><td></td><td class="number">31 500€</td><td></td><td class="number">15 750€</td><td class="number">15 750€</td><td></td><td></td><td></td></tr>
+            <tr><td>C/C</td><td></td><td></td><td class="number">30 000€</td><td class="number">15 000€</td><td class="number">15 000€</td><td></td><td></td><td></td></tr>
+            <tr><td><strong>TOTAL</strong></td><td class="number">937 000€</td><td class="number">922 500€</td><td class="number">2 448 000€</td><td class="number"><strong>2 225 250€</strong></td><td class="number"><strong>2 102 750€</strong></td><td class="number"><strong>1 261 650€</strong></td><td class="number"><strong>420 550€</strong></td><td class="number"><strong>420 550€</strong></td></tr>
+            <tr><td colspan="9"></td></tr>
+            <tr><td>Forfait mobilier</td><td></td><td></td><td></td><td></td><td class="number">111 262€</td><td></td><td></td><td></td></tr>
+            <tr><td>Forfait obsèques</td><td></td><td></td><td></td><td></td><td class="number">-1 500€</td><td></td><td></td><td></td></tr>
+            <tr><td><strong>Masse successorale</strong></td><td></td><td></td><td></td><td></td><td class="number"><strong>2 212 512€</strong></td><td class="number"><strong>1 327 507€</strong></td><td class="number"><strong>442 502€</strong></td><td class="number"><strong>442 502€</strong></td></tr>
+            <tr><td>Abattement</td><td></td><td></td><td></td><td></td><td></td><td></td><td class="number">-100 000€</td><td class="number">-100 000€</td></tr>
+            <tr><td><strong>Base taxable</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="number"><strong>342 502€</strong></td><td class="number"><strong>342 502€</strong></td></tr>
+            <tr><td><strong>DDS (DMTG)</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="number"><strong>66 694€</strong></td><td class="number"><strong>66 694€</strong></td></tr>
+          </tbody>
+        </table>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>*Réintégration fictive civile du contrat non dénoué (Réponse CIOT)</strong><br>
+            L'assurance vie de Mme, non dénouée au décès de M., doit être réintégrée FICTIVEMENT dans la masse successorale civile et partagée à concurrence de 50% entre tous les héritiers.<br>
+            Cette réintégration FICTIVE n'a qu'un impact <strong>CIVIL</strong>, <strong>aucun impact FISCAL</strong> depuis la réponse ministérielle CIOT de 2016.
+          </div>
+        </div>
+
+        <h3>Sommes reçues hors dévolution légale</h3>
+        <p>Madame STARK recevrait également :</p>
+        <ul>
+          <li>✓ <strong>Pension de réversion AGIRC-ARRCO</strong> (sans condition de ressources ni d'âge car 2 enfants à charge)</li>
+          <li>✓ <strong>Assurance vie de M.</strong> : 202 000€ (totalement exonéré si Mme bénéficiaire)</li>
+          <li>✓ <strong>Droit viager sur RP</strong> (si demandé, droit payant)</li>
+          <li>✓ <strong>Assurance décès Sécurité sociale</strong></li>
+          <li>✓ <strong>Prévoyance entreprise</strong></li>
+        </ul>
+
+        <div class="highlight-box">
+          <strong>💰 Total droits de succession à payer :</strong> 133 388€ (66 694€ par enfant)
+        </div>
+      </div>
+
+      <!-- ==================== E6I Q3 : BILAN FINANCIER ==================== -->
+      <div class="section" id="stark-e6i-q3">
+        <div class="section-header">
+          <div class="section-num">Q3</div>
+          <div class="section-title">E6I — Bilan financier et capacités</div>
+        </div>
+
+        <h3>Calcul de l'IR</h3>
+
+        <h4>Revenus d'activité</h4>
+        <div class="calc-block">
+          <div class="calc-step">M. : 72 000€ × 0,9 = 64 800€ net</div>
+          <div class="calc-step">Mme : 87 000€ × 0,9 = 78 300€ net</div>
+          <div class="calc-result">Revenus activité nets : <strong>143 100€</strong></div>
+        </div>
+
+        <h4>Revenus fonciers</h4>
+        <div class="calc-block">
+          <div class="calc-step">Versailles : 21 450€ - TF 2 400€ = 19 050€ nets</div>
+          <div class="calc-step">Pinel : 10 640€ - TF 2 239€ - intérêts 7 125€ = 1 276€ nets</div>
+          <div class="calc-result">Total RF nets : <strong>20 326€</strong></div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-step">PS sur RF : 20 326€ × 17,2% = 3 496€</div>
+          <div class="calc-step">CSG déductible : 20 326€ × 6,8% = 1 382€</div>
+        </div>
+
+        <h4>Revenus de capitaux mobiliers</h4>
+        <div class="calc-block">
+          <div class="calc-step">Dividendes : 6 200€ + 4 500€ = 10 700€</div>
+          <div class="calc-step">Option PFU : 10 700€ × 30% = 3 210€</div>
+        </div>
+
+        <h4>Revenu global net imposable</h4>
+        <div class="calc-block">
+          <div class="calc-step">64 800€ + 78 300€ + 20 326€ - 1 382€ = 162 044€</div>
+          <div class="calc-step">QF : 162 044€ / 2 = 81 022€</div>
+          <div class="calc-result">TMI : <strong>30%</strong></div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-step">IR brut : 162 044€ × 0,3 - 6 713,77€ × 2 - 1 759€ × 2 = 31 668€</div>
+        </div>
+
+        <h4>Réductions d'impôt</h4>
+        <ul>
+          <li><strong>Emploi salarié à domicile</strong> : 1 427€ × 12 = 17 124€<br>
+          → Crédit d'impôt 50% dans limite de 15 000€ (12 000€ + 1 500€ × 2 enfants) = <strong>7 500€</strong></li>
+          <li><strong>Réduction Pinel</strong> : 18% sur 9 ans = 2%/an sur 300 000€ = <strong>6 000€/an</strong></li>
+          <li>Total : 7 500€ + 6 000€ = 13 500€ → <strong>Plafonné à 10 000€</strong> (niches fiscales)</li>
+        </ul>
+
+        <div class="calc-block">
+          <div class="calc-header">IR final</div>
+          <div class="calc-step">31 668€ - 10 000€ = <strong>21 668€</strong></div>
+        </div>
+
+        <h3>Calcul IFI</h3>
+
+        <div class="calc-block">
+          <div class="calc-step">Masse taxable = 735 000€ + 475 000€ + 375 000€ + 390 000€ + (1 200 000€ × 0,7)</div>
+          <div class="calc-step">= 735 000€ + 475 000€ + 375 000€ + 390 000€ + 840 000€</div>
+          <div class="calc-result">= <strong>2 815 000€</strong></div>
+        </div>
+
+        <h4>Déductions</h4>
+        <ul>
+          <li>TF totales : 4 500€ + 1 900€ + 1 985€ + 2 400€ + 2 239€ = <strong>13 024€</strong></li>
+          <li>Capital restant dû crédit in fine proratisé : 375 000€ × 1/9 = <strong>41 667€</strong> (8ème année)</li>
+        </ul>
+
+        <div class="calc-block">
+          <div class="calc-step">Base taxable IFI : 2 815 000€ - 13 024€ - 41 667€ = 2 760 309€</div>
+          <div class="calc-step">TMI IFI : 1%</div>
+          <div class="calc-step">IFI théorique : 2 760 309€ × 0,01 - 14 310€ = 13 293€</div>
+          <div class="calc-result">IFI final : 13 293€ × 0,99 = <strong>13 160€</strong></div>
+        </div>
+
+        <h3>Bilan financier récapitulatif</h3>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>REVENUS</th><th>Montant</th><th>CHARGES</th><th>Montant</th></tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="2"><strong>ACTIVITÉS</strong></td><td colspan="2"><strong>FISCALES</strong></td></tr>
+            <tr><td>Salaires M.</td><td class="number">72 000€</td><td>IR</td><td class="number">21 668€</td></tr>
+            <tr><td>Salaires Mme</td><td class="number">87 000€</td><td>IFI</td><td class="number">13 160€</td></tr>
+            <tr><td colspan="2"><strong>PLACEMENTS FONCIERS</strong></td><td>PS</td><td class="number">3 496€</td></tr>
+            <tr><td>Versailles</td><td class="number">21 450€</td><td>PFU</td><td class="number">3 210€</td></tr>
+            <tr><td>Pinel Lyon</td><td class="number">10 640€</td><td>TF</td><td class="number">13 024€</td></tr>
+            <tr><td colspan="2"><strong>PLACEMENTS FINANCIERS</strong></td><td>TH</td><td class="number">4 200€</td></tr>
+            <tr><td>Dividendes M.</td><td class="number">6 200€</td><td colspan="2"><strong>CHARGES COURANTES / FIXES</strong></td></tr>
+            <tr><td>Dividendes Mme</td><td class="number">4 500€</td><td>Salarié</td><td class="number">17 124€</td></tr>
+            <tr><td></td><td></td><td>Intérêts emprunt</td><td class="number">7 125€</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td><strong>TOTAL</strong></td><td class="number"><strong>201 790€</strong></td><td><strong>TOTAL</strong></td><td class="number"><strong>83 007€</strong></td></tr>
+          </tfoot>
+        </table>
+
+        <div class="highlight-box" style="margin-top: 20px;">
+          <strong>💰 Solde budgétaire :</strong> 201 790€ - 83 007€ = <strong>118 783€</strong><br>
+          <strong>📊 Capacité d'épargne :</strong> 15% du solde = <strong>17 817€/an</strong><br>
+          <strong>🏦 Capacité d'endettement :</strong><br>
+          35% des revenus d'activité + 35% × 70% des revenus fonciers<br>
+          = (159 000€ × 0,35) + (32 090€ × 0,70 × 0,35) = 55 650€ + 7 862€ = <strong>63 512€/an</strong> soit <strong>5 293€/mois</strong>
+        </div>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>Reste à vivre :</strong> La banque étudiera également le reste à vivre pour accorder le crédit. Si le client utilise toute sa capacité d'emprunt, il devra faire un effort sur son train de vie.
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== E6I Q4 : PRÉCONISATIONS ==================== -->
+      <div class="section" id="stark-e6i-q4">
+        <div class="section-header">
+          <div class="section-num">Q4</div>
+          <div class="section-title">E6I — Préconisations protection et retraite</div>
+        </div>
+
+        <h3>Protection mutuelle du couple</h3>
+
+        <h4>1. Donation au dernier vivant (DDV)</h4>
+        <div class="highlight-box">
+          <strong>Objectif :</strong> Protéger le conjoint survivant en lui permettant de choisir l'option la plus favorable au décès
+        </div>
+        <p><strong>Options possibles :</strong></p>
+        <ul>
+          <li>1/4 en pleine propriété + 3/4 en usufruit</li>
+          <li>100% en usufruit</li>
+          <li>Quotité disponible en pleine propriété (1/3 avec 2 enfants)</li>
+        </ul>
+
+        <h4>2. Clause de préciput sur RP</h4>
+        <p>Permet au conjoint survivant de prélever la résidence principale en <strong>pleine propriété</strong> avant tout partage, sans dépendre de l'accord des enfants.</p>
+
+        <h4>3. Versements programmés sur assurance vie</h4>
+        <p>Renforcer les contrats d'assurance vie avec clauses bénéficiaires optimisées. Abattement de <strong>152 500€ par bénéficiaire</strong> pour versements avant 70 ans.</p>
+
+        <h4>4. Versements sur PER</h4>
+        <p>Disponibles épargne retraite :</p>
+        <ul>
+          <li>M. : 10% × 64 800€ = <strong>6 480€/an</strong> (mutualisable sur 4 ans = 25 920€)</li>
+          <li>Mme : 10% × 78 300€ = <strong>7 830€/an</strong> (mutualisable sur 4 ans = 31 320€)</li>
+        </ul>
+        <p>Économie fiscale à TMI 30% → Réinvestir la réduction IR dans assurance vie</p>
+
+        <h3>Solutions pour faire face à la chute de revenus à la retraite</h3>
+
+        <h4>Investissements immobiliers</h4>
+        <ul>
+          <li><strong>Denormandie</strong> : Ancien avec travaux dans QPV</li>
+          <li><strong>Ancien + travaux pour déficit foncier</strong></li>
+          <li><strong>Loc'Avantages</strong> : Réduction IR en échange loyer modéré</li>
+          <li><strong>LMNP</strong> direct ou résidences services</li>
+          <li><strong>Usufruit locatif social</strong></li>
+        </ul>
+
+        <h4>Investissements financiers</h4>
+        <ul>
+          <li><strong>Achat SCPI en nue-propriété</strong> : Décote 30-40%, reconstitution PP progressive</li>
+          <li><strong>Versements sur PEA</strong> : Exonération fiscale après 5 ans</li>
+          <li><strong>Versements sur CTO</strong> : Diversification</li>
+          <li><strong>GFI</strong> (Groupements Forestiers d'Investissement) : Réduction IR 18% + transmission optimisée</li>
+        </ul>
+
+        <div class="alert alert-success">
+          <span class="alert-icon">✓</span>
+          <div>
+            <strong>Stratégie recommandée :</strong> Combiner PER pour déduction fiscale immédiate, assurance vie pour transmission optimisée, et investissements immobiliers pour revenus complémentaires à la retraite.
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== E6II : SUIVI 12 ANS APRÈS ==================== -->
+      <div class="section" id="stark-e6ii-q1">
+        <div class="section-header">
+          <div class="section-num">E6II-Q1</div>
+          <div class="section-title">E6II — Révision du profil de risque</div>
+        </div>
+
+        <div class="glass-card">
+          <h3>📅 Situation 12 ans après (2036)</h3>
+          <p>Les années ont passé :</p>
+          <ul>
+            <li>Jules entre en <strong>terminale</strong></li>
+            <li>Jim entre au <strong>lycée</strong></li>
+            <li>Le couple a un mauvais souvenir de l'impact des conflits géopolitiques de 2022 sur les marchés</li>
+            <li>Ils s'inquiètent du <strong>financement des études supérieures</strong> (jusqu'à 13 000€/an en France, plus à l'étranger)</li>
+          </ul>
+        </div>
+
+        <h3>Nouveaux besoins identifiés (par ordre de priorité)</h3>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>#</th><th>Besoin</th><th>Priorité</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Financer les études des enfants</strong></td><td class="red">Haute</td></tr>
+            <tr><td>2</td><td><strong>Préparer la transmission du patrimoine</strong> en gardant le contrôle</td><td class="red">Haute</td></tr>
+            <tr><td>3</td><td><strong>Anticiper la retraite</strong> et la distribution de revenus complémentaires</td><td class="orange">Moyenne</td></tr>
+            <tr><td>4</td><td><strong>Se protéger des aléas boursiers</strong>, réduire le niveau de risque</td><td class="orange">Moyenne</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Révision du profil client</h3>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>OUI</strong>, il est nécessaire de redéfinir le profil de risque et de réajuster les placements compte tenu :
+            <ul style="margin-top: 10px;">
+              <li>De l'approche de la retraite (M. 53 ans, Mme 56 ans)</li>
+              <li>Des nouveaux besoins à court/moyen terme (études enfants)</li>
+              <li>De l'aversion au risque accrue suite aux crises</li>
+              <li>De la volonté de transmettre progressivement</li>
+            </ul>
+          </div>
+        </div>
+
+        <p><strong>Passage d'un profil ÉQUILIBRÉ à un profil PRUDENT/SÉCURITAIRE</strong></p>
+      </div>
+
+      <div class="section" id="stark-e6ii-q2">
+        <div class="section-header">
+          <div class="section-num">E6II-Q2</div>
+          <div class="section-title">E6II — Préconisations adaptées aux nouveaux besoins</div>
+        </div>
+
+        <p><em>Patrimoine de référence : Patrimoine E6I majoré de TRI 2,5% nets PS sur contrats AV, sans le Pinel revendu en 2026 pour rembourser le crédit in fine.</em></p>
+
+        <h3>1. Pour financer les études des enfants</h3>
+
+        <h4>Donation temporaire d'usufruit</h4>
+        <p>Transférer temporairement l'usufruit de biens productifs de revenus (SCPI, assurance vie, etc.) aux enfants pour financer leurs études, tout en conservant la nue-propriété.</p>
+
+        <h4>Assurance vie avec clause d'indisponibilité temporaire</h4>
+        <p>Donation avec pacte adjoint en assurance vie déterminant l'âge auquel le donataire pourra disposer du capital (max 25e anniversaire).</p>
+
+        <h3>2. Pour préparer la transmission en gardant le contrôle</h3>
+
+        <h4>Assurance vie démembrée</h4>
+        <ul>
+          <li>Verser jusqu'à <strong>152 500€ × 2</strong> sur contrats AV avant 70 ans</li>
+          <li>Clause démembrée : Usufruit conjoint + NP enfants</li>
+          <li>Le conjoint survivant bénéficie des revenus</li>
+          <li>Au second décès, les enfants reçoivent la PP sans nouvelle taxation</li>
+        </ul>
+
+        <h4>Contrat de capitalisation + donation-partage de la NP</h4>
+        <p>Le contrat de capitalisation n'est pas dénoué par le décès. Possibilité de donner la NP aux enfants tout en conservant l'usufruit et le contrôle.</p>
+
+        <h4>Donation en NP avec réserve d'usufruit</h4>
+        <p>Sur résidences secondaires ou biens locatifs. Les parents gardent les revenus et l'usage, les enfants acquièrent progressivement la pleine propriété sans droits au terme.</p>
+
+        <h4>Donation des actifs en plus-value</h4>
+        <p>Principe "donation avant cession" pour éviter l'IR sur plus-values. Les donataires vendent ensuite avec leur propre fiscalité.</p>
+
+        <h3>3. Pour anticiper la retraite</h3>
+
+        <h4>PER pour M. et Mme</h4>
+        <ul>
+          <li>Plafonds disponibles mutualisables</li>
+          <li>Déduction IR immédiate</li>
+          <li>Réinvestir l'économie fiscale en assurance vie</li>
+        </ul>
+
+        <h4>Achat SCPI en NP sur 10 ans</h4>
+        <p>Décote 30-40% à l'achat, reconstitution progressive de la PP, revenus futurs garantis à la retraite.</p>
+
+        <h3>4. Pour réduire le risque</h3>
+
+        <h4>Réallocation prudente des actifs</h4>
+        <ul>
+          <li>Réduire exposition UC actions sur assurance vie</li>
+          <li>Augmenter part fonds euros sécurisés</li>
+          <li>Arbitrer CTO vers PEA (exonération après 5 ans)</li>
+        </ul>
+
+        <h4>Passage en LMNP sur biens locatifs</h4>
+        <p>Amortissement du bien, récupération TVA si neuf, revenus faiblement imposés.</p>
+
+        <h4>Apport ou vente à une SCI IS</h4>
+        <p>Démembrement des parts sociales pour transmission progressive tout en gardant le contrôle.</p>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">ℹ️</span>
+          <div>
+            <strong>Note :</strong> La protection du conjoint survivant a déjà été organisée en E6I (DDV + clause de préciput sur RP).
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="stark-e6ii-q3">
+        <div class="section-header">
+          <div class="section-num">E6II-Q3</div>
+          <div class="section-title">E6II — Donation avec réserve d'usufruit (R2 Deauville)</div>
+        </div>
+
+        <div class="glass-card">
+          <h3>📋 Opération envisagée</h3>
+          <p>Le couple souhaite effectuer une <strong>donation avec réserve d'usufruit de la résidence secondaire de Deauville</strong> (valeur : 475 000€) au profit de Jules et Jim à parts égales.</p>
+        </div>
+
+        <h3>Conséquences civiles</h3>
+
+        <h4>Pour les usufruitiers (M. et Mme STARK)</h4>
+        <ul>
+          <li>✓ Conservent le <strong>droit d'usage et d'habitation</strong> viager</li>
+          <li>✓ Peuvent continuer à utiliser la résidence secondaire</li>
+          <li>✓ Obligation d'<strong>entretien courant</strong> et charges courantes</li>
+          <li>✓ <strong>Gros travaux</strong> (toiture, fondations, ravalement) à la charge des nus-propriétaires</li>
+          <li>⚠️ <strong>Impossibilité de vendre sans accord</strong> des nus-propriétaires</li>
+        </ul>
+
+        <h4>Pour les nus-propriétaires (Jules et Jim)</h4>
+        <ul>
+          <li>✓ Deviennent <strong>propriétaires du bien</strong></li>
+          <li>⚠️ Ne peuvent ni utiliser ni percevoir de revenus pendant la durée de l'usufruit</li>
+          <li>✓ Responsables des <strong>gros travaux</strong></li>
+          <li>⚠️ <strong>Impossibilité de vendre sans accord</strong> des usufruitiers</li>
+          <li>✓ Chacun peut vendre <strong>indépendamment</strong> sa nue-propriété</li>
+        </ul>
+
+        <div class="highlight-box">
+          <strong>💡 Au terme du démembrement :</strong> Les donataires récupèrent la pleine propriété <strong>sans droits à payer</strong> (article 1133 du CGI).
+        </div>
+
+        <h3>Conséquences fiscales</h3>
+
+        <h4>Valorisation du démembrement</h4>
+
+        <p>Âge des usufruitiers (M. 53 ans, Mme 56 ans) → Tranche 51-60 ans</p>
+
+        <div class="calc-block">
+          <div class="calc-header">Barème fiscal de l'usufruit (art. 669 CGI)</div>
+          <div class="calc-step">Usufruit (51-60 ans) : <strong>50%</strong></div>
+          <div class="calc-step">Nue-propriété : <strong>50%</strong></div>
+        </div>
+
+        <h4>Calcul des droits de donation</h4>
+
+        <div class="calc-block">
+          <div class="calc-step">Valeur R2 Deauville : 475 000€</div>
+          <div class="calc-step">Valeur NP (50%) : 475 000€ × 50% = 237 500€</div>
+          <div class="calc-step">NP transmise par parent : 237 500€ / 2 = <strong>118 750€</strong></div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Chaque enfant reçoit de chaque parent</div>
+          <div class="calc-step">118 750€ / 2 enfants = <strong>59 375€</strong> de NP</div>
+          <div class="calc-step">Abattement parent-enfant : 100 000€</div>
+          <div class="calc-result"><strong>Aucun droit à payer</strong> (en dessous de l'abattement)</div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>💰 Disponible restant :</strong> Chaque parent peut encore donner <strong>40 625€</strong> à chaque enfant sans droits (100 000€ - 59 375€) pour les 15 prochaines années.
+        </div>
+
+        <h3>Risques et points de vigilance</h3>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>Plus-value immobilière au terme :</strong> À la fin de l'usufruit, si les enfants revendent le bien à un prix supérieur à la valeur de donation, ils peuvent être soumis à l'impôt sur la plus-value immobilière.
+          </div>
+        </div>
+
+        <p><strong>Solution alternative :</strong> Prévoir un <strong>protocole de vente future</strong> ou une <strong>clause de remploi</strong> pour anticiper cette situation.</p>
+      </div>
+
+      <div class="section" id="stark-e6ii-q4">
+        <div class="section-header">
+          <div class="section-num">E6II-Q4</div>
+          <div class="section-title">E6II — Droits à la retraite et disponible épargne-retraite</div>
+        </div>
+
+        <h3>1. Âge de départ à la retraite</h3>
+
+        <h4>Calcul pour M. STARK</h4>
+        <div class="calc-block">
+          <div class="calc-step">Début d'activité : 01.01.2005</div>
+          <div class="calc-step">Durée requise : 43 ans (172 trimestres) pour génération 1983</div>
+          <div class="calc-step">2005 + 43 = <strong>2048</strong></div>
+          <div class="calc-result">Départ possible : <strong>65 ans</strong></div>
+        </div>
+
+        <h4>Calcul pour Mme STARK</h4>
+        <div class="calc-block">
+          <div class="calc-step">Début d'activité : 01.02.2006</div>
+          <div class="calc-step">Durée requise : 43 ans (172 trimestres) pour génération 1980</div>
+          <div class="calc-step">2006 + 43 = <strong>2049</strong></div>
+          <div class="calc-result">Départ possible : <strong>69 ans</strong> (1 an plus tard)</div>
+        </div>
+
+        <h3>Peuvent-ils partir en même temps ?</h3>
+
+        <div class="alert alert-success">
+          <span class="alert-icon">✓</span>
+          <div>
+            <strong>OUI, à quelques mois près !</strong><br><br>
+            Chaque enfant permet d'avoir <strong>8 trimestres supplémentaires</strong> :<br>
+            - 4 au titre de la maternité (mère uniquement)<br>
+            - 4 pour l'éducation (mère et/ou père, choix avant 6 mois du 4e anniversaire)<br><br>
+            Pour Jules et Jim, le choix ne peut plus être opéré (> 4 ans). Par défaut, Mme bénéficie des trimestres maternité.<br><br>
+            <strong>Avec 16 trimestres supplémentaires (2 enfants × 8)</strong>, Mme pourrait partir en même temps que M. à quelques mois près.
+          </div>
+        </div>
+
+        <h3>Malus AGIRC-ARRCO</h3>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            Même en partant avec tous les trimestres requis, application d'un <strong>malus de 10%</strong> sur la pension durant 3 ans (sans aller au-delà de 67 ans).<br>
+            Pour l'éviter : cotiser <strong>4 trimestres supplémentaires</strong>.<br><br>
+            Le couple bénéficie d'un patrimoine suffisant pour compenser ce malus (rachat PEA exonéré de fiscalité après 5 ans, hors PS).
+          </div>
+        </div>
+
+        <h3>2. Base de calcul de la retraite</h3>
+
+        <div class="highlight-box">
+          <strong>Formule régimes alignés (CNAV, MSA, SSI) :</strong><br>
+          Retraite = <strong>SAM × TAUX × (Durée cotisée / Durée exigée) + SURCOTE</strong>
+        </div>
+
+        <h4>Éléments de la formule</h4>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>Élément</th><th>Détail</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SAM</strong><br>(Salaire Annuel Moyen)</td>
+              <td>Moyenne des <strong>25 meilleures années</strong> cotisées revalorisées<br>
+              Limité au PASS (46 368€ en 2024)</td>
+            </tr>
+            <tr>
+              <td><strong>TAUX</strong></td>
+              <td>Taux plein : <strong>50%</strong><br>
+              Garanti à 67 ans<br>
+              Décote si départ avant 67 ans sans tous les trimestres</td>
+            </tr>
+            <tr>
+              <td><strong>Durée d'assurance</strong></td>
+              <td>Trimestres cotisés + assimilés + majorations enfants</td>
+            </tr>
+            <tr>
+              <td><strong>Durée exigée</strong></td>
+              <td>172 trimestres pour génération 1965 et suivantes</td>
+            </tr>
+            <tr>
+              <td><strong>SURCOTE</strong></td>
+              <td>+1,25% par trimestre cotisé au-delà du taux plein</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>3. Disponible épargne-retraite</h3>
+
+        <h4>Plafonds PER</h4>
+
+        <div class="calc-block">
+          <div class="calc-header">Monsieur STARK</div>
+          <div class="calc-step">Revenus nets : 72 000€ × 0,9 = 64 800€</div>
+          <div class="calc-step">Plafond annuel : 10% × 64 800€ = <strong>6 480€</strong></div>
+          <div class="calc-step">Report possible sur 3 ans : 6 480€ × 4 = <strong>25 920€</strong></div>
+        </div>
+
+        <div class="calc-block">
+          <div class="calc-header">Madame STARK</div>
+          <div class="calc-step">Revenus nets : 87 000€ × 0,9 = 78 300€</div>
+          <div class="calc-step">Plafond annuel : 10% × 78 300€ = <strong>7 830€</strong></div>
+          <div class="calc-step">Report possible sur 3 ans : 7 830€ × 4 = <strong>31 320€</strong></div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>💰 Total disponible mutualisable :</strong> 57 240€<br>
+          <strong>Économie fiscale (TMI 30%) :</strong> ~17 172€<br>
+          → <strong>À réinvestir en assurance vie</strong> pour optimiser la transmission
+        </div>
+
+        <h3>4. Comment utiliser le disponible épargne-retraite ?</h3>
+
+        <h4>Stratégie recommandée</h4>
+
+        <ol>
+          <li><strong>Ouvrir 1 PER pour M. + 1 PER pour Mme</strong>
+            <ul>
+              <li>Verser progressivement jusqu'aux plafonds</li>
+              <li>Déduction IR immédiate</li>
+              <li>Sortie en capital ou rente à la retraite</li>
+            </ul>
+          </li>
+          <li><strong>Réinvestir l'économie fiscale en assurance vie</strong>
+            <ul>
+              <li>~17 000€/an d'économie IR</li>
+              <li>Renforcer les contrats existants</li>
+              <li>Objectif : 152 500€ × 2 avant 70 ans pour transmission optimisée</li>
+            </ul>
+          </li>
+          <li><strong>Combiner avec investissements générant des revenus</strong>
+            <ul>
+              <li>SCPI en nue-propriété (revenus à la retraite)</li>
+              <li>Immobilier locatif (LMNP pour optimisation fiscale)</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="alert alert-success">
+          <span class="alert-icon">✓</span>
+          <div>
+            <strong>Conclusion :</strong> Le couple peut partir à la retraite quasiment en même temps grâce aux trimestres enfants. Le PER leur permet de réduire l'IR aujourd'hui tout en se constituant un complément de revenus pour la retraite.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /case-stark -->
 
     <!-- ══════════════════════════════════════
          CAS MENGERE
