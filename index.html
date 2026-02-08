@@ -322,15 +322,15 @@ body {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--sidebar-text);
-  padding: 12px 12px 6px;
-  margin-top: 8px;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 16px 12px 8px;
+  margin-top: 12px;
 }
 
 .sidebar-item {
-  padding: 8px 12px;
-  border-radius: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
   color: var(--sidebar-text);
   cursor: pointer;
   transition: all var(--transition);
@@ -339,8 +339,10 @@ body {
   margin-bottom: 2px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   position: relative;
+  min-height: 38px;
+  text-decoration: none;
 }
 
 .sidebar-item:hover {
@@ -366,23 +368,29 @@ body {
 }
 
 .sidebar-item .num {
-  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
   background: rgba(0, 122, 255, 0.2);
   color: var(--primary);
-  padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .sidebar-sub {
   padding-left: 0;
+  margin-top: 2px;
 }
 
 .sidebar-sub .sidebar-item {
-  padding-left: 28px;
+  padding-left: 38px;
   font-size: 12px;
   background: transparent;
+  min-height: 32px;
 }
 
 .sidebar-sub .sidebar-item:hover {
@@ -1396,10 +1404,6 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
   }
 
   .cols {
-    grid-template-columns: 1fr;
-  }
-
-  .quiz-grid {
     grid-template-columns: 1fr;
   }
 }
