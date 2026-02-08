@@ -613,11 +613,76 @@ p {
   border-color: var(--primary);
 }
 
+/* Glass card - alias for card with same styling */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* Info grid for displaying key-value pairs */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.info-grid > div {
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Highlight box for important numbers/info */
+.highlight-box {
+  background: var(--primary-light);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.big-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 8px 0;
+  line-height: 1.2;
+}
+
+.small-text {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* Note boxes */
+.note-info {
+  background: var(--primary-light);
+  border-left: 3px solid var(--primary);
+}
+
+.note-warning {
+  background: rgba(255, 149, 0, 0.1);
+  border-left: 3px solid var(--warning);
+}
+
+.note-success {
+  background: rgba(52, 199, 89, 0.1);
+  border-left: 3px solid var(--accent);
+}
+
 /* ============================================================================
    TABLES
    ============================================================================ */
 
-table {
+table,
+.data-table {
   width: 100%;
   border-collapse: collapse;
   background: #ffffff;
@@ -673,6 +738,23 @@ tr:hover td {
 .green {
   color: var(--accent);
   font-weight: 600;
+}
+
+/* Number formatting in tables */
+td.number,
+th.number {
+  text-align: right;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Table footer styling */
+tfoot td {
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.02);
+  border-top: 2px solid var(--border);
+  padding-top: 14px;
 }
 
 /* ============================================================================
