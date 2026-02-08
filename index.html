@@ -2123,6 +2123,7 @@ details .inner {
 .home-card.card-outils { --card-accent: #ff9f0a; }
 .home-card.card-guide { --card-accent: #30d158; }
 .home-card.card-formules { --card-accent: #64d2ff; }
+.home-card.card-montages { --card-accent: #ff6b6b; }
 .home-card.card-audit { --card-accent: #0a84ff; }
 
 .home-card.card-disabled {
@@ -2256,6 +2257,10 @@ details .inner {
     <div class="tab" data-case="guide" onclick="switchCase('guide')">
       <span class="tab-icon">📋</span>
       <span>Guide Stratégique</span>
+    </div>
+    <div class="tab" data-case="montages" onclick="switchCase('montages')">
+      <span class="tab-icon">🔧</span>
+      <span>Montages</span>
     </div>
     <div class="tab" data-case="formules" onclick="switchCase('formules')">
       <span class="tab-icon">📐</span>
@@ -2826,6 +2831,44 @@ details .inner {
   </a>
 </div>
 
+    <!-- MONTAGES sidebar -->
+    <div id="sidebar-montages" style="display:none">
+      <div class="sidebar-label">Montages patrimonaux</div>
+      <a class="sidebar-item active" onclick="goTo('mont-intro')">
+        <span class="num">0</span> Introduction
+      </a>
+      <a class="sidebar-item" onclick="goTo('mont-s1')">
+        <span class="num">1</span> Donations
+      </a>
+      <a class="sidebar-item" onclick="goTo('mont-s2')">
+        <span class="num">2</span> Études enfants
+      </a>
+      <a class="sidebar-item" onclick="goTo('mont-s3')">
+        <span class="num">3</span> Retraite & investissement
+        <span class="progress-chip key">CLÉ</span>
+      </a>
+      <div class="sidebar-sub">
+        <a class="sidebar-item" onclick="goTo('mont-s3')">PER</a>
+        <a class="sidebar-item" onclick="goTo('mont-s3')">AV multicouche</a>
+        <a class="sidebar-item" onclick="goTo('mont-s3')">SCPI démembrée</a>
+      </div>
+      <a class="sidebar-item" onclick="goTo('mont-s4')">
+        <span class="num">4</span> Protection CJS
+        <span class="progress-chip exam">EXAM</span>
+      </a>
+      <div class="sidebar-sub">
+        <a class="sidebar-item" onclick="goTo('mont-s4')">Quasi-usufruit</a>
+        <a class="sidebar-item" onclick="goTo('mont-s4')">Contrat capitalisation</a>
+        <a class="sidebar-item" onclick="goTo('mont-s4')">Réversion</a>
+      </div>
+      <a class="sidebar-item" onclick="goTo('mont-s5')">
+        <span class="num">5</span> Transgénérationnelle
+      </a>
+      <a class="sidebar-item" onclick="goTo('mont-s6')">
+        <span class="num">📋</span> Synthèse croisée
+      </a>
+    </div>
+
     <div id="sidebar-guide" style="display:none">
         <div class="sidebar-label">Guide Stratégique</div>
         <a class="sidebar-item" onclick="goTo('gui-intro')">
@@ -3012,6 +3055,12 @@ details .inner {
           <span class="home-card-icon">📋</span>
           <div class="home-card-title">Guide Stratégique</div>
           <div class="home-card-desc">Méthodologie de résolution, check-lists, stratégies par thématique.</div>
+        </div>
+
+        <div class="home-card card-montages" onclick="switchCase('montages')">
+          <span class="home-card-icon">🔧</span>
+          <div class="home-card-title">Montages</div>
+          <div class="home-card-desc">Montages financiers, fiscaux et juridiques : donations, DTUS, SCPI démembrée, quasi-usufruit, effet levier.</div>
         </div>
 
         <div class="home-card card-formules" onclick="switchCase('formules')">
@@ -17936,6 +17985,406 @@ Droit (20%) = 3 000€
 
 </div>
 <!-- FIN CAS GÉNÉREUX -->
+
+
+<!-- ══════════════════════════════════════
+     MONTAGES FINANCIERS, FISCAUX & JURIDIQUES
+     ══════════════════════════════════════ -->
+<div class="case-content" id="case-montages" style="display:none">
+
+<!-- SECTION 0: INTRODUCTION -->
+<div class="section" id="mont-intro">
+  <div class="welcome">
+    <h1>Montages financiers, fiscaux & juridiques</h1>
+    <div class="subtitle">Les techniques patrimoniales essentielles pour l'examen</div>
+    <p>Synthèse structurée des principaux montages : donations, financement des études, préparation retraite, protection du conjoint et transmission transgénérationnelle.<br>
+    Chaque montage est détaillé avec sa mécanique, sa fiscalité et les cas d'application.</p>
+    <div class="meta">
+      Réglementation novembre 2025 + LFSS 2026<br>
+      Préparé pour Paco — Février 2026
+    </div>
+  </div>
+
+  <div class="alert alert-tip">
+    <span class="alert-icon">✅</span>
+    <div><strong>Conseil examen :</strong> Pour chaque montage, le correcteur attend 3 choses : (1) le fondement juridique (article CGI/Code civil), (2) le chiffrage précis du gain, (3) les limites et risques. Structurez vos réponses ainsi.</div>
+  </div>
+</div>
+
+<!-- SECTION 1: DONATIONS — Donner X€ à 1 enfant -->
+<div class="section collapsible" id="mont-s1">
+  <h2 class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">Section 1 : Donner X€ à 1 enfant — Techniques de donation</h2>
+
+  <p style="margin-bottom:20px;color:var(--text-light)">Trois mécanismes principaux pour transmettre à ses enfants, avec des conséquences fiscales différentes.</p>
+
+  <div class="card">
+    <h3>1.1 Donation de liquidités</h3>
+    <table>
+      <tr><th>Mécanisme</th><th>Abattement</th><th>Article</th></tr>
+      <tr><td>Don manuel (espèces, virement)</td><td><strong>31 865€</strong> exonéré (don familial)</td><td>Art. 790 G CGI</td></tr>
+      <tr><td>Donation en ligne directe</td><td><strong>100 000€</strong> par parent/enfant/15 ans</td><td>Art. 779 I CGI</td></tr>
+      <tr><td><strong>Cumul possible</strong></td><td><strong>131 865€</strong> par parent/enfant</td><td>Renouvelable tous les 15 ans</td></tr>
+    </table>
+    <div class="alert alert-info">
+      <span class="alert-icon">💡</span>
+      <div>Un couple avec 2 enfants peut transmettre <strong>2 × 2 × 131 865 = 527 460€</strong> en franchise totale de droits, renouvelable tous les 15 ans.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>1.2 Donation de biens en pleine propriété</h3>
+    <p>Donner des parts de SCI, des titres ou des biens immobiliers en pleine propriété.</p>
+    <table>
+      <tr><th>Technique</th><th>Avantage</th><th>Limite</th></tr>
+      <tr><td><strong>Donation avant cession</strong></td><td>Purge la plus-value latente — le donataire vend au prix de donation (pas de PV)</td><td>Le donateur ne doit pas avoir pris l'initiative de la cession avant la donation</td></tr>
+      <tr><td><strong>Donation-partage</strong></td><td>Fige la valeur des biens au jour de la donation (pas de rapport à la succession sur la valeur actualisée)</td><td>Nécessite l'intervention d'un notaire — coût ~2,5% de droits de partage</td></tr>
+    </table>
+    <div class="alert alert-warning">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Piège examen :</strong> La donation avant cession ne fonctionne que si le donateur n'a PAS négocié la vente avant. Sinon, l'administration requalifie = abus de droit (art. L.64 LPF).</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>1.3 Donation en nue-propriété</h3>
+    <p>Le donateur conserve l'usufruit (jouissance/revenus) et transmet la NP aux enfants.</p>
+    <table>
+      <tr><th>Âge de l'usufruitier</th><th>Valeur US (art. 669 CGI)</th><th>Valeur NP</th></tr>
+      <tr><td>Moins de 21 ans</td><td>90%</td><td>10%</td></tr>
+      <tr><td>21-30 ans</td><td>80%</td><td>20%</td></tr>
+      <tr><td>31-40 ans</td><td>70%</td><td>30%</td></tr>
+      <tr><td>41-50 ans</td><td>60%</td><td>40%</td></tr>
+      <tr><td><strong>51-60 ans</strong></td><td><strong>50%</strong></td><td><strong>50%</strong></td></tr>
+      <tr><td><strong>61-70 ans</strong></td><td><strong>40%</strong></td><td><strong>60%</strong></td></tr>
+      <tr><td>71-80 ans</td><td>30%</td><td>70%</td></tr>
+      <tr><td>81-90 ans</td><td>20%</td><td>80%</td></tr>
+      <tr><td>+ de 91 ans</td><td>10%</td><td>90%</td></tr>
+    </table>
+    <div class="alert alert-info">
+      <span class="alert-icon">🎯</span>
+      <div><strong>Intérêt :</strong> Au décès de l'usufruitier, la NP se reconstitue en PP <strong>sans aucun droit de succession</strong>. Plus la donation est précoce, plus la NP est faible = moins de droits.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FINANCEMENT DES ÉTUDES -->
+<div class="section collapsible" id="mont-s2">
+  <h2 class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">Section 2 : Financement des études des enfants</h2>
+
+  <div class="card">
+    <h3>2.1 Donation Temporaire d'Usufruit (DTUS)</h3>
+    <p>Le parent cède temporairement l'usufruit d'un bien immobilier locatif à l'enfant étudiant. L'enfant perçoit les revenus locatifs pendant la durée de la donation.</p>
+
+    <table>
+      <tr><th>Élément</th><th>Détail</th></tr>
+      <tr><td>Article</td><td><strong>Art. 669-2 CGI</strong> : 23% de la valeur PP par tranche de 10 ans</td></tr>
+      <tr><td>Durée minimale</td><td>Habituellement 3 à 10 ans (durée des études)</td></tr>
+      <tr><td>Abattement applicable</td><td>100 000€ (calcul civil classique)</td></tr>
+    </table>
+
+    <h4 style="margin-top:16px">Triple gain fiscal :</h4>
+    <table>
+      <tr><th>Impôt</th><th>Gain</th><th>Calcul</th></tr>
+      <tr><td><strong>IR</strong></td><td>Revenus fonciers sortent de la base IR du parent</td><td>Gain = (Revenus − charges foncières 30%) × TMI</td></tr>
+      <tr><td><strong>PS</strong></td><td>PS en moins pour le parent</td><td>Gain = (Revenus − charges foncières 30%) × 17,2%</td></tr>
+      <tr><td><strong>IFI</strong></td><td>Bien sort de l'assiette IFI du parent</td><td>L'enfant étant obligé alimentairement → taxé à 60% de la PP</td></tr>
+    </table>
+
+    <div class="calc-block">
+      <div class="calc-step">
+        <strong>Gain global :</strong><br>
+        Gain IR + Gain PS + Gain IFI − Coût fiscal de la donation<br>
+        Coût = (Valeur donnée × 23%) − Abattement 100 000€ → × barème DMTG
+      </div>
+    </div>
+
+    <div class="alert alert-warning">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Attention :</strong> La taxe foncière reste à la charge du parent (propriétaire). Ne pas oublier de la décompter du gain net.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>2.2 Traduction en pension alimentaire</h3>
+    <p>Le coût de la donation peut être rapproché de la pension alimentaire déductible :</p>
+    <div class="calc-block">
+      <div class="calc-step">
+        <strong>Économie pension alimentaire :</strong><br>
+        (6 674€ forfait par enfant / Coût annuel réel) × TMI<br>
+        <em>Plafond de déduction : 6 674€/an par enfant majeur (rattachement impossible)</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: PRÉPARATION RETRAITE -->
+<div class="section collapsible" id="mont-s3">
+  <h2 class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">Section 3 : Préparation retraite & investissement</h2>
+
+  <p style="margin-bottom:20px;color:var(--text-light)">PASS 2025 = 46 368€. Les outils pour capitaliser et préparer des revenus complémentaires.</p>
+
+  <div class="card">
+    <h3>3.1 Le PER — Plan d'Épargne Retraite</h3>
+
+    <table>
+      <tr><th>Élément</th><th>Détail</th></tr>
+      <tr><td>Ouvrir</td><td><strong>2 PER</strong> : 1 individuel + 1 titres (diversification)</td></tr>
+      <tr><td>Plafond déduction</td><td>10% des revenus nets N-1 (max 10% × 8 PASS = <strong>37 094€</strong>)</td></tr>
+      <tr><td>Récupération</td><td>Plafonds non utilisés des <strong>3 dernières années</strong> reportables</td></tr>
+      <tr><td>Mutualisation</td><td>Plafonds mutualisables entre époux/partenaires PACS</td></tr>
+    </table>
+
+    <div class="calc-block">
+      <div class="calc-step">
+        <strong>Économie fiscale par versement :</strong><br>
+        Versement × TMI = économie IR immédiate<br>
+        Ex : 10 000€ versés × TMI 30% = <strong>3 000€ d'économie IR</strong>
+      </div>
+    </div>
+
+    <div class="alert alert-warning">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Piège examen :</strong> Ne pas faire passer le contribuable dans la tranche inférieure ! Si le QF est en fourchette haute de la tranche 30%, le versement PER optimal est celui qui ramène juste à la limite — pas en dessous (sinon économie à 11% au lieu de 30%).</div>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">💡</span>
+      <div><strong>Stratégie capitalisation :</strong> Saisir le gain fiscal PER et le réinvestir en assurance vie (en phase active). Le PER réduit l'IR, le gain est réinvesti en AV pour la transmission.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>3.2 L'assurance vie — Stratégie multicouche</h3>
+
+    <p>Si le client n'a <strong>pas d'assurance vie</strong>, objectif : placer jusqu'à <strong>1 000 000€ hors imposition</strong> via plusieurs contrats.</p>
+
+    <table>
+      <tr><th>Régime fiscal</th><th>Abattement</th><th>Article</th><th>Détail</th></tr>
+      <tr><td><strong>Primes avant 70 ans</strong></td><td>152 500€/bénéficiaire</td><td>Art. 990 I CGI</td><td>Puis barème : 20% jusqu'à 700k€, 31,25% au-delà</td></tr>
+      <tr><td><strong>Primes après 70 ans</strong></td><td>30 500€ global</td><td>Art. 757 B CGI</td><td>Sur les primes uniquement — intérêts exonérés</td></tr>
+    </table>
+
+    <h4 style="margin-top:16px">Exemple : 2 enfants + conjoint survivant (CJS)</h4>
+    <table>
+      <tr><th>Contrat</th><th>Bénéficiaire</th><th>Stratégie</th></tr>
+      <tr><td>Contrat 1 — Prudent</td><td>CJS</td><td>Fonds euros sécurisé, liquidité immédiate</td></tr>
+      <tr><td>Contrat 2 — Dynamique</td><td>CJS</td><td>UC diversifiées, rendement long terme</td></tr>
+      <tr><td>Contrat 3 — Prudent</td><td>Enfants</td><td>Transmission optimisée art. 990 I</td></tr>
+      <tr><td>Contrat 4 — Dynamique</td><td>Enfants</td><td>Capitalisation sur horizon long</td></tr>
+    </table>
+
+    <div class="calc-block">
+      <div class="calc-step">
+        <strong>Capacité de transmission en franchise :</strong><br>
+        CJS : exonéré de droits (art. 796-0 bis CGI)<br>
+        Enfants (avant 70 ans) : 2 × 152 500€ = <strong>305 000€</strong> en franchise<br>
+        Au-delà : 305 000€ × 20% = 61 000€ de droits<br>
+        <strong>Total possible : ~610 000€ sur 4 contrats avec optimisation</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>3.3 SCPI démembrée — Effet levier en nue-propriété</h3>
+
+    <p>Technique <strong>absente des fiches existantes</strong> mais fréquente à l'examen. Le client achète la <strong>nue-propriété de parts de SCPI</strong> à prix décoté, et récupère la pleine propriété à terme.</p>
+
+    <table>
+      <tr><th>Élément</th><th>Détail</th></tr>
+      <tr><td>Principe</td><td>Achat NP de SCPI à ~60-68% de la valeur PP (décote temporaire 10-15 ans)</td></tr>
+      <tr><td>Rendement</td><td>Pas de revenus pendant la durée du démembrement → pas d'IR, pas de PS</td></tr>
+      <tr><td>IFI</td><td><strong>NP hors assiette IFI</strong> (si usufruit détenu par un tiers)</td></tr>
+      <tr><td>Reconstitution</td><td>À l'échéance, la PP se reconstitue automatiquement (100% de la valeur)</td></tr>
+      <tr><td>TRI implicite</td><td>~3-5% annualisé sur 10 ans (gain = PP − prix NP)</td></tr>
+    </table>
+
+    <h4 style="margin-top:16px">Exemple chiffré — Effet levier :</h4>
+    <div class="calc-block">
+      <div class="calc-step">
+        Investissement : <strong>180 000€</strong> en NP SCPI (clé NP = 68%)<br>
+        Valeur PP correspondante : 180 000 / 0,68 = <strong>264 700€</strong><br>
+        Durée démembrement : <strong>10 ans</strong><br>
+        Revalorisation SCPI : ~1,5%/an → PP à terme ≈ <strong>307 000€</strong><br>
+        <strong>Gain net : 307 000 − 180 000 = 127 000€ (TRI ~5,5%)</strong>
+      </div>
+    </div>
+
+    <h4 style="margin-top:16px">Effet levier avec crédit :</h4>
+    <div class="calc-block">
+      <div class="calc-step">
+        Emprunt : 180 000€ sur 10 ans à 3,5%<br>
+        Intérêts totaux : ~35 000€<br>
+        Pas de revenus pendant 10 ans (NP) → le crédit est remboursé sur les économies d'impôt ou l'épargne<br>
+        À terme : 307 000€ de PP − 215 000€ (capital + intérêts) = <strong>92 000€ de gain net</strong><br>
+        Le client a investi <strong>0€ de sa poche</strong> et possède 307k€ de SCPI
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">🎯</span>
+      <div><strong>Intérêt fiscal triple :</strong> (1) Pas d'IR/PS pendant le démembrement, (2) NP hors IFI, (3) Intérêts d'emprunt non déductibles mais compensés par l'absence de fiscalité sur les revenus.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: PROTECTION DU CONJOINT SURVIVANT -->
+<div class="section collapsible" id="mont-s4">
+  <h2 class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">Section 4 : Protection du conjoint survivant (CJS)</h2>
+
+  <div class="card">
+    <h3>4.1 Assurance vie — Hors succession</h3>
+    <p>L'assurance vie est le premier outil de protection du CJS.</p>
+    <table>
+      <tr><th>Fondement</th><th>Effet</th></tr>
+      <tr><td><strong>Art. L.132-12 Code des assurances</strong></td><td>Le capital décès n'entre PAS dans la succession — il est versé directement au(x) bénéficiaire(s) désigné(s)</td></tr>
+      <tr><td><strong>Art. 796-0 bis CGI</strong></td><td>Le CJS (époux ou partenaire PACS) est <strong>exonéré de droits</strong> sur le capital AV reçu</td></tr>
+    </table>
+
+    <div class="alert alert-warning">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Clause quasi-usufruit :</strong> Si la clause bénéficiaire prévoit que le CJS reçoit le capital en quasi-usufruit, il peut l'utiliser librement mais doit restituer l'équivalent aux nus-propriétaires (enfants) à son décès. Cela crée une <strong>créance de restitution</strong> déductible de l'actif successoral au 2ème décès.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>4.2 Quasi-usufruit & créance de restitution</h3>
+    <p>Mécanisme clé pour optimiser les deux décès successifs :</p>
+
+    <table>
+      <tr><th>Étape</th><th>Mécanisme</th><th>Effet fiscal</th></tr>
+      <tr><td><strong>1er décès</strong></td><td>CJS reçoit le capital AV en quasi-usufruit</td><td><strong>0€ de droits</strong> (exonération CJS)</td></tr>
+      <tr><td><strong>Vie du CJS</strong></td><td>CJS utilise le capital librement (il a la "propriété économique")</td><td>Obligation de restituer l'équivalent au décès</td></tr>
+      <tr><td><strong>2ème décès</strong></td><td>Créance de restitution = passif déductible de la succession du CJS</td><td><strong>Réduit l'assiette taxable</strong> pour les enfants</td></tr>
+    </table>
+
+    <div class="calc-block">
+      <div class="calc-step">
+        <strong>Exemple :</strong><br>
+        AV 400 000€ → CJS en quasi-usufruit<br>
+        1er décès : CJS reçoit 400k€ → <strong>0€ de droits</strong><br>
+        2ème décès : succession CJS = 800k€ brut<br>
+        Créance de restitution : −400k€<br>
+        Assiette taxable : <strong>400k€</strong> (au lieu de 800k€)<br>
+        Avec abattement 100k€/enfant × 2 = 200k€ → <strong>base taxable 200k€</strong>
+      </div>
+    </div>
+
+    <div class="alert alert-warning">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Piège examen :</strong> La clause de quasi-usufruit doit être <strong>conventionnelle</strong> (prévue dans la clause bénéficiaire AV ou un acte notarié). Si elle est légale (art. 587 C. civ.), la créance de restitution est toujours déductible mais l'administration peut contester. La mention conventionnelle sécurise le montage.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>4.3 Contrat de capitalisation</h3>
+    <p>Alternative/complément à l'AV pour la transmission :</p>
+    <table>
+      <tr><th>Caractéristique</th><th>Assurance vie</th><th>Contrat de capitalisation</th></tr>
+      <tr><td>Transmission au décès</td><td>Hors succession (L.132-12)</td><td><strong>Entre dans la succession</strong></td></tr>
+      <tr><td>Donation possible ?</td><td>Non (droit personnel)</td><td><strong>Oui — donation NP possible</strong></td></tr>
+      <tr><td>Démembrement</td><td>Clause bénéficiaire démembrée</td><td>Donation NP avant 71 ans = NP à 60%</td></tr>
+    </table>
+
+    <h4 style="margin-top:16px">Stratégie optimale :</h4>
+    <div class="calc-block">
+      <div class="calc-step">
+        <strong>Ouvrir 2 contrats de capitalisation par enfant :</strong><br>
+        1 prudent (fonds euros) + 1 dynamique (UC)<br>
+        Donner la NP à chaque enfant avant 71 ans → NP = 60% (art. 669)<br>
+        <br>
+        Exemple : 200 000€ par contrat × 60% = <strong>120 000€ de NP</strong><br>
+        120 000€ / 2 enfants = 60 000€ par enfant<br>
+        Abattement : 100 000€ → <strong>0€ de droits</strong><br>
+        <br>
+        Au décès : PP reconstituée → 0€ de droits sur les 1er et 2ème décès<br>
+        (240 000€ transmis − 400 000€ d'abattements cumulés)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>4.4 Pension de réversion</h3>
+    <table>
+      <tr><th>Régime</th><th>Âge minimum</th><th>Taux</th><th>Condition</th></tr>
+      <tr><td><strong>CNAV (régime général)</strong></td><td>55 ans</td><td><strong>54%</strong> de la retraite du défunt</td><td>Plafond de ressources (~25 000€/an pour personne seule)</td></tr>
+      <tr><td><strong>AGIRC-ARRCO</strong></td><td>55 ans</td><td><strong>60%</strong> de la retraite complémentaire</td><td>Fin de concubinage. Fait toutes les personnes du privé.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>4.5 Abattements successoraux à ne pas oublier</h3>
+    <table>
+      <tr><th>Abattement</th><th>Taux/Montant</th><th>Condition</th></tr>
+      <tr><td><strong>GFI (Groupement Forestier)</strong></td><td>75% d'exonération</td><td>Conservation 6 ans minimum</td></tr>
+      <tr><td><strong>Don d'argent</strong></td><td>31 865€ exonéré</td><td>Donation familiale (art. 790 G CGI)</td></tr>
+      <tr><td><strong>Forfait mobilier</strong></td><td>5% de la masse successorale</td><td>Évaluation forfaitaire des meubles meublants</td></tr>
+      <tr><td><strong>Abattement RP</strong></td><td>20% de la valeur</td><td>Si occupée par le CJS au jour du décès</td></tr>
+      <tr><td><strong>Exonération CJS</strong></td><td>100%</td><td>Art. 796-0 bis CGI — aucun droit de succession</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 5: DONATION-PARTAGE TRANSGÉNÉRATIONNELLE -->
+<div class="section collapsible" id="mont-s5">
+  <h2 class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">Section 5 : Donation-partage transgénérationnelle</h2>
+
+  <div class="card">
+    <h3>5.1 Principe</h3>
+    <p>Transmettre directement aux <strong>petits-enfants</strong> en sautant une génération, avec l'accord des enfants intermédiaires.</p>
+    <table>
+      <tr><th>Élément</th><th>Détail</th></tr>
+      <tr><td>Mécanisme</td><td>Les grands-parents donnent la <strong>NP aux petits-enfants</strong> et l'<strong>usufruit aux enfants</strong></td></tr>
+      <tr><td>Droit de partage</td><td><strong>2,5%</strong> du montant transmis</td></tr>
+      <tr><td>Abattement GP → PE</td><td><strong>31 865€</strong> par grand-parent/petit-enfant (art. 790 B CGI)</td></tr>
+      <tr><td>Condition</td><td>Les enfants (génération intermédiaire) doivent <strong>renoncer</strong> à leur part au profit de leurs propres enfants</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>5.2 Réincorporation de donations antérieures</h3>
+    <p>Si des donations ont déjà été faites aux enfants, on peut les <strong>réincorporer</strong> dans la donation-partage transgénérationnelle :</p>
+    <ul>
+      <li>Les donations antérieures de + de 15 ans sont <strong>purgées</strong> (abattements reconstitués)</li>
+      <li>La réincorporation permet de <strong>redistribuer</strong> les biens entre enfants et petits-enfants</li>
+      <li>Si conventionnelle → redistribution pour optimiser la transmission globale</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>5.3 Cas d'application dans les cas pratiques</h3>
+    <table>
+      <tr><th>Cas</th><th>Application</th></tr>
+      <tr><td><span class="badge" style="background:var(--danger)">NORRIS</span></td><td>Donation transgénérationnelle — OBO SCI IS + transmission aux petits-enfants</td></tr>
+      <tr><td><span class="badge" style="background:var(--primary)">SNOW</span></td><td>Donation NP aux enfants + AV pour transmission complémentaire</td></tr>
+      <tr><td><span class="badge" style="background:var(--warning)">VADOR</span></td><td>DTUS pour financer les études de Luke et Leia + donation NP</td></tr>
+      <tr><td><span class="badge" style="background:var(--accent)">NIOTE</span></td><td>Donation avec charges aux enfants + transmission grands-parents</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 6: SYNTHÈSE CROISÉE -->
+<div class="section" id="mont-s6">
+  <div class="section-header">
+    <div class="section-num">📋</div>
+    <div class="section-title">Synthèse : Quel montage pour quel objectif ?</div>
+  </div>
+
+  <div class="card">
+    <table>
+      <tr><th>Objectif client</th><th>Montage principal</th><th>Montage complémentaire</th><th>Articles clés</th></tr>
+      <tr><td><strong>Transmettre aux enfants</strong></td><td>Donation NP (art. 669)</td><td>AV avant 70 ans (990 I)</td><td>779 I, 669, 990 I CGI</td></tr>
+      <tr><td><strong>Financer les études</strong></td><td>DTUS (art. 669-2)</td><td>Pension alimentaire déductible</td><td>669-2 CGI, 156 II-2° CGI</td></tr>
+      <tr><td><strong>Préparer la retraite</strong></td><td>PER (déduction TMI)</td><td>AV capitalisation + SCPI NP</td><td>154 bis CGI, L.224-1 CMF</td></tr>
+      <tr><td><strong>Protéger le CJS</strong></td><td>AV + clause quasi-usufruit</td><td>DDV + contrat de capitalisation</td><td>L.132-12 C.ass, 796-0 bis CGI</td></tr>
+      <tr><td><strong>Réduire l'IFI</strong></td><td>Donation NP + SCPI démembrée</td><td>DTUS + vente R2</td><td>968, 973 CGI</td></tr>
+      <tr><td><strong>Saut de génération</strong></td><td>Donation-partage transgénérationnelle</td><td>AV 757 B (après 70 ans)</td><td>1078-4 C.civ, 790 B CGI</td></tr>
+      <tr><td><strong>Effet levier</strong></td><td>SCPI NP à crédit</td><td>OBO SCI IS</td><td>669 CGI, art. 238 bis K CGI</td></tr>
+    </table>
+  </div>
+</div>
+
+</div>
+<!-- FIN MONTAGES -->
 
 <div class="case-content" id="case-guide">
 <!-- SECTION 0: INTRODUCTION & MODE D'EMPLOI -->
