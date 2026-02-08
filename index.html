@@ -1694,6 +1694,10 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
       <span class="tab-icon">⚔️</span>
       <span>VADOR</span>
     </div>
+    <div class="tab" data-case="leon" onclick="switchCase('leon')">
+      <span class="tab-icon">👨‍💼</span>
+      <span>LEON</span>
+    </div>
   </div>
   <div class="tab-divider"></div>
   <div class="tab-group">
@@ -2019,6 +2023,66 @@ body.dark-mode .sidebar::-webkit-scrollbar-thumb:hover {
   </a>
   <a class="sidebar-item" onclick="goTo('vad-s10')">
     <span class="num">10</span> Plan d'Action
+  </a>
+</div>
+
+<!-- LEON Sidebar -->
+<div id="sidebar-leon" style="display:none">
+  <div class="sidebar-label">Plan de l'examen</div>
+  <a class="sidebar-item active" onclick="goTo('leon-intro')">
+    <span class="num">0</span> Vue d'ensemble
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-s1')">
+    <span class="num">1</span> Situation du client
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-s2')">
+    <span class="num">2</span> Patrimoine
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-s3')">
+    <span class="num">3</span> Objectifs
+  </a>
+
+  <div class="sidebar-label" style="margin-top: 20px">E6I — Questions</div>
+  <a class="sidebar-item" onclick="goTo('leon-e6i-q1')">
+    <span class="num">Q1</span> Impôt sur le revenu & RFR
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-e6i-q2')">
+    <span class="num">Q2</span> PER — Économie d'impôt
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-e6i-q3')">
+    <span class="num">Q3</span> Traitement fiscal PER
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-e6i-q4')">
+    <span class="num">Q4</span> Placement 100 000€
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+
+  <div class="sidebar-label" style="margin-top: 20px">E6II — Succession</div>
+  <a class="sidebar-item" onclick="goTo('leon-e6ii-situation')">
+    <span class="num">📊</span> Situation 10 ans après
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-e6ii-q1')">
+    <span class="num">Q1</span> Droit d'habitation
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-e6ii-q2')">
+    <span class="num">Q2</span> Dévolution légale
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-e6ii-q3')">
+    <span class="num">Q3</span> Droits de succession
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('leon-e6ii-q4')">
+    <span class="num">Q4</span> Résidence secondaire
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+
+  <a class="sidebar-item" onclick="goTo('leon-annexes')">
+    <span class="num">📎</span> Annexes
   </a>
 </div>
 
@@ -10042,6 +10106,1625 @@ Droit (20%) = 3 000€
 
     </div>
 </div>
+
+<!-- ══════════════════════════════════════
+     CAS LEON — GESTION PATRIMONIALE GLOBALE
+     ══════════════════════════════════════ -->
+<div class="case-content" id="case-leon">
+
+<!-- SECTION 0: VUE D'ENSEMBLE -->
+<div class="section" id="leon-intro">
+  <h2 class="section-title">📊 Cas LEON — Vue d'ensemble</h2>
+
+  <div class="glass-card">
+    <h3>🎯 Contexte de l'examen</h3>
+    <p><strong>Épreuve E6I</strong> : Analyse et recommandations patrimoniales (2 heures)</p>
+    <p><strong>Épreuve E6II</strong> : Suivi de client et actualisation (2 heures)</p>
+    <p class="note-warning"><strong>⚠️ Important :</strong> Ce cas comporte deux épreuves distinctes qui se déroulent à 10 ans d'intervalle</p>
+  </div>
+
+  <div class="cols">
+    <div class="glass-card">
+      <h3>👥 Le couple LEON</h3>
+      <p><strong>Elise LEON</strong></p>
+      <ul>
+        <li>Née le 13 mai 1968</li>
+        <li>Ingénieur agronome</li>
+        <li>Salaire annuel brut : 70 000€</li>
+        <li>Salaire net imposable : 45 000€</li>
+      </ul>
+      <p><strong>Etienne LEON</strong></p>
+      <ul>
+        <li>Né le 17 septembre 1966</li>
+        <li>PDG de SAS (conseil startup)</li>
+        <li>Salaire annuel brut : 100 000€</li>
+        <li>Salaire net imposable : 75 000€</li>
+      </ul>
+    </div>
+
+    <div class="glass-card">
+      <h3>👶 Les enfants</h3>
+      <p><strong>Blanche</strong> née le 22 février 1997</p>
+      <ul>
+        <li>Ingénieure en cyber criminalité</li>
+        <li>Travaille depuis 3 ans</li>
+        <li>Indépendante fiscalement</li>
+      </ul>
+      <p><strong>Louis</strong> né le 15 mai 2000</p>
+      <ul>
+        <li>Termine ses études de droit</li>
+        <li>Carrière RH envisagée</li>
+        <li>À charge fiscale en 2024</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="glass-card note-info">
+    <h3>💍 Situation matrimoniale</h3>
+    <p><strong>Mariage :</strong> 31 juillet 1996</p>
+    <p><strong>Régime matrimonial :</strong> Communauté légale (pas de contrat)</p>
+    <p><strong>Protection :</strong> Aucune disposition prise pour protéger le conjoint en cas de décès</p>
+  </div>
+</div>
+
+<!-- SECTION 1: SITUATION DU CLIENT -->
+<div class="section" id="leon-s1">
+  <h2 class="section-title">1️⃣ Situation du client</h2>
+
+  <div class="glass-card">
+    <h3>👔 Situation professionnelle</h3>
+
+    <h4>Elise LEON</h4>
+    <div class="info-grid">
+      <div><strong>Profession :</strong> Ingénieur agronome</div>
+      <div><strong>Salaire brut :</strong> 70 000€</div>
+      <div><strong>Salaire net imposable :</strong> 45 000€</div>
+    </div>
+
+    <h4 style="margin-top: 20px">Etienne LEON</h4>
+    <div class="info-grid">
+      <div><strong>Ancien poste :</strong> Microsoft (jusqu'en 2015)</div>
+      <div><strong>Entreprise actuelle :</strong> SAS (conseil financement startup)</div>
+      <div><strong>Fonction :</strong> Président Directeur Général</div>
+      <div><strong>Salaire brut :</strong> 100 000€</div>
+      <div><strong>Salaire net imposable :</strong> 75 000€</div>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>🏖️ Projet de retraite</h3>
+    <p><strong>Date prévue :</strong> 2032</p>
+    <ul>
+      <li>Elise aura 64 ans</li>
+      <li>Etienne aura 66 ans</li>
+    </ul>
+
+    <h4>Estimations des pensions</h4>
+    <div class="cols">
+      <div class="highlight-box">
+        <p><strong>Elise</strong></p>
+        <p class="big-number">42 000€</p>
+        <p class="small-text">brut de prélèvements sociaux</p>
+      </div>
+      <div class="highlight-box">
+        <p><strong>Etienne</strong></p>
+        <p class="big-number">54 000€</p>
+        <p class="small-text">brut de prélèvements sociaux</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: PATRIMOINE -->
+<div class="section" id="leon-s2">
+  <h2 class="section-title">2️⃣ Patrimoine du couple</h2>
+
+  <div class="glass-card">
+    <h3>🏠 Patrimoine immobilier</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Bien</th>
+          <th>Date d'acquisition</th>
+          <th>Valeur</th>
+          <th>Détails</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Résidence principale</strong><br>Rue Anatole France, Paris XXème</td>
+          <td>2000</td>
+          <td class="number">800 000€</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td><strong>Appartement locatif</strong><br>Rue de Belleville, Paris XXème</td>
+          <td>Janvier 2010</td>
+          <td class="number">300 000€</td>
+          <td>Rentabilité brute : 3%<br>Loyers : 9 000€/an</td>
+        </tr>
+        <tr>
+          <td><strong>Appartement Rouen</strong><br>Hérité par Etienne</td>
+          <td>Avril 2024</td>
+          <td class="number">140 000€</td>
+          <td>Non occupé<br>Succession mère d'Etienne</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="glass-card">
+    <h3>💰 Patrimoine financier</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Titulaire</th>
+          <th>Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>LDDS</td>
+          <td>Etienne</td>
+          <td class="number">12 000€</td>
+        </tr>
+        <tr>
+          <td>Livret A</td>
+          <td>Elise</td>
+          <td class="number">20 000€</td>
+        </tr>
+        <tr>
+          <td>Livret A</td>
+          <td>Etienne</td>
+          <td class="number">20 000€</td>
+        </tr>
+        <tr>
+          <td><strong>Contrat assurance vie</strong><br>(Mars 2022)</td>
+          <td>Etienne</td>
+          <td class="number">200 000€</td>
+        </tr>
+        <tr>
+          <td><strong>Somme à recevoir</strong><br>(Succession mère)</td>
+          <td>Etienne</td>
+          <td class="number">100 000€</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><strong>TOTAL PATRIMOINE</strong></td>
+          <td class="number"><strong>1 592 000€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="note-info" style="margin-top: 20px">
+      <p><strong>💡 Point clé :</strong> Le contrat d'assurance vie de 200 000€ a été souscrit en mars 2022 suite à la clôture d'un compte d'épargne bancaire alimenté tout au long du mariage.</p>
+      <p><strong>Objectif du contrat :</strong> Profiter des caractères dérogatoires de l'assurance vie en matière de transmission (civil et fiscal).</p>
+    </div>
+  </div>
+
+  <div class="glass-card note-warning">
+    <h3>⚠️ Points d'attention</h3>
+    <ul>
+      <li>Le couple n'a pas de dettes significatives</li>
+      <li>Aucune disposition n'a été prise pour protéger le conjoint en cas de décès</li>
+      <li>L'appartement de Belleville génère 9 000€ de revenus bruts annuels</li>
+      <li>La somme de 100 000€ sera reçue dans quelques jours par Etienne</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 3: OBJECTIFS -->
+<div class="section" id="leon-s3">
+  <h2 class="section-title">3️⃣ Objectifs du couple</h2>
+
+  <div class="glass-card">
+    <h3>🎯 Objectifs principaux</h3>
+
+    <div class="objective-card">
+      <div class="objective-icon">💰</div>
+      <div>
+        <h4>1. Réduire la pression fiscale</h4>
+        <p>Diminuer l'impôt sur le revenu du foyer fiscal</p>
+      </div>
+    </div>
+
+    <div class="objective-card">
+      <div class="objective-icon">🏖️</div>
+      <div>
+        <h4>2. Augmenter les revenus à la retraite</h4>
+        <p>Sous forme de rente viagère ou de retraits ponctuels</p>
+        <p class="note-info"><strong>Enveloppe destinée :</strong> 10 000€/an</p>
+      </div>
+    </div>
+
+    <div class="objective-card">
+      <div class="objective-icon">📈</div>
+      <div>
+        <h4>3. Valoriser la somme de 100 000€</h4>
+        <p>Optimiser le placement de l'héritage qu'Etienne va recevoir</p>
+        <p class="note-warning"><strong>Urgence :</strong> Somme à recevoir dans quelques jours</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     E6I — QUESTIONS D'EXAMEN
+     ═══════════════════════════════════════ -->
+
+<!-- QUESTION 1: IR & RFR -->
+<div class="section" id="leon-e6i-q1">
+  <h2 class="section-title">📝 E6I — Question 1 : Impôt sur le revenu & RFR</h2>
+
+  <div class="glass-card exam-card">
+    <h3>📋 Énoncé (6 points)</h3>
+    <p><strong>Quel est le montant de l'impôt sur le revenu dans l'état actuel de leur situation ? Quel est le RFR (Revenu Fiscal de Référence) ?</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>🔢 Éléments de calcul</h3>
+
+    <h4>1. Revenus nets imposables</h4>
+    <ul>
+      <li>Elise : 45 000€</li>
+      <li>Etienne : 75 000€</li>
+      <li><strong>Total :</strong> 120 000€</li>
+    </ul>
+
+    <h4>2. Déduction forfaitaire de 10%</h4>
+    <p>Plafond : 14 171€ par personne (voir Annexe 1)</p>
+    <ul>
+      <li>Elise : 45 000€ × 10% = 4 500€ (< plafond)</li>
+      <li>Etienne : 75 000€ × 10% = 7 500€ (< plafond)</li>
+      <li><strong>Total déduction :</strong> 12 000€</li>
+    </ul>
+
+    <h4>3. Revenu net imposable après abattement</h4>
+    <p>120 000€ - 12 000€ = <strong>108 000€</strong></p>
+
+    <h4>4. Nombre de parts fiscales</h4>
+    <p>Couple marié (2 parts) + 1 enfant à charge Louis (0,5 part) = <strong>2,5 parts</strong></p>
+
+    <h4>5. Quotient familial</h4>
+    <p>108 000€ ÷ 2,5 = <strong>43 200€</strong></p>
+
+    <h4>6. Calcul de l'impôt par part (Barème 2024)</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tranche</th>
+          <th>Calcul</th>
+          <th>Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 € à 11 294€</td>
+          <td>0%</td>
+          <td class="number">0€</td>
+        </tr>
+        <tr>
+          <td>11 294€ à 28 797€</td>
+          <td>(28 797 - 11 294) × 11%</td>
+          <td class="number">1 925,33€</td>
+        </tr>
+        <tr>
+          <td>28 797€ à 43 200€</td>
+          <td>(43 200 - 28 797) × 30%</td>
+          <td class="number">4 320,90€</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><strong>Impôt pour 1 part</strong></td>
+          <td class="number"><strong>6 246,23€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h4>7. Impôt total avant plafonnement QF</h4>
+    <p>6 246,23€ × 2,5 parts = <strong>15 615,58€</strong></p>
+
+    <h4>8. Vérification du plafonnement du quotient familial</h4>
+    <p>Avantage de la demi-part de Louis : 1 759€ (plafond 2024)</p>
+    <ul>
+      <li>IR avec 2 parts : 12 492€ (6 246€ × 2)</li>
+      <li>IR avec 2,5 parts : 15 616€</li>
+      <li>Avantage réel : 12 492€ - 15 616€ = Négatif → Pas de plafonnement</li>
+    </ul>
+
+    <div class="highlight-box">
+      <h3>✅ Réponse finale</h3>
+      <p><strong>Impôt sur le revenu :</strong> <span class="big-number">15 616€</span></p>
+      <p><strong>Revenu Fiscal de Référence (RFR) :</strong> <span class="big-number">120 000€</span></p>
+      <p class="small-text">Le RFR correspond au total des revenus nets imposables avant abattement de 10%</p>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTION 2: PER -->
+<div class="section" id="leon-e6i-q2">
+  <h2 class="section-title">📝 E6I — Question 2 : PER et économie d'impôt</h2>
+
+  <div class="glass-card exam-card">
+    <h3>📋 Énoncé (6 points)</h3>
+    <p><strong>Ils ont entendu parler du PER pour compléter leurs revenus à la retraite, tout en minorant l'impôt sur le revenu. Confirmez-leur en justifiant que cette information est exacte et en insistant sur les contraintes d'un tel produit. Enfin, vous leur indiquerez l'économie d'impôt réalisée grâce à la souscription d'un PER, le montant du revenu net imposable ainsi que le montant du RFR.</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>✅ Confirmation : Le PER est adapté</h3>
+
+    <h4>Avantages du PER</h4>
+    <ul>
+      <li><strong>Déduction fiscale :</strong> Les versements sont déductibles du revenu imposable</li>
+      <li><strong>Préparation retraite :</strong> Constitution d'un capital/rente pour la retraite</li>
+      <li><strong>Flexibilité :</strong> Sortie en capital ou en rente viagère possible</li>
+      <li><strong>Enveloppe dédiée :</strong> 10 000€/an correspondent bien à leur capacité d'épargne</li>
+    </ul>
+
+    <h4>⚠️ Contraintes du PER</h4>
+    <div class="note-warning">
+      <ul>
+        <li><strong>Blocage des fonds :</strong> Épargne bloquée jusqu'à la retraite (sauf cas de déblocage anticipé)</li>
+        <li><strong>Fiscalité à la sortie :</strong> Les sommes retirées sont imposables (si déduites à l'entrée)</li>
+        <li><strong>Plafond de déduction :</strong> Limité à 10% des revenus professionnels (avec plafonds)</li>
+        <li><strong>Horizon long terme :</strong> Produit inadapté pour besoins de liquidité à court terme</li>
+      </ul>
+    </div>
+
+    <h4>Cas de déblocage anticipé</h4>
+    <ul>
+      <li>Décès du conjoint ou du partenaire de PACS</li>
+      <li>Invalidité (titulaire, conjoint, enfants)</li>
+      <li>Surendettement</li>
+      <li>Expiration des droits au chômage</li>
+      <li>Cessation d'activité non salariée (liquidation judiciaire)</li>
+      <li>Acquisition de la résidence principale</li>
+    </ul>
+  </div>
+
+  <div class="glass-card">
+    <h3>🧮 Calcul de l'économie d'impôt</h3>
+
+    <h4>1. Plafond de déduction PER</h4>
+    <p>Pour Etienne (le plus imposé) :</p>
+    <ul>
+      <li>10% des revenus professionnels 2023 : 75 000€ × 10% = 7 500€</li>
+      <li>Ou 10% du PASS 2023 : 43 992€ × 10% = 4 399,20€</li>
+      <li><strong>Plafond retenu :</strong> Le plus élevé = 7 500€</li>
+    </ul>
+    <p class="note-info">L'enveloppe de 10 000€/an devra être répartie entre les deux époux pour optimiser</p>
+
+    <h4>2. Versement optimal</h4>
+    <p>Hypothèse : 10 000€ versés sur le PER d'Etienne</p>
+    <p><strong>Montant déductible :</strong> 7 500€ (plafonné)</p>
+
+    <h4>3. Nouveau revenu net imposable</h4>
+    <ul>
+      <li>Revenus avant PER : 120 000€</li>
+      <li>Déduction PER : - 7 500€</li>
+      <li>Déduction forfaitaire 10% : - 11 250€ [(120 000 - 7 500) × 10%]</li>
+      <li><strong>Revenu net imposable :</strong> 101 250€</li>
+    </ul>
+
+    <h4>4. Nouveau calcul de l'impôt</h4>
+    <ul>
+      <li>Quotient familial : 101 250€ ÷ 2,5 = 40 500€</li>
+      <li>Impôt par part : 5 546,23€</li>
+      <li>Impôt total : 5 546,23€ × 2,5 = <strong>13 865,58€</strong></li>
+    </ul>
+
+    <div class="highlight-box">
+      <h3>✅ Résultats</h3>
+      <p><strong>Économie d'impôt :</strong> <span class="big-number">1 750€</span></p>
+      <p class="small-text">(15 616€ - 13 866€)</p>
+
+      <p style="margin-top: 15px"><strong>Nouveau revenu net imposable :</strong> <span class="big-number">101 250€</span></p>
+
+      <p style="margin-top: 15px"><strong>Nouveau RFR :</strong> <span class="big-number">112 500€</span></p>
+      <p class="small-text">(120 000€ - 7 500€)</p>
+    </div>
+
+    <div class="note-info" style="margin-top: 20px">
+      <p><strong>💡 Optimisation :</strong> Pour déduire les 10 000€ complets, le couple pourrait ouvrir deux PER (un pour chaque époux) et répartir les versements selon les plafonds respectifs.</p>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTION 3: Traitement fiscal PER -->
+<div class="section" id="leon-e6i-q3">
+  <h2 class="section-title">📝 E6I — Question 3 : Traitement fiscal du PER à la sortie</h2>
+
+  <div class="glass-card exam-card">
+    <h3>📋 Énoncé (4 points)</h3>
+    <p><strong>Quel est le traitement fiscal du produit de retraite PER, selon que les époux débloquent les contrats sous forme de rente viagère (de 3 360 €/an) ou de rachat total (hypothèse de versements de 10 000€ pendant 8 ans et d'une plus-value globale de 8 000€) lorsque les primes ont été déduites pendant la phase de constitution du contrat ?</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>💰 Option 1 : Sortie en rente viagère</h3>
+
+    <h4>Montant de la rente</h4>
+    <p>Rente annuelle : <strong>3 360€</strong></p>
+
+    <h4>Traitement fiscal</h4>
+    <div class="highlight-box">
+      <p><strong>Imposition :</strong> La rente est imposée comme une pension de retraite</p>
+      <ul>
+        <li>Abattement forfaitaire de 10% (plafonné à 4 321€ pour le foyer)</li>
+        <li>Le montant après abattement est ajouté aux autres revenus</li>
+        <li>Imposition au barème progressif de l'IR</li>
+        <li>Soumission aux prélèvements sociaux (10,1% pour les pensions)</li>
+      </ul>
+    </div>
+
+    <h4>Calcul</h4>
+    <ul>
+      <li>Rente brute : 3 360€</li>
+      <li>Abattement 10% : 336€</li>
+      <li><strong>Montant imposable :</strong> 3 024€</li>
+    </ul>
+    <p class="note-info">Ce montant s'ajoute aux autres revenus du foyer et est imposé à la tranche marginale d'imposition</p>
+
+    <h4>Prélèvements sociaux</h4>
+    <p>3 360€ × 10,1% = <strong>339€</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>💸 Option 2 : Sortie en capital (rachat total)</h3>
+
+    <h4>Composition du capital</h4>
+    <ul>
+      <li>Versements totaux : 10 000€ × 8 ans = 80 000€</li>
+      <li>Plus-value : 8 000€</li>
+      <li><strong>Capital total :</strong> 88 000€</li>
+    </ul>
+
+    <h4>Traitement fiscal</h4>
+    <div class="highlight-box">
+      <p><strong>Principe :</strong> Le capital est imposable car les primes ont été déduites à l'entrée</p>
+
+      <h4>A. Impôt sur le revenu</h4>
+      <ul>
+        <li>Les 80 000€ de versements sont imposables au barème progressif</li>
+        <li>Possibilité d'étalement sur 4 ans (système du quotient)</li>
+        <li>La plus-value de 8 000€ est également imposable au barème</li>
+      </ul>
+
+      <h4>B. Prélèvements sociaux</h4>
+      <ul>
+        <li>Taux : 17,2%</li>
+        <li>Assiette : uniquement sur la plus-value de 8 000€</li>
+        <li><strong>Montant PS :</strong> 8 000€ × 17,2% = 1 376€</li>
+      </ul>
+    </div>
+
+    <h4>📊 Système du quotient (Option d'étalement)</h4>
+    <div class="note-info">
+      <p>Pour lisser l'imposition, le capital peut être imposé selon le système du quotient :</p>
+      <ul>
+        <li>On divise le capital par 4</li>
+        <li>On calcule l'IR avec ce quart ajouté aux revenus</li>
+        <li>On calcule l'IR sans ce quart</li>
+        <li>La différence × 4 = IR dû sur le capital</li>
+      </ul>
+      <p>Cela évite une forte progression due au barème</p>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>⚖️ Comparaison des deux options</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Critère</th>
+          <th>Rente viagère</th>
+          <th>Capital</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Sécurité</strong></td>
+          <td>✅ Revenu régulier à vie</td>
+          <td>⚠️ Risque d'épuisement</td>
+        </tr>
+        <tr>
+          <td><strong>Flexibilité</strong></td>
+          <td>❌ Pas d'accès au capital</td>
+          <td>✅ Libre disposition</td>
+        </tr>
+        <tr>
+          <td><strong>Transmission</strong></td>
+          <td>❌ Rente éteinte au décès</td>
+          <td>✅ Capital transmissible</td>
+        </tr>
+        <tr>
+          <td><strong>Fiscalité</strong></td>
+          <td>Abattement 10% puis barème</td>
+          <td>Barème (avec quotient possible)</td>
+        </tr>
+        <tr>
+          <td><strong>PS</strong></td>
+          <td>10,1% sur rente brute</td>
+          <td>17,2% sur plus-value uniquement</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- QUESTION 4: Placement 100 000€ -->
+<div class="section" id="leon-e6i-q4">
+  <h2 class="section-title">📝 E6I — Question 4 : Placement de 100 000€</h2>
+
+  <div class="glass-card exam-card">
+    <h3>📋 Énoncé (4 points)</h3>
+    <p><strong>Après avoir analysé le patrimoine des époux, vous préconiserez à Etienne un placement financier répondant à l'objectif de valorisation de la somme de 100 000€ tout en lui garantissant la traçabilité du placement en tant que fonds propres.</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>🔍 Analyse de la situation</h3>
+
+    <h4>Contexte</h4>
+    <ul>
+      <li>Etienne va recevoir 100 000€ suite au décès de sa mère</li>
+      <li>Ces fonds sont des <strong>biens propres</strong> (héritage)</li>
+      <li>Il a également un appartement hérité à Rouen (140 000€)</li>
+      <li>Objectif : <strong>traçabilité des fonds propres</strong></li>
+    </ul>
+
+    <div class="note-warning">
+      <h4>⚠️ Problématique de traçabilité</h4>
+      <p>En régime de communauté légale, les revenus issus de biens propres tombent dans la communauté (article 1401 du Code civil). Pour préserver le caractère propre, il faut :</p>
+      <ul>
+        <li>Éviter la confusion avec des fonds communs</li>
+        <li>Assurer une traçabilité claire de l'origine des fonds</li>
+        <li>Privilégier des placements permettant d'identifier la source</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>✅ Recommandation : Contrat d'assurance vie dédié</h3>
+
+    <h4>Pourquoi l'assurance vie ?</h4>
+    <div class="highlight-box">
+      <ul>
+        <li><strong>✅ Traçabilité parfaite :</strong> Le versement unique de 100 000€ est identifiable</li>
+        <li><strong>✅ Clause d'emploi :</strong> Possibilité de rédiger une clause précisant l'origine des fonds</li>
+        <li><strong>✅ Valorisation :</strong> Le capital est investi et peut générer des plus-values</li>
+        <li><strong>✅ Souplesse :</strong> Accès aux fonds en cas de besoin (liquidité)</li>
+        <li><strong>✅ Transmission optimisée :</strong> Avantages fiscaux et civils</li>
+        <li><strong>✅ Protection du capital :</strong> Hors succession civile (dans certaines limites)</li>
+      </ul>
+    </div>
+
+    <h4>📝 Clause d'emploi recommandée</h4>
+    <div class="code-block">
+      <p>"Ce contrat a été souscrit le [date] par un versement unique de 100 000€ (cent mille euros) provenant exclusivement de la succession de Madame [Nom de la mère d'Etienne], décédée le [date], conformément à l'acte de notoriété établi par Maître [Nom du notaire] le [date]. Ces fonds constituent des biens propres de M. Etienne LEON au sens de l'article 1405 du Code civil."</p>
+    </div>
+
+    <h4>Clause bénéficiaire recommandée</h4>
+    <div class="code-block">
+      <p>"Mon épouse, Elise LEON née MARCHAND, le 13 mai 1968, à défaut mes enfants par parts égales vivants ou représentés, en cas de décès ou de renonciation, à défaut [association/fondation de choix]."</p>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>📊 Structure du patrimoine après recommandation</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Actif</th>
+          <th>Nature</th>
+          <th>Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="3" class="category-header"><strong>BIENS COMMUNS</strong></td>
+        </tr>
+        <tr>
+          <td>Résidence principale</td>
+          <td>Commun</td>
+          <td class="number">800 000€</td>
+        </tr>
+        <tr>
+          <td>Appt Belleville</td>
+          <td>Commun</td>
+          <td class="number">300 000€</td>
+        </tr>
+        <tr>
+          <td>Livrets & LDDS</td>
+          <td>Commun</td>
+          <td class="number">52 000€</td>
+        </tr>
+        <tr>
+          <td>AV Mars 2022</td>
+          <td>Commun</td>
+          <td class="number">200 000€</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="category-header"><strong>BIENS PROPRES ETIENNE</strong></td>
+        </tr>
+        <tr>
+          <td>Appt Rouen</td>
+          <td>Propre (héritage)</td>
+          <td class="number">140 000€</td>
+        </tr>
+        <tr>
+          <td><strong>AV dédiée (nouveau)</strong></td>
+          <td><strong>Propre (héritage)</strong></td>
+          <td class="number"><strong>100 000€</strong></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><strong>TOTAL PATRIMOINE</strong></td>
+          <td class="number"><strong>1 592 000€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="glass-card note-info">
+    <h3>💡 Alternatives possibles</h3>
+
+    <h4>2. Compte-titres individuel</h4>
+    <p>✅ Traçabilité<br>⚠️ Fiscalité moins avantageuse<br>⚠️ Revenus tombent dans la communauté</p>
+
+    <h4>3. Vente de l'appartement de Rouen + réinvestissement</h4>
+    <p>✅ Liquidité immédiate<br>⚠️ Perte de l'actif immobilier<br>⚠️ Fiscalité de la vente (plus-value)</p>
+
+    <p class="note-warning"><strong>Conclusion :</strong> L'assurance vie reste la solution la plus adaptée pour garantir la traçabilité tout en optimisant la valorisation et la transmission.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     E6II — SUCCESSION (10 ANS APRÈS)
+     ═══════════════════════════════════════ -->
+
+<!-- SITUATION 10 ANS APRÈS -->
+<div class="section" id="leon-e6ii-situation">
+  <h2 class="section-title">📊 E6II — Situation 10 ans après (2034)</h2>
+
+  <div class="glass-card note-warning">
+    <h3>⚠️ Événement tragique</h3>
+    <p><strong>Elise LEON est décédée suite à un accident de voiture</strong></p>
+    <p>Etienne doit maintenant gérer la succession et prendre des décisions importantes pour son avenir et celui de ses enfants.</p>
+  </div>
+
+  <div class="glass-card">
+    <h3>📅 Historique 2024-2034</h3>
+
+    <h4>Recommandations suivies</h4>
+    <ul>
+      <li>✅ Souscription d'un PER avec versements de 10 000€/an</li>
+      <li>✅ Contrat AV dédié souscrit en septembre 2024 (240 000€)</li>
+      <li>✅ Vente de l'appartement de Rouen (140 000€)</li>
+      <li>✅ Clause bénéficiaire rédigée conformément aux recommandations</li>
+    </ul>
+
+    <h4>Au moment de la retraite (2032)</h4>
+    <p>Etienne a liquidé ses droits à la retraite et débloqué le PER en rente viagère.</p>
+  </div>
+
+  <div class="glass-card">
+    <h3>💰 Patrimoine au décès d'Elise (2034)</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Actif</th>
+          <th>Date acquisition</th>
+          <th>Valeur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="3" class="category-header"><strong>BIENS IMMOBILIERS</strong></td>
+        </tr>
+        <tr>
+          <td>Résidence principale<br>Rue Anatole France, Paris XXème</td>
+          <td>2000</td>
+          <td class="number">1 000 000€</td>
+        </tr>
+        <tr>
+          <td>Appartement locatif<br>Rue de Belleville, Paris XXème<br>(acheté 300 000€, rentabilité 3%)</td>
+          <td>Janvier 2010</td>
+          <td class="number">360 000€</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="category-header"><strong>LIQUIDITÉS</strong></td>
+        </tr>
+        <tr>
+          <td>LDDS Etienne</td>
+          <td>-</td>
+          <td class="number">12 000€</td>
+        </tr>
+        <tr>
+          <td>Livret A Elise</td>
+          <td>-</td>
+          <td class="number">20 000€</td>
+        </tr>
+        <tr>
+          <td>Livret A Etienne</td>
+          <td>-</td>
+          <td class="number">20 000€</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="category-header"><strong>ASSURANCE VIE</strong></td>
+        </tr>
+        <tr>
+          <td>Contrat AV Mars 2022<br>(alimenté en cours de mariage : 200 000€)</td>
+          <td>Mars 2022</td>
+          <td class="number">240 000€</td>
+        </tr>
+        <tr>
+          <td>Contrat AV Septembre 2024<br>(versement initial : 240 000€)</td>
+          <td>Septembre 2024</td>
+          <td class="number">380 000€</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><strong>TOTAL ACTIF</strong></td>
+          <td class="number"><strong>2 032 000€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h4>Passif</h4>
+    <table class="data-table">
+      <tbody>
+        <tr>
+          <td>Solde d'IR pour l'année 2034</td>
+          <td class="number">6 000€</td>
+        </tr>
+        <tr>
+          <td>Taxe foncière (2 appartements Paris)</td>
+          <td class="number">7 000€</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>TOTAL PASSIF COMMUN</strong></td>
+          <td class="number"><strong>13 000€</strong></td>
+        </tr>
+        <tr>
+          <td><strong>ACTIF COMMUN NET</strong></td>
+          <td class="number"><strong>2 019 000€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="glass-card">
+    <h3>🎯 Objectifs d'Etienne</h3>
+    <ul>
+      <li>Procéder au partage de la succession</li>
+      <li>Choix de l'option : <strong>1/4 en pleine propriété</strong></li>
+      <li>Souhaite rester dans la résidence principale si possible</li>
+      <li>S'interroge sur la faisabilité et l'impact successoral</li>
+      <li>Veut aider ses enfants</li>
+    </ul>
+  </div>
+</div>
+
+<!-- E6II QUESTION 1 -->
+<div class="section" id="leon-e6ii-q1">
+  <h2 class="section-title">📝 E6II — Question 1 : Droit d'habitation</h2>
+
+  <div class="glass-card exam-card">
+    <h3>📋 Énoncé (4 points)</h3>
+    <p><strong>Etienne peut-il rester dans la résidence principale et dans l'affirmative, quel en serait l'impact financier ?</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>✅ Réponse : OUI, Etienne peut rester</h3>
+
+    <h4>📖 Base légale : Article 764 du Code civil</h4>
+    <div class="highlight-box">
+      <p><strong>Droit temporaire au logement (1 an)</strong></p>
+      <p>Le conjoint survivant bénéficie automatiquement d'un droit de jouissance gratuite pendant 1 an du logement familial et du mobilier le garnissant.</p>
+
+      <p style="margin-top: 15px"><strong>Droit viager au logement</strong></p>
+      <p>Le conjoint survivant dispose d'un <strong>droit viager d'habitation</strong> sur le logement principal et d'un <strong>droit d'usage</strong> sur le mobilier.</p>
+    </div>
+
+    <h4>Conditions</h4>
+    <ul>
+      <li>✅ Mariage : Elise et Etienne étaient mariés</li>
+      <li>✅ Logement familial : Résidence principale du couple</li>
+      <li>✅ Occupation effective : Etienne occupait le logement au décès</li>
+    </ul>
+
+    <p class="note-info"><strong>Important :</strong> Ce droit s'exerce automatiquement, sauf renonciation expresse du conjoint survivant.</p>
+  </div>
+
+  <div class="glass-card">
+    <h3>💰 Impact financier</h3>
+
+    <h4>1. Calcul de la valeur du droit d'habitation et d'usage</h4>
+
+    <p><strong>Valeur de la résidence principale :</strong> 1 000 000€</p>
+
+    <p><strong>Âge d'Etienne au décès d'Elise + 1 an :</strong></p>
+    <ul>
+      <li>Né le 17 septembre 1966</li>
+      <li>Au décès d'Elise (2034), il a environ 68 ans</li>
+      <li>Un an après : <strong>69 ans</strong></li>
+    </ul>
+
+    <p><strong>Barème fiscal de l'usufruit (Annexe 1) :</strong></p>
+    <ul>
+      <li>Entre 61 et 71 ans révolus : usufruit = 50%</li>
+      <li><strong>Usufruit :</strong> 1 000 000€ × 50% = 500 000€</li>
+    </ul>
+
+    <p><strong>Valeur du droit d'habitation et d'usage (Annexe 2) :</strong></p>
+    <div class="highlight-box">
+      <p>60% de la valeur de l'usufruit</p>
+      <p><strong>Droit d'habitation = 500 000€ × 60% = 300 000€</strong></p>
+    </div>
+
+    <h4>2. Imputation sur les droits successoraux</h4>
+    <p>Le droit d'habitation et d'usage s'impute sur :</p>
+    <ul>
+      <li>D'abord les droits en usufruit du conjoint</li>
+      <li>Puis, le cas échéant, sur les droits en pleine propriété</li>
+    </ul>
+
+    <h4>3. Impact sur la succession</h4>
+    <div class="note-warning">
+      <p><strong>Option d'Etienne :</strong> 1/4 en pleine propriété</p>
+      <p>Le droit d'habitation viendra réduire la part qui lui revient :</p>
+      <ul>
+        <li>Valeur du droit : 300 000€</li>
+        <li>Cette valeur sera déduite de sa part de 1/4</li>
+        <li>Impact sur la liquidité : Etienne devra peut-être compenser</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>⚖️ Conséquences pratiques</h3>
+
+    <h4>✅ Avantages</h4>
+    <ul>
+      <li>Etienne peut continuer à vivre dans la résidence principale</li>
+      <li>Pas de loyer à payer</li>
+      <li>Stabilité et maintien dans son cadre de vie</li>
+    </ul>
+
+    <h4>⚠️ Contraintes</h4>
+    <ul>
+      <li>Le droit d'habitation réduit sa part successorale</li>
+      <li>Charges du logement à sa charge (taxe foncière, entretien)</li>
+      <li>Droit viager : s'éteint à son décès (pas transmissible)</li>
+      <li>Les enfants deviennent nus-propriétaires du bien</li>
+    </ul>
+
+    <div class="highlight-box">
+      <h3>✅ Conclusion</h3>
+      <p><strong>OUI</strong>, Etienne peut rester dans la résidence principale grâce au droit viager d'habitation.</p>
+      <p><strong>Impact financier :</strong> 300 000€ à imputer sur ses droits successoraux</p>
+    </div>
+  </div>
+</div>
+
+<!-- E6II QUESTION 2 -->
+<div class="section" id="leon-e6ii-q2">
+  <h2 class="section-title">📝 E6II — Question 2 : Dévolution légale</h2>
+
+  <div class="glass-card exam-card">
+    <h3>📋 Énoncé (6 points)</h3>
+    <p><strong>Procédez à la dévolution légale suite au décès d'Elise (option du conjoint : 1/4 en pleine propriété).</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>🔍 Analyse préalable</h3>
+
+    <h4>Régime matrimonial</h4>
+    <p>Communauté légale (mariage sans contrat en 1996)</p>
+
+    <h4>Héritiers</h4>
+    <ul>
+      <li><strong>Etienne</strong> : Conjoint survivant</li>
+      <li><strong>Blanche</strong> : Fille (née en 1997, 37 ans)</li>
+      <li><strong>Louis</strong> : Fils (né en 2000, 34 ans)</li>
+    </ul>
+
+    <h4>Assurance vie (Annexe 3)</h4>
+    <p class="note-info">Selon la réponse ministérielle CIOT, pour les successions ouvertes à compter du 1er janvier 2016, la valeur de rachat d'un contrat d'assurance-vie souscrit avec des fonds communs et non dénoué au décès de l'époux bénéficiaire n'est pas intégrée à l'actif de communauté.</p>
+
+    <ul>
+      <li>Contrat Mars 2022 (240 000€) : <strong>NON intégré</strong> (fonds communs, Etienne bénéficiaire)</li>
+      <li>Contrat Septembre 2024 (380 000€) : <strong>NON intégré</strong> (fonds propres, Etienne bénéficiaire)</li>
+    </ul>
+  </div>
+
+  <div class="glass-card">
+    <h3>📊 Étape 1 : Liquidation de la communauté</h3>
+
+    <h4>Actif de communauté</h4>
+    <table class="data-table">
+      <tbody>
+        <tr>
+          <td>Résidence principale</td>
+          <td class="number">1 000 000€</td>
+        </tr>
+        <tr>
+          <td>Appartement Belleville</td>
+          <td class="number">360 000€</td>
+        </tr>
+        <tr>
+          <td>LDDS Etienne</td>
+          <td class="number">12 000€</td>
+        </tr>
+        <tr>
+          <td>Livret A Elise</td>
+          <td class="number">20 000€</td>
+        </tr>
+        <tr>
+          <td>Livret A Etienne</td>
+          <td class="number">20 000€</td>
+        </tr>
+        <tr>
+          <td><s>AV Mars 2022</s></td>
+          <td class="number"><s>240 000€</s> (exclu)</td>
+        </tr>
+        <tr>
+          <td><s>AV Septembre 2024</s></td>
+          <td class="number"><s>380 000€</s> (exclu)</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>Total actif commun</strong></td>
+          <td class="number"><strong>1 412 000€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h4>Passif de communauté</h4>
+    <table class="data-table">
+      <tbody>
+        <tr>
+          <td>Solde IR 2034</td>
+          <td class="number">6 000€</td>
+        </tr>
+        <tr>
+          <td>Taxe foncière</td>
+          <td class="number">7 000€</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>Total passif</strong></td>
+          <td class="number"><strong>13 000€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h4>Actif net de communauté</h4>
+    <div class="highlight-box">
+      <p>1 412 000€ - 13 000€ = <strong>1 399 000€</strong></p>
+    </div>
+
+    <h4>Partage de la communauté (50/50)</h4>
+    <div class="cols">
+      <div class="highlight-box">
+        <p><strong>Part d'Etienne</strong></p>
+        <p class="big-number">699 500€</p>
+      </div>
+      <div class="highlight-box">
+        <p><strong>Part d'Elise</strong></p>
+        <p class="big-number">699 500€</p>
+        <p class="small-text">(intègre la succession)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>📊 Étape 2 : Dévolution de la succession</h3>
+
+    <h4>Masse successorale</h4>
+    <div class="highlight-box">
+      <p><strong>Actif successoral = Part d'Elise dans la communauté</strong></p>
+      <p class="big-number">699 500€</p>
+    </div>
+
+    <h4>Option du conjoint : 1/4 en pleine propriété</h4>
+    <p>Articles 757 et suivants du Code civil</p>
+    <p>En présence d'enfants communs, le conjoint survivant peut opter pour :</p>
+    <ul>
+      <li>L'usufruit de la totalité des biens, OU</li>
+      <li><strong>1/4 en pleine propriété</strong> ← Choix d'Etienne</li>
+    </ul>
+
+    <h4>Répartition</h4>
+    <div class="cols">
+      <div class="highlight-box">
+        <p><strong>Etienne (1/4 PP)</strong></p>
+        <p class="big-number">174 875€</p>
+        <p class="small-text">699 500€ × 1/4</p>
+      </div>
+      <div class="highlight-box">
+        <p><strong>Blanche (3/8)</strong></p>
+        <p class="big-number">262 312,50€</p>
+        <p class="small-text">699 500€ × 3/4 ÷ 2</p>
+      </div>
+      <div class="highlight-box">
+        <p><strong>Louis (3/8)</strong></p>
+        <p class="big-number">262 312,50€</p>
+        <p class="small-text">699 500€ × 3/4 ÷ 2</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>📊 Étape 3 : Prise en compte du droit d'habitation</h3>
+
+    <p class="note-info">Etienne souhaite rester dans la résidence principale (voir Question 1)</p>
+
+    <h4>Valeur du droit d'habitation</h4>
+    <p>300 000€ (calculé en Q1)</p>
+
+    <h4>Imputation</h4>
+    <p>Le droit d'habitation s'impute sur la part d'Etienne :</p>
+    <ul>
+      <li>Part d'Etienne : 174 875€</li>
+      <li>Valeur du droit : 300 000€</li>
+      <li><strong>Dépassement :</strong> 300 000€ - 174 875€ = 125 125€</li>
+    </ul>
+
+    <div class="note-warning">
+      <p><strong>⚠️ Problème :</strong> Le droit d'habitation dépasse la part d'Etienne en PP</p>
+      <p><strong>Conséquence :</strong> Etienne devra soit :</p>
+      <ul>
+        <li>Renoncer partiellement au droit d'habitation</li>
+        <li>Compenser les enfants en numéraire (125 125€)</li>
+        <li>Reconsidérer son option (1/4 PP → Usufruit total serait plus adapté)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>✅ Synthèse de la dévolution</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Héritier</th>
+          <th>Origine</th>
+          <th>Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3"><strong>ETIENNE</strong></td>
+          <td>Part de communauté</td>
+          <td class="number">699 500€</td>
+        </tr>
+        <tr>
+          <td>Succession (1/4 PP)</td>
+          <td class="number">174 875€</td>
+        </tr>
+        <tr>
+          <td>Assurances vie (hors succession)</td>
+          <td class="number">620 000€</td>
+        </tr>
+        <tr>
+          <td colspan="2"><strong>TOTAL ETIENNE</strong></td>
+          <td class="number"><strong>1 494 375€</strong></td>
+        </tr>
+        <tr>
+          <td><strong>BLANCHE</strong></td>
+          <td>Succession (3/8)</td>
+          <td class="number">262 312,50€</td>
+        </tr>
+        <tr>
+          <td><strong>LOUIS</strong></td>
+          <td>Succession (3/8)</td>
+          <td class="number">262 312,50€</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="note-warning"><strong>À ajuster :</strong> Prise en compte du droit d'habitation (300 000€) qui impacte les montants finaux</p>
+  </div>
+</div>
+
+<!-- E6II QUESTION 3 -->
+<div class="section" id="leon-e6ii-q3">
+  <h2 class="section-title">📝 E6II — Question 3 : Droits de succession</h2>
+
+  <div class="glass-card exam-card">
+    <h3>📋 Énoncé (4 points)</h3>
+    <p><strong>Quels sont les droits de succession dus par les héritiers ?</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>💰 Calcul pour ETIENNE (Conjoint survivant)</h3>
+
+    <h4>Part successorale</h4>
+    <p>174 875€ (1/4 en pleine propriété)</p>
+
+    <h4>Fiscalité</h4>
+    <div class="highlight-box">
+      <p><strong>EXONÉRATION TOTALE</strong></p>
+      <p>Article 796-0 bis du CGI : Les transmissions entre époux sont exonérées de droits de succession</p>
+      <p class="big-number">0€</p>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>💰 Calcul pour BLANCHE (Fille)</h3>
+
+    <h4>Part successorale</h4>
+    <p>262 312,50€ (3/8 de la succession)</p>
+
+    <h4>Abattement en ligne directe</h4>
+    <p>100 000€ (Annexe 4)</p>
+
+    <h4>Assiette taxable</h4>
+    <p>262 312,50€ - 100 000€ = <strong>162 312,50€</strong></p>
+
+    <h4>Calcul des droits (Barème ligne directe)</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tranche</th>
+          <th>Taux</th>
+          <th>Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 à 8 072€</td>
+          <td>5%</td>
+          <td class="number">404€</td>
+        </tr>
+        <tr>
+          <td>8 072€ à 12 109€</td>
+          <td>10%</td>
+          <td class="number">404€</td>
+        </tr>
+        <tr>
+          <td>12 109€ à 15 932€</td>
+          <td>15%</td>
+          <td class="number">573€</td>
+        </tr>
+        <tr>
+          <td>15 932€ à 162 312,50€</td>
+          <td>20%</td>
+          <td class="number">29 276€</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><strong>DROITS BLANCHE</strong></td>
+          <td class="number"><strong>30 657€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <p class="small-text">Ou formule rapide : (162 312,50€ × 20%) - 1 806€ = 30 657€</p>
+  </div>
+
+  <div class="glass-card">
+    <h3>💰 Calcul pour LOUIS (Fils)</h3>
+
+    <h4>Part successorale</h4>
+    <p>262 312,50€ (3/8 de la succession)</p>
+
+    <h4>Calcul identique à Blanche</h4>
+    <div class="highlight-box">
+      <p><strong>DROITS LOUIS</strong></p>
+      <p class="big-number">30 657€</p>
+    </div>
+  </div>
+
+  <div class="glass-card">
+    <h3>✅ Synthèse des droits de succession</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Héritier</th>
+          <th>Part successorale</th>
+          <th>Abattement</th>
+          <th>Droits dus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ETIENNE</strong></td>
+          <td class="number">174 875€</td>
+          <td>Exonération totale</td>
+          <td class="number"><strong>0€</strong></td>
+        </tr>
+        <tr>
+          <td><strong>BLANCHE</strong></td>
+          <td class="number">262 313€</td>
+          <td>100 000€</td>
+          <td class="number"><strong>30 657€</strong></td>
+        </tr>
+        <tr>
+          <td><strong>LOUIS</strong></td>
+          <td class="number">262 313€</td>
+          <td>100 000€</td>
+          <td class="number"><strong>30 657€</strong></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>TOTAL DROITS</strong></td>
+          <td class="number"><strong>61 314€</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="note-info" style="margin-top: 20px">
+      <p><strong>💡 Point important :</strong> Etienne pourrait envisager d'aider ses enfants en prenant en charge tout ou partie de leurs droits de succession.</p>
+    </div>
+  </div>
+</div>
+
+<!-- E6II QUESTION 4 -->
+<div class="section" id="leon-e6ii-q4">
+  <h2 class="section-title">📝 E6II — Question 4 : Acquisition résidence secondaire</h2>
+
+  <div class="glass-card exam-card">
+    <h3>📋 Énoncé (6 points)</h3>
+    <p><strong>Etienne envisage d'acquérir une résidence secondaire dont le coût global s'élèverait à 350 000€. Etienne hésite entre vendre l'appartement situé rue de Belleville à Paris ou utiliser ses assurances vie.</strong></p>
+    <p><strong>Pour l'aider dans sa prise de décision, vous indiquerez les avantages et inconvénients de chaque alternative en incluant le coût fiscal de chaque opération.</strong></p>
+  </div>
+
+  <div class="glass-card">
+    <h3>🏠 Option 1 : Vendre l'appartement de Belleville</h3>
+
+    <h4>📊 Données</h4>
+    <ul>
+      <li><strong>Prix d'achat :</strong> 300 000€ (Janvier 2010)</li>
+      <li><strong>Valeur actuelle :</strong> 360 000€</li>
+      <li><strong>Plus-value brute :</strong> 60 000€</li>
+      <li><strong>Durée de détention :</strong> 24 ans (2010-2034)</li>
+      <li><strong>Revenus locatifs :</strong> 9 000€/an (rentabilité 3%)</li>
+    </ul>
+
+    <h4>💰 Calcul de la plus-value imposable</h4>
+
+    <h5>1. Prix de cession corrigé (Annexe 5)</h5>
+    <p>Prix de vente : 360 000€</p>
+    <p class="small-text">(On suppose pas de frais à la charge de l'acquéreur ni de frais de vente)</p>
+
+    <h5>2. Prix d'acquisition corrigé</h5>
+    <ul>
+      <li>Prix d'achat : 300 000€</li>
+      <li>Frais d'acquisition forfaitaires (7,5%) : 22 500€</li>
+      <li>Travaux forfaitaires (15% si > 5 ans) : 45 000€</li>
+      <li><strong>Prix d'acquisition corrigé :</strong> 367 500€</li>
+    </ul>
+
+    <h5>3. Plus-value brute</h5>
+    <p>360 000€ - 367 500€ = <strong>-7 500€</strong></p>
+
+    <div class="highlight-box">
+      <p><strong>✅ AUCUNE PLUS-VALUE IMPOSABLE</strong></p>
+      <p>Grâce aux abattements forfaitaires, la plus-value devient négative</p>
+      <p class="big-number">0€ d'impôt</p>
+    </div>
+
+    <h4>✅ Avantages</h4>
+    <ul>
+      <li>✅ Liquidité immédiate de 360 000€</li>
+      <li>✅ Pas d'impôt sur la plus-value</li>
+      <li>✅ Suppression des charges de copropriété et taxe foncière</li>
+      <li>✅ Plus de gestion locative</li>
+      <li>✅ Financement complet de la résidence secondaire</li>
+    </ul>
+
+    <h4>❌ Inconvénients</h4>
+    <ul>
+      <li>❌ Perte d'un actif rentable (9 000€/an de loyers)</li>
+      <li>❌ Perte de diversification patrimoniale</li>
+      <li>❌ Frais de notaire pour la vente (~3%)</li>
+      <li>❌ Bien immobilier de rapport perdu définitivement</li>
+    </ul>
+  </div>
+
+  <div class="glass-card">
+    <h3>💼 Option 2 : Utiliser les assurances vie</h3>
+
+    <h4>📊 Contrats disponibles</h4>
+    <table class="data-table">
+      <tbody>
+        <tr>
+          <td><strong>Contrat Mars 2022</strong></td>
+          <td class="number">240 000€</td>
+        </tr>
+        <tr>
+          <td>Versements : 200 000€<br>Plus-value : 40 000€<br>Ancienneté : 12 ans</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Contrat Septembre 2024</strong></td>
+          <td class="number">380 000€</td>
+        </tr>
+        <tr>
+          <td>Versements : 240 000€<br>Plus-value : 140 000€<br>Ancienneté : 10 ans</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>💰 Fiscalité du rachat</h4>
+
+    <h5>Contrat Mars 2022 (> 8 ans)</h5>
+    <div class="highlight-box">
+      <p><strong>Option 1 : Prélèvement forfaitaire libératoire (PFL)</strong></p>
+      <ul>
+        <li>Abattement annuel : 4 600€ (personne seule)</li>
+        <li>Plus-value au prorata : (40 000€ ÷ 240 000€) × 240 000€ = 40 000€</li>
+        <li>PV imposable : 40 000€ - 4 600€ = 35 400€</li>
+        <li>PFL 7,5% : 35 400€ × 7,5% = 2 655€</li>
+        <li>PS 17,2% : 40 000€ × 17,2% = 6 880€</li>
+        <li><strong>Total : 9 535€</strong></li>
+      </ul>
+    </div>
+
+    <h5>Contrat Septembre 2024 (> 8 ans)</h5>
+    <div class="highlight-box">
+      <p>Rachat partiel de 110 000€ (pour compléter les 350 000€)</p>
+      <ul>
+        <li>Plus-value au prorata : (140 000€ ÷ 380 000€) × 110 000€ = 40 526€</li>
+        <li>PV imposable après abattement : 0€ (abattement déjà utilisé ou restant)</li>
+        <li>PFL 7,5% : 40 526€ × 7,5% = 3 039€</li>
+        <li>PS 17,2% : 40 526€ × 17,2% = 6 970€</li>
+        <li><strong>Total : 10 009€</strong></li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <h3>💰 Coût fiscal total Option 2</h3>
+      <p class="big-number">~20 000€</p>
+      <p class="small-text">(Selon répartition exacte des rachats)</p>
+    </div>
+
+    <h4>✅ Avantages</h4>
+    <ul>
+      <li>✅ Conservation de l'appartement locatif (9 000€/an)</li>
+      <li>✅ Maintien de la diversification patrimoniale</li>
+      <li>✅ Fiscalité avantageuse (PFL 7,5% + abattement)</li>
+      <li>✅ Flexibilité : rachat partiel possible</li>
+      <li>✅ Capitaux restants continuent de fructifier</li>
+    </ul>
+
+    <h4>❌ Inconvénients</h4>
+    <ul>
+      <li>❌ Coût fiscal de ~20 000€</li>
+      <li>❌ Entame le capital prévu pour la transmission</li>
+      <li>❌ Perte d'enveloppe fiscale avantageuse (AV < 8 ans pour nouveau versement)</li>
+      <li>❌ Réduction de la protection du capital (hors succession)</li>
+    </ul>
+  </div>
+
+  <div class="glass-card">
+    <h3>⚖️ Tableau comparatif</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Critère</th>
+          <th>Vente appartement</th>
+          <th>Rachat AV</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Coût fiscal</strong></td>
+          <td class="number">0€ ✅</td>
+          <td class="number">~20 000€</td>
+        </tr>
+        <tr>
+          <td><strong>Revenus futurs</strong></td>
+          <td>0€ (perte de 9 000€/an) ❌</td>
+          <td>9 000€/an conservés ✅</td>
+        </tr>
+        <tr>
+          <td><strong>Liquidité</strong></td>
+          <td>360 000€ immédiat ✅</td>
+          <td>350 000€ (sous 15j)</td>
+        </tr>
+        <tr>
+          <td><strong>Diversification</strong></td>
+          <td>Réduite ❌</td>
+          <td>Maintenue ✅</td>
+        </tr>
+        <tr>
+          <td><strong>Transmission</strong></td>
+          <td>Impact neutre</td>
+          <td>Capitaux AV réduits ⚠️</td>
+        </tr>
+        <tr>
+          <td><strong>Gestion</strong></td>
+          <td>Simplifiée ✅</td>
+          <td>Locative maintenue ⚠️</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="glass-card">
+    <h3>✅ Recommandation</h3>
+
+    <div class="highlight-box">
+      <h4>🏆 Option recommandée : VENTE DE L'APPARTEMENT</h4>
+
+      <p><strong>Raisons :</strong></p>
+      <ul>
+        <li>✅ Coût fiscal nul (vs 20 000€)</li>
+        <li>✅ À l'âge d'Etienne (68 ans), simplification de la gestion patrimoniale</li>
+        <li>✅ Liquidité immédiate et complète</li>
+        <li>✅ Conservation des contrats d'assurance vie pour la transmission</li>
+        <li>✅ Les contrats AV bénéficient d'une fiscalité avantageuse pour les héritiers</li>
+      </ul>
+
+      <p><strong>Économie :</strong> 20 000€ d'impôt + conservation de 620 000€ d'AV pour la transmission</p>
+    </div>
+
+    <div class="note-warning">
+      <p><strong>⚠️ Point d'attention :</strong></p>
+      <p>Perte de 9 000€/an de revenus locatifs, mais compensée par :</p>
+      <ul>
+        <li>Suppression des charges et de la gestion locative</li>
+        <li>Économie fiscale de 20 000€</li>
+        <li>Simplicité pour Etienne (retraité de 68 ans)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ANNEXES -->
+<div class="section" id="leon-annexes">
+  <h2 class="section-title">📎 Annexes</h2>
+
+  <div class="glass-card">
+    <h3>Annexe 1 : Barème IR 2024</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tranche</th>
+          <th>Taux</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>De 0 € à 11 294 €</td>
+          <td>0%</td>
+        </tr>
+        <tr>
+          <td>De 11 294 € à 28 797 €</td>
+          <td>11%</td>
+        </tr>
+        <tr>
+          <td>De 28 797 € à 82 341 €</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <td>De 82 341 € à 177 106€</td>
+          <td>41%</td>
+        </tr>
+        <tr>
+          <td>>177 106€</td>
+          <td>45%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Plafonnement QF :</strong> 1 759€ par demi-part</p>
+    <p><strong>Déduction forfaitaire 10% (frais pro) :</strong> Plafonnée à 14 171€ par personne</p>
+    <p><strong>Déduction forfaitaire 10% (pensions) :</strong> Plafonnée à 4 321€ pour le foyer</p>
+  </div>
+
+  <div class="glass-card">
+    <h3>Annexe 2 : PASS 2023 et 2024</h3>
+    <ul>
+      <li>PASS 2023 : 43 992€</li>
+      <li>PASS 2024 : 46 368€</li>
+    </ul>
+  </div>
+
+  <div class="glass-card">
+    <h3>Annexe 3 : Barème de l'usufruit viager fiscal</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Âge de l'usufruitier</th>
+          <th>Valeur usufruit</th>
+          <th>Valeur nue-propriété</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Moins de 21 ans révolus</td><td>90%</td><td>10%</td></tr>
+        <tr><td>Moins de 31 ans révolus</td><td>80%</td><td>20%</td></tr>
+        <tr><td>Moins de 41 ans révolus</td><td>70%</td><td>30%</td></tr>
+        <tr><td>Moins de 51 ans révolus</td><td>60%</td><td>40%</td></tr>
+        <tr><td>Moins de 61 ans révolus</td><td>50%</td><td>50%</td></tr>
+        <tr><td>Moins de 71 ans révolus</td><td>40%</td><td>60%</td></tr>
+        <tr><td>Moins de 81 ans révolus</td><td>30%</td><td>70%</td></tr>
+        <tr><td>Moins de 91 ans révolus</td><td>20%</td><td>80%</td></tr>
+        <tr><td>Plus de 91 ans révolus</td><td>10%</td><td>90%</td></tr>
+      </tbody>
+    </table>
+    <p class="note-info"><strong>Droit d'habitation et d'usage :</strong> 60% de la valeur de l'usufruit</p>
+  </div>
+
+  <div class="glass-card">
+    <h3>Annexe 4 : Abattements succession</h3>
+    <ul>
+      <li><strong>Ligne directe :</strong> 100 000€</li>
+      <li><strong>Entre époux ou PACS :</strong> Exonération totale</li>
+      <li><strong>Frères et sœurs :</strong> 15 932€</li>
+      <li><strong>Neveux et nièces :</strong> 7 967€</li>
+      <li><strong>Petits-enfants (donation) :</strong> 31 865€</li>
+    </ul>
+  </div>
+
+  <div class="glass-card">
+    <h3>Annexe 5 : Barème droits de succession ligne directe</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tranche (après abattement)</th>
+          <th>Taux</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Jusqu'à 8 072 €</td><td>5%</td></tr>
+        <tr><td>De 8 072 € à 12 109 €</td><td>10%</td></tr>
+        <tr><td>De 12 109 € à 15 932 €</td><td>15%</td></tr>
+        <tr><td>De 15 932 € à 552 324 €</td><td>20%</td></tr>
+        <tr><td>De 552 324 € à 902 838 €</td><td>30%</td></tr>
+        <tr><td>De 902 838 € à 1 805 677 €</td><td>40%</td></tr>
+        <tr><td>Au-delà de 1 805 677 €</td><td>45%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="glass-card">
+    <h3>Annexe 6 : Plus-value immobilière</h3>
+    <h4>Abattements pour durée de détention</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Durée</th>
+          <th>Abattement IR</th>
+          <th>Abattement PS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Moins de 6 ans</td><td>0%</td><td>0%</td></tr>
+        <tr><td>De la 6e à la 21e année</td><td>6% par an</td><td>1,65% par an</td></tr>
+        <tr><td>22e année révolue</td><td>4%</td><td>1,60%</td></tr>
+        <tr><td>Au-delà de la 22e année</td><td>Exonération</td><td>9% par an</td></tr>
+        <tr><td>Au-delà de la 30e année</td><td>Exonération</td><td>Exonération</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Frais forfaitaires :</strong></p>
+    <ul>
+      <li>Frais d'acquisition : 7,5% du prix d'achat</li>
+      <li>Travaux (si > 5 ans) : 15% du prix d'achat</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+<!-- FIN CAS LEON -->
 
 <div class="case-content" id="case-guide">
 <!-- SECTION 0: INTRODUCTION & MODE D'EMPLOI -->
