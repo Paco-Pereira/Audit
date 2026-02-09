@@ -185,11 +185,15 @@ $('[id^="sidebar-"]').each((i, el) => {
   }
 });
 
-// Replace inline style with external CSS
-$('style').replaceWith('<link rel="stylesheet" href="css/styles.css">');
+// Remove all inline styles and scripts (avoid duplicates)
+$('style').remove();
+$('script').remove();
 
-// Add loading spinner before closing body
-const spinnerHTML = `
+// Add external CSS link in <head>
+$('head').append('<link rel="stylesheet" href="css/styles.css">');
+
+// Add loading spinner and external scripts at end of <body>
+$('body').append(`
 <div id="loadingSpinner" style="display:none; position:fixed; top:50%; left:50%;
      transform:translate(-50%,-50%); z-index:9999;
      background:var(--glass-bg); backdrop-filter:var(--blur);
@@ -198,15 +202,7 @@ const spinnerHTML = `
   <div style="font-size:24px; animation:spin 1s linear infinite; text-align:center;">⏳</div>
   <div style="margin-top:12px; color:var(--text-light); font-size:14px; white-space:nowrap;">Chargement...</div>
 </div>
-<style>
-@keyframes spin { to { transform: rotate(360deg); } }
-</style>
-`;
-
-$('body').append(spinnerHTML);
-
-// Replace inline script with external scripts
-$('script').replaceWith(`
+<style>@keyframes spin { to { transform: rotate(360deg); } }</style>
 <script src="js/content-loader.js"></script>
 <script src="js/app.js"></script>
 `);
