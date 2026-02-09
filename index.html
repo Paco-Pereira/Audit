@@ -2012,7 +2012,9 @@ details .inner {
     page-break-inside: avoid;
   }
 
-  /* ═══ HOUETTE PDF — FORMAT CORRIGÉ D'EXAMEN ═══ */
+  /* ═══════════════════════════════════════════════════════════════════
+     HOUETTE PDF — FORMAT CORRIGÉ D'EXAMEN (lisible & structuré)
+     ═══════════════════════════════════════════════════════════════════ */
 
   /* --- Setup : afficher uniquement case-houette --- */
   body.printing-houette .case-content { display: none !important; }
@@ -2021,9 +2023,10 @@ details .inner {
   body.printing-houette .alert-icon { display: none !important; }
 
   body.printing-houette {
-    font-size: 8px !important;
-    line-height: 1.3 !important;
-    color: #000 !important;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 9px !important;
+    line-height: 1.4 !important;
+    color: #1a1a1a !important;
     background: #fff !important;
   }
 
@@ -2031,249 +2034,602 @@ details .inner {
   body.printing-houette #case-houette::before {
     content: "CORRIGÉ — CAS HOUETTE — E61 (Activité) + E62 (Retraite)";
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 800;
     text-align: center;
-    border-bottom: 2px solid #000;
-    padding-bottom: 3px;
-    margin-bottom: 4px;
-    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2.5px solid #1a1a1a;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
   }
 
   /* --- MASQUER : intro (données de l'énoncé, pas la réponse) --- */
   body.printing-houette #houette-intro { display: none !important; }
 
-  /* --- E62 intro : garder titre, masquer les cards de données --- */
+  /* --- E62 intro : saut de page + bandeau visible --- */
   body.printing-houette #houette-e62-intro .card { display: none !important; }
   body.printing-houette #houette-e62-intro {
-    border-top: 2px solid #000 !important;
-    padding-top: 4px !important;
-    margin-top: 6px !important;
+    page-break-before: always !important;
+    border-top: none !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  body.printing-houette #houette-e62-intro::before {
+    content: "PARTIE 2 — E62 (Retraite)";
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2.5px solid #1a1a1a;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
   }
   body.printing-houette .welcome {
-    padding: 2px 0 !important;
+    padding: 3px 0 !important;
     margin: 0 !important;
     text-align: left !important;
   }
   body.printing-houette .welcome h1 {
-    font-size: 11px !important;
+    font-size: 12px !important;
     font-weight: 800 !important;
-    margin: 0 0 1px !important;
-    color: #000 !important;
+    margin: 0 0 2px !important;
+    color: #1a1a1a !important;
   }
   body.printing-houette .welcome .subtitle {
-    font-size: 7.5px !important;
+    font-size: 8.5px !important;
     margin: 0 !important;
     color: #333 !important;
   }
   body.printing-houette .welcome p {
-    font-size: 7.5px !important;
-    margin: 1px 0 0 !important;
+    font-size: 8.5px !important;
+    margin: 2px 0 0 !important;
     color: #333 !important;
-    line-height: 1.2 !important;
+    line-height: 1.35 !important;
   }
   body.printing-houette .welcome .meta { display: none !important; }
 
-  /* --- MASQUER : notes pédagogiques (pas la réponse de l'étudiant) --- */
+  /* --- MASQUER : notes pédagogiques (sauf dans formula-card) --- */
   body.printing-houette .note { display: none !important; }
-  body.printing-houette .formula-card .note { display: block !important; font-size: 7px !important; color: #444 !important; margin: 1px 0 !important; }
+  body.printing-houette .formula-card .note {
+    display: block !important;
+    font-size: 8px !important;
+    color: #444 !important;
+    margin: 2px 0 !important;
+    font-style: italic !important;
+  }
 
-  /* --- Sections : numérotées, propres --- */
+  /* ─── SECTIONS : numérotées avec espacement clair ─── */
   body.printing-houette .section {
-    margin: 5px 0 0 !important;
+    margin: 12px 0 0 !important;
     padding: 0 !important;
     page-break-inside: auto !important;
   }
   body.printing-houette .section-header {
     display: flex;
     align-items: center;
-    gap: 4px;
-    margin: 0 0 2px !important;
-    padding: 0 0 1px !important;
-    border-bottom: 1.5px solid #000;
+    gap: 6px;
+    margin: 0 0 5px !important;
+    padding: 3px 0 4px !important;
+    border-bottom: 2px solid #1a1a1a;
     page-break-after: avoid;
   }
   body.printing-houette .section-num {
-    width: 16px !important;
-    height: 16px !important;
-    font-size: 9px !important;
-    line-height: 16px !important;
-    min-width: 16px !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 10px !important;
+    line-height: 20px !important;
+    min-width: 20px !important;
     padding: 0 !important;
-    background: #000 !important;
+    background: #1a1a1a !important;
     color: #fff !important;
     text-align: center !important;
-    border-radius: 2px !important;
+    border-radius: 3px !important;
+    font-weight: 700 !important;
   }
   body.printing-houette .section-title {
-    font-size: 9px !important;
+    font-size: 10.5px !important;
     font-weight: 700 !important;
     margin: 0 !important;
-    color: #000 !important;
+    color: #1a1a1a !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.3px !important;
   }
 
-  /* --- Questions : compact, italique, barre latérale --- */
+  /* ─── QUESTIONS : fond rosé, bordure rouge ─── */
   body.printing-houette .alert-danger {
-    background: none !important;
+    background: #fef2f2 !important;
     border: none !important;
-    border-left: 2.5px solid #000 !important;
-    padding: 1px 6px !important;
-    margin: 2px 0 3px !important;
+    border-left: 3px solid #b91c1c !important;
+    padding: 4px 8px !important;
+    margin: 4px 0 6px !important;
     font-style: italic !important;
-    font-size: 7px !important;
+    font-size: 8px !important;
     color: #444 !important;
     border-radius: 0 !important;
     page-break-inside: avoid;
   }
   body.printing-houette .alert-danger strong {
-    font-size: 7px !important;
+    font-size: 8.5px !important;
+    color: #991b1b !important;
+    font-style: normal !important;
   }
   body.printing-houette .alert-danger ul,
   body.printing-houette .alert-danger ol {
-    margin: 1px 0 !important;
-    padding-left: 12px !important;
+    margin: 2px 0 !important;
+    padding-left: 14px !important;
     font-style: normal !important;
   }
   body.printing-houette .alert-danger li {
-    font-size: 7px !important;
+    font-size: 8px !important;
     font-style: normal !important;
+    margin: 1px 0 !important;
   }
 
-  /* --- Conclusions / résultats (alert-tip) : encadré gris --- */
+  /* ─── CONCLUSIONS / RÉSULTATS (alert-tip) : fond vert pâle ─── */
   body.printing-houette .alert-tip {
-    background: #f4f4f4 !important;
+    background: #f0fdf4 !important;
     border: none !important;
-    border-left: 2.5px solid #444 !important;
-    padding: 2px 6px !important;
-    margin: 2px 0 3px !important;
-    font-size: 7.5px !important;
+    border-left: 3px solid #16a34a !important;
+    padding: 4px 8px !important;
+    margin: 4px 0 6px !important;
+    font-size: 8.5px !important;
     border-radius: 0 !important;
-    color: #000 !important;
+    color: #1a1a1a !important;
     page-break-inside: avoid;
   }
   body.printing-houette .alert-tip strong {
-    font-size: 7.5px !important;
+    font-size: 8.5px !important;
+    color: #15803d !important;
   }
 
-  /* --- TABLEAUX : compacts, même échelle que le texte --- */
+  /* ─── TABLEAUX : lisibles, bien espacés ─── */
   body.printing-houette table {
-    width: auto !important;
+    width: 100% !important;
     max-width: 100% !important;
     border-collapse: collapse !important;
-    font-size: 7.5px !important;
-    margin: 2px 0 4px !important;
-    line-height: 1.2 !important;
+    font-size: 8.5px !important;
+    margin: 4px 0 8px !important;
+    line-height: 1.3 !important;
   }
   body.printing-houette th {
-    background: #e8e8e8 !important;
-    font-size: 7px !important;
+    background: #e5e7eb !important;
+    font-size: 7.5px !important;
     font-weight: 700 !important;
-    padding: 1.5px 3px !important;
-    border: 0.5px solid #999 !important;
-    color: #000 !important;
+    padding: 3px 5px !important;
+    border: 0.75px solid #9ca3af !important;
+    color: #1a1a1a !important;
     white-space: nowrap !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.3px !important;
+    letter-spacing: 0.4px !important;
   }
   body.printing-houette td {
-    padding: 1.5px 3px !important;
-    border: 0.5px solid #999 !important;
-    line-height: 1.2 !important;
-    color: #000 !important;
-    font-size: 7.5px !important;
+    padding: 2.5px 5px !important;
+    border: 0.75px solid #d1d5db !important;
+    line-height: 1.3 !important;
+    color: #1a1a1a !important;
+    font-size: 8.5px !important;
   }
-  body.printing-houette .bold-row td { font-weight: 700 !important; }
+  body.printing-houette .bold-row td {
+    font-weight: 700 !important;
+    background: #f3f4f6 !important;
+  }
   body.printing-houette td[style*="text-align:right"],
-  body.printing-houette th[style*="text-align:right"] { font-variant-numeric: tabular-nums !important; }
+  body.printing-houette th[style*="text-align:right"] {
+    font-variant-numeric: tabular-nums !important;
+  }
 
-  /* --- FORMULES : les calculs de la réponse --- */
+  /* ─── FORMULES : les calculs de la réponse — fond bleu pâle ─── */
   body.printing-houette .formula-card {
-    background: #f8f8f8 !important;
+    background: #eff6ff !important;
     border: none !important;
-    border-left: 3px solid #000 !important;
-    padding: 2px 6px !important;
-    margin: 2px 0 3px !important;
+    border-left: 3px solid #2563eb !important;
+    padding: 4px 8px !important;
+    margin: 4px 0 6px !important;
     border-radius: 0 !important;
     page-break-inside: avoid;
   }
   body.printing-houette .formula-card h4 {
-    font-size: 7.5px !important;
+    font-size: 8.5px !important;
     font-weight: 700 !important;
-    margin: 0 0 1px !important;
-    color: #000 !important;
+    margin: 0 0 2px !important;
+    color: #1e40af !important;
   }
   body.printing-houette .formula-card .f {
-    color: #000 !important;
+    color: #1a1a1a !important;
     font-weight: 600 !important;
-    font-size: 7.5px !important;
-    margin: 1px 0 !important;
-    line-height: 1.25 !important;
+    font-size: 8.5px !important;
+    margin: 1.5px 0 !important;
+    line-height: 1.35 !important;
   }
 
-  /* --- Cards (analyses, options) : flat, sans décoration --- */
+  /* ─── Cards (analyses, options) : bordure légère ─── */
   body.printing-houette .card {
-    background: none !important;
-    border: 0.5px solid #bbb !important;
-    padding: 2px 5px !important;
-    margin: 2px 0 3px !important;
+    background: #fafafa !important;
+    border: 0.75px solid #d1d5db !important;
+    padding: 4px 8px !important;
+    margin: 4px 0 6px !important;
     border-radius: 0 !important;
     box-shadow: none !important;
+    page-break-inside: avoid;
   }
   body.printing-houette .card h3,
   body.printing-houette .card h4 {
-    margin: 0 0 1px !important;
-    font-size: 7.5px !important;
-    color: #000 !important;
+    margin: 0 0 2px !important;
+    font-size: 8.5px !important;
+    color: #1a1a1a !important;
   }
   body.printing-houette .card ul,
   body.printing-houette .card ol {
-    margin: 1px 0 !important;
-    padding-left: 14px !important;
+    margin: 2px 0 !important;
+    padding-left: 16px !important;
   }
   body.printing-houette .card li {
-    font-size: 7.5px !important;
-    line-height: 1.25 !important;
+    font-size: 8.5px !important;
+    line-height: 1.35 !important;
   }
 
-  /* --- Titres h3/h4 --- */
+  /* ─── Titres h3/h4 ─── */
   body.printing-houette h3 {
-    font-size: 8.5px !important;
+    font-size: 9.5px !important;
     font-weight: 700 !important;
-    margin: 4px 0 1px !important;
+    margin: 8px 0 3px !important;
     padding: 0 !important;
-    color: #000 !important;
+    color: #1a1a1a !important;
+    border-bottom: 0.5px solid #d1d5db;
+    padding-bottom: 1px !important;
   }
   body.printing-houette h4 {
-    font-size: 8px !important;
+    font-size: 9px !important;
     font-weight: 600 !important;
-    margin: 3px 0 1px !important;
+    margin: 6px 0 2px !important;
     padding: 0 !important;
-    color: #000 !important;
+    color: #374151 !important;
+  }
+
+  /* ─── Paragraphes et listes ─── */
+  body.printing-houette p {
+    font-size: 8.5px !important;
+    margin: 2px 0 !important;
+    line-height: 1.35 !important;
+    color: #1a1a1a !important;
+  }
+  body.printing-houette ul, body.printing-houette ol {
+    margin: 2px 0 !important;
+    padding-left: 16px !important;
+  }
+  body.printing-houette li {
+    font-size: 8.5px !important;
+    line-height: 1.35 !important;
+    margin: 1px 0 !important;
+  }
+
+  /* ─── Couleurs d'emphase pour impression ─── */
+  body.printing-houette .red { color: #dc2626 !important; }
+  body.printing-houette .green { color: #16a34a !important; }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     HOUETTE PDF — ÉNONCÉ (données + questions, sans réponses)
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /* --- Setup : afficher uniquement case-houette --- */
+  body.printing-houette-enonce .case-content { display: none !important; }
+  body.printing-houette-enonce #case-houette { display: block !important; }
+  body.printing-houette-enonce #case-houette button { display: none !important; }
+  body.printing-houette-enonce .alert-icon { display: none !important; }
+
+  body.printing-houette-enonce {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+    color: #1a1a1a !important;
+    background: #fff !important;
+  }
+
+  /* --- Titre PDF --- */
+  body.printing-houette-enonce #case-houette::before {
+    content: "ÉNONCÉ — CAS HOUETTE — E61 (Activité) + E62 (Retraite)";
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 3px double #1a1a1a;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+
+  /* --- MASQUER tout contenu de réponse dans les sections --- */
+  body.printing-houette-enonce .section > * {
+    display: none !important;
+  }
+
+  /* --- AFFICHER : en-têtes de section --- */
+  body.printing-houette-enonce .section > .section-header {
+    display: flex !important;
+  }
+
+  /* --- AFFICHER : questions (alert-danger) --- */
+  body.printing-houette-enonce .section > .alert-danger {
+    display: block !important;
+  }
+
+  /* --- INTRO : afficher toutes les données de l'énoncé --- */
+  body.printing-houette-enonce #houette-intro > * {
+    display: block !important;
+  }
+  body.printing-houette-enonce #houette-intro button {
+    display: none !important;
+  }
+  body.printing-houette-enonce #houette-intro table {
+    display: table !important;
+  }
+  body.printing-houette-enonce #houette-intro thead {
+    display: table-header-group !important;
+  }
+  body.printing-houette-enonce #houette-intro tbody {
+    display: table-row-group !important;
+  }
+  body.printing-houette-enonce #houette-intro tr {
+    display: table-row !important;
+  }
+  body.printing-houette-enonce #houette-intro td,
+  body.printing-houette-enonce #houette-intro th {
+    display: table-cell !important;
+  }
+
+  /* --- E62 INTRO : afficher toutes les données --- */
+  body.printing-houette-enonce #houette-e62-intro > * {
+    display: block !important;
+  }
+  body.printing-houette-enonce #houette-e62-intro .card {
+    display: block !important;
+  }
+  body.printing-houette-enonce #houette-e62-intro table {
+    display: table !important;
+  }
+  body.printing-houette-enonce #houette-e62-intro thead {
+    display: table-header-group !important;
+  }
+  body.printing-houette-enonce #houette-e62-intro tbody {
+    display: table-row-group !important;
+  }
+  body.printing-houette-enonce #houette-e62-intro tr {
+    display: table-row !important;
+  }
+  body.printing-houette-enonce #houette-e62-intro td,
+  body.printing-houette-enonce #houette-e62-intro th {
+    display: table-cell !important;
+  }
+  body.printing-houette-enonce #houette-e62-intro .note {
+    display: block !important;
+    font-size: 8.5px !important;
+    color: #555 !important;
+    font-style: italic !important;
+    margin: 3px 0 !important;
+  }
+
+  /* --- E62 : saut de page + bandeau --- */
+  body.printing-houette-enonce #houette-e62-intro {
+    page-break-before: always !important;
+    border-top: none !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  body.printing-houette-enonce #houette-e62-intro::before {
+    content: "PARTIE 2 — E62 (Retraite)";
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px double #1a1a1a;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+
+  /* --- Welcome --- */
+  body.printing-houette-enonce .welcome {
+    padding: 4px 0 !important;
+    margin: 0 0 6px !important;
+    text-align: left !important;
+  }
+  body.printing-houette-enonce .welcome h1 {
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    margin: 0 0 3px !important;
+    color: #1a1a1a !important;
+  }
+  body.printing-houette-enonce .welcome .subtitle {
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    color: #333 !important;
+  }
+  body.printing-houette-enonce .welcome p {
+    font-size: 9.5px !important;
+    margin: 3px 0 0 !important;
+    color: #333 !important;
+    line-height: 1.45 !important;
+  }
+  body.printing-houette-enonce .welcome .meta {
+    display: block !important;
+    font-size: 8.5px !important;
+    color: #666 !important;
+    margin-top: 3px !important;
+  }
+
+  /* --- Sections --- */
+  body.printing-houette-enonce .section {
+    margin: 16px 0 0 !important;
+    padding: 0 !important;
+    page-break-inside: auto !important;
+  }
+  body.printing-houette-enonce .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 6px !important;
+    padding: 4px 0 5px !important;
+    border-bottom: 2px solid #1a1a1a;
+    page-break-after: avoid;
+  }
+  body.printing-houette-enonce .section-num {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 11px !important;
+    line-height: 22px !important;
+    min-width: 22px !important;
+    padding: 0 !important;
+    background: #1a1a1a !important;
+    color: #fff !important;
+    text-align: center !important;
+    border-radius: 3px !important;
+    font-weight: 700 !important;
+  }
+  body.printing-houette-enonce .section-title {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    color: #1a1a1a !important;
+  }
+
+  /* --- Questions : fond rosé, proéminentes --- */
+  body.printing-houette-enonce .alert-danger {
+    background: #fef2f2 !important;
+    border: none !important;
+    border-left: 3.5px solid #b91c1c !important;
+    padding: 6px 10px !important;
+    margin: 6px 0 12px !important;
+    font-size: 9.5px !important;
+    color: #333 !important;
+    border-radius: 0 !important;
+    page-break-inside: avoid;
+    font-style: italic !important;
+  }
+  body.printing-houette-enonce .alert-danger strong {
+    font-size: 10px !important;
+    color: #991b1b !important;
+    font-style: normal !important;
+  }
+  body.printing-houette-enonce .alert-danger ul,
+  body.printing-houette-enonce .alert-danger ol {
+    margin: 3px 0 !important;
+    padding-left: 16px !important;
+    font-style: normal !important;
+  }
+  body.printing-houette-enonce .alert-danger li {
+    font-size: 9.5px !important;
+    font-style: normal !important;
+    margin: 2px 0 !important;
+  }
+  body.printing-houette-enonce .alert-danger em {
+    font-size: 9px !important;
+  }
+
+  /* --- Alert-tip : masqué sauf dans intro --- */
+  body.printing-houette-enonce .alert-tip {
+    display: none !important;
+  }
+  body.printing-houette-enonce #houette-intro .alert-tip {
+    display: block !important;
+    background: #f0fdf4 !important;
+    border: none !important;
+    border-left: 3px solid #16a34a !important;
+    padding: 6px 10px !important;
+    margin: 8px 0 !important;
+    font-size: 9.5px !important;
+    border-radius: 0 !important;
+    color: #1a1a1a !important;
+  }
+
+  /* --- Cards (visibles dans intro) --- */
+  body.printing-houette-enonce .card {
+    background: #fafafa !important;
+    border: 0.75px solid #d1d5db !important;
+    padding: 6px 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+  body.printing-houette-enonce .card h3 {
+    margin: 0 0 4px !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    color: #1a1a1a !important;
+    border-bottom: none !important;
+  }
+
+  /* --- Tableaux (visibles dans intro) --- */
+  body.printing-houette-enonce table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 9.5px !important;
+    margin: 4px 0 8px !important;
+    line-height: 1.35 !important;
+  }
+  body.printing-houette-enonce th {
+    background: #e5e7eb !important;
+    font-size: 8.5px !important;
+    font-weight: 700 !important;
+    padding: 4px 6px !important;
+    border: 0.75px solid #9ca3af !important;
+    color: #1a1a1a !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4px !important;
+  }
+  body.printing-houette-enonce td {
+    padding: 3px 6px !important;
+    border: 0.75px solid #d1d5db !important;
+    color: #1a1a1a !important;
+    font-size: 9.5px !important;
+  }
+
+  /* --- Masquer notes et formules --- */
+  body.printing-houette-enonce .note { display: none !important; }
+  body.printing-houette-enonce .formula-card { display: none !important; }
+
+  /* --- Titres h3/h4 --- */
+  body.printing-houette-enonce h3 {
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    color: #1a1a1a !important;
+  }
+  body.printing-houette-enonce h4 {
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
   }
 
   /* --- Paragraphes et listes --- */
-  body.printing-houette p {
-    font-size: 7.5px !important;
-    margin: 1px 0 !important;
-    line-height: 1.25 !important;
-    color: #000 !important;
+  body.printing-houette-enonce p {
+    font-size: 9.5px !important;
+    margin: 2px 0 !important;
+    line-height: 1.45 !important;
+    color: #1a1a1a !important;
   }
-  body.printing-houette ul, body.printing-houette ol {
-    margin: 1px 0 !important;
-    padding-left: 14px !important;
+  body.printing-houette-enonce ul, body.printing-houette-enonce ol {
+    margin: 2px 0 !important;
+    padding-left: 18px !important;
   }
-  body.printing-houette li {
-    font-size: 7.5px !important;
-    line-height: 1.25 !important;
-    margin: 0 !important;
+  body.printing-houette-enonce li {
+    font-size: 9.5px !important;
+    line-height: 1.45 !important;
+    margin: 1px 0 !important;
   }
 
-  /* --- Couleurs d'emphase pour impression --- */
-  body.printing-houette .red { color: #c00 !important; }
-  body.printing-houette .green { color: #060 !important; }
+  /* --- Couleurs d'emphase --- */
+  body.printing-houette-enonce .red { color: #dc2626 !important; }
+  body.printing-houette-enonce .green { color: #16a34a !important; }
 
+  /* ─── Page setup (partagé corrigé + énoncé) ─── */
   @page {
-    margin: 8mm 7mm;
+    margin: 10mm 9mm;
     size: A4;
   }
 }
@@ -18605,19 +18961,31 @@ Droit (20%) = 3 000€
       </div>
     </div>
 
-    <div style="text-align:center; margin-top: 20px;">
+    <div style="text-align:center; margin-top: 20px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <button onclick="exportHouetteEnonce()" style="
+        background: linear-gradient(135deg, #475569, #1e293b);
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        letter-spacing: 0.02em;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      ">📋 Exporter l'énoncé</button>
       <button onclick="exportHouettePDF()" style="
         background: linear-gradient(135deg, var(--primary), var(--accent));
         color: white;
         border: none;
-        padding: 14px 32px;
+        padding: 14px 28px;
         border-radius: 12px;
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 600;
         cursor: pointer;
         letter-spacing: 0.02em;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-      ">📄 Exporter en PDF</button>
+        box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      ">📄 Exporter le corrigé</button>
     </div>
 
     <div class="card" style="margin-top:24px">
@@ -21802,6 +22170,15 @@ function exportHouettePDF() {
   setTimeout(function() {
     window.print();
     document.body.classList.remove('printing-houette');
+  }, 100);
+}
+
+// ============ EXPORT HOUETTE ÉNONCÉ ============
+function exportHouetteEnonce() {
+  document.body.classList.add('printing-houette-enonce');
+  setTimeout(function() {
+    window.print();
+    document.body.classList.remove('printing-houette-enonce');
   }, 100);
 }
 
