@@ -27161,30 +27161,43 @@ document.addEventListener('DOMContentLoaded', function() {
       if (scrollSpyTimer) return;
       scrollSpyTimer = requestAnimationFrame(() => {
         scrollSpyTimer = null;
-        const activeContent = document.querySelector('.case-content.active');
-        if (!activeContent) return;
 
-        const sections = activeContent.querySelectorAll('[id]');
-        let currentId = '';
+        // Find visible sidebar and build section-to-item map
+        const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"]):not([style*="display:none"])');
+        if (!activeSidebar) return;
 
-        sections.forEach(s => {
-          const rect = s.getBoundingClientRect();
-          if (rect.top < 200) currentId = s.id;
+        const items = activeSidebar.querySelectorAll('.sidebar-item[onclick]');
+        if (!items.length) return;
+
+        // Extract target IDs from sidebar onclick attributes
+        const sectionMap = [];
+        items.forEach(item => {
+          const match = item.getAttribute('onclick').match(/(?:goTo|scrollToSection)\(['"]([^'"]+)['"]\)/);
+          if (match) {
+            const el = document.getElementById(match[1]);
+            if (el) sectionMap.push({ id: match[1], el: el, item: item });
+          }
         });
 
-        if (currentId) {
-          const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"])');
-          if (activeSidebar) {
-            activeSidebar.querySelectorAll('.sidebar-item').forEach(i => {
-              i.classList.remove('active');
-              const onclick = i.getAttribute('onclick');
-              if (onclick && onclick.includes(currentId)) {
-                i.classList.add('active');
-                i.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-              }
-            });
+        if (!sectionMap.length) return;
+
+        // Find which section is currently visible (last one above threshold)
+        let currentEntry = sectionMap[0];
+        const scrollTop = mainEl.scrollTop;
+        const threshold = 160;
+
+        for (let i = sectionMap.length - 1; i >= 0; i--) {
+          const rect = sectionMap[i].el.getBoundingClientRect();
+          if (rect.top < threshold) {
+            currentEntry = sectionMap[i];
+            break;
           }
         }
+
+        // Update active state
+        items.forEach(i => i.classList.remove('active'));
+        currentEntry.item.classList.add('active');
+        currentEntry.item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       });
     });
   }
