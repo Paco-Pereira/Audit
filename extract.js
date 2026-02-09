@@ -186,7 +186,7 @@ $('[id^="sidebar-"]').each((i, el) => {
 });
 
 // Replace inline style with external CSS
-$('style').replaceWith('<link rel="stylesheet" href="/css/styles.css">');
+$('style').replaceWith('<link rel="stylesheet" href="css/styles.css">');
 
 // Add loading spinner before closing body
 const spinnerHTML = `
@@ -207,8 +207,8 @@ $('body').append(spinnerHTML);
 
 // Replace inline script with external scripts
 $('script').replaceWith(`
-<script src="/js/content-loader.js"></script>
-<script src="/js/app.js"></script>
+<script src="js/content-loader.js"></script>
+<script src="js/app.js"></script>
 `);
 
 // Write optimized index.html

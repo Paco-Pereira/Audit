@@ -30,7 +30,7 @@ class ContentLoader {
 
     // Start loading
     console.log(`🌐 Fetching ${caseId}...`);
-    const promise = this.fetchWithRetry(`/content/${this.getPath(caseId)}.json`)
+    const promise = this.fetchWithRetry(`content/${this.getPath(caseId)}.json`)
       .then(response => response.json())
       .then(data => {
         this.cache.set(caseId, data);
@@ -99,6 +99,7 @@ class ContentLoader {
       'fiscal': 'courses',
       'droit': 'courses',
       'marches': 'courses',
+      'transmission': 'courses',
       // Tools
       'outils': 'tools',
       'guide': 'tools',
@@ -189,7 +190,7 @@ class ContentLoader {
     }
 
     try {
-      const response = await fetch('/content/manifest.json');
+      const response = await fetch('content/manifest.json');
       this.manifest = await response.json();
       return this.manifest;
     } catch (error) {
