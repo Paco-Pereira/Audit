@@ -10,7 +10,7 @@ console.log('🚀 Starting extraction and optimization...\n');
 
 // Configuration
 const SRC_PATH = path.join(__dirname, 'src/index.html');
-const DIST_PATH = path.join(__dirname, 'dist');
+const DIST_PATH = path.join(__dirname, 'docs');
 const CONTENT_PATH = path.join(DIST_PATH, 'content');
 
 // Case mapping

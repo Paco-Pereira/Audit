@@ -4,8 +4,8 @@
   "description": "M2 GIP - Gestion et Ingénierie Patrimoniale - Optimized",
   "scripts": {
     "build": "node extract.js",
-    "dev": "node extract.js && npx http-server dist -p 8080",
-    "deploy": "npm run build && git add dist/ && git commit -m 'Build optimized version' && git push"
+    "dev": "node extract.js && npx http-server docs -p 8080",
+    "deploy": "npm run build && git add docs/ && git commit -m 'Build optimized version' && git push"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.12",
