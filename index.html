@@ -25979,7 +25979,7 @@ function switchCase(caseName) {
     if (tabBar) tabBar.style.display = '';
     if (sidebarEl) sidebarEl.style.display = 'none';
     if (expandBtn) expandBtn.classList.remove('visible');
-  } else if (caseName === 'financement' || caseName === 'responsabilite' || caseName === 'fiscal') {
+  } else if (caseName === 'financement' || caseName === 'responsabilite' || caseName === 'fiscal' || caseName === 'droit' || caseName === 'marches') {
     // Lecture course pages: show sidebar, hide tab bar
     if (tabBar) tabBar.style.display = 'none';
     if (sidebarEl) {
@@ -26542,7 +26542,7 @@ restoreFcState();
 // ============ INJECTION BOUTONS EXPORT PDF ============
 (function() {
   // Cas qui ne sont pas home/audit (pages avec du contenu imprimable)
-  const printableCases = ['snow','stark','niote','mengere','norris','vador','leon','genereux','houette','outils','guide','montages','formules','financement','responsabilite','fiscal'];
+  const printableCases = ['snow','stark','niote','mengere','norris','vador','leon','genereux','houette','outils','guide','montages','formules','financement','responsabilite','fiscal','droit','marches'];
 
   printableCases.forEach(function(caseName) {
     const caseEl = document.getElementById('case-' + caseName);
@@ -26824,7 +26824,8 @@ function updateProgressBar(caseName) {
       'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
       'outils': 'Outils', 'guide': 'Guide', 'montages': 'Montages',
       'formules': 'Formules', 'audit': 'Audit', 'financement': 'Financement',
-      'responsabilite': 'Responsabilité', 'fiscal': 'Fiscalité'
+      'responsabilite': 'Responsabilité', 'fiscal': 'Fiscalité',
+      'droit': 'Droit patrimonial', 'marches': 'Marchés financiers'
     };
     if (elLast && lastPage && lastPage !== 'home') {
       elLast.textContent = courseNames[lastPage] || lastPage;
@@ -26842,7 +26843,8 @@ function updateProgressBar(caseName) {
         'snow': '❄️', 'stark': '🦁', 'niote': '🏠', 'mengere': '👨‍👩‍👧', 'norris': '💪',
         'vador': '🌑', 'leon': '🎭', 'genereux': '🎁', 'houette': '🏦',
         'outils': '🧰', 'guide': '📖', 'montages': '🏗️', 'formules': '🔢',
-        'audit': '📊', 'financement': '💰', 'responsabilite': '⚖️', 'fiscal': '🧾'
+        'audit': '📊', 'financement': '💰', 'responsabilite': '⚖️', 'fiscal': '🧾',
+        'droit': '📜', 'marches': '📈'
       };
       hist.forEach(function(h) {
         var name = courseNames[h.page] || h.page;
@@ -26964,7 +26966,8 @@ function timeAgo(ts) {
     'outils': 'Boîte à Outils', 'guide': 'Guide Stratégique',
     'montages': 'Montages', 'formules': 'Formules',
     'audit': 'Audit patrimonial', 'financement': 'Financement des particuliers',
-    'responsabilite': 'Responsabilité du gestionnaire', 'fiscal': 'Ingénierie fiscale PP'
+    'responsabilite': 'Responsabilité du gestionnaire', 'fiscal': 'Ingénierie fiscale PP',
+    'droit': 'Droit patrimonial', 'marches': 'Marchés financiers'
   };
 
   try {
