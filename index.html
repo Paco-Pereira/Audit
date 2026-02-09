@@ -2800,6 +2800,70 @@ details .inner {
 </head>
 <body>
 
+<!-- ============ LOCKSCREEN ============ -->
+<div id="lockscreen" style="
+  position: fixed; inset: 0; z-index: 99999;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+">
+  <div style="
+    text-align: center; max-width: 360px; width: 90%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    box-shadow: var(--glass-shadow);
+  ">
+    <div style="font-size: 2.5rem; margin-bottom: 12px;">🎓</div>
+    <h1 style="color: var(--text); font-size: 1.4rem; font-weight: 700; margin: 0 0 4px;">M2 — GIP</h1>
+    <p style="color: var(--text-light); font-size: 0.85rem; margin: 0 0 24px;">Entrez le code d'accès</p>
+    <input type="password" id="lockcode" placeholder="Code d'accès" autocomplete="off" style="
+      width: 100%; box-sizing: border-box;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: var(--text); font-size: 1rem;
+      text-align: center; letter-spacing: 3px;
+      outline: none; transition: border-color 0.2s;
+    " onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
+    <button onclick="checkLockCode()" style="
+      width: 100%; margin-top: 14px;
+      background: var(--primary);
+      color: #fff; border: none;
+      padding: 12px; border-radius: var(--radius-sm);
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s;
+    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Accéder</button>
+    <p id="lock-error" style="color: var(--danger); font-size: 0.8rem; margin: 12px 0 0; display: none;">Code incorrect</p>
+  </div>
+</div>
+<script>
+(function() {
+  var KEY = 'gip_access';
+  if (sessionStorage.getItem(KEY) === 'ok') {
+    document.getElementById('lockscreen').style.display = 'none';
+  }
+  document.getElementById('lockcode').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkLockCode();
+    document.getElementById('lock-error').style.display = 'none';
+  });
+  window.checkLockCode = function() {
+    if (document.getElementById('lockcode').value === 'GIP2526') {
+      sessionStorage.setItem(KEY, 'ok');
+      document.getElementById('lockscreen').style.display = 'none';
+    } else {
+      var err = document.getElementById('lock-error');
+      err.style.display = 'block';
+      document.getElementById('lockcode').value = '';
+      document.getElementById('lockcode').focus();
+    }
+  };
+})();
+</script>
+
 <!-- ============ HEADER ============ -->
 <div class="header">
   <div class="header-logo" onclick="switchCase('home')" style="cursor:pointer">
