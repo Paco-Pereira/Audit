@@ -1451,7 +1451,6 @@ details .inner {
 
 .search-container {
   position: relative;
-  margin-bottom: 20px;
 }
 
 .search-input {
@@ -2892,6 +2891,8 @@ button:focus-visible,
 .home-card.card-financement { --card-accent: #30d158; }
 .home-card.card-responsabilite { --card-accent: #ff6b6b; }
 .home-card.card-fiscal { --card-accent: #ff9f0a; }
+.home-card.card-droit { --card-accent: #bf5af2; }
+.home-card.card-marches { --card-accent: #64d2ff; }
 
 .home-card.card-disabled {
   opacity: 0.45;
@@ -4542,6 +4543,130 @@ body.exam-mode #examToggle {
   </div>
 </div>
 
+<!-- Droit des libéralités et des successions sidebar -->
+<div id="sidebar-droit" style="display:none">
+  <div class="sidebar-label">Droit patrimonial</div>
+  <a class="sidebar-item active" onclick="goTo('droit-intro')">
+    <span class="num">0</span> Introduction
+  </a>
+  <a class="sidebar-item" onclick="goTo('droit-s1')">
+    <span class="num">1</span> Conditions des libéralités
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s1-consentement')">Consentement</a>
+    <a class="sidebar-item" onclick="goTo('droit-s1-capacite')">Capacité</a>
+    <a class="sidebar-item" onclick="goTo('droit-s1-objet')">Objet</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s2')">
+    <span class="num">2</span> Libéralités avec charge
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s2-validite')">Validité des charges</a>
+    <a class="sidebar-item" onclick="goTo('droit-s2-revision')">Révision judiciaire</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s3')">
+    <span class="num">3</span> Solennité des donations
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('droit-s4')">
+    <span class="num">4</span> Exceptions à la solennité
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s4-manuel')">Don manuel</a>
+    <a class="sidebar-item" onclick="goTo('droit-s4-indirecte')">Donation indirecte</a>
+    <a class="sidebar-item" onclick="goTo('droit-s4-deguisee')">Donation déguisée</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s5')">
+    <span class="num">5</span> Irrévocabilité des donations
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s5-prohibees')">Clauses prohibées</a>
+    <a class="sidebar-item" onclick="goTo('droit-s5-permises')">Clauses permises</a>
+    <a class="sidebar-item" onclick="goTo('droit-s5-revocation')">Causes de révocation</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s6')">
+    <span class="num">6</span> Donations spécifiques
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s6-matrimoniales')">Donations matrimoniales</a>
+    <a class="sidebar-item" onclick="goTo('droit-s6-graduelles')">Graduelles & résiduelles</a>
+    <a class="sidebar-item" onclick="goTo('droit-s6-partage')">Donation-partage</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s7')">
+    <span class="num">7</span> Formes de testaments
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s7-olographe')">Testament olographe</a>
+    <a class="sidebar-item" onclick="goTo('droit-s7-authentique')">Testament authentique</a>
+    <a class="sidebar-item" onclick="goTo('droit-s7-mystique')">Testament mystique</a>
+    <a class="sidebar-item" onclick="goTo('droit-s7-international')">Testament international</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s8')">
+    <span class="num">8</span> Révocabilité des testaments
+  </a>
+  <a class="sidebar-item" onclick="goTo('droit-s9')">
+    <span class="num">9</span> Dévolution ab intestat
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s9-conditions')">Conditions pour succéder</a>
+    <a class="sidebar-item" onclick="goTo('droit-s9-ordres')">Ordres & degrés</a>
+    <a class="sidebar-item" onclick="goTo('droit-s9-conjoint')">Conjoint survivant</a>
+    <a class="sidebar-item" onclick="goTo('droit-s9-anomales')">Successions anomales</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s10')">
+    <span class="num">10</span> Dévolution volontaire & réserve
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s10-reserve')">Réserve héréditaire</a>
+    <a class="sidebar-item" onclick="goTo('droit-s10-qd')">Quotité disponible</a>
+    <a class="sidebar-item" onclick="goTo('droit-s10-masse')">Masse de calcul</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s11')">
+    <span class="num">11</span> Option successorale
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('droit-s12')">
+    <span class="num">12</span> Partage de la succession
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('droit-s12-masse')">Masse partageable</a>
+    <a class="sidebar-item" onclick="goTo('droit-s12-rapport')">Rapport des libéralités</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('droit-s13')">
+    <span class="num">13</span> Successions internationales
+  </a>
+  <a class="sidebar-item" onclick="goTo('droit-s14')">
+    <span class="num">14</span> Paiement des droits
+  </a>
+  <a class="sidebar-item" onclick="goTo('droit-s15')">
+    <span class="num">15</span> Gestion par mandataire
+  </a>
+  <div class="sidebar-label" style="margin-top: 12px;">Exercices</div>
+  <a class="sidebar-item" onclick="goTo('droit-ex1')">
+    <span class="num">📝</span> Dévolution 1 à 3
+  </a>
+  <a class="sidebar-item" onclick="goTo('droit-ex2')">
+    <span class="num">📝</span> Réserve & QD
+  </a>
+  <a class="sidebar-item" onclick="goTo('droit-ex3')">
+    <span class="num">📝</span> Liquidation complète
+  </a>
+</div>
+
+<!-- Droit des marchés financiers sidebar -->
+<div id="sidebar-marches" style="display:none">
+  <div class="sidebar-label">Droit des marchés financiers</div>
+  <a class="sidebar-item active" onclick="goTo('marches-intro')">
+    <span class="num">0</span> Introduction
+  </a>
+</div>
+
 </nav>
 
   <!-- ===== MAIN CONTENT ===== -->
@@ -4611,6 +4736,20 @@ body.exam-mode #examToggle {
           <div class="home-card-title">Ingénierie fiscale PP</div>
           <div class="home-card-desc">Fiscalité des personnes physiques et patrimoine : IR, plus-values, IFI, droits de mutation, assurance-vie, démembrement et SCI.</div>
           <div class="home-card-badge">6 chapitres</div>
+        </div>
+
+        <div class="home-card card-droit" onclick="enterCourse('droit')">
+          <span class="home-card-icon">📜</span>
+          <div class="home-card-title">Droit patrimonial</div>
+          <div class="home-card-desc">Libéralités et successions : donations, testaments, dévolution, réserve héréditaire, partage, liquidation et successions internationales.</div>
+          <div class="home-card-badge">15 chapitres · 3 exercices</div>
+        </div>
+
+        <div class="home-card card-marches" onclick="enterCourse('marches')">
+          <span class="home-card-icon">📈</span>
+          <div class="home-card-title">Droit des marchés financiers</div>
+          <div class="home-card-desc">Contenu à venir.</div>
+          <div class="home-card-badge">À compléter</div>
         </div>
 
       </div>
@@ -24812,6 +24951,942 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 
     </div>
 
+    <!-- ══════════════════════════════════════
+         DROIT PATRIMONIAL — Libéralités & Successions
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-droit" style="display:none">
+
+      <!-- Introduction -->
+      <div class="welcome" id="droit-intro">
+        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <h1>Droit des libéralités et des successions 📜</h1>
+        <div class="subtitle">Droit patrimonial — M2 GIP</div>
+        <p>Ce cours couvre le droit commun des libéralités (donations et testaments), les règles de dévolution successorale, l'option successorale, le partage de la succession, les successions internationales et les exercices de liquidation.</p>
+        <div class="meta">Master 2 GIP · 15 chapitres · 3 exercices</div>
+      </div>
+
+      <div class="card">
+        <h3>Plan du cours</h3>
+        <table class="data-table">
+          <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td>Conditions des libéralités</td><td>Consentement, capacité, objet</td></tr>
+            <tr><td><strong>2</strong></td><td>Libéralités avec charge</td><td>Validité, révision judiciaire, inaliénabilité</td></tr>
+            <tr><td><strong>3</strong></td><td>Solennité des donations</td><td>Acte notarié, formalités, nullité</td></tr>
+            <tr><td><strong>4</strong></td><td>Exceptions à la solennité</td><td>Don manuel, donation indirecte, déguisée</td></tr>
+            <tr><td><strong>5</strong></td><td>Irrévocabilité des donations</td><td>Clauses prohibées, permises, révocation</td></tr>
+            <tr><td><strong>6</strong></td><td>Donations spécifiques</td><td>Matrimoniales, graduelles, donation-partage</td></tr>
+            <tr><td><strong>7</strong></td><td>Formes de testaments</td><td>Olographe, authentique, mystique, international</td></tr>
+            <tr><td><strong>8</strong></td><td>Révocabilité des testaments</td><td>Volontaire, judiciaire, de plein droit</td></tr>
+            <tr><td><strong>9</strong></td><td>Dévolution ab intestat</td><td>Ordres, degrés, conjoint survivant</td></tr>
+            <tr><td><strong>10</strong></td><td>Dévolution volontaire & réserve</td><td>Réserve héréditaire, QD ordinaire et spéciale</td></tr>
+            <tr><td><strong>11</strong></td><td>Option successorale</td><td>Acceptation, renonciation, effets</td></tr>
+            <tr><td><strong>12</strong></td><td>Partage de la succession</td><td>Masse partageable, rapport des libéralités</td></tr>
+            <tr><td><strong>13</strong></td><td>Successions internationales</td><td>Règlement européen, certificat, fiscalité</td></tr>
+            <tr><td><strong>14</strong></td><td>Paiement des droits</td><td>Modalités, différé, fractionné</td></tr>
+            <tr><td><strong>15</strong></td><td>Gestion par mandataire</td><td>Mandat posthume, conventionnel, successoral</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <div><strong>Principe directeur :</strong> La prohibition des pactes sur succession future interdit d'organiser par contrat, du vivant du <em>de cujus</em>, le règlement de sa succession. Le non-respect est sanctionné par la <strong>nullité</strong>. Toutefois, certains pactes sont classiquement validés (clause d'attribution intégrale de la communauté au conjoint survivant).</div>
+      </div>
+
+      <!-- ===== CHAPITRE 1 : CONDITIONS DE FORMATION ===== -->
+      <div class="section" id="droit-s1">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title">Conditions de formation des libéralités</div>
+        </div>
+
+        <div class="card">
+          <p>Il existe <strong>2 types de libéralités</strong> : la <strong>donation entre vifs</strong> (contrat) et le <strong>legs</strong> (acte unilatéral). Les deux sont à titre gratuit et nécessitent :</p>
+          <ul>
+            <li><strong>Élément intentionnel :</strong> l'<em>animus donandi</em> (intention libérale)</li>
+            <li><strong>Élément matériel :</strong> le disposant doit s'appauvrir et le gratifié doit s'enrichir (acte déséquilibré)</li>
+          </ul>
+          <p>Les libéralités doivent respecter des conditions de validité propres (forme) et sont soumises au droit commun : consentement, capacité, objet.</p>
+        </div>
+
+        <h3 id="droit-s1-consentement">a) Le consentement</h3>
+        <div class="card">
+          <p><strong>Article 901 du Code Civil :</strong> pour faire une libéralité il faut être <strong>sain d'esprit</strong>. La libéralité est nulle lorsque le consentement a été vicié par l'erreur, le dol ou la violence.</p>
+          <table class="data-table">
+            <thead><tr><th>Vice</th><th>Définition</th><th>Exemple</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Erreur</strong></td><td>Rarement plaidée en matière de libéralité</td><td>Croire qu'un enfant est le sien alors que non</td></tr>
+              <tr><td><strong>Violence</strong></td><td>Pressions exercées sur le testateur</td><td>Forcer la signature d'un testament</td></tr>
+              <tr><td><strong>Dol</strong></td><td>Manoeuvres frauduleuses, mensonges</td><td>Tromper sur la nature de l'acte</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Le gratifié doit exister.</strong> Pour la donation : le gratifié peut être mineur ou un enfant simplement conçu (à condition qu'il naisse vivant et viable). Pour le testament : on peut léguer à des personnes qui n'existent pas encore au moment de la disposition. Le legs fait à une <strong>personne incertaine</strong> est nul. Le legs fait avec <strong>faculté d'élire</strong> est nul.</div>
+          </div>
+        </div>
+
+        <h3 id="droit-s1-capacite">b) La capacité</h3>
+        <div class="card">
+          <h4>Incapacités générales de disposer</h4>
+          <table class="data-table">
+            <thead><tr><th>Régime</th><th>Donation</th><th>Testament (legs)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Mineur</strong></td><td>Ne peut ni donner ni léguer (sauf émancipé, art. 904 CC)</td><td>Idem</td></tr>
+              <tr><td><strong>Curatelle</strong></td><td>Peut donner <strong>avec assistance</strong> du curateur</td><td>Peut léguer <strong>sans curateur</strong> (attention insanité)</td></tr>
+              <tr><td><strong>Tutelle</strong></td><td>Avec assistance du tuteur + <strong>autorisation du juge des tutelles</strong></td><td>Avec <strong>autorisation du juge</strong> (sans présence du tuteur)</td></tr>
+              <tr><td><strong>Sauvegarde de justice</strong></td><td>Pleinement capable, sans assistance ni autorisation</td><td>Idem</td></tr>
+            </tbody>
+          </table>
+          <h4>Incapacités spéciales de disposer ou de recevoir</h4>
+          <p>Les membres des <strong>professions médicales</strong> et de la pharmacie ainsi que les auxiliaires médicaux ayant prodigué des soins pendant la maladie dont la personne meurt ne peuvent profiter des dispositions entre vifs ou testamentaires faites en leur faveur pendant le cours de celle-ci.</p>
+        </div>
+
+        <h3 id="droit-s1-objet">c) L'objet</h3>
+        <div class="card">
+          <p>L'objet donné ou légué doit <strong>exister</strong> et être <strong>déterminé ou déterminable</strong>. La donation doit porter sur un bien qui existe au moment de l'acte.</p>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>La donation de biens à venir est nulle</strong> (sauf donation entre époux). Pour le legs : si on lègue une maison et qu'on la vend, le legs est <strong>caduque</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 2 : LIBÉRALITÉS AVEC CHARGE ===== -->
+      <div class="section" id="droit-s2">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title">Les libéralités avec charge</div>
+        </div>
+
+        <div class="card">
+          <p>La <strong>charge</strong> est une obligation imposée par le disposant au bénéficiaire. Elle peut être dans l'intérêt du disposant, du bénéficiaire ou d'un tiers.</p>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div>Si la charge absorbe le bénéfice de la libéralité → <strong>acte à titre onéreux</strong>. Si la charge est inférieure à la valeur du bien → la qualification de <strong>libéralité demeure</strong>.</div>
+          </div>
+        </div>
+
+        <h3 id="droit-s2-validite">a) Validité des charges (art. 900 CC)</h3>
+        <div class="card">
+          <p>Les conditions impossibles, contraires aux lois ou aux moeurs sont <strong>réputées non écrites</strong>. Seule la charge est réputée non écrite : le donataire conserve la libéralité sans avoir à remplir la charge.</p>
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Exemple</th><th>Validité</th></tr></thead>
+            <tbody>
+              <tr><td>Charge valide</td><td>Donner un bien à charge de servir une rente à l'enfant</td><td>Valide</td></tr>
+              <tr><td>Charge interdite</td><td>Condition de célibat, viduité, changement de religion, mariage</td><td>Réputée non écrite</td></tr>
+              <tr><td>Clause d'inaliénabilité</td><td>Interdiction d'aliéner, hypothéquer ou nantir le bien donné</td><td>Valable si <strong>temporaire</strong> et justifiée par un <strong>intérêt sérieux et légitime</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div><strong>Conseil pratique :</strong> il est possible de conseiller au bénéficiaire d'accepter une donation avec charge interdite, puis de saisir le juge pour la faire réputer non écrite : il recevra le bien <strong>sans charge</strong>.</div>
+          </div>
+          <p>Les <strong>donations avec réserve d'usufruit</strong> sont les plus fréquentes : le donateur donne le bien mais s'en réserve l'usufruit (il donne la nue-propriété).</p>
+        </div>
+
+        <h3 id="droit-s2-revision">b) Révision judiciaire des charges (art. 900-2 CC)</h3>
+        <div class="card">
+          <p>Si l'exécution de la charge est devenue <strong>extrêmement difficile</strong> ou <strong>sérieusement dommageable</strong> par suite d'un changement de circonstances, le gratifié peut demander en justice la révision.</p>
+          <ul>
+            <li>Action possible <strong>une fois tous les 10 ans</strong>, au plus tôt 10 ans après la mort du disposant</li>
+            <li>Le gratifié doit prouver avoir fait de son mieux pour exécuter la charge</li>
+            <li>Le juge peut <strong>réduire</strong> la charge en quantité/périodicité ou en modifier l'objet</li>
+            <li>Permission <strong>temporaire</strong> : si les conditions s'améliorent, la charge initiale peut être rétablie</li>
+          </ul>
+          <p><strong>Art. 900-1 CC :</strong> possibilité de lever l'inaliénabilité si l'intérêt sérieux et légitime a disparu ou si un intérêt supérieur l'exige.</p>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 3 : SOLENNITÉ DES DONATIONS ===== -->
+      <div class="section" id="droit-s3">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <div class="section-title">Le principe de solennité des donations</div>
+        </div>
+
+        <div class="card">
+          <p><strong>Article 931 du Code Civil :</strong> tous actes portant donation entre vifs seront passés <strong>devant notaire</strong> dans la forme ordinaire des contrats et il en restera <strong>minute</strong>, sous peine de nullité.</p>
+          <ul>
+            <li>Le notaire doit recevoir l'acte <strong>en personne</strong> (un clerc habilité ne peut pas)</li>
+            <li>Les parties doivent être présentes ou représentées (procuration <strong>authentique</strong>)</li>
+            <li>Le bénéficiaire doit <strong>accepter</strong> dans l'acte notarié (même acte ou acte séparé)</li>
+          </ul>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Sanction :</strong> la nullité se prescrit par <strong>5 ans</strong> à compter du décès du donateur.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 4 : EXCEPTIONS À LA SOLENNITÉ ===== -->
+      <div class="section" id="droit-s4">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <div class="section-title">Les exceptions au principe de solennité</div>
+        </div>
+
+        <h3 id="droit-s4-manuel">a) Le don manuel</h3>
+        <div class="card">
+          <p>Le don manuel est le fait de donner quelque chose <strong>de la main à la main</strong>. Il sera toujours traité comme une donation (contrairement au présent d'usage).</p>
+          <ul>
+            <li>Il faut qu'il y ait <strong>tradition</strong> (remise de la chose) : porte uniquement sur des <strong>choses meubles corporelles</strong></li>
+            <li><strong>Fiscalité :</strong> le donataire doit déclarer le don manuel à l'administration fiscale par l'imprimé CERFA 2735</li>
+          </ul>
+        </div>
+
+        <h3 id="droit-s4-indirecte">b) La donation indirecte</h3>
+        <div class="card">
+          <p>Donation qui respecte les conditions de fond mais qui est réalisée au moyen d'un acte juridique qui <strong>n'emprunte pas la forme</strong> d'une donation.</p>
+          <ul>
+            <li><strong>Via un acte à titre onéreux :</strong> un appartement vaut 100, vendu à sa fille pour 50 → donation sur la partie (50)</li>
+            <li><strong>Via un acte neutre :</strong> renonciation à un droit, à un usufruit</li>
+          </ul>
+        </div>
+
+        <h3 id="droit-s4-deguisee">c) La donation déguisée</h3>
+        <div class="card">
+          <p>Technique de la <strong>simulation</strong> : on dissimule une donation sous l'apparence d'un acte à titre onéreux.</p>
+          <ul>
+            <li><strong>Valable</strong> si elle remplit les conditions de fond de la donation (notamment l'intention libérale) — mais elle est <strong>taxable</strong></li>
+            <li><strong>Nulle</strong> si elle vise à contourner une incapacité de recevoir à titre gratuit</li>
+          </ul>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div>Ne pas confondre <strong>donation indirecte</strong> (le prix inférieur est mentionné dans l'acte) et <strong>donation déguisée</strong> (la gratuité est dissimulée).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 5 : IRRÉVOCABILITÉ DES DONATIONS ===== -->
+      <div class="section" id="droit-s5">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <div class="section-title">Irrévocabilité des donations (art. 894 CC)</div>
+        </div>
+
+        <div class="card">
+          <p><strong>Article 894 CC :</strong> la donation entre vifs est un acte par lequel le donateur se dépouille <strong>actuellement et irrévocablement</strong> de la chose donnée en faveur du donataire qui l'accepte.</p>
+          <p>Ce principe a <strong>2 significations</strong> :</p>
+          <ul>
+            <li>Le donateur n'a pas le pouvoir de révoquer unilatéralement la donation</li>
+            <li>Même si le donataire y consent, le donateur ne peut inclure une clause de révocation (contraire au droit des contrats)</li>
+          </ul>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div>Si une donation contient une clause de révocation, elle est <strong>nulle</strong>.</div>
+          </div>
+        </div>
+
+        <h3 id="droit-s5-prohibees">a) Clauses prohibées</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Clause</th><th>Motif d'interdiction</th><th>Sanction</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Donation de biens à venir</strong> (art. 943)</td><td>On ne peut pas donner ce qu'on n'a pas encore</td><td>Nullité</td></tr>
+              <tr><td><strong>Condition potestative</strong> (art. 944)</td><td>Exécution dépend de la seule volonté du donateur</td><td>Nullité</td></tr>
+              <tr><td><strong>Obligation d'acquitter les dettes futures</strong></td><td>On ne peut évaluer les dettes futures</td><td>Nullité</td></tr>
+              <tr><td><strong>Réserve du droit de disposer</strong></td><td>Le donateur peut disposer d'une partie du bien</td><td>Le droit se transmet aux héritiers si décès (art. 946)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="droit-s5-permises">b) Clauses permises</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Clause</th><th>Description</th><th>Effet</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Réserve d'usufruit</strong> (art. 949)</td><td>Le donateur donne la nue-propriété et conserve l'usufruit</td><td>Au décès de l'usufruitier, l'usufruit rejoint la NP <strong>en franchise de droits</strong></td></tr>
+              <tr><td><strong>Retour conventionnel</strong></td><td>Les biens retournent au donateur si le donataire prédécède (avec ou sans postérité)</td><td>Annulation des actes passés par le donataire sur le bien — « machine anti-conjoint »</td></tr>
+              <tr><td><strong>Révocation pour survenance d'enfant</strong></td><td>Le donateur sans enfant donne puis a un enfant</td><td>3 conditions : naissance, clause prévue, l'enfant peut l'invoquer</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="droit-s5-revocation">c) Causes légales de révocation</h3>
+        <div class="card">
+          <p>Ce sont des causes prévues par la loi qui jouent <strong>sans clause</strong> mais <strong>pas de plein droit</strong> (le donateur doit demander la révocation en justice).</p>
+          <table class="data-table">
+            <thead><tr><th>Cause</th><th>Conditions</th><th>Effet</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Inexécution des charges</strong></td><td>Inexécution suffisamment grave</td><td>Le bien retourne au donateur libre de toute charge</td></tr>
+              <tr><td><strong>Ingratitude</strong></td><td>Attentat à la vie du donateur, sévices/délits/injures graves, refus d'aliments</td><td>Révocation prononcée par le juge</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 6 : DONATIONS SPÉCIFIQUES ===== -->
+      <div class="section" id="droit-s6">
+        <div class="section-header">
+          <div class="section-num">6</div>
+          <div class="section-title">Règles spécifiques à certaines donations</div>
+        </div>
+
+        <h3 id="droit-s6-matrimoniales">a) Donations matrimoniales</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Caractéristiques</th><th>Révocabilité</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Donation par un époux à un tiers</strong></td><td>Soumise au droit commun</td><td>Irrévocable (droit commun)</td></tr>
+              <tr><td><strong>Donation par un tiers en vue du mariage</strong></td><td>Ou par un époux à l'autre en vue du mariage</td><td>Irrévocable</td></tr>
+              <tr><td><strong>Donation entre époux de biens à venir</strong></td><td>Donation au dernier vivant (DDV), se déclenche au décès</td><td><strong>Toujours révocable</strong></td></tr>
+              <tr><td><strong>Donation entre époux de biens présents</strong></td><td>Pendant le mariage</td><td><strong>Non révocable</strong> (sauf inexécution des charges ou ingratitude)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="droit-s6-graduelles">b) Donations graduelles et résiduelles</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Obligation du 1er gratifié</th><th>Transmission au 2nd gratifié</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Graduelle</strong></td><td>Double charge : <strong>garder</strong> le bien et le <strong>transmettre</strong> à son décès</td><td>Obligatoire au décès du 1er gratifié</td></tr>
+              <tr><td><strong>Résiduelle</strong></td><td>Transmettre l'objet <strong>seulement s'il l'a conservé</strong></td><td>Seulement si le bien existe encore</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="droit-s6-partage">c) La donation-partage</h3>
+        <div class="card">
+          <p>Acte permettant aux ascendants de <strong>transmettre</strong> et de <strong>partager</strong> les biens entre les différents gratifiés.</p>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div><strong>Intérêt majeur :</strong> la donation-partage permet de <strong>figer la valeur des biens</strong> au moment de la donation (pas de réévaluation au jour du partage, contrairement à la donation simple).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 7 : FORMES DE TESTAMENTS ===== -->
+      <div class="section" id="droit-s7">
+        <div class="section-header">
+          <div class="section-num">7</div>
+          <div class="section-title">Les différentes formes de testaments</div>
+        </div>
+
+        <div class="card">
+          <p><strong>Article 895 CC :</strong> le testament est un acte par lequel le testateur dispose, pour le temps où il n'existera plus, de tout ou partie de ses biens ou de ses droits et qu'il peut révoquer.</p>
+          <p>C'est un acte <strong>unilatéral à cause de mort</strong>, nécessairement <strong>écrit</strong>, qui n'a pas à être accepté d'avance par le gratifié.</p>
+        </div>
+
+        <h3 id="droit-s7-olographe">a) Le testament olographe</h3>
+        <div class="card">
+          <p>La forme la plus simple. 3 conditions de validité :</p>
+          <ul>
+            <li><strong>Écrit en entier de la main du testateur</strong> — le testament à main guidée est nul. Support libre (carte postale, carnet, mur). Moyen libre (craie, rouge à lèvres, sang). Langue libre.</li>
+            <li><strong>Daté de la main du testateur</strong> — le dernier testament prime. Date précise mais « en cette date de Noël 2009 » est admis.</li>
+            <li><strong>Signé du testateur</strong> — un testament non signé est invalide même s'il est écrit et daté. La signature sur l'enveloppe cachetée est admise.</li>
+          </ul>
+          <table class="data-table">
+            <thead><tr><th>Avantages</th><th>Inconvénients</th></tr></thead>
+            <tbody>
+              <tr><td>Simple, gratuit et secret</td><td>Risque de perte ou destruction volontaire</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div>Pour éviter les risques : remettre le testament olographe à un <strong>notaire</strong> qui le conservera et renseignera le <strong>fichier des dernières volontés</strong> (ADSN).</div>
+          </div>
+        </div>
+
+        <h3 id="droit-s7-authentique">b) Le testament authentique (par acte public)</h3>
+        <div class="card">
+          <ul>
+            <li>Dicté par le testateur au notaire en présence de <strong>2 témoins</strong> (ou d'un 2nd notaire d'une autre étude)</li>
+            <li>Doit être écrit <strong>en français</strong></li>
+            <li>Lu par le notaire au testateur, puis signé</li>
+            <li>Reçu uniquement par le notaire (pas par un clerc habilité)</li>
+            <li>Personne ne peut entrer ou sortir tant que le testament n'est pas entièrement rédigé</li>
+          </ul>
+          <p><strong>Force probante :</strong> fait foi de son contenu et de sa date jusqu'à <strong>inscription de faux</strong>.</p>
+          <p><strong>Sanction :</strong> nullité absolue. Un testament nul en la forme <strong>ne vaut pas</strong> comme testament olographe.</p>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Cas obligatoires :</strong> reconnaissance d'un enfant naturel par testament, testateur ne pouvant écrire/signer, testament privant le conjoint du <strong>droit viager au logement</strong> (mais pas du droit temporaire d'1 an).</div>
+          </div>
+        </div>
+
+        <h3 id="droit-s7-mystique">c) Le testament mystique</h3>
+        <div class="card">
+          <p>Le plus souple des testaments : mis dans une enveloppe cachetée remise à un notaire qui fait un <strong>acte de suscription</strong> en présence de 2 témoins.</p>
+          <table class="data-table">
+            <thead><tr><th>Avantages</th><th>Inconvénients</th></tr></thead>
+            <tbody>
+              <tr><td>Secret + date certaine apposée par le notaire</td><td>Il faut savoir lire, le notaire ne donne aucun conseil</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="droit-s7-international">d) Le testament international</h3>
+        <div class="card">
+          <p>Convention de Washington ratifiée par la France en 1994 (loi uniforme).</p>
+          <ul>
+            <li>Doit être <strong>écrit</strong> mais pas nécessairement de la main du testateur</li>
+            <li>Peut être écrit dans <strong>n'importe quelle langue</strong></li>
+            <li>Présence de <strong>2 témoins et d'un notaire</strong></li>
+            <li>Utilisable même si la situation ne comporte aucun élément d'extranéité</li>
+          </ul>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div>De tous les testaments, <strong>aucun n'est plus fort</strong> que l'autre : c'est juste le <strong>dernier</strong> qui prime.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 8 : RÉVOCABILITÉ DES TESTAMENTS ===== -->
+      <div class="section" id="droit-s8">
+        <div class="section-header">
+          <div class="section-num">8</div>
+          <div class="section-title">La révocabilité des testaments</div>
+        </div>
+
+        <div class="card">
+          <h4>Révocation volontaire</h4>
+          <p><strong>Révocation expresse :</strong> par un testament postérieur ou un acte devant notaire portant déclaration de changement de volonté.</p>
+          <p><strong>Révocation tacite :</strong></p>
+          <ul>
+            <li><strong>Nouveau testament incompatible</strong> : la révocation ne vaut qu'à hauteur de l'incompatibilité</li>
+            <li><strong>Aliénation de la chose léguée</strong> : toute aliénation emporte révocation</li>
+            <li><strong>Destruction volontaire du testament</strong> : intention de révoquer. Si la destruction est étrangère au testateur, pas de révocation (sous réserve de reconstitution)</li>
+          </ul>
+
+          <h4>Révocation judiciaire</h4>
+          <p><strong>Art. 1046 CC :</strong> le legs peut être révoqué pour <strong>inexécution des charges</strong> et pour <strong>ingratitude</strong> (mais pas pour refus d'aliments). Possibilité de révocation pour <strong>injure grave à la mémoire du testateur</strong>.</p>
+
+          <h4>Révocation de plein droit et caducité</h4>
+          <p><strong>Art. 265 CC :</strong> les dispositions à cause de mort entre époux sont révoquées de plein droit en cas de <strong>divorce</strong> (sauf volonté contraire constatée dans la convention ou par le juge).</p>
+          <p><strong>Caducité du legs :</strong> prédécès du légataire, incapacité de recevoir, refus du legs, chose léguée disparue du patrimoine.</p>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 9 : DÉVOLUTION AB INTESTAT ===== -->
+      <div class="section" id="droit-s9">
+        <div class="section-header">
+          <div class="section-num">9</div>
+          <div class="section-title">La dévolution ab intestat</div>
+        </div>
+
+        <div class="card">
+          <p>Règles supplétives légales qui s'appliquent lorsque le <em>de cujus</em> n'a pas eu de volonté contraire. La loi fixe la dévolution en établissant une <strong>hiérarchie</strong> au sein de la famille (excluant concubins et partenaires pacsés).</p>
+        </div>
+
+        <h3 id="droit-s9-conditions">a) Conditions pour succéder</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Condition</th><th>Détails</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Mort du de cujus</strong></td><td>La succession s'ouvre à la date du décès. Théorie des <strong>co-mourants</strong> : l'ordre des décès est établi par tout moyen ; sinon chaque succession est dévolue sans que l'autre y soit appelé</td></tr>
+              <tr><td><strong>Existence de l'héritier</strong></td><td>Il faut exister à l'ouverture de la succession ou, ayant été conçu, naître viable</td></tr>
+              <tr><td><strong>Absence d'indignité</strong></td><td><strong>De droit :</strong> condamnation pour meurtre/violence volontaire. <strong>Facultative :</strong> prononcée par le juge</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Art. 729-1 CC :</strong> les enfants de l'indigne ne sont <strong>pas exclus</strong> par la faute de leur auteur. Mais l'indigne ne peut réclamer la jouissance sur les biens de cette succession.</div>
+          </div>
+          <p>Le décès met fin au <strong>régime matrimonial</strong>. En présence d'un conjoint : d'abord <strong>liquider le régime matrimonial</strong>, puis régler la succession.</p>
+        </div>
+
+        <h3 id="droit-s9-ordres">b) Ordres et degrés</h3>
+        <div class="card">
+          <h4>Les 4 ordres</h4>
+          <table class="data-table">
+            <thead><tr><th>Ordre</th><th>Héritiers</th><th>Exemples</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1er ordre</strong></td><td>Descendants</td><td>Enfants, petits-enfants</td></tr>
+              <tr><td><strong>2e ordre</strong></td><td>Ascendants privilégiés + collatéraux privilégiés</td><td>Père, mère, frères, soeurs, neveux, nièces</td></tr>
+              <tr><td><strong>3e ordre</strong></td><td>Ascendants ordinaires</td><td>Grands-parents, arrière-grands-parents</td></tr>
+              <tr><td><strong>4e ordre</strong></td><td>Collatéraux ordinaires (jusqu'au 6e degré)</td><td>Oncles, tantes, cousins</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Règle fondamentale :</strong> il suffit qu'il y ait <strong>une personne dans un ordre</strong> pour exclure toutes les personnes des ordres suivants. Le conjoint survivant a une <strong>place à part</strong>.</div>
+          </div>
+
+          <h4>La règle du degré</h4>
+          <p>Au sein d'un même ordre, l'héritier au degré le plus proche exclut les héritiers au degré plus lointain. S'il y a plusieurs héritiers au même degré, ils se partagent à <strong>parts égales</strong>.</p>
+
+          <h4>La représentation</h4>
+          <p>Fiction juridique appelant à la succession les représentants aux droits du représenté. La représentation a lieu <strong>à l'infini</strong> dans la ligne directe descendante.</p>
+
+          <h4>La fente</h4>
+          <p>Fonctionne pour les successions remontantes (sans descendants). On partage la succession entre 2 lignes : <strong>ligne paternelle</strong> (½) et <strong>ligne maternelle</strong> (½). Dans chaque branche, le plus proche en degré recueille sa part.</p>
+        </div>
+
+        <h3 id="droit-s9-conjoint">c) En présence de conjoint survivant</h3>
+        <div class="card">
+          <h4>Avec descendants (art. 757 CC)</h4>
+          <table class="data-table">
+            <thead><tr><th>Situation</th><th>Droits du conjoint</th><th>Droits des enfants</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Enfants communs uniquement</strong></td><td>Option : <strong>100 % usufruit</strong> ou <strong>¼ en pleine propriété</strong></td><td>Nue-propriété ou ¾ PP</td></tr>
+              <tr><td><strong>Au moins 1 enfant d'une autre union</strong></td><td><strong>¼ en pleine propriété</strong> (pas d'option)</td><td>¾ en pleine propriété</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div>Le choix le plus fréquent est <strong>100 % usufruit</strong>.</div>
+          </div>
+
+          <h4>Sans enfants</h4>
+          <table class="data-table">
+            <thead><tr><th>Situation</th><th>Conjoint</th><th>Autres héritiers</th></tr></thead>
+            <tbody>
+              <tr><td>Père et mère du défunt vivants</td><td><strong>½</strong> en PP</td><td>Père ¼ + mère ¼</td></tr>
+              <tr><td>Un seul parent vivant</td><td><strong>¾</strong> en PP</td><td>Parent ¼</td></tr>
+              <tr><td>Collatéraux seulement</td><td><strong>Totalité</strong> en PP</td><td>Rien (sauf droit de retour)</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Droits particuliers du conjoint survivant</h4>
+          <table class="data-table">
+            <thead><tr><th>Droit</th><th>Durée</th><th>Nature</th><th>Ordre public ?</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Droit temporaire au logement</strong></td><td>1 an</td><td>Jouissance gratuite du logement + meubles</td><td><strong>Oui</strong> (ne peut être supprimé par testament)</td></tr>
+              <tr><td><strong>Droit viager au logement</strong> (art. 764)</td><td>Vie entière</td><td>Droit d'usage et d'habitation (≈ 60 % de l'usufruit)</td><td><strong>Non</strong> (peut être supprimé par testament authentique)</td></tr>
+              <tr><td><strong>Attribution préférentielle</strong> (art. 831-2)</td><td>—</td><td>Demande d'attribution du logement dans le partage (de droit pour le conjoint)</td><td>De droit</td></tr>
+              <tr><td><strong>Titularité du bail</strong></td><td>—</td><td>Devient titulaire du bail même s'il n'est pas co-titulaire</td><td>Sauf refus</td></tr>
+              <tr><td><strong>Pension alimentaire</strong></td><td>Si dans le besoin</td><td>Peut demander une pension à la succession</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="droit-s9-anomales">d) Les successions anomales</h3>
+        <div class="card">
+          <h4>En raison de l'origine des biens</h4>
+          <p><strong>Droit de retour des collatéraux privilégiés :</strong> le conjoint hérite de la totalité en PP, mais les frères et soeurs ont un droit de retour (½ des biens donnés par l'ascendant au de cujus et retrouvés en nature dans la succession). Le défunt peut en priver ses frères et soeurs par testament.</p>
+          <p><strong>Droit de retour des ascendants (art. 738-2 CC) :</strong> père ou mère si le de cujus n'a pas de postérité. Limité au <strong>¼ chacun</strong> des biens donnés.</p>
+          <h4>En raison de la nature des biens</h4>
+          <p>Concessions funéraires (dévolues aux ascendants, descendants et conjoint) et souvenirs de famille (confiés par le juge au meilleur dépositaire).</p>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 10 : DÉVOLUTION VOLONTAIRE & RÉSERVE ===== -->
+      <div class="section" id="droit-s10">
+        <div class="section-header">
+          <div class="section-num">10</div>
+          <div class="section-title">Dévolution volontaire et réserve héréditaire</div>
+        </div>
+
+        <div class="card">
+          <p><strong>Donations entre vifs à un successible :</strong> 2 sortes :</p>
+          <ul>
+            <li><strong>Hors part successorale (préciputaire) :</strong> avantage un héritier</li>
+            <li><strong>En avancement de part successorale (en avancement d'hoirie) :</strong> s'impute sur la part de l'héritier</li>
+          </ul>
+          <p><strong>Testaments :</strong> legs particulier (biens déterminés), legs à titre universel (quote-part), legs universel (intégralité).</p>
+        </div>
+
+        <h3 id="droit-s10-reserve">a) La réserve héréditaire (art. 912 CC)</h3>
+        <div class="card">
+          <p>Part de la succession <strong>nécessairement dévolue</strong> à certains héritiers dits réservataires (d'ordre public). Il y a toujours une part dont on peut disposer librement : la <strong>quotité disponible (QD)</strong>.</p>
+          <p><strong>Titulaires :</strong> les <strong>descendants</strong> et, subsidiairement (en leur absence), le <strong>conjoint survivant</strong>. Le conjoint n'est <strong>jamais réservataire en présence d'enfants</strong>.</p>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div>Depuis 2006, les <strong>ascendants ne sont plus réservataires</strong> (remplacé partiellement par le droit de retour).</div>
+          </div>
+        </div>
+
+        <h3 id="droit-s10-qd">b) Quotité disponible</h3>
+        <div class="card">
+          <h4>QD ordinaire (gratifié ≠ conjoint)</h4>
+          <table class="data-table">
+            <thead><tr><th>Nombre d'enfants</th><th>Réserve globale</th><th>Quotité disponible</th><th>Réserve individuelle</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1 enfant</strong></td><td>½</td><td><strong>½</strong></td><td>½</td></tr>
+              <tr><td><strong>2 enfants</strong></td><td>⅔</td><td><strong>⅓</strong></td><td>⅓ chacun</td></tr>
+              <tr><td><strong>3 enfants ou +</strong></td><td>¾</td><td><strong>¼</strong></td><td>¾ ÷ nb enfants</td></tr>
+              <tr><td><strong>Conjoint seul (sans enfants)</strong></td><td>¼ (conjoint)</td><td><strong>¾</strong></td><td>¼ (conjoint)</td></tr>
+              <tr><td><strong>Ni descendants ni conjoint</strong></td><td>Aucune</td><td><strong>Totalité</strong></td><td>—</td></tr>
+            </tbody>
+          </table>
+
+          <h4>QD spéciale (donation au dernier vivant — DDV) (art. 1094-1 CC)</h4>
+          <p>Quand le gratifié est le conjoint (en présence d'enfants), la quotité est élargie avec 3 options :</p>
+          <table class="data-table">
+            <thead><tr><th>Option</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Option 1</strong></td><td>QD ordinaire en pleine propriété (selon nombre d'enfants)</td></tr>
+              <tr><td><strong>Option 2</strong></td><td>¼ en pleine propriété + ¾ en usufruit</td></tr>
+              <tr><td><strong>Option 3</strong></td><td>Totalité en usufruit</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="droit-s10-masse">c) Masse de calcul (art. 922 CC)</h3>
+        <div class="card">
+          <p>La masse de calcul de la réserve et de la QD se compose :</p>
+          <ol>
+            <li><strong>Biens existants au jour du décès</strong> (tout ce que possédait le de cujus + biens légués)</li>
+            <li><strong>- Dettes et charges</strong> (dettes personnelles + frais funéraires, liquidation, partage)</li>
+            <li><strong>= Actif net</strong></li>
+            <li><strong>+ Réunion fictive des donations</strong> (tout ce qui a été donné entre vifs)</li>
+            <li><strong>= Masse de calcul</strong></li>
+          </ol>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Estimation des biens donnés :</strong> il faut tenir compte de l'<strong>état des biens au jour de la donation</strong> mais pour leur <strong>valeur au jour du décès</strong>. Les modifications de l'état du bien ne sont prises en compte que si elles ne sont pas imputables au donataire.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 11 : OPTION SUCCESSORALE ===== -->
+      <div class="section" id="droit-s11">
+        <div class="section-header">
+          <div class="section-num">11</div>
+          <div class="section-title">L'option successorale</div>
+        </div>
+
+        <div class="card">
+          <p>On ne peut pas être contraint d'accepter une succession. L'option a <strong>3 branches</strong> :</p>
+          <table class="data-table">
+            <thead><tr><th>Option</th><th>Effet sur les dettes</th><th>Formalités</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Acceptation pure et simple</strong></td><td>Confusion des patrimoines : tenu des dettes sur patrimoine successoral <strong>et personnel</strong></td><td>Expresse (écrit), tacite (acte impliquant l'acceptation) ou forcée (recel successoral)</td></tr>
+              <tr><td><strong>Acceptation à concurrence de l'actif net</strong></td><td>Tenu des dettes <strong>dans la limite de l'actif successoral</strong></td><td>Déclaration au greffe du TJ + inventaire article par article</td></tr>
+              <tr><td><strong>Renonciation</strong></td><td>Non tenu des dettes (sauf frais d'obsèques si descendant/ascendant)</td><td>Déclaration au greffe du TJ ou lettre au greffe</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Délais</h4>
+          <ul>
+            <li>L'option peut être exercée pendant <strong>10 ans</strong>. Passé ce délai, le successible est réputé avoir <strong>renoncé</strong></li>
+            <li><strong>Action interrogatoire :</strong> un créancier, co-héritier ou héritier subséquent peut forcer l'héritier taisant à prendre partie. S'il ne répond pas sous <strong>2 mois</strong>, il est réputé avoir accepté purement et simplement</li>
+          </ul>
+
+          <h4>Rétractation</h4>
+          <p>On peut toujours se rétracter d'une renonciation (vers une acceptation pure et simple) <strong>tant que les héritiers subséquents n'ont pas accepté</strong>.</p>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Recel successoral :</strong> l'héritier qui dissimule sciemment un bien de la succession sera considéré comme <strong>acceptant pur et simple</strong>, tenu de toutes les dettes et <strong>privé de ses droits</strong> sur les biens dissimulés.</div>
+          </div>
+
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div><strong>Stratégie de renonciation :</strong> un héritier peut renoncer à la succession au profit de sa descendance (les enfants héritent par représentation). Avantage fiscal : les abattements de l'héritier renonçant sont répartis entre ses enfants bénéficiaires. Un héritier peut <strong>renoncer à la succession tout en conservant ses droits sur l'assurance-vie</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 12 : PARTAGE ===== -->
+      <div class="section" id="droit-s12">
+        <div class="section-header">
+          <div class="section-num">12</div>
+          <div class="section-title">Le partage de la succession</div>
+        </div>
+
+        <h3 id="droit-s12-masse">a) La masse partageable</h3>
+        <div class="card">
+          <p>Contenu de la masse partageable :</p>
+          <ul>
+            <li><strong>Biens existants</strong> au moment du décès et qui existent encore</li>
+            <li><strong>Biens subrogés</strong> (achetés en remplacement d'un bien indivis, indemnités)</li>
+            <li><strong>Créances</strong> dont le de cujus était créancier (ex : récompense due à la communauté)</li>
+            <li><strong>Fruits et revenus</strong> produits par les biens indivis et non consommés</li>
+            <li><strong>Valeurs soumises au rapport ou à réduction</strong></li>
+          </ul>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Évaluation :</strong> tous les biens doivent être évalués non pas au jour du décès mais à une date <strong>aussi proche que possible du partage</strong> (« valeur partage »), en fonction de l'état du bien à cette date.</div>
+          </div>
+        </div>
+
+        <h3 id="droit-s12-rapport">b) Le rapport des libéralités</h3>
+        <div class="card">
+          <p>Le rapport impose à l'héritier gratifié de <strong>rapporter à la masse partageable</strong> la libéralité dont il a profité. Seules les libéralités faites aux héritiers <em>ab intestat</em> sont susceptibles d'être rapportées.</p>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div>Le rapport <strong>n'est pas d'ordre public</strong> : le de cujus peut en dispenser le gratifié. Dans ce cas, c'est une <strong>donation hors part successorale (préciputaire)</strong>.</div>
+          </div>
+
+          <h4>Détermination de la valeur rapportable</h4>
+          <p><strong>Art. 860 CC :</strong> le rapport est dû selon la valeur du bien donné <strong>au jour du partage</strong> selon son <strong>état au jour de la donation</strong>.</p>
+          <table class="data-table">
+            <thead><tr><th>Situation</th><th>Valeur à rapporter</th></tr></thead>
+            <tbody>
+              <tr><td>Donation d'un immeuble (valeur donation 500K, décès 800K, partage 950K)</td><td><strong>950 000 €</strong></td></tr>
+              <tr><td>Idem + travaux du donataire (sans travaux = 90K au partage, avec = 110K)</td><td><strong>90 000 €</strong> (état au jour de la donation)</td></tr>
+              <tr><td>Donation 650K, décès 950K, partage 1,2M dont 200K de travaux</td><td><strong>1 000 000 €</strong> (1,2M - 200K)</td></tr>
+              <tr><td>Donation 400K, immeuble vendu 550K, vaudrait 800K au partage</td><td><strong>550 000 €</strong> (prix de vente)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 13 : SUCCESSIONS INTERNATIONALES ===== -->
+      <div class="section" id="droit-s13">
+        <div class="section-header">
+          <div class="section-num">13</div>
+          <div class="section-title">Successions internationales</div>
+        </div>
+
+        <div class="card">
+          <p>La succession internationale concerne une personne décédant dans un pays autre que celui de sa nationalité/résidence, ou laissant des biens dans un pays autre.</p>
+
+          <h4>Loi applicable (Règlement UE du 4 juillet 2012, en vigueur le 17 août 2015)</h4>
+          <ul>
+            <li>Applicable dans toute l'UE sauf Royaume-Uni, Irlande et Danemark</li>
+            <li>La loi applicable est celle de la <strong>dernière résidence</strong> du défunt (lieu où il demeurait, pas le domicile fiscal)</li>
+            <li>Le futur défunt peut choisir par testament que sa succession obéisse à sa <strong>loi nationale</strong></li>
+          </ul>
+
+          <h4>Certificat successoral européen</h4>
+          <p>Document fournissant la preuve de qui sont les héritiers et de leurs droits. Reconnu dans tous les États membres sans procédure spécifique. Délivré en France par le notaire.</p>
+
+          <h4>Validité d'un testament international (Convention de La Haye 1961)</h4>
+          <p>Un testament est valable s'il est conforme à la loi interne du lieu où le testateur a disposé, d'une de ses nationalités, de son domicile, de sa résidence habituelle, ou du lieu de situation des immeubles.</p>
+
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Attention :</strong> la <strong>donation au dernier vivant</strong> est parfois méconnue ou interdite dans certains droits étrangers. Il est recommandé de recourir à <strong>deux testaments</strong> (un par époux) pour les personnes de nationalité étrangère (ex : portugaise).</div>
+          </div>
+
+          <h4>Fiscalité (art. 750 ter CGI)</h4>
+          <p>Le patrimoine du défunt sera soumis aux droits de mutation en France :</p>
+          <ol>
+            <li>Lorsque le défunt avait son <strong>domicile en France</strong></li>
+            <li>Lorsque le défunt possédait des <strong>biens en France</strong></li>
+            <li>Lorsque les héritiers ont été <strong>domiciliés en France pendant au moins 6 ans</strong> lors des 10 dernières années</li>
+          </ol>
+          <p>L'impôt payé à l'étranger peut être déduit de l'impôt payé en France (art. 784 CGI). Délai de déclaration : <strong>12 mois</strong> (au lieu de 6) si décès à l'étranger.</p>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 14 : PAIEMENT DES DROITS ===== -->
+      <div class="section" id="droit-s14">
+        <div class="section-header">
+          <div class="section-num">14</div>
+          <div class="section-title">Le paiement des droits de succession</div>
+        </div>
+
+        <div class="card">
+          <p>Les droits de succession doivent être réglés en même temps que le dépôt de la déclaration au service de l'enregistrement compétent.</p>
+          <h4>Modes de paiement</h4>
+          <ul>
+            <li>En espèces (limite de <strong>300 €</strong>)</li>
+            <li>Par chèque, mandat ou virement postal</li>
+            <li>Pour certains droits > 10 000 € (après agrément ministériel) : remise d'oeuvres d'art, immeubles littoraux, bois et forêts</li>
+          </ul>
+          <h4>Paiement différé</h4>
+          <p>Principalement lorsque la transmission porte sur la <strong>nue-propriété</strong> (présence d'un conjoint survivant) ou donne lieu à attribution préférentielle d'exploitation agricole. Moyennant intérêts, cessant dans les 6 mois suivant la réunion usufruit/NP.</p>
+          <h4>Paiement fractionné</h4>
+          <ul>
+            <li>Plusieurs versements égaux sur <strong>1 an max</strong> après expiration du délai légal</li>
+            <li>Porté à <strong>3 ans</strong> si au moins 50 % de l'actif est en biens non liquides (immeubles, objets d'art, VM non cotées)</li>
+            <li>Transmissions d'entreprises : différé <strong>5 ans</strong> puis fractionné <strong>10 ans</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 15 : GESTION PAR MANDATAIRE ===== -->
+      <div class="section" id="droit-s15">
+        <div class="section-header">
+          <div class="section-num">15</div>
+          <div class="section-title">Gestion de la succession par un mandataire</div>
+        </div>
+
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Type de mandat</th><th>Désigné par</th><th>Conditions</th><th>Durée</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Mandat à effet posthume</strong></td><td>Le de cujus de son vivant</td><td>Intérêt sérieux et légitime, accepté avant le décès, acte notarié</td><td><strong>2 à 5 ans</strong> (prorogeable par le juge)</td></tr>
+              <tr><td><strong>Mandat conventionnel</strong></td><td>Les héritiers (d'un commun accord)</td><td>Confié à l'un d'eux ou à un tiers</td><td>Libre</td></tr>
+              <tr><td><strong>Mandataire successoral</strong></td><td>Le juge</td><td>Inertie, carence, faute, mésentente ou complexité</td><td>Provisoire</td></tr>
+            </tbody>
+          </table>
+          <p>Le mandataire successoral peut être demandé par un héritier, un créancier, toute personne intéressée ou le ministère public.</p>
+        </div>
+      </div>
+
+      <!-- ===== EXERCICES ===== -->
+
+      <!-- Exercices de dévolution -->
+      <div class="section" id="droit-ex1">
+        <div class="section-header">
+          <div class="section-num">📝</div>
+          <div class="section-title">Exercices de dévolution</div>
+        </div>
+
+        <div class="card">
+          <h4>Exercice 1</h4>
+          <p><strong>Énoncé :</strong> Le défunt laisse un enfant légitime et un enfant naturel simple.</p>
+          <details>
+            <summary><strong>Voir la solution</strong></summary>
+            <p>Le défunt étant décédé sans testament, les règles de la dévolution légale s'appliquent (art. 721 al. 1er CC). La dévolution se fait par ordre et par degré (art. 734 CC).</p>
+            <p>Nous sommes en présence de <strong>2 descendants</strong> du défunt, héritiers du <strong>1er ordre</strong>. Les deux enfants sont parents au 1er degré. En vertu des articles 310 et 733 CC, les enfants ont les <strong>mêmes droits</strong> sans distinction selon le mode d'établissement de la filiation.</p>
+            <p>À degré égal, le partage se fait par tête et à égalité (art. 744 al. 2 CC). Chacun recevra <strong>la moitié</strong> de la succession en pleine propriété.</p>
+          </details>
+        </div>
+
+        <div class="card">
+          <h4>Exercice 2</h4>
+          <p><strong>Énoncé :</strong> Le défunt laisse un neveu et son grand-père paternel.</p>
+          <details>
+            <summary><strong>Voir la solution</strong></summary>
+            <p>Le neveu est un <strong>collatéral privilégié</strong> (2e ordre). Le grand-père est un <strong>ascendant ordinaire</strong> (3e ordre). Le neveu exclut le grand-père et recueille la <strong>totalité</strong> de la succession en pleine propriété.</p>
+            <p>En l'absence de conjoint successible, le neveu n'est <strong>pas</strong> titulaire du droit de retour de l'art. 757-3 CC (ce texte ne concerne que les droits du conjoint).</p>
+          </details>
+        </div>
+
+        <div class="card">
+          <h4>Exercice 3</h4>
+          <p><strong>Énoncé :</strong> Le défunt laisse son père Georges, son grand-père paternel Lucien, son arrière grand-mère paternelle Fabienne. Sa mère est prédécédée. Il laisse aussi sa grand-mère maternelle Yvonne et son arrière grand-mère maternelle Lucette. Yvonne renonce à la succession.</p>
+          <details>
+            <summary><strong>Voir la solution</strong></summary>
+            <p>Yvonne renonce : elle est censée n'avoir jamais été héritière (art. 805 CC).</p>
+            <p>Georges est <strong>ascendant privilégié</strong> (2e ordre). Lucien, Fabienne et Lucette sont <strong>ascendants ordinaires</strong> (3e ordre).</p>
+            <p><strong>Art. 738-1 CC :</strong> la fente est appliquée même en présence d'un ascendant privilégié. La succession se divise par moitié entre branche paternelle et maternelle.</p>
+            <ul>
+              <li><strong>Branche paternelle :</strong> Georges (ascendant privilégié) exclut Lucien et Fabienne → <strong>½ en PP</strong></li>
+              <li><strong>Branche maternelle :</strong> la part d'Yvonne (renonçante) est dévolue au degré subséquent (art. 805 al. 2 CC) → Lucette → <strong>½ en PP</strong></li>
+            </ul>
+            <p>Georges peut exercer un <strong>droit de retour</strong> sur les biens donnés (art. 738-2 CC).</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Exercices réserve & QD -->
+      <div class="section" id="droit-ex2">
+        <div class="section-header">
+          <div class="section-num">📝</div>
+          <div class="section-title">Exercices — Réserve & quotité disponible</div>
+        </div>
+
+        <div class="card">
+          <h4>Exercice 1</h4>
+          <p><strong>Énoncé :</strong> Le défunt laisse sa fille.</p>
+          <details>
+            <summary><strong>Voir la solution</strong></summary>
+            <p>La fille est héritière réservataire. Avec 1 enfant : <strong>QD = ½</strong>, réserve = ½ (art. 913 CC).</p>
+          </details>
+        </div>
+
+        <div class="card">
+          <h4>Exercice 2</h4>
+          <p><strong>Énoncé :</strong> Le défunt laisse son père et ses 2 enfants.</p>
+          <details>
+            <summary><strong>Voir la solution</strong></summary>
+            <p>Les 2 enfants sont réservataires. Le père (2e ordre) ne vient pas en rang utile. Avec 2 enfants : <strong>QD = ⅓</strong>, réserve globale = ⅔, réserve individuelle = ⅔ × ½ = <strong>⅓ chacun</strong>.</p>
+          </details>
+        </div>
+
+        <div class="card">
+          <h4>Exercice 3</h4>
+          <p><strong>Énoncé :</strong> Le défunt laisse 2 fils X et Y et 2 petits-fils issus de X. X renonce à la succession.</p>
+          <details>
+            <summary><strong>Voir la solution</strong></summary>
+            <p>X renonce mais ses enfants viennent en <strong>représentation</strong> (art. 754 al. 1er CC, loi du 23 juin 2006). X est donc compté dans le nombre d'enfants.</p>
+            <p>Avec 2 enfants (comptés) : <strong>QD = ⅓</strong>, réserve globale = ⅔.</p>
+            <p>Réserve individuelle de Y = <strong>⅓</strong>. Réserve de la souche de X = ⅓ ÷ 2 = <strong>⅙ par petit-enfant</strong>.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Exercice de liquidation complète -->
+      <div class="section" id="droit-ex3">
+        <div class="section-header">
+          <div class="section-num">📝</div>
+          <div class="section-title">Exercice — Liquidation complète</div>
+        </div>
+
+        <div class="card">
+          <h4>Énoncé</h4>
+          <p>Le défunt laisse 2 enfants Paul et Hervé. De son vivant il a consenti :</p>
+          <ul>
+            <li><strong>Donation hors part successorale à Paul</strong> : studio valant 38 000 € au décès, 45 000 € au partage</li>
+            <li><strong>Donation hors part successorale à Hervé</strong> : terrain agricole valant 30 000 € au décès, 45 000 € au partage</li>
+          </ul>
+          <p>Biens existants : 70 000 € au décès, 93 000 € au partage. Pas de dettes. Paul et Hervé acceptent. Donation à Paul faite en premier.</p>
+        </div>
+
+        <div class="card">
+          <details>
+            <summary><strong>I) Dévolution</strong></summary>
+            <p>2 descendants du 1er ordre, même degré → chacun reçoit <strong>½</strong> de la succession en PP (art. 734, 744 CC).</p>
+          </details>
+        </div>
+
+        <div class="card">
+          <details>
+            <summary><strong>II) Contrôle du respect de la réserve</strong></summary>
+            <h4>A) Héritiers réservataires</h4>
+            <p>Paul et Hervé sont descendants réservataires. 2 enfants → QD = <strong>⅓</strong>, réserve globale = <strong>⅔</strong>, réserve individuelle = ⅔ × ½ = <strong>⅓</strong>.</p>
+
+            <h4>B) Masse de calcul (art. 922 CC)</h4>
+            <table class="data-table">
+              <thead><tr><th>Élément</th><th>Montant</th></tr></thead>
+              <tbody>
+                <tr><td>Biens existants au jour du décès</td><td>70 000 €</td></tr>
+                <tr><td>- Dettes</td><td>0 €</td></tr>
+                <tr><td><strong>Actif net</strong></td><td><strong>70 000 €</strong></td></tr>
+                <tr><td>+ Donation Paul (valeur au décès)</td><td>38 000 €</td></tr>
+                <tr><td>+ Donation Hervé (valeur au décès)</td><td>30 000 €</td></tr>
+                <tr><td><strong>Masse de calcul</strong></td><td><strong>138 000 €</strong></td></tr>
+              </tbody>
+            </table>
+            <p>QD = ⅓ × 138 000 = <strong>46 000 €</strong>. Réserve globale = ⅔ × 138 000 = <strong>92 000 €</strong>. Réserve individuelle = ½ × 92 000 = <strong>46 000 €</strong>.</p>
+
+            <h4>C) Imputations (ordre chronologique)</h4>
+            <p><strong>Studio donné à Paul</strong> (héritier réservataire, hors part successorale) → imputation sur la QD.</p>
+            <p>QD restante = 46 000 - 38 000 = <strong>8 000 €</strong></p>
+            <p><strong>Terrain donné à Hervé</strong> (héritier réservataire, hors part successorale) → imputation sur la QD.</p>
+            <p>QD excédée de 30 000 - 8 000 = <strong>22 000 €</strong> → soumis à <strong>réduction</strong> (art. 919-2 CC).</p>
+          </details>
+        </div>
+
+        <div class="card">
+          <details>
+            <summary><strong>III) Partage</strong></summary>
+            <h4>A) Masse à partager</h4>
+            <p>Biens existants (valeur partage) : <strong>93 000 €</strong>. Les donataires sont dispensés de rapport (clause de préciput).</p>
+            <p><strong>Indemnité de réduction d'Hervé</strong> (art. 924-2 CC) : la libéralité n'a excédé la QD que pour partie :</p>
+            <p>22 000 / 30 000 × 45 000 = <strong>33 000 €</strong></p>
+            <p>Masse à partager = 93 000 + 33 000 = <strong>126 000 €</strong></p>
+
+            <h4>B) Droits des parties</h4>
+            <p>Chaque héritier a droit à ½ de 126 000 = <strong>63 000 €</strong></p>
+
+            <h4>C) Attributions</h4>
+            <ul>
+              <li><strong>Paul</strong> : 63 000 € à prendre sur les biens existants</li>
+              <li><strong>Hervé</strong> : 63 000 € - 33 000 € (indemnité de réduction imputée) = <strong>30 000 €</strong> à prendre sur les biens existants</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="card">
+          <h4>Exercice supplémentaire — Conjoint survivant + usufruit</h4>
+          <p><strong>Énoncé :</strong> Le défunt laisse son conjoint et 2 enfants issus de leur union. Sa fille a reçu une donation en avancement de part successorale de 100. Biens existants = 260. Le conjoint opte pour la totalité en usufruit.</p>
+          <details>
+            <summary><strong>Voir la solution</strong></summary>
+            <p>QD = (260 + 100) × ⅓ = <strong>120</strong>. Réserve globale = (260 + 100) × ⅔ = <strong>240</strong>. Réserves individuelles = 240 / 2 = <strong>120 chacun</strong>.</p>
+            <p>Imputation donation de la fille sur sa réserve (120) → réserve non épuisée.</p>
+            <p>Masse à partager = 260 + 100 = <strong>360</strong>. Part des enfants = 360 / 2 = <strong>180 chacun</strong> (sous réserve de l'usufruit du conjoint).</p>
+            <p>L'usufruit du conjoint grève les biens existants (260). Biens nécessaires pour constituer la réserve des enfants = (120 - 100) + 120 = <strong>140</strong>. L'usufruit grève donc la réserve des enfants <strong>en partie seulement</strong>.</p>
+          </details>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         DROIT DES MARCHÉS FINANCIERS
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-marches" style="display:none">
+
+      <div class="welcome" id="marches-intro">
+        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <h1>Droit des marchés financiers 📈</h1>
+        <div class="subtitle">M2 GIP</div>
+        <p>Contenu à venir.</p>
+        <div class="meta">Master 2 GIP</div>
+      </div>
+
+    </div>
+
 
 </main>
 </div>
@@ -25173,7 +26248,9 @@ const tabNames = {
   'outils': '🧰 Outils', 'guide': '📋 Guide', 'formules': '📐 Formules',
   'montages': '🔧 Montages', 'audit': '📊 Audit',
   'financement': '💰 Financement', 'responsabilite': '⚖️ Responsabilité',
-  'fiscal': '🏛️ Fiscalité'
+  'fiscal': '🏛️ Fiscalité',
+  'droit': '📜 Droit patrimonial',
+  'marches': '📈 Marchés financiers'
 };
 
 searchInput.addEventListener('input', function() {
@@ -25655,7 +26732,7 @@ function updateProgressBar(caseName) {
   // Map des cas pour le cours "Audit" (cartes dans case-audit)
   const auditCases = ['snow','stark','niote','mengere','norris','vador','leon','genereux','houette','outils','guide','montages','formules'];
   // Cours autonomes (cartes dans case-home)
-  const courses = ['financement','responsabilite','fiscal'];
+  const courses = ['financement','responsabilite','fiscal','droit','marches'];
 
   function injectCardProgress(cardEl, caseNames) {
     if (!cardEl) return;
