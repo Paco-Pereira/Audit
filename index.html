@@ -2799,6 +2799,161 @@ details .inner {
   }
 }
 
+/* ============================================================================
+   SCROLL TO TOP BUTTON
+   ============================================================================ */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+  z-index: 900;
+  box-shadow: var(--glass-shadow);
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-top-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ============================================================================
+   RESUME BANNER
+   ============================================================================ */
+.resume-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 950;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-top: 1px solid var(--glass-border);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.resume-text {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+.resume-text strong {
+  color: var(--text);
+}
+.resume-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.resume-btn:hover {
+  background: var(--primary-dark);
+}
+.resume-close {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.resume-close:hover {
+  background: var(--sidebar-hover);
+}
+
+/* ============================================================================
+   PROGRESS INDICATORS
+   ============================================================================ */
+.sidebar-item .check-read {
+  margin-left: auto;
+  font-size: 0.7rem;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.sidebar-item .check-read:hover {
+  opacity: 0.7;
+}
+.sidebar-item .check-read.done {
+  opacity: 1;
+  color: var(--accent);
+}
+.sidebar-progress {
+  padding: 8px 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sidebar-progress-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+.sidebar-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sidebar-progress-text {
+  font-size: 0.65rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+/* Search keyboard navigation */
+.search-result-item.kb-active {
+  background: var(--primary-light) !important;
+  border-left: 3px solid var(--primary);
+}
+
+@media (max-width: 600px) {
+  .scroll-top-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  .resume-banner {
+    padding: 10px 16px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -24005,6 +24160,16 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 </main>
 </div>
 
+<!-- ============ BANDEAU REPRENDRE ============ -->
+<div class="resume-banner" id="resumeBanner" style="display:none">
+  <span class="resume-text" id="resumeText"></span>
+  <button class="resume-btn" id="resumeBtn">Reprendre</button>
+  <button class="resume-close" id="resumeClose" title="Fermer">✕</button>
+</div>
+
+<!-- ============ BOUTON SCROLL TO TOP ============ -->
+<button class="scroll-top-btn" id="scrollTopBtn" title="Remonter en haut">↑</button>
+
 <!-- ============ JAVASCRIPT ============ -->
 <script>
 // ============ SWITCH CASE FUNCTION ============
@@ -24066,6 +24231,16 @@ function switchCase(caseName) {
 
   // Scroll to top
   document.getElementById('main-scroll').scrollTop = 0;
+
+  // Update URL hash (sans déclencher hashchange)
+  if (caseName !== 'home') {
+    history.replaceState(null, '', '#' + caseName);
+  } else {
+    history.replaceState(null, '', window.location.pathname);
+  }
+
+  // Sauvegarder dernière page visitée
+  try { localStorage.setItem('gip-lastPage', caseName); } catch(e) {}
 }
 
 // ============ ENTER COURSE FUNCTION ============
@@ -24333,14 +24508,268 @@ function toggleDarkMode() {
 }
 
 // Restore theme preference (dark is default)
+// Si pas de préférence enregistrée, détecter le thème système
 try {
-  if (localStorage.getItem('lightMode') === '1') {
+  const savedTheme = localStorage.getItem('lightMode');
+  if (savedTheme === '1') {
     document.body.classList.add('light-mode');
     document.getElementById('darkToggle').textContent = '🌙';
-  } else {
+  } else if (savedTheme === '0') {
     document.getElementById('darkToggle').textContent = '☀️';
+  } else {
+    // Pas de préférence : suivre le système
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.body.classList.add('light-mode');
+      document.getElementById('darkToggle').textContent = '🌙';
+    } else {
+      document.getElementById('darkToggle').textContent = '☀️';
+    }
   }
 } catch(e) {}
+
+// Écouter les changements de thème système en temps réel
+try {
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
+    if (localStorage.getItem('lightMode') !== null) return; // Respecter le choix manuel
+    if (e.matches) {
+      document.body.classList.add('light-mode');
+      document.getElementById('darkToggle').textContent = '🌙';
+    } else {
+      document.body.classList.remove('light-mode');
+      document.getElementById('darkToggle').textContent = '☀️';
+    }
+  });
+} catch(e) {}
+
+// ============ HASH ROUTING — CHARGEMENT INITIAL ============
+window.addEventListener('hashchange', function() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash) switchCase(hash);
+});
+
+// ============ SCROLL TO TOP ============
+(function() {
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  const mainEl = document.getElementById('main-scroll');
+  if (!scrollBtn || !mainEl) return;
+
+  mainEl.addEventListener('scroll', function() {
+    if (mainEl.scrollTop > 400) {
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.remove('visible');
+    }
+  });
+
+  scrollBtn.addEventListener('click', function() {
+    mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+// ============ NAVIGATION CLAVIER DANS LA RECHERCHE ============
+(function() {
+  let kbIndex = -1;
+
+  searchInput.addEventListener('keydown', function(e) {
+    const items = searchResults.querySelectorAll('.search-result-item');
+    if (!items.length || !searchResults.classList.contains('active')) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      kbIndex = Math.min(kbIndex + 1, items.length - 1);
+      items.forEach(i => i.classList.remove('kb-active'));
+      items[kbIndex].classList.add('kb-active');
+      items[kbIndex].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      kbIndex = Math.max(kbIndex - 1, 0);
+      items.forEach(i => i.classList.remove('kb-active'));
+      items[kbIndex].classList.add('kb-active');
+      items[kbIndex].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter' && kbIndex >= 0) {
+      e.preventDefault();
+      items[kbIndex].click();
+      kbIndex = -1;
+    }
+  });
+
+  // Reset index quand les résultats changent
+  searchInput.addEventListener('input', function() { kbIndex = -1; });
+})();
+
+// ============ PERSISTANCE SIDEBAR (desktop) ============
+(function() {
+  try {
+    if (localStorage.getItem('gip-sidebarCollapsed') === '1') {
+      const sidebar = document.getElementById('sidebar');
+      const expandBtn = document.getElementById('sidebarExpandBtn');
+      if (sidebar) sidebar.classList.add('collapsed');
+      if (expandBtn) expandBtn.classList.add('visible');
+    }
+  } catch(e) {}
+})();
+
+// Patcher collapseSidebar pour persister l'état
+const _origCollapseSidebar = collapseSidebar;
+collapseSidebar = function() {
+  _origCollapseSidebar();
+  try {
+    const sidebar = document.getElementById('sidebar');
+    localStorage.setItem('gip-sidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
+  } catch(e) {}
+};
+
+// ============ SUIVI DE PROGRESSION ============
+const GIP_PROGRESS_KEY = 'gip-progress';
+
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem(GIP_PROGRESS_KEY)) || {}; } catch(e) { return {}; }
+}
+
+function saveProgress(data) {
+  try { localStorage.setItem(GIP_PROGRESS_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function toggleSectionRead(caseName, sectionId, checkEl) {
+  const progress = getProgress();
+  if (!progress[caseName]) progress[caseName] = [];
+
+  const idx = progress[caseName].indexOf(sectionId);
+  if (idx === -1) {
+    progress[caseName].push(sectionId);
+    checkEl.classList.add('done');
+    checkEl.textContent = '✓';
+  } else {
+    progress[caseName].splice(idx, 1);
+    checkEl.classList.remove('done');
+    checkEl.textContent = '○';
+  }
+  saveProgress(progress);
+  updateProgressBar(caseName);
+}
+
+function updateProgressBar(caseName) {
+  const barEl = document.querySelector('#sidebar-' + caseName + ' .sidebar-progress-fill');
+  const textEl = document.querySelector('#sidebar-' + caseName + ' .sidebar-progress-text');
+  if (!barEl) return;
+
+  const total = document.querySelectorAll('#sidebar-' + caseName + ' .check-read').length;
+  const progress = getProgress();
+  const done = (progress[caseName] || []).length;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  barEl.style.width = pct + '%';
+  if (textEl) textEl.textContent = done + '/' + total;
+}
+
+// Injecter les checkboxes de progression dans toutes les sidebars
+(function() {
+  const progress = getProgress();
+
+  document.querySelectorAll('[id^="sidebar-"]').forEach(sidebarDiv => {
+    const caseName = sidebarDiv.id.replace('sidebar-', '');
+    const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+    if (items.length === 0) return;
+
+    // Ajouter les checks
+    items.forEach(item => {
+      const onclick = item.getAttribute('onclick') || '';
+      const match = onclick.match(/goTo\('([^']+)'\)/);
+      if (!match) return;
+      const sectionId = match[1];
+
+      const check = document.createElement('span');
+      check.className = 'check-read';
+      const isDone = progress[caseName] && progress[caseName].includes(sectionId);
+      if (isDone) {
+        check.classList.add('done');
+        check.textContent = '✓';
+      } else {
+        check.textContent = '○';
+      }
+      check.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleSectionRead(caseName, sectionId, check);
+      });
+      item.appendChild(check);
+    });
+
+    // Ajouter la barre de progression en haut
+    const progressHtml = document.createElement('div');
+    progressHtml.className = 'sidebar-progress';
+    const done = (progress[caseName] || []).length;
+    const total = items.length;
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+    progressHtml.innerHTML =
+      '<div class="sidebar-progress-bar"><div class="sidebar-progress-fill" style="width:' + pct + '%"></div></div>' +
+      '<span class="sidebar-progress-text">' + done + '/' + total + '</span>';
+    sidebarDiv.insertBefore(progressHtml, sidebarDiv.querySelector('.sidebar-item'));
+  });
+})();
+
+// ============ BANDEAU "REPRENDRE" ============
+(function() {
+  const banner = document.getElementById('resumeBanner');
+  const text = document.getElementById('resumeText');
+  const btn = document.getElementById('resumeBtn');
+  const close = document.getElementById('resumeClose');
+  if (!banner || !text || !btn || !close) return;
+
+  // Noms lisibles
+  const courseNames = {
+    'snow': 'Cas SNOW', 'stark': 'Cas STARK', 'niote': 'Cas NIOTE',
+    'mengere': 'Cas MENGERE', 'norris': 'Cas NORRIS', 'vador': 'Cas VADOR',
+    'leon': 'Cas LEON', 'genereux': 'Cas GÉNÉREUX', 'houette': 'Cas HOUETTE',
+    'outils': 'Boîte à Outils', 'guide': 'Guide Stratégique',
+    'montages': 'Montages', 'formules': 'Formules',
+    'audit': 'Audit patrimonial', 'financement': 'Financement des particuliers',
+    'responsabilite': 'Responsabilité du gestionnaire', 'fiscal': 'Ingénierie fiscale PP'
+  };
+
+  try {
+    const lastPage = localStorage.getItem('gip-lastPage');
+    const hash = window.location.hash.replace('#', '');
+
+    // Afficher le bandeau seulement si on arrive sur home et qu'on a une dernière page
+    if (lastPage && lastPage !== 'home' && !hash) {
+      text.innerHTML = 'Reprendre : <strong>' + (courseNames[lastPage] || lastPage) + '</strong>';
+      banner.style.display = 'flex';
+
+      btn.addEventListener('click', function() {
+        switchCase(lastPage);
+        banner.style.display = 'none';
+      });
+      close.addEventListener('click', function() {
+        banner.style.display = 'none';
+      });
+
+      // Auto-masquer après 8s
+      setTimeout(function() {
+        if (banner.style.display !== 'none') {
+          banner.style.opacity = '0';
+          banner.style.transition = 'opacity 0.4s';
+          setTimeout(function() { banner.style.display = 'none'; }, 400);
+        }
+      }, 8000);
+    }
+  } catch(e) {}
+
+  // Navigation par hash au chargement (prioritaire sur le bandeau)
+  const hash = window.location.hash.replace('#', '');
+  if (hash) {
+    banner.style.display = 'none';
+    // Attendre que le lockscreen soit passé si nécessaire
+    const checkAndNavigate = function() {
+      const lockscreen = document.getElementById('lockscreen');
+      if (lockscreen && lockscreen.style.display !== 'none') {
+        setTimeout(checkAndNavigate, 200);
+      } else {
+        switchCase(hash);
+      }
+    };
+    checkAndNavigate();
+  }
+})();
 
 </script>
 
