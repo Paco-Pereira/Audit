@@ -365,6 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============ SEARCH FUNCTION ============
 const searchInput = document.getElementById('searchInput');
 const searchResults = document.getElementById('searchResults');
+if (!searchInput || !searchResults) { console.warn('Search elements not found'); }
 
 // Tab name mapping
 const tabNames = {
@@ -380,7 +381,7 @@ const tabNames = {
   'transmission': '🏢 Transmission d\'entreprises'
 };
 
-searchInput.addEventListener('input', function() {
+searchInput && searchInput.addEventListener('input', function() {
   const query = this.value.trim().toLowerCase();
   if (query.length < 2) {
     searchResults.classList.remove('active');
@@ -713,6 +714,7 @@ restoreFcState();
 
 // ============ NAVIGATION CLAVIER DANS LA RECHERCHE ============
 (function() {
+  if (!searchInput) return;
   let kbIndex = -1;
 
   searchInput.addEventListener('keydown', function(e) {

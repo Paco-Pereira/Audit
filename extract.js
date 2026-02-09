@@ -144,7 +144,11 @@ console.log('✅ manifest.json created');
 
 // Extract and minify CSS
 console.log('\n🎨 Extracting and minifying CSS...');
-const cssContent = $('style').html();
+let cssContent = '';
+$('style').each((i, el) => {
+  const content = $(el).html();
+  if (content) cssContent += content + '\n';
+});
 const minifiedCSS = new CleanCSS({
   level: 2,
   compatibility: '*'
