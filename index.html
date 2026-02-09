@@ -1633,9 +1633,17 @@ details .inner {
   overflow: hidden;
 }
 
-.flashcard-a.show {
+.flashcard-a.show,
+.flashcard.revealed .flashcard-a {
   opacity: 1;
-  max-height: 120px;
+  max-height: 200px;
+}
+.flashcard.revealed {
+  border-color: rgba(10, 132, 255, 0.3);
+  background: rgba(10, 132, 255, 0.04);
+}
+.flashcard.revealed::before {
+  opacity: 1;
 }
 
 .flashcard-tag {
@@ -1697,6 +1705,50 @@ details .inner {
   background: rgba(10, 132, 255, 0.18);
   border-color: var(--primary);
   box-shadow: 0 0 16px rgba(10, 132, 255, 0.15);
+}
+
+.fc-filter {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.fc-filter:hover {
+  border-color: var(--primary);
+  color: var(--text);
+}
+.fc-filter.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.fc-shuffle-btn {
+  padding: 5px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.fc-shuffle-btn:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+.fc-score {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+.flashcard.fc-hidden {
+  display: none !important;
 }
 
 /* ============================================================================
@@ -2010,6 +2062,67 @@ details .inner {
   .flashcard {
     margin-bottom: 12px;
     page-break-inside: avoid;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     EXPORT PDF GÉNÉRIQUE — Tous les cas
+     ═══════════════════════════════════════════════════════════════════ */
+
+  body.printing-case .case-content { display: none !important; }
+  body.printing-case .case-content.print-target { display: block !important; }
+  body.printing-case .case-content.print-target button { display: none !important; }
+  body.printing-case .case-content.print-target .breadcrumb { display: none !important; }
+  body.printing-case .resume-banner,
+  body.printing-case .scroll-top-btn,
+  body.printing-case #lockscreen,
+  body.printing-case .sidebar-expand-btn { display: none !important; }
+
+  body.printing-case {
+    background: white !important;
+    font-size: 10px;
+    line-height: 1.45;
+  }
+  body.printing-case .welcome h1 {
+    font-size: 16px !important;
+    -webkit-text-fill-color: black !important;
+    background: none !important;
+  }
+  body.printing-case .welcome .subtitle {
+    font-size: 11px !important;
+  }
+  body.printing-case .welcome .meta {
+    font-size: 9px !important;
+  }
+  body.printing-case .section {
+    page-break-inside: avoid;
+    margin: 8px 0 !important;
+  }
+  body.printing-case .section-header {
+    margin-bottom: 4px !important;
+  }
+  body.printing-case .section-title {
+    font-size: 13px !important;
+  }
+  body.printing-case .card {
+    padding: 8px 10px !important;
+    margin: 4px 0 !important;
+  }
+  body.printing-case h3 {
+    font-size: 11px !important;
+    margin: 6px 0 4px !important;
+  }
+  body.printing-case .data-table {
+    font-size: 9px !important;
+  }
+  body.printing-case .alert {
+    padding: 6px 8px !important;
+    margin: 4px 0 !important;
+    font-size: 9px !important;
+  }
+  body.printing-case .note { display: none !important; }
+
+  @page {
+    margin: 10mm;
   }
 
   /* ═══════════════════════════════════════════════════════════════════
@@ -2771,6 +2884,31 @@ details .inner {
   background: rgba(255,255,255,0.08);
   color: var(--text-light);
   border: 1px solid var(--glass-border);
+}
+.home-card-progress {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.home-card-progress-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.home-card-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.home-card-progress-text {
+  font-size: 0.65rem;
+  color: var(--text-light);
+  white-space: nowrap;
+  font-weight: 600;
 }
 
 .breadcrumb {
@@ -3866,6 +4004,8 @@ details .inner {
   <a class="sidebar-item" onclick="goTo('form-s13')"><span class="num">13</span> Réductions d'Impôt</a>
   <a class="sidebar-item" onclick="goTo('form-s14')"><span class="num">14</span> Crédits d'Impôt</a>
   <a class="sidebar-item" onclick="goTo('form-s15')"><span class="num">15</span> Déductions</a>
+  <div class="sidebar-label" style="margin-top: 12px;">Révision</div>
+  <a class="sidebar-item" onclick="goTo('form-flashcards')"><span class="num">⚡</span> Flashcards Quiz</a>
 </div>
 
 <!-- Financement des particuliers sidebar -->
@@ -22484,6 +22624,130 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
   </table>
 </div>
 
+<!-- ─── SECTION FLASHCARDS — QUIZ DE RÉVISION ─── -->
+<div class="section" id="form-flashcards">
+  <div class="section-header">
+    <div class="section-num">⚡</div>
+    <div class="section-title">Flashcards — Quiz de révision</div>
+  </div>
+
+  <div class="card">
+    <p>Cliquez sur une carte pour révéler la réponse. Testez vos connaissances sur les notions clés du patrimoine.</p>
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+      <button class="fc-filter active" data-tag="all" onclick="filterFlashcards('all')">Toutes</button>
+      <button class="fc-filter" data-tag="formule" onclick="filterFlashcards('formule')">Formules</button>
+      <button class="fc-filter" data-tag="seuil" onclick="filterFlashcards('seuil')">Seuils</button>
+      <button class="fc-filter" data-tag="piege" onclick="filterFlashcards('piege')">Pièges</button>
+      <button class="fc-filter" data-tag="technique" onclick="filterFlashcards('technique')">Techniques</button>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center; margin-bottom:16px;">
+      <button class="fc-shuffle-btn" onclick="shuffleFlashcards()">🔀 Mélanger</button>
+      <span class="fc-score" id="fcScore"></span>
+    </div>
+  </div>
+
+  <div class="quiz-grid" id="flashcardGrid">
+
+    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag seuil">seuil</div>
+      <div class="flashcard-q">Quel est le seuil de déclenchement de l'IFI ?</div>
+      <div class="flashcard-hint">Patrimoine immobilier net taxable</div>
+      <div class="flashcard-a"><strong>1 300 000 €</strong> au 1er janvier. Le barème démarre à 800 000 € (0,50 %).</div>
+    </div>
+
+    <div class="flashcard" data-tag="formule" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag formule">formule</div>
+      <div class="flashcard-q">Flat Tax (PFU) : quel taux et quelle composition ?</div>
+      <div class="flashcard-a"><strong>30 %</strong> = 12,8 % IR + 17,2 % PS. S'applique aux revenus du capital (dividendes, intérêts, PV mobilières).</div>
+    </div>
+
+    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag seuil">seuil</div>
+      <div class="flashcard-q">Abattement succession en ligne directe ?</div>
+      <div class="flashcard-a"><strong>100 000 €</strong> par parent et par enfant. Renouvelable tous les <strong>15 ans</strong>.</div>
+    </div>
+
+    <div class="flashcard" data-tag="piege" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag piege">piège</div>
+      <div class="flashcard-q">L'option barème IR pour les revenus du capital est-elle partielle ?</div>
+      <div class="flashcard-a"><strong>Non !</strong> L'option est <strong>globale et irrévocable</strong> pour l'année : elle s'applique à tous les revenus du capital.</div>
+    </div>
+
+    <div class="flashcard" data-tag="formule" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag formule">formule</div>
+      <div class="flashcard-q">Exonération PV immobilière : après combien d'années ?</div>
+      <div class="flashcard-a">Exonération <strong>IR après 22 ans</strong>, exonération <strong>PS après 30 ans</strong>. La résidence principale est toujours exonérée.</div>
+    </div>
+
+    <div class="flashcard" data-tag="technique" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag technique">technique</div>
+      <div class="flashcard-q">Assurance-vie : art. 990 I vs art. 757 B ?</div>
+      <div class="flashcard-a"><strong>990 I</strong> (primes avant 70 ans) : abattement <strong>152 500 €/bénéficiaire</strong>, puis 20 %/31,25 %.<br><strong>757 B</strong> (primes après 70 ans) : abattement global <strong>30 500 €</strong>, puis DMTG.</div>
+    </div>
+
+    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag seuil">seuil</div>
+      <div class="flashcard-q">Plafonnement du quotient familial ?</div>
+      <div class="flashcard-a"><strong>1 759 €</strong> par demi-part supplémentaire.</div>
+    </div>
+
+    <div class="flashcard" data-tag="technique" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag technique">technique</div>
+      <div class="flashcard-q">Pacte Dutreil : quel taux d'exonération et conditions ?</div>
+      <div class="flashcard-a"><strong>75 %</strong> d'exonération sur la valeur des titres transmis. Engagement collectif <strong>2 ans</strong> + individuel <strong>4 ans</strong> de conservation.</div>
+    </div>
+
+    <div class="flashcard" data-tag="formule" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag formule">formule</div>
+      <div class="flashcard-q">Barème usufruit/nue-propriété pour un usufruitier de 55 ans ?</div>
+      <div class="flashcard-a">Tranche 51-60 ans : <strong>Usufruit 50 %</strong> / <strong>Nue-propriété 50 %</strong> (art. 669 CGI).</div>
+    </div>
+
+    <div class="flashcard" data-tag="piege" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag piege">piège</div>
+      <div class="flashcard-q">SCI à l'IS : peut-on revenir à l'IR ?</div>
+      <div class="flashcard-a"><strong>Non !</strong> L'option IS est <strong>irrévocable</strong>. Avantage en détention (amortissement) mais PV professionnelle à la revente (sans abattement).</div>
+    </div>
+
+    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag seuil">seuil</div>
+      <div class="flashcard-q">Abattement assurance-vie sur les rachats après 8 ans ?</div>
+      <div class="flashcard-a"><strong>4 600 €</strong> (personne seule) ou <strong>9 200 €</strong> (couple) sur les produits des contrats de plus de 8 ans.</div>
+    </div>
+
+    <div class="flashcard" data-tag="technique" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag technique">technique</div>
+      <div class="flashcard-q">Donation-partage : quel avantage vs donation simple ?</div>
+      <div class="flashcard-a">La donation-partage <strong>fige la valeur</strong> des biens au jour de la donation (pas de réévaluation au décès). Évite les conflits entre héritiers.</div>
+    </div>
+
+    <div class="flashcard" data-tag="formule" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag formule">formule</div>
+      <div class="flashcard-q">TMI à 30 % : quelle tranche de revenu ?</div>
+      <div class="flashcard-a"><strong>28 798 € – 82 341 €</strong> par part. (Barème 2024 : 0 % → 11 % → 30 % → 41 % → 45 %)</div>
+    </div>
+
+    <div class="flashcard" data-tag="piege" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag piege">piège</div>
+      <div class="flashcard-q">Abattement 30 % résidence principale pour l'IFI : via une SCI ?</div>
+      <div class="flashcard-a"><strong>Non !</strong> L'abattement de 30 % n'est <strong>pas applicable</strong> aux parts de SCI détenant la résidence principale.</div>
+    </div>
+
+    <div class="flashcard" data-tag="technique" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag technique">technique</div>
+      <div class="flashcard-q">Régime mère-fille : quelle exonération sur les dividendes ?</div>
+      <div class="flashcard-a">Exonération de <strong>95 %</strong> des dividendes remontés (quote-part de frais et charges de <strong>5 %</strong>).</div>
+    </div>
+
+    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+      <div class="flashcard-tag seuil">seuil</div>
+      <div class="flashcard-q">Abattement dirigeant partant à la retraite (art. 150-0 D ter) ?</div>
+      <div class="flashcard-a">Abattement fixe de <strong>500 000 €</strong> sur les plus-values de cession de titres.</div>
+    </div>
+
+  </div>
+</div>
+
 </div>
 
 
@@ -24248,6 +24512,19 @@ function enterCourse(courseName) {
   switchCase(courseName);
 }
 
+// ============ EXPORT PDF GÉNÉRIQUE ============
+function exportCasePDF(caseName) {
+  const target = document.getElementById('case-' + caseName);
+  if (!target) return;
+  target.classList.add('print-target');
+  document.body.classList.add('printing-case');
+  setTimeout(function() {
+    window.print();
+    document.body.classList.remove('printing-case');
+    target.classList.remove('print-target');
+  }, 100);
+}
+
 // ============ EXPORT HOUETTE PDF ============
 function exportHouettePDF() {
   document.body.classList.add('printing-houette');
@@ -24407,8 +24684,13 @@ const searchResults = document.getElementById('searchResults');
 
 // Tab name mapping
 const tabNames = {
-  'snow': '❄️ SNOW', 'mengere': '🏗️ MENGERE', 'norris': '💎 NORRIS',
-  'vador': '⚔️ VADOR', 'outils': '🧰 Outils', 'guide': '📋 Guide'
+  'snow': '❄️ SNOW', 'stark': '👨‍👩‍👧‍👦 STARK', 'niote': '🏢 NIOTE',
+  'mengere': '🏗️ MENGERE', 'norris': '💎 NORRIS', 'vador': '⚔️ VADOR',
+  'leon': '👨‍💼 LEON', 'genereux': '💼 GÉNÉREUX', 'houette': '🏠 HOUETTE',
+  'outils': '🧰 Outils', 'guide': '📋 Guide', 'formules': '📐 Formules',
+  'montages': '🔧 Montages', 'audit': '📊 Audit',
+  'financement': '💰 Financement', 'responsabilite': '⚖️ Responsabilité',
+  'fiscal': '🏛️ Fiscalité'
 };
 
 searchInput.addEventListener('input', function() {
@@ -24546,6 +24828,84 @@ window.addEventListener('hashchange', function() {
   const hash = window.location.hash.replace('#', '');
   if (hash) switchCase(hash);
 });
+
+// ============ FLASHCARDS — FILTRAGE & MÉLANGE ============
+function filterFlashcards(tag) {
+  const grid = document.getElementById('flashcardGrid');
+  if (!grid) return;
+  const cards = grid.querySelectorAll('.flashcard');
+
+  document.querySelectorAll('.fc-filter').forEach(f => f.classList.remove('active'));
+  const btn = document.querySelector('.fc-filter[data-tag="' + tag + '"]');
+  if (btn) btn.classList.add('active');
+
+  cards.forEach(function(card) {
+    if (tag === 'all' || card.getAttribute('data-tag') === tag) {
+      card.classList.remove('fc-hidden');
+    } else {
+      card.classList.add('fc-hidden');
+    }
+  });
+  updateFcScore();
+}
+
+function shuffleFlashcards() {
+  const grid = document.getElementById('flashcardGrid');
+  if (!grid) return;
+  const cards = Array.from(grid.querySelectorAll('.flashcard'));
+
+  // Reset revealed state
+  cards.forEach(c => c.classList.remove('revealed'));
+
+  // Fisher-Yates shuffle
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    grid.appendChild(cards[j]);
+  }
+  updateFcScore();
+}
+
+function updateFcScore() {
+  const grid = document.getElementById('flashcardGrid');
+  const scoreEl = document.getElementById('fcScore');
+  if (!grid || !scoreEl) return;
+  const visible = grid.querySelectorAll('.flashcard:not(.fc-hidden)');
+  const revealed = grid.querySelectorAll('.flashcard.revealed:not(.fc-hidden)');
+  scoreEl.textContent = revealed.length + '/' + visible.length + ' révélées';
+}
+
+// Update score on flashcard click
+document.addEventListener('click', function(e) {
+  if (e.target.closest('.flashcard')) {
+    setTimeout(updateFcScore, 50);
+  }
+});
+
+// ============ INJECTION BOUTONS EXPORT PDF ============
+(function() {
+  // Cas qui ne sont pas home/audit (pages avec du contenu imprimable)
+  const printableCases = ['snow','stark','niote','mengere','norris','vador','leon','genereux','houette','outils','guide','montages','formules','financement','responsabilite','fiscal'];
+
+  printableCases.forEach(function(caseName) {
+    const caseEl = document.getElementById('case-' + caseName);
+    if (!caseEl) return;
+    const welcome = caseEl.querySelector('.welcome');
+    if (!welcome) return;
+
+    // Ne pas ajouter si Houette a déjà ses propres boutons
+    if (caseName === 'houette') return;
+
+    const btn = document.createElement('button');
+    btn.className = 'export-pdf-btn';
+    btn.textContent = '📄 Exporter PDF';
+    btn.title = 'Exporter ce contenu en PDF';
+    btn.onclick = function() { exportCasePDF(caseName); };
+    btn.style.cssText = 'margin-top:12px;padding:8px 16px;border-radius:10px;border:1px solid var(--glass-border);background:var(--glass-bg);backdrop-filter:var(--blur);color:var(--text);font-size:0.8rem;font-weight:600;cursor:pointer;transition:background 0.2s;';
+    btn.onmouseover = function() { this.style.background = 'var(--primary)'; this.style.color = '#fff'; };
+    btn.onmouseout = function() { this.style.background = 'var(--glass-bg)'; this.style.color = 'var(--text)'; };
+    welcome.appendChild(btn);
+  });
+})();
 
 // ============ SCROLL TO TOP ============
 (function() {
@@ -24704,6 +25064,51 @@ function updateProgressBar(caseName) {
       '<div class="sidebar-progress-bar"><div class="sidebar-progress-fill" style="width:' + pct + '%"></div></div>' +
       '<span class="sidebar-progress-text">' + done + '/' + total + '</span>';
     sidebarDiv.insertBefore(progressHtml, sidebarDiv.querySelector('.sidebar-item'));
+  });
+})();
+
+// ============ PROGRESSION SUR LES CARTES D'ACCUEIL ============
+(function() {
+  const progress = getProgress();
+
+  // Map des cas pour le cours "Audit" (cartes dans case-audit)
+  const auditCases = ['snow','stark','niote','mengere','norris','vador','leon','genereux','houette','outils','guide','montages','formules'];
+  // Cours autonomes (cartes dans case-home)
+  const courses = ['financement','responsabilite','fiscal'];
+
+  function injectCardProgress(cardEl, caseNames) {
+    if (!cardEl) return;
+    let totalSections = 0;
+    let doneSections = 0;
+
+    caseNames.forEach(name => {
+      const sidebarDiv = document.getElementById('sidebar-' + name);
+      if (!sidebarDiv) return;
+      const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+      totalSections += items.length;
+      doneSections += (progress[name] || []).length;
+    });
+
+    if (totalSections === 0) return;
+    const pct = Math.round((doneSections / totalSections) * 100);
+    if (doneSections === 0) return; // Pas de barre si rien commencé
+
+    const div = document.createElement('div');
+    div.className = 'home-card-progress';
+    div.innerHTML =
+      '<div class="home-card-progress-bar"><div class="home-card-progress-fill" style="width:' + pct + '%"></div></div>' +
+      '<span class="home-card-progress-text">' + pct + '%</span>';
+    cardEl.appendChild(div);
+  }
+
+  // Carte "Audit patrimonial" — agrège tous les cas
+  const auditCard = document.querySelector('.home-card.card-audit');
+  injectCardProgress(auditCard, auditCases);
+
+  // Cartes des cours autonomes
+  courses.forEach(name => {
+    const card = document.querySelector('.home-card.card-' + name);
+    injectCardProgress(card, [name]);
   });
 })();
 
