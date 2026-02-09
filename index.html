@@ -1450,6 +1450,17 @@ details .inner {
   background: rgba(255, 255, 255, 0.08);
 }
 
+/* Keyboard focus indicators */
+button:focus-visible,
+.tab:focus-visible,
+.sidebar-item:focus-visible,
+.home-card:focus-visible,
+.flashcard:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.15);
+}
+
 .search-icon {
   position: absolute;
   left: 12px;
@@ -2928,6 +2939,159 @@ details .inner {
 }
 
 /* ============================================================================
+   DASHBOARD STATS
+   ============================================================================ */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 0 0 28px;
+}
+.stat-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  text-align: center;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.stat-bar {
+  margin-top: 10px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media (max-width: 600px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .stat-value { font-size: 1.2rem; }
+  .stat-card { padding: 12px; }
+}
+
+/* ============================================================================
+   EXAM MODE
+   ============================================================================ */
+.exam-timer {
+  position: fixed;
+  top: 70px;
+  right: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  text-align: center;
+  z-index: 900;
+  box-shadow: var(--shadow-lg);
+}
+.exam-timer-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--warning);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.exam-timer-time {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.exam-timer-stop {
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--danger);
+  background: rgba(255, 69, 58, 0.1);
+  color: var(--danger);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.exam-timer-stop:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* Masquer les réponses en mode examen */
+body.exam-mode .alert-tip,
+body.exam-mode .note,
+body.exam-mode .flashcard-a {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.3s;
+}
+body.exam-mode .alert-tip:hover,
+body.exam-mode .flashcard-a:hover {
+  filter: blur(3px);
+}
+
+body.exam-mode #examToggle {
+  background: var(--warning);
+  color: #000;
+  border-radius: 8px;
+}
+
+/* ============================================================================
+   TOOLTIP SYSTEM
+   ============================================================================ */
+.abbr-tip {
+  position: relative;
+  border-bottom: 1px dotted var(--text-tertiary);
+  cursor: help;
+}
+.abbr-tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+}
+.abbr-tip:hover::after {
+  opacity: 1;
+}
+
+/* ============================================================================
    SCROLL TO TOP BUTTON
    ============================================================================ */
 .scroll-top-btn {
@@ -3297,6 +3461,9 @@ details .inner {
   <input type="text" class="search-input" id="searchInput" placeholder="Rechercher (Ctrl+K)" autocomplete="off">
   <div class="search-results" id="searchResults"></div>
 </div>
+
+<!-- Exam mode toggle -->
+<button class="header-btn" id="examToggle" onclick="toggleExamMode()" title="Mode examen">📝</button>
 
 <!-- Dark mode toggle -->
 <button class="header-btn" id="darkToggle" onclick="toggleDarkMode()" title="Mode sombre">🌙</button>
@@ -4310,6 +4477,27 @@ details .inner {
         <h1>M2 - GIP</h1>
         <p>Master 2 — Gestion et Ingénierie Patrimoniale<br>
         Sélectionnez un cours pour accéder aux cas pratiques, outils et ressources.</p>
+      </div>
+
+      <!-- Dashboard stats -->
+      <div class="dashboard-stats" id="dashboardStats">
+        <div class="stat-card">
+          <div class="stat-value" id="statProgress">0%</div>
+          <div class="stat-label">Progression globale</div>
+          <div class="stat-bar"><div class="stat-bar-fill" id="statProgressBar" style="width:0%"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statSections">0 / 0</div>
+          <div class="stat-label">Sections étudiées</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statStreak">0 j</div>
+          <div class="stat-label">Jours consécutifs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statLast">—</div>
+          <div class="stat-label">Dernière session</div>
+        </div>
       </div>
 
       <div class="home-section-title">📚 Cours</div>
@@ -22763,104 +22951,105 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
     </div>
     <div style="display:flex; gap:8px; align-items:center; margin-bottom:16px;">
       <button class="fc-shuffle-btn" onclick="shuffleFlashcards()">🔀 Mélanger</button>
+      <button class="fc-shuffle-btn" onclick="resetFlashcards()">🔄 Réinitialiser</button>
       <span class="fc-score" id="fcScore"></span>
     </div>
   </div>
 
   <div class="quiz-grid" id="flashcardGrid">
 
-    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="seuil" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag seuil">seuil</div>
       <div class="flashcard-q">Quel est le seuil de déclenchement de l'IFI ?</div>
       <div class="flashcard-hint">Patrimoine immobilier net taxable</div>
       <div class="flashcard-a"><strong>1 300 000 €</strong> au 1er janvier. Le barème démarre à 800 000 € (0,50 %).</div>
     </div>
 
-    <div class="flashcard" data-tag="formule" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="formule" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag formule">formule</div>
       <div class="flashcard-q">Flat Tax (PFU) : quel taux et quelle composition ?</div>
       <div class="flashcard-a"><strong>30 %</strong> = 12,8 % IR + 17,2 % PS. S'applique aux revenus du capital (dividendes, intérêts, PV mobilières).</div>
     </div>
 
-    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="seuil" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag seuil">seuil</div>
       <div class="flashcard-q">Abattement succession en ligne directe ?</div>
       <div class="flashcard-a"><strong>100 000 €</strong> par parent et par enfant. Renouvelable tous les <strong>15 ans</strong>.</div>
     </div>
 
-    <div class="flashcard" data-tag="piege" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="piege" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag piege">piège</div>
       <div class="flashcard-q">L'option barème IR pour les revenus du capital est-elle partielle ?</div>
       <div class="flashcard-a"><strong>Non !</strong> L'option est <strong>globale et irrévocable</strong> pour l'année : elle s'applique à tous les revenus du capital.</div>
     </div>
 
-    <div class="flashcard" data-tag="formule" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="formule" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag formule">formule</div>
       <div class="flashcard-q">Exonération PV immobilière : après combien d'années ?</div>
       <div class="flashcard-a">Exonération <strong>IR après 22 ans</strong>, exonération <strong>PS après 30 ans</strong>. La résidence principale est toujours exonérée.</div>
     </div>
 
-    <div class="flashcard" data-tag="technique" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="technique" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag technique">technique</div>
       <div class="flashcard-q">Assurance-vie : art. 990 I vs art. 757 B ?</div>
       <div class="flashcard-a"><strong>990 I</strong> (primes avant 70 ans) : abattement <strong>152 500 €/bénéficiaire</strong>, puis 20 %/31,25 %.<br><strong>757 B</strong> (primes après 70 ans) : abattement global <strong>30 500 €</strong>, puis DMTG.</div>
     </div>
 
-    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="seuil" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag seuil">seuil</div>
       <div class="flashcard-q">Plafonnement du quotient familial ?</div>
       <div class="flashcard-a"><strong>1 759 €</strong> par demi-part supplémentaire.</div>
     </div>
 
-    <div class="flashcard" data-tag="technique" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="technique" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag technique">technique</div>
       <div class="flashcard-q">Pacte Dutreil : quel taux d'exonération et conditions ?</div>
       <div class="flashcard-a"><strong>75 %</strong> d'exonération sur la valeur des titres transmis. Engagement collectif <strong>2 ans</strong> + individuel <strong>4 ans</strong> de conservation.</div>
     </div>
 
-    <div class="flashcard" data-tag="formule" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="formule" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag formule">formule</div>
       <div class="flashcard-q">Barème usufruit/nue-propriété pour un usufruitier de 55 ans ?</div>
       <div class="flashcard-a">Tranche 51-60 ans : <strong>Usufruit 50 %</strong> / <strong>Nue-propriété 50 %</strong> (art. 669 CGI).</div>
     </div>
 
-    <div class="flashcard" data-tag="piege" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="piege" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag piege">piège</div>
       <div class="flashcard-q">SCI à l'IS : peut-on revenir à l'IR ?</div>
       <div class="flashcard-a"><strong>Non !</strong> L'option IS est <strong>irrévocable</strong>. Avantage en détention (amortissement) mais PV professionnelle à la revente (sans abattement).</div>
     </div>
 
-    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="seuil" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag seuil">seuil</div>
       <div class="flashcard-q">Abattement assurance-vie sur les rachats après 8 ans ?</div>
       <div class="flashcard-a"><strong>4 600 €</strong> (personne seule) ou <strong>9 200 €</strong> (couple) sur les produits des contrats de plus de 8 ans.</div>
     </div>
 
-    <div class="flashcard" data-tag="technique" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="technique" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag technique">technique</div>
       <div class="flashcard-q">Donation-partage : quel avantage vs donation simple ?</div>
       <div class="flashcard-a">La donation-partage <strong>fige la valeur</strong> des biens au jour de la donation (pas de réévaluation au décès). Évite les conflits entre héritiers.</div>
     </div>
 
-    <div class="flashcard" data-tag="formule" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="formule" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag formule">formule</div>
       <div class="flashcard-q">TMI à 30 % : quelle tranche de revenu ?</div>
       <div class="flashcard-a"><strong>28 798 € – 82 341 €</strong> par part. (Barème 2024 : 0 % → 11 % → 30 % → 41 % → 45 %)</div>
     </div>
 
-    <div class="flashcard" data-tag="piege" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="piege" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag piege">piège</div>
       <div class="flashcard-q">Abattement 30 % résidence principale pour l'IFI : via une SCI ?</div>
       <div class="flashcard-a"><strong>Non !</strong> L'abattement de 30 % n'est <strong>pas applicable</strong> aux parts de SCI détenant la résidence principale.</div>
     </div>
 
-    <div class="flashcard" data-tag="technique" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="technique" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag technique">technique</div>
       <div class="flashcard-q">Régime mère-fille : quelle exonération sur les dividendes ?</div>
       <div class="flashcard-a">Exonération de <strong>95 %</strong> des dividendes remontés (quote-part de frais et charges de <strong>5 %</strong>).</div>
     </div>
 
-    <div class="flashcard" data-tag="seuil" onclick="this.classList.toggle('revealed')">
+    <div class="flashcard" data-tag="seuil" onclick="toggleFlashcard(this)">
       <div class="flashcard-tag seuil">seuil</div>
       <div class="flashcard-q">Abattement dirigeant partant à la retraite (art. 150-0 D ter) ?</div>
       <div class="flashcard-a">Abattement fixe de <strong>500 000 €</strong> sur les plus-values de cession de titres.</div>
@@ -24570,6 +24759,13 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
   </div>
 </div>
 
+<!-- ============ EXAM TIMER ============ -->
+<div class="exam-timer" id="examTimer" style="display:none">
+  <div class="exam-timer-label">Mode Examen</div>
+  <div class="exam-timer-time" id="examTimerTime">0:00</div>
+  <button class="exam-timer-stop" onclick="toggleExamMode()">Terminer</button>
+</div>
+
 <!-- ============ BOUTON SCROLL TO TOP ============ -->
 <button class="scroll-top-btn" id="scrollTopBtn" title="Remonter en haut">↑</button>
 
@@ -24998,6 +25194,32 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+// ============ MODE EXAMEN ============
+var examTimerInterval = null;
+var examStartTime = null;
+
+function toggleExamMode() {
+  document.body.classList.toggle('exam-mode');
+  var isExam = document.body.classList.contains('exam-mode');
+  var timerEl = document.getElementById('examTimer');
+  var timeEl = document.getElementById('examTimerTime');
+
+  if (isExam) {
+    examStartTime = Date.now();
+    if (timerEl) timerEl.style.display = 'block';
+    examTimerInterval = setInterval(function() {
+      var elapsed = Math.floor((Date.now() - examStartTime) / 1000);
+      var mins = Math.floor(elapsed / 60);
+      var secs = elapsed % 60;
+      if (timeEl) timeEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }, 1000);
+  } else {
+    if (examTimerInterval) clearInterval(examTimerInterval);
+    if (timerEl) timerEl.style.display = 'none';
+    if (timeEl) timeEl.textContent = '0:00';
+  }
+}
+
 // ============ DARK MODE ============
 function toggleDarkMode() {
   // Dark mode is default. Toggle adds/removes light-mode.
@@ -25072,10 +25294,7 @@ function shuffleFlashcards() {
   if (!grid) return;
   const cards = Array.from(grid.querySelectorAll('.flashcard'));
 
-  // Reset revealed state
-  cards.forEach(c => c.classList.remove('revealed'));
-
-  // Fisher-Yates shuffle
+  // Fisher-Yates shuffle (ne pas reset l'état revealed)
   for (let i = cards.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     grid.appendChild(cards[j]);
@@ -25092,12 +25311,48 @@ function updateFcScore() {
   scoreEl.textContent = revealed.length + '/' + visible.length + ' révélées';
 }
 
-// Update score on flashcard click
-document.addEventListener('click', function(e) {
-  if (e.target.closest('.flashcard')) {
-    setTimeout(updateFcScore, 50);
-  }
-});
+// ============ FLASHCARD PERSISTANCE ============
+var GIP_FC_KEY = 'gip-flashcards';
+
+function toggleFlashcard(card) {
+  card.classList.toggle('revealed');
+  saveFcState();
+  updateFcScore();
+}
+
+function saveFcState() {
+  var grid = document.getElementById('flashcardGrid');
+  if (!grid) return;
+  var state = [];
+  grid.querySelectorAll('.flashcard').forEach(function(card, i) {
+    if (card.classList.contains('revealed')) state.push(i);
+  });
+  try { localStorage.setItem(GIP_FC_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function restoreFcState() {
+  var grid = document.getElementById('flashcardGrid');
+  if (!grid) return;
+  try {
+    var state = JSON.parse(localStorage.getItem(GIP_FC_KEY)) || [];
+    var cards = grid.querySelectorAll('.flashcard');
+    state.forEach(function(i) {
+      if (cards[i]) cards[i].classList.add('revealed');
+    });
+    updateFcScore();
+  } catch(e) {}
+}
+
+function resetFlashcards() {
+  var grid = document.getElementById('flashcardGrid');
+  if (!grid) return;
+  grid.querySelectorAll('.flashcard').forEach(function(c) { c.classList.remove('revealed'); });
+  try { localStorage.removeItem(GIP_FC_KEY); } catch(e) {}
+  updateFcScore();
+}
+
+// Restaurer au chargement
+restoreFcState();
 
 // ============ INJECTION BOUTONS EXPORT PDF ============
 (function() {
@@ -25327,6 +25582,129 @@ function updateProgressBar(caseName) {
   courses.forEach(name => {
     const card = document.querySelector('.home-card.card-' + name);
     injectCardProgress(card, [name]);
+  });
+})();
+
+// ============ DASHBOARD STATS ============
+(function() {
+  const progress = getProgress();
+  let totalSections = 0;
+  let doneSections = 0;
+
+  document.querySelectorAll('[id^="sidebar-"]').forEach(sidebarDiv => {
+    const caseName = sidebarDiv.id.replace('sidebar-', '');
+    const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+    totalSections += items.length;
+    doneSections += (progress[caseName] || []).length;
+  });
+
+  const pct = totalSections > 0 ? Math.round((doneSections / totalSections) * 100) : 0;
+
+  const elPct = document.getElementById('statProgress');
+  const elBar = document.getElementById('statProgressBar');
+  const elSections = document.getElementById('statSections');
+  const elStreak = document.getElementById('statStreak');
+  const elLast = document.getElementById('statLast');
+
+  if (elPct) elPct.textContent = pct + '%';
+  if (elBar) elBar.style.width = pct + '%';
+  if (elSections) elSections.textContent = doneSections + ' / ' + totalSections;
+
+  // Streak : jours consécutifs d'étude
+  try {
+    var days = JSON.parse(localStorage.getItem('gip-studyDays')) || [];
+    var today = new Date().toISOString().slice(0, 10);
+    if (days[days.length - 1] !== today) {
+      days.push(today);
+      localStorage.setItem('gip-studyDays', JSON.stringify(days));
+    }
+    // Calculer le streak
+    var streak = 1;
+    for (var i = days.length - 1; i > 0; i--) {
+      var d1 = new Date(days[i]);
+      var d2 = new Date(days[i - 1]);
+      var diff = (d1 - d2) / (1000 * 60 * 60 * 24);
+      if (diff <= 1) streak++;
+      else break;
+    }
+    if (elStreak) elStreak.textContent = streak + ' j';
+  } catch(e) {}
+
+  // Dernière session
+  try {
+    var lastPage = localStorage.getItem('gip-lastPage');
+    var courseNames = {
+      'snow': 'SNOW', 'stark': 'STARK', 'niote': 'NIOTE',
+      'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
+      'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
+      'outils': 'Outils', 'guide': 'Guide', 'montages': 'Montages',
+      'formules': 'Formules', 'audit': 'Audit', 'financement': 'Financement',
+      'responsabilite': 'Responsabilité', 'fiscal': 'Fiscalité'
+    };
+    if (elLast && lastPage && lastPage !== 'home') {
+      elLast.textContent = courseNames[lastPage] || lastPage;
+    }
+  } catch(e) {}
+})();
+
+// ============ TABLES RESPONSIVES (auto-wrap) ============
+(function() {
+  document.querySelectorAll('.data-table, .patrimoine-table').forEach(function(table) {
+    if (table.parentElement.classList.contains('table-responsive')) return;
+    var wrapper = document.createElement('div');
+    wrapper.className = 'table-responsive';
+    wrapper.style.cssText = 'overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-sm);';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+})();
+
+// ============ TOOLTIPS ABRÉVIATIONS ============
+(function() {
+  var abbrMap = {
+    'TMI': 'Tranche Marginale d\'Imposition',
+    'PFU': 'Prélèvement Forfaitaire Unique (flat tax 30%)',
+    'IFI': 'Impôt sur la Fortune Immobilière',
+    'DMTG': 'Droits de Mutation à Titre Gratuit',
+    'SCI': 'Société Civile Immobilière',
+    'OBO': 'Owner Buy Out',
+    'PER': 'Plan Épargne Retraite',
+    'SCPI': 'Société Civile de Placement Immobilier',
+    'LMNP': 'Loueur Meublé Non Professionnel',
+    'LMP': 'Loueur Meublé Professionnel',
+    'CGP': 'Conseiller en Gestion de Patrimoine',
+    'HCSF': 'Haut Conseil de Stabilité Financière',
+    'DCI': 'Directive Crédit Immobilier',
+    'ADE': 'Assurance Décès Emprunteur'
+  };
+
+  // Injecter les tooltips dans les titres et premiers paragraphes de chaque section
+  document.querySelectorAll('.welcome p, .welcome .subtitle, .home-card-desc').forEach(function(el) {
+    var html = el.innerHTML;
+    Object.keys(abbrMap).forEach(function(abbr) {
+      var regex = new RegExp('\\b(' + abbr + ')\\b(?![^<]*>)', 'g');
+      html = html.replace(regex, '<span class="abbr-tip" data-tip="' + abbrMap[abbr] + '">$1</span>');
+    });
+    el.innerHTML = html;
+  });
+})();
+
+// ============ ACCESSIBILITÉ — FOCUS VISIBLE ============
+(function() {
+  // Ajouter tabindex aux éléments interactifs de la sidebar
+  document.querySelectorAll('.sidebar-item, .tab, .flashcard, .home-card:not(.card-disabled)').forEach(function(el) {
+    if (!el.getAttribute('tabindex')) el.setAttribute('tabindex', '0');
+  });
+
+  // Permettre l'activation par Entrée/Espace
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      var el = document.activeElement;
+      if (el && (el.classList.contains('sidebar-item') || el.classList.contains('tab') || el.classList.contains('flashcard') || el.classList.contains('home-card'))) {
+        e.preventDefault();
+        el.click();
+      }
+    }
   });
 })();
 
