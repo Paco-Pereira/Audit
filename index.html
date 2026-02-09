@@ -639,6 +639,23 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 
 .sidebar-sub {
   padding-left: 20px;
+  overflow: hidden;
+  max-height: 500px;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+.sidebar-sub.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+.sidebar-item.has-sub::after {
+  content: '▾';
+  font-size: 10px;
+  margin-left: auto;
+  opacity: 0.4;
+  transition: transform 0.2s;
+}
+.sidebar-item.has-sub.sub-collapsed::after {
+  transform: rotate(-90deg);
 }
 
 .sidebar-sub .sidebar-item {
@@ -670,11 +687,22 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 
 .case-content {
   display: none;
+  opacity: 0;
 }
 
 .case-content.active {
   display: block !important;
-  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: fadeInUp 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.case-content.fade-out {
+  display: block !important;
+  animation: fadeOut 0.15s ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(8px); }
 }
 
 .section {
@@ -3039,17 +3067,68 @@ button:focus-visible,
   color: #fff;
 }
 
+/* ============================================================================
+   HISTORIQUE RÉCENT
+   ============================================================================ */
+.recent-activity {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 0 12px;
+  scrollbar-width: none;
+}
+.recent-activity::-webkit-scrollbar { display: none; }
+.recent-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 220px;
+  padding: 10px 16px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+.recent-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,.15);
+}
+.recent-item-icon { font-size: 1.3rem; }
+.recent-item-info { flex: 1; min-width: 0; }
+.recent-item-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recent-item-time {
+  font-size: 0.72rem;
+  opacity: 0.5;
+  margin-top: 2px;
+}
+
 /* Masquer les réponses en mode examen */
 body.exam-mode .alert-tip,
 body.exam-mode .note,
-body.exam-mode .flashcard-a {
+body.exam-mode .flashcard-a,
+body.exam-mode .calc-block,
+body.exam-mode details,
+body.exam-mode .formula-card {
   filter: blur(8px);
   pointer-events: none;
   user-select: none;
   transition: filter 0.3s;
 }
 body.exam-mode .alert-tip:hover,
-body.exam-mode .flashcard-a:hover {
+body.exam-mode .flashcard-a:hover,
+body.exam-mode .calc-block:hover,
+body.exam-mode details:hover,
+body.exam-mode .formula-card:hover {
   filter: blur(3px);
 }
 
@@ -4499,6 +4578,9 @@ body.exam-mode #examToggle {
           <div class="stat-label">Dernière session</div>
         </div>
       </div>
+
+      <div class="home-section-title" id="recentTitle" style="display:none">🕐 Activité récente</div>
+      <div class="recent-activity" id="recentActivity"></div>
 
       <div class="home-section-title">📚 Cours</div>
       <div class="home-grid">
@@ -24780,17 +24862,33 @@ function switchCase(caseName) {
   // Update tabs
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   const targetTab = document.querySelector(`.tab[data-case="${caseName}"]`);
-  if (targetTab) targetTab.classList.add('active');
+  if (targetTab) {
+    targetTab.classList.add('active');
+    targetTab.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
+  }
 
-  // Update content
-  document.querySelectorAll('.case-content').forEach(c => {
-    c.classList.remove('active');
-    c.style.display = 'none';
-  });
+  // Update content with fade transition
+  const currentActive = document.querySelector('.case-content.active');
   const target = document.getElementById('case-' + caseName);
-  if (target) {
-    target.classList.add('active');
-    target.style.display = 'block';
+
+  function showTarget() {
+    document.querySelectorAll('.case-content').forEach(c => {
+      c.classList.remove('active', 'fade-out');
+      c.style.display = 'none';
+    });
+    if (target) {
+      target.classList.add('active');
+      target.style.display = 'block';
+    }
+  }
+
+  if (currentActive && currentActive !== target) {
+    currentActive.classList.add('fade-out');
+    currentActive.addEventListener('animationend', showTarget, { once: true });
+    // Fallback si animationend ne se déclenche pas
+    setTimeout(showTarget, 200);
+  } else {
+    showTarget();
   }
 
   // Update sidebar
@@ -24838,8 +24936,17 @@ function switchCase(caseName) {
     history.replaceState(null, '', window.location.pathname);
   }
 
-  // Sauvegarder dernière page visitée
-  try { localStorage.setItem('gip-lastPage', caseName); } catch(e) {}
+  // Sauvegarder dernière page visitée + historique
+  try {
+    localStorage.setItem('gip-lastPage', caseName);
+    if (caseName !== 'home') {
+      var hist = JSON.parse(localStorage.getItem('gip-history') || '[]');
+      hist = hist.filter(function(h) { return h.page !== caseName; });
+      hist.unshift({ page: caseName, ts: Date.now() });
+      if (hist.length > 8) hist = hist.slice(0, 8);
+      localStorage.setItem('gip-history', JSON.stringify(hist));
+    }
+  } catch(e) {}
 }
 
 // ============ ENTER COURSE FUNCTION ============
@@ -24991,6 +25098,7 @@ document.addEventListener('DOMContentLoaded', function() {
               const onclick = i.getAttribute('onclick');
               if (onclick && onclick.includes(currentId)) {
                 i.classList.add('active');
+                i.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
               }
             });
           }
@@ -25645,7 +25753,47 @@ function updateProgressBar(caseName) {
       elLast.textContent = courseNames[lastPage] || lastPage;
     }
   } catch(e) {}
+
+  // Historique récent
+  try {
+    var hist = JSON.parse(localStorage.getItem('gip-history') || '[]');
+    var container = document.getElementById('recentActivity');
+    var title = document.getElementById('recentTitle');
+    if (container && hist.length > 0 && title) {
+      title.style.display = '';
+      var icons = {
+        'snow': '❄️', 'stark': '🦁', 'niote': '🏠', 'mengere': '👨‍👩‍👧', 'norris': '💪',
+        'vador': '🌑', 'leon': '🎭', 'genereux': '🎁', 'houette': '🏦',
+        'outils': '🧰', 'guide': '📖', 'montages': '🏗️', 'formules': '🔢',
+        'audit': '📊', 'financement': '💰', 'responsabilite': '⚖️', 'fiscal': '🧾'
+      };
+      hist.forEach(function(h) {
+        var name = courseNames[h.page] || h.page;
+        var ago = timeAgo(h.ts);
+        var el = document.createElement('div');
+        el.className = 'recent-item';
+        el.setAttribute('role', 'button');
+        el.setAttribute('tabindex', '0');
+        el.onclick = function() { switchCase(h.page); };
+        el.innerHTML = '<span class="recent-item-icon">' + (icons[h.page] || '📄') + '</span>' +
+          '<div class="recent-item-info"><div class="recent-item-title">' + name + '</div>' +
+          '<div class="recent-item-time">' + ago + '</div></div>';
+        container.appendChild(el);
+      });
+    }
+  } catch(e) {}
 })();
+
+function timeAgo(ts) {
+  var diff = Date.now() - ts;
+  var mins = Math.floor(diff / 60000);
+  if (mins < 1) return "À l'instant";
+  if (mins < 60) return 'Il y a ' + mins + ' min';
+  var hrs = Math.floor(mins / 60);
+  if (hrs < 24) return 'Il y a ' + hrs + ' h';
+  var days = Math.floor(hrs / 24);
+  return 'Il y a ' + days + ' j';
+}
 
 // ============ TABLES RESPONSIVES (auto-wrap) ============
 (function() {
@@ -25686,6 +25834,21 @@ function updateProgressBar(caseName) {
       html = html.replace(regex, '<span class="abbr-tip" data-tip="' + abbrMap[abbr] + '">$1</span>');
     });
     el.innerHTML = html;
+  });
+})();
+
+// ============ SIDEBAR SUB-SECTIONS REPLIABLES ============
+(function() {
+  document.querySelectorAll('.sidebar-sub').forEach(function(sub) {
+    var prev = sub.previousElementSibling;
+    if (prev && prev.classList.contains('sidebar-item')) {
+      prev.classList.add('has-sub');
+      prev.addEventListener('dblclick', function(e) {
+        e.preventDefault();
+        sub.classList.toggle('collapsed');
+        prev.classList.toggle('sub-collapsed');
+      });
+    }
   });
 })();
 
