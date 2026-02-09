@@ -2747,6 +2747,9 @@ details .inner {
 .home-card.card-formules { --card-accent: #64d2ff; }
 .home-card.card-montages { --card-accent: #ff6b6b; }
 .home-card.card-audit { --card-accent: #0a84ff; }
+.home-card.card-financement { --card-accent: #30d158; }
+.home-card.card-responsabilite { --card-accent: #ff6b6b; }
+.home-card.card-fiscal { --card-accent: #ff9f0a; }
 
 .home-card.card-disabled {
   opacity: 0.45;
@@ -3710,6 +3713,171 @@ details .inner {
   <a class="sidebar-item" onclick="goTo('form-s15')"><span class="num">15</span> Déductions</a>
 </div>
 
+<!-- Financement des particuliers sidebar -->
+<div id="sidebar-financement" style="display:none">
+  <div class="sidebar-label">Financement des particuliers</div>
+  <a class="sidebar-item active" onclick="goTo('fin-intro')">
+    <span class="num">0</span> Introduction
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s1')">
+    <span class="num">1</span> Loi Scrivener & DCI
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s2')">
+    <span class="num">2</span> Prêts réglementés
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('fin-s2-ptz')">PTZ</a>
+    <a class="sidebar-item" onclick="goTo('fin-s2-pas')">PAS</a>
+    <a class="sidebar-item" onclick="goTo('fin-s2-pc')">PC</a>
+    <a class="sidebar-item" onclick="goTo('fin-s2-pel')">PEL / CEL</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('fin-s3')">
+    <span class="num">3</span> Garanties immobilières
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s4')">
+    <span class="num">4</span> ADE & Loi Lemoine
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s5')">
+    <span class="num">5</span> Étude dossier & HCSF
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s6')">
+    <span class="num">6</span> Régime matrimonial
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s7')">
+    <span class="num">7</span> Crédit consommation
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s8')">
+    <span class="num">8</span> Eco PTZ
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s9')">
+    <span class="num">9</span> Prêt relais & différés
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-s10')">
+    <span class="num">10</span> Options du crédit
+  </a>
+  <div class="sidebar-label" style="margin-top: 12px;">Exercices</div>
+  <a class="sidebar-item" onclick="goTo('fin-ex1')">
+    <span class="num">📝</span> Cas MAISONNEUVE
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-ex2')">
+    <span class="num">📝</span> Cas CEMIN
+  </a>
+  <a class="sidebar-item" onclick="goTo('fin-ex3')">
+    <span class="num">📝</span> Cas JOINVILLE
+  </a>
+</div>
+
+<!-- Responsabilité du gestionnaire sidebar -->
+<div id="sidebar-responsabilite" style="display:none">
+  <div class="sidebar-label">Responsabilité du gestionnaire</div>
+  <a class="sidebar-item active" onclick="goTo('resp-intro')">
+    <span class="num">0</span> Introduction
+  </a>
+  <a class="sidebar-item" onclick="goTo('resp-s1')">
+    <span class="num">1</span> Obligations précontractuelles
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('resp-s1-info')">Obligation d'information</a>
+    <a class="sidebar-item" onclick="goTo('resp-s1-eval')">Évaluation du client</a>
+    <a class="sidebar-item" onclick="goTo('resp-s1-garde')">Mise en garde</a>
+    <a class="sidebar-item" onclick="goTo('resp-s1-conseil')">Devoir de conseil</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('resp-s2')">
+    <span class="num">2</span> Inexécution contractuelle
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('resp-s2-mandat')">Non-respect du mandat</a>
+    <a class="sidebar-item" onclick="goTo('resp-s2-diligence')">Obligation de diligence</a>
+    <a class="sidebar-item" onclick="goTo('resp-s2-loyaute')">Obligation de loyauté</a>
+    <a class="sidebar-item" onclick="goTo('resp-s2-compte')">Rendre compte</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('resp-s3')">
+    <span class="num">3</span> Dommage & causalité
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('resp-s3-dommage')">Nature du dommage</a>
+    <a class="sidebar-item" onclick="goTo('resp-s3-chance')">Perte de chance</a>
+    <a class="sidebar-item" onclick="goTo('resp-s3-exo')">Exonération</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('resp-s4')">
+    <span class="num">4</span> Responsabilité pénale
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('resp-s4-commun')">Infractions de droit commun</a>
+    <a class="sidebar-item" onclick="goTo('resp-s4-specifique')">Infractions spécifiques</a>
+    <a class="sidebar-item" onclick="goTo('resp-s4-prescription')">Prescription</a>
+  </div>
+</div>
+
+<!-- Ingénierie fiscale PP sidebar -->
+<div id="sidebar-fiscal" style="display:none">
+  <div class="sidebar-label">Ingénierie fiscale PP</div>
+  <a class="sidebar-item active" onclick="goTo('fiscal-intro')">
+    <span class="num">0</span> Introduction
+  </a>
+  <a class="sidebar-item" onclick="goTo('fiscal-s1')">
+    <span class="num">1</span> Impôt sur le revenu
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('fiscal-s1-categories')">Catégories de revenus</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s1-bareme')">Barème progressif</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s1-pfu')">PFU / Option barème</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('fiscal-s2')">
+    <span class="num">2</span> Plus-values des particuliers
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('fiscal-s2-immo')">PV immobilières</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s2-vm')">PV sur valeurs mobilières</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s2-exo')">Exonérations</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('fiscal-s3')">
+    <span class="num">3</span> IFI
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('fiscal-s3-assiette')">Assiette & seuil</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s3-bareme')">Barème & calcul</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s3-optimisation')">Stratégies d'optimisation</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('fiscal-s4')">
+    <span class="num">4</span> Droits de mutation
+    <span class="progress-chip exam">EXAM</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('fiscal-s4-succession')">Droits de succession</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s4-donation')">Droits de donation</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s4-abattements')">Abattements & barème</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('fiscal-s5')">
+    <span class="num">5</span> Assurance-vie
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('fiscal-s5-rachat')">Fiscalité des rachats</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s5-transmission')">Transmission (art. 990 I)</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s5-clause')">Clause bénéficiaire</a>
+  </div>
+  <a class="sidebar-item" onclick="goTo('fiscal-s6')">
+    <span class="num">6</span> Démembrement & SCI
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('fiscal-s6-demembrement')">Démembrement de propriété</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s6-sci')">SCI patrimoniale</a>
+    <a class="sidebar-item" onclick="goTo('fiscal-s6-holding')">Holding familiale</a>
+  </div>
+</div>
+
 </nav>
 
   <!-- ===== MAIN CONTENT ===== -->
@@ -3736,25 +3904,25 @@ details .inner {
           <div class="home-card-badge">9 cas · 4 outils</div>
         </div>
 
-        <div class="home-card card-disabled">
+        <div class="home-card card-financement" onclick="enterCourse('financement')">
+          <span class="home-card-icon">💰</span>
+          <div class="home-card-title">Financement des particuliers</div>
+          <div class="home-card-desc">Techniques de financement : prêts réglementés, garanties, ADE, crédit conso, Eco PTZ, régimes matrimoniaux, normes HCSF.</div>
+          <div class="home-card-badge">10 chapitres · 3 exercices</div>
+        </div>
+
+        <div class="home-card card-responsabilite" onclick="enterCourse('responsabilite')">
+          <span class="home-card-icon">⚖️</span>
+          <div class="home-card-title">Responsabilité du gestionnaire</div>
+          <div class="home-card-desc">Responsabilité civile et pénale du CGP : faute, dommage, lien de causalité, infractions, jurisprudence.</div>
+          <div class="home-card-badge">4 chapitres</div>
+        </div>
+
+        <div class="home-card card-fiscal" onclick="enterCourse('fiscal')">
           <span class="home-card-icon">🏛️</span>
-          <div class="home-card-title">Droit du patrimoine</div>
-          <div class="home-card-desc">Prochainement disponible.</div>
-          <div class="home-card-badge">À venir</div>
-        </div>
-
-        <div class="home-card card-disabled">
-          <span class="home-card-icon">📈</span>
-          <div class="home-card-title">Finance & marchés</div>
-          <div class="home-card-desc">Prochainement disponible.</div>
-          <div class="home-card-badge">À venir</div>
-        </div>
-
-        <div class="home-card card-disabled">
-          <span class="home-card-icon">🏠</span>
-          <div class="home-card-title">Immobilier</div>
-          <div class="home-card-desc">Prochainement disponible.</div>
-          <div class="home-card-badge">À venir</div>
+          <div class="home-card-title">Ingénierie fiscale PP</div>
+          <div class="home-card-desc">Fiscalité des personnes physiques et patrimoine : IR, plus-values, IFI, droits de mutation, assurance-vie, démembrement et SCI.</div>
+          <div class="home-card-badge">6 chapitres</div>
         </div>
 
       </div>
@@ -22164,6 +22332,1675 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 </div>
 
 
+    <!-- ══════════════════════════════════════
+         FINANCEMENT DES PARTICULIERS
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-financement" style="display:none">
+
+      <div class="welcome" id="fin-intro">
+        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <h1>Financement des particuliers 💰</h1>
+        <div class="subtitle">Techniques de financement — Renforcement des savoirs et mise en pratique</div>
+        <p>Ce cours couvre l'ensemble des techniques de financement des particuliers : cadre réglementaire, prêts immobiliers et consommation, garanties, assurance emprunteur, normes HCSF et régimes matrimoniaux.</p>
+        <div class="meta">Master Banque Finance · 10 chapitres · 3 exercices</div>
+      </div>
+
+      <div class="card">
+        <h3>Les 10 thématiques abordées</h3>
+        <table class="data-table">
+          <thead><tr><th>N°</th><th>Thématique</th><th>Points clés</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td>Loi Scrivener & DCI</td><td>Délais, formalisme, sanctions</td></tr>
+            <tr><td><strong>2</strong></td><td>Prêts réglementés</td><td>PTZ, PAS, PC, PEL/CEL</td></tr>
+            <tr><td><strong>3</strong></td><td>Garanties immobilières</td><td>Hypothèque, caution, nantissement</td></tr>
+            <tr><td><strong>4</strong></td><td>ADE & Loi Lemoine</td><td>Risques couverts, résiliation, AERAS</td></tr>
+            <tr><td><strong>5</strong></td><td>Étude du dossier & HCSF</td><td>Taux d'effort, maturité, flexibilité</td></tr>
+            <tr><td><strong>6</strong></td><td>Régime matrimonial & prêt</td><td>Biens engagés, communauté/séparation</td></tr>
+            <tr><td><strong>7</strong></td><td>Crédit consommation</td><td>Renouvelable, amortissable, LOA</td></tr>
+            <tr><td><strong>8</strong></td><td>Eco PTZ</td><td>Conditions, travaux, comparatif</td></tr>
+            <tr><td><strong>9</strong></td><td>Prêt relais & différés</td><td>Relais, anticipation, différé partiel/total</td></tr>
+            <tr><td><strong>10</strong></td><td>Options du crédit</td><td>Modularité, suspension, taux capé</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ─── SECTION 1 : LOI SCRIVENER & DCI ─── -->
+      <div class="section" id="fin-s1">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title">Loi Scrivener & DCI</div>
+        </div>
+
+        <h3>Loi Crédit Conso (LCC) — Scrivener 1</h3>
+        <div class="card">
+          <h4>Délai de rétractation</h4>
+          <table class="data-table">
+            <thead><tr><th>Étape</th><th>Délai</th><th>Détails</th></tr></thead>
+            <tbody>
+              <tr><td>Proposition → Acceptation offre</td><td>—</td><td>La demande de prêt vaut offre de prêt</td></tr>
+              <tr><td><strong>Délai de rétractation</strong></td><td><strong>14 jours francs</strong></td><td>Peut être réduit à 7 jours. Vaut pour l'emprunteur et la caution</td></tr>
+              <tr><td>Validité minimale de l'offre</td><td><strong>14 jours minimum</strong></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Loi Scrivener 2 — Directive Crédit Immobilier (DCI)</h3>
+        <div class="card">
+          <h4>Délai de réflexion</h4>
+          <table class="data-table">
+            <thead><tr><th>Étape</th><th>Délai</th><th>Détails</th></tr></thead>
+            <tbody>
+              <tr><td>Réception de l'offre</td><td>—</td><td>Format papier obligatoire</td></tr>
+              <tr><td><strong>Délai de réflexion</strong></td><td><strong>10 jours francs</strong></td><td>Signature (acceptation) à partir du 11<sup>e</sup> jour</td></tr>
+              <tr><td>Durée minimale de validité</td><td><strong>30 jours</strong></td><td>—</td></tr>
+              <tr><td>Fin de validité de l'offre</td><td><strong>4 mois</strong></td><td>À compter de l'acceptation</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div>Il est <strong>impératif</strong> de respecter le délai et le formalisme afin d'éviter les sanctions, notamment la <strong>déchéance du droit aux intérêts</strong>.</div>
+          </div>
+        </div>
+
+        <h3>La DCI en résumé</h3>
+        <p>La Directive Crédit Immobilier fixe le régime européen des contrats de crédit aux consommateurs relatifs aux biens immobiliers à usage résidentiel. Ses finalités :</p>
+        <ul>
+          <li><strong>Unifier la réglementation</strong> relative au crédit immobilier en créant un marché intérieur</li>
+          <li><strong>Assurer une viabilité des prêts</strong> renforcée par des consommateurs mieux informés</li>
+          <li><strong>Gestion assainie</strong> du crédit immobilier : renforcement de la formation des distributeurs et encadrement de leur rémunération (formation obligatoire et annuelle)</li>
+        </ul>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">💡</span>
+          <div><strong>Impacts DCI sur le process habitat :</strong> Simulation accompagnée d'informations essentielles → Remise de la FISE avec explications adéquates → Envoi de l'offre de prêt (format papier) → Décompte des IRA intégré</div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 2 : PRÊTS RÉGLEMENTÉS ─── -->
+      <div class="section" id="fin-s2">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title">Prêts réglementés</div>
+        </div>
+
+        <h3 id="fin-s2-ptz">Prêt à Taux Zéro (PTZ)</h3>
+        <div class="card">
+          <h4>Conditions d'obtention</h4>
+          <table class="data-table">
+            <thead><tr><th>Critère</th><th>Condition</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Résidence principale</strong></td><td>Occupation dans un délai d'1 an après acquisition ou achèvement des travaux</td></tr>
+              <tr><td><strong>Non propriétaire</strong></td><td>Ne pas être propriétaire de sa RP (sauf handicap, catastrophe naturelle)</td></tr>
+              <tr><td><strong>Ressources</strong></td><td>RFR du foyer inférieur aux plafonds par zone + nombre de personnes. <strong>Clé de contrôle</strong> : coût total / 9 &lt; plafond</td></tr>
+              <tr><td><strong>Logement</strong></td><td>Neuf (collectif) ou ancien avec travaux (≥ 25% du coût + critères énergétiques)</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Opérations finançables</h4>
+          <ul>
+            <li>Acquisition neuf collectif ou assimilé (VEFA, PSLA, BRS)</li>
+            <li>Aménagement de locaux non habitables en logement</li>
+            <li>Achat ancien avec travaux (min 25% du coût global)</li>
+            <li>Acquisition parc social (HLM) sous conditions</li>
+          </ul>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Exclus du PTZ :</strong> frais d'acte notarié, de garantie et droits d'enregistrement pour terrains à bâtir ou immeubles anciens.</div>
+          </div>
+
+          <h4>Quotités applicables</h4>
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Zone A & B1</th><th>Zone B2 & C</th></tr></thead>
+            <tbody>
+              <tr><td>PTZ dans le neuf</td><td><strong>40%</strong></td><td><strong>20%</strong></td></tr>
+              <tr><td>PTZ dans l'ancien + travaux</td><td>—</td><td><strong>40%</strong></td></tr>
+              <tr><td>PTZ ancien parc social</td><td colspan="2"><strong>10%</strong> (toutes zones)</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Plafonds d'opération (exemples)</h4>
+          <table class="data-table">
+            <thead><tr><th>Personnes</th><th>Zone A</th><th>Zone B1</th><th>Zone B2</th><th>Zone C</th></tr></thead>
+            <tbody>
+              <tr><td>1 pers</td><td>150 000€</td><td>135 000€</td><td>110 000€</td><td>100 000€</td></tr>
+              <tr><td>2 pers</td><td>210 000€</td><td>189 000€</td><td>154 000€</td><td>140 000€</td></tr>
+              <tr><td>3 pers</td><td>255 000€</td><td>230 000€</td><td>187 000€</td><td>170 000€</td></tr>
+              <tr><td>4 pers</td><td>300 000€</td><td>270 000€</td><td>220 000€</td><td>200 000€</td></tr>
+              <tr><td>5+ pers</td><td>345 000€</td><td>311 000€</td><td>253 000€</td><td>230 000€</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Profils de remboursement</h4>
+          <table class="data-table">
+            <thead><tr><th>Tranche</th><th>Durée totale</th><th>Différé (P1)</th><th>% différé</th><th>Amortissement (P2)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1</strong></td><td>300 mois</td><td>180 mois</td><td>100%</td><td>120 mois</td></tr>
+              <tr><td><strong>2</strong></td><td>264 mois</td><td>120 mois</td><td>100%</td><td>144 mois</td></tr>
+              <tr><td><strong>3</strong></td><td>240 mois</td><td>60 mois</td><td>100%</td><td>180 mois</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-tip">
+            <span class="alert-icon">✅</span>
+            <div><strong>Spécificités PTZ :</strong> Pas de frais de dossier (sauf frais d'acte et garantie). Pas d'IRA. La tranche 1 est destinée aux zones les plus tendues avec plafonds de ressources plus stricts.</div>
+          </div>
+        </div>
+
+        <h3 id="fin-s2-pas">Prêt à l'Accession Sociale (PAS)</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Critère</th><th>Condition</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Bénéficiaires</strong></td><td>Personnes physiques exclusivement</td></tr>
+              <tr><td><strong>Conditions de ressources</strong></td><td>RFR N-2 selon zone géographique et composition du ménage</td></tr>
+              <tr><td><strong>Résidence principale</strong></td><td>Obligatoire. Occupation sous 1 an</td></tr>
+              <tr><td><strong>Autofinancement</strong></td><td>Obligation d'autofinancer les frais</td></tr>
+              <tr><td><strong>Garantie</strong></td><td>Garantie réelle obligatoire si prêt &gt; 15 000€</td></tr>
+              <tr><td><strong>FGAS</strong></td><td>Bénéficie du Fonds de Garantie à l'Accession Sociale</td></tr>
+              <tr><td><strong>Frais de dossier</strong></td><td>≤ 500€</td></tr>
+              <tr><td><strong>APL</strong></td><td>Ouvre droit à l'APL en zone 3</td></tr>
+            </tbody>
+          </table>
+          <h4>Opérations finançables</h4>
+          <ul>
+            <li>Construction avec ou sans terrain (achèvement sous 3 ans)</li>
+            <li>Agrandissement (≥ 14 m²) ou transformation en logement</li>
+            <li>Achat ancien avec ou sans travaux (aucune condition d'ancienneté)</li>
+            <li>Travaux d'amélioration (logement &gt; 10 ans), d'économie d'énergie, d'adaptation handicap</li>
+          </ul>
+        </div>
+
+        <h3 id="fin-s2-pc">Prêt Conventionné (PC)</h3>
+        <div class="card">
+          <ul>
+            <li>Prêt habitat réglementé <strong>non subordonné à conditions de ressources</strong></li>
+            <li>Financement de la RP de l'emprunteur ou du locataire (propriétaire bailleur)</li>
+            <li>Apport suffisant pour financer les frais</li>
+            <li>Ne bénéficie <strong>pas</strong> du FGAS</li>
+          </ul>
+        </div>
+
+        <h3 id="fin-s2-pel">Prêts Épargne Logement (PEL / CEL)</h3>
+        <div class="card">
+          <h4>Caractéristiques</h4>
+          <table class="data-table">
+            <thead><tr><th>Critère</th><th>PEL</th><th>CEL</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Plafond prêt</strong></td><td>92 000€</td><td>23 000€</td></tr>
+              <tr><td><strong>Plafond cumulé</strong></td><td colspan="2">92 000€ (PEL + CEL)</td></tr>
+              <tr><td><strong>Durée</strong></td><td colspan="2">2 à 15 ans</td></tr>
+              <tr><td><strong>Droits acquis</strong></td><td>Après 3 ans minimum</td><td>Après 18 mois (cas général)</td></tr>
+              <tr><td><strong>Validité droits</strong></td><td>1 an après fermeture</td><td>5 ans après attestation/fermeture</td></tr>
+              <tr><td><strong>Prime d'État</strong></td><td colspan="2">Supprimée pour PEL/CEL ouverts à compter du 01/01/2018</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Cession de droits</h4>
+          <p>Le titulaire peut céder ses droits au profit du <strong>conjoint par mariage</strong> (excluant concubins et pacsés), ascendants, descendants, frères/sœurs, oncles/tantes, neveux/nièces et leurs conjoints par mariage.</p>
+          <table class="data-table">
+            <thead><tr><th>Produit du bénéficiaire</th><th>CEL 12 mois</th><th>CEL 18 mois</th><th>PEL 3 ans</th></tr></thead>
+            <tbody>
+              <tr><td>Néant</td><td>NON</td><td>NON</td><td>NON</td></tr>
+              <tr><td>CEL 12 mois min</td><td>NON</td><td>OUI</td><td>NON</td></tr>
+              <tr><td>CEL 18 mois min</td><td>OUI</td><td>OUI</td><td>NON</td></tr>
+              <tr><td><strong>PEL 3 ans min</strong></td><td>OUI</td><td>OUI</td><td>OUI</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Comparatif des prêts réglementés</h4>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Critère</th><th>PTZ</th><th>PAS/PC</th><th>Épargne Logement</th></tr></thead>
+            <tbody>
+              <tr><td>Résidence principale</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+              <tr><td>Résidence locative</td><td>Non</td><td>Oui (PC)</td><td>Sous conditions</td></tr>
+              <tr><td>Résidence secondaire</td><td>Non</td><td>Non</td><td>Sous conditions</td></tr>
+              <tr><td>Travaux seuls</td><td>Non</td><td>Oui</td><td>Oui</td></tr>
+              <tr><td>Conditions de revenus</td><td>Oui</td><td>Oui (PAS)</td><td>Non</td></tr>
+              <tr><td>Achat nue-propriété</td><td>Sous conditions</td><td>Oui (PC)</td><td>Oui</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 3 : GARANTIES IMMOBILIÈRES ─── -->
+      <div class="section" id="fin-s3">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <div class="section-title">Garanties immobilières</div>
+        </div>
+
+        <div class="card">
+          <h4>Garanties personnelles</h4>
+          <p><strong>Caution :</strong> engagement de payer à la place du débiteur défaillant.</p>
+
+          <h4>Garanties réelles</h4>
+          <table class="data-table">
+            <thead><tr><th>Garantie</th><th>Principe</th><th>Spécificités</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Hypothèque légale spéciale</strong> (ex IPPD)</td>
+                <td>Droit de saisir et revendre le bien en cas de non-paiement</td>
+                <td>Uniquement pour achats existants ou terrains. Rang déterminé par ordre d'inscription. <strong>Exonération taxe publicité foncière 0,615%</strong> → moins onéreuse que l'hypothèque conventionnelle</td>
+              </tr>
+              <tr>
+                <td><strong>Hypothèque conventionnelle</strong></td>
+                <td>Même droit, pour biens non existants (en construction)</td>
+                <td>Acte notarié obligatoire. Publication aux hypothèques sous 2 mois. Taxe publicité foncière de 0,615%</td>
+              </tr>
+              <tr>
+                <td><strong>Nantissement</strong></td>
+                <td>Cession en garantie d'un bien, fonds ou valeur sans dépossession</td>
+                <td>Nantissement de titres, AV, parts SCI, comptes d'instruments financiers</td>
+              </tr>
+              <tr>
+                <td><strong>Caution hypothécaire</strong></td>
+                <td>Hypothèque consentie par un tiers</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>Cautionnement mutuel</h4>
+          <ul>
+            <li><strong>Crédit Logement</strong> : organisme de caution mutualisé</li>
+            <li>Organismes de caution propres aux banques</li>
+            <li><strong>FGAS</strong> (Fonds de Garantie de l'Accession Sociale) : gratuit, couvre 75% du risque pour PAS</li>
+          </ul>
+        </div>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">💡</span>
+          <div><strong>Coût hypothèque :</strong> émoluments notaire + taxe publicité foncière (0,615%) + salaire conservateur (0,05% + 20%). Si remboursement total, l'hypothèque disparaît 1 an après la dernière mensualité. Des frais de mainlevée s'appliquent si constatation officielle nécessaire.</div>
+        </div>
+
+        <div class="card">
+          <h4>Garanties réelles par type d'opération</h4>
+          <table class="data-table">
+            <thead><tr><th>Opération</th><th>Hypothèque légale spéciale</th><th>Hypothèque conventionnelle</th></tr></thead>
+            <tbody>
+              <tr><td>Achat terrain à bâtir</td><td>✅</td><td>✅</td></tr>
+              <tr><td>Travaux seuls</td><td>—</td><td>✅</td></tr>
+              <tr><td>Acquisition immeuble ancien</td><td>✅</td><td>✅</td></tr>
+              <tr><td>Ancien + travaux</td><td>✅</td><td>✅</td></tr>
+              <tr><td>Construction</td><td>—</td><td>✅</td></tr>
+              <tr><td>Terrain + construction</td><td>✅ (terrain)</td><td>✅ (construction)</td></tr>
+              <tr><td>Rachat de créances</td><td>—</td><td>✅</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 4 : ADE & LOI LEMOINE ─── -->
+      <div class="section" id="fin-s4">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <div class="section-title">ADE & Loi Lemoine</div>
+        </div>
+
+        <h3>Risques couverts par l'ADE (habitat)</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Garantie</th><th>Description</th><th>Caractère</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Décès</strong></td><td>Remboursement du CRD au décès</td><td>Obligatoire</td></tr>
+              <tr><td><strong>PTIA</strong></td><td>Perte Totale et Irréversible d'Autonomie</td><td>Obligatoire</td></tr>
+              <tr><td><strong>ITT</strong></td><td>Incapacité Temporaire Totale de travail</td><td>Option</td></tr>
+              <tr><td><strong>TPT</strong></td><td>Mi-temps thérapeutique</td><td>Option</td></tr>
+              <tr><td><strong>IPT</strong></td><td>Invalidité Permanente Totale</td><td>Option</td></tr>
+              <tr><td><strong>IPP</strong></td><td>Invalidité Permanente Partielle</td><td>Option</td></tr>
+              <tr><td><strong>Perte d'emploi</strong></td><td>Prise en charge partielle des échéances</td><td>Option</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Loi Lemoine (28 février 2022)</h3>
+        <div class="card">
+          <p>Pour un accès plus juste, simple et transparent au marché de l'assurance emprunteur :</p>
+          <ul>
+            <li><strong>Résiliation/substitution à tout moment</strong> dès la signature de l'offre de prêt</li>
+            <li><strong>Émission de l'avenant</strong> dans les 10 jours après acceptation de la substitution</li>
+            <li><strong>Obligation d'information renforcée :</strong>
+              <ul>
+                <li>Information annuelle sur le droit de résiliation et ses modalités</li>
+                <li>Coût de l'ADE à 8 ans sur les documents contractuels</li>
+                <li>Indication de l'exhaustivité des motifs de refus</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div>Manquement : amende max <strong>3 000€</strong> (personne physique) ou <strong>15 000€</strong> (personne morale).</div>
+          </div>
+        </div>
+
+        <h3>Suppression du questionnaire médical</h3>
+        <div class="card">
+          <p>Conditions cumulatives :</p>
+          <ul>
+            <li>Capitaux assurés <strong>&lt; 200 000€</strong> par personne sur l'ensemble des encours</li>
+            <li>Fin de prêt au plus tard <strong>la veille des 60 ans</strong> de l'emprunteur</li>
+          </ul>
+          <h4>Convention AERAS</h4>
+          <ul>
+            <li>Réduction du <strong>droit à l'oubli de 10 à 5 ans</strong> pour les cancers (sans condition d'âge)</li>
+            <li>Extension du droit à l'oubli à l'<strong>hépatite C</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 5 : ÉTUDE DU DOSSIER & HCSF ─── -->
+      <div class="section" id="fin-s5">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <div class="section-title">Étude du dossier & normes HCSF</div>
+        </div>
+
+        <h3>Normes HCSF (décision du 29 septembre 2021)</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Critère</th><th>Limite</th><th>Détails</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Taux d'effort</strong></td><td><strong>≤ 35%</strong></td><td>Ratio charges d'emprunt / revenus</td></tr>
+              <tr><td><strong>Maturité du crédit</strong></td><td><strong>≤ 25 ans</strong></td><td>Tolérance de 2 ans de différé si entrée en jouissance décalée</td></tr>
+              <tr><td><strong>Marge de flexibilité</strong></td><td><strong>20%</strong></td><td>De la production trimestrielle peut déroger aux critères</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Répartition de la flexibilité (décision du 29 juin 2023) :</strong> ≥ 70% réservés aux acquéreurs RP, ≥ 30% aux primo-accédants. Les 30% restants (soit 6% de la production) sont libres d'utilisation.</div>
+          </div>
+        </div>
+
+        <h3>Formules de calcul</h3>
+        <div class="card">
+          <div class="calc-block">
+            <div class="calc-step">Taux d'effort réglementaire</div>
+            Charges annuelles d'emprunt ADE comprises (hors LOA)<br>
+            ÷ Total Revenus + 70% des revenus fonciers × 100<br>
+            <div class="calc-result">→ Maximum autorisé : <strong>35%</strong></div>
+          </div>
+          <div class="calc-block">
+            <div class="calc-step">Taux de charge</div>
+            [Charges (LOA comprise) – 70% des revenus fonciers]<br>
+            ÷ (Revenus – Impôts sur le revenu) × 100<br>
+          </div>
+          <div class="calc-block">
+            <div class="calc-step">Mensualité cible (respect 35%)</div>
+            (Revenus + 70% des revenus fonciers) × 35% – Charges hors LOA<br>
+          </div>
+          <div class="calc-block">
+            <div class="calc-step">Revenu disponible</div>
+            [(Revenus + 70% rev. fonciers) – Impôts sur le revenu] – Charges LOA comprise<br>
+          </div>
+        </div>
+
+        <h3>Revenu disponible minimum</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Nb personnes</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>Par pers. suppl.</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Montant</strong></td><td>780€</td><td>1 040€</td><td>1 300€</td><td>1 560€</td><td>1 820€</td><td>2 080€</td><td>+260€</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div><strong>En présence d'un prêt relais</strong>, les intérêts + ADE du relais ne sont <strong>pas pris en compte</strong> pour le calcul du taux d'effort.</div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 6 : RÉGIME MATRIMONIAL & PRÊT ─── -->
+      <div class="section" id="fin-s6">
+        <div class="section-header">
+          <div class="section-num">6</div>
+          <div class="section-title">Régime matrimonial dans le cadre d'un prêt</div>
+        </div>
+
+        <h3>Engagement des époux lors d'un prêt</h3>
+        <div class="card">
+          <h4>Régimes communautaires</h4>
+          <table class="data-table">
+            <thead><tr><th>Situation</th><th>Biens engagés</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Les deux époux s'engagent</strong></td><td>Biens propres A + Revenus A + Biens communauté + Biens propres B + Revenus B</td></tr>
+              <tr><td><strong>Un seul époux (A) s'engage</strong></td><td>Biens propres A + Revenus A uniquement (sauf bien-être du ménage et éducation des enfants)</td></tr>
+              <tr><td><strong>Époux A s'engage avec consentement de B</strong></td><td>Biens propres A + Revenus A + Biens communauté</td></tr>
+              <tr><td><strong>Caution pour un tiers</strong></td><td>Biens propres et revenus personnels de l'époux caution uniquement</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Régimes séparatistes</h4>
+          <table class="data-table">
+            <thead><tr><th>Situation</th><th>Biens engagés</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Co-emprunteurs</strong></td><td>Biens propres de chacun + revenus respectifs</td></tr>
+            </tbody>
+          </table>
+
+          <h4>PACS</h4>
+          <div class="alert alert-tip">
+            <span class="alert-icon">✅</span>
+            <div><strong>Points de vigilance PACS :</strong> Vérifier que le compromis est bien au nom seul de l'emprunteur. Vérifier qu'il n'y a pas de convention d'indivision conclue lors du PACS.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 7 : CRÉDIT CONSOMMATION ─── -->
+      <div class="section" id="fin-s7">
+        <div class="section-header">
+          <div class="section-num">7</div>
+          <div class="section-title">Crédit consommation</div>
+        </div>
+
+        <div class="card">
+          <h4>3 grandes catégories</h4>
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Caractéristiques</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Crédit renouvelable</strong></td>
+                <td>Réserve d'argent utilisable à tout moment. Intérêts décomptés sur sommes dues à fin de mois. Loi Châtel : obligation d'informer mensuellement le client sur la possibilité de réduction/suspension/résiliation.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Crédit amortissable</strong></td>
+                <td>Prêt personnel affecté (PPA) ou non affecté (PPNA). Mensualités fixes intégrant capital + intérêts + ADE.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Location avec Option d'Achat (LOA)</strong></td>
+                <td>Location avec possibilité d'acheter le bien en fin de contrat. Loyers mensuels + option d'achat finale.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-info">
+          <span class="alert-icon">💡</span>
+          <div><strong>Loi applicable :</strong> Loi Crédit Consommation (LCC) / Scrivener 1 pour les crédits conso et travaux &lt; 75 000€. Délai de rétractation de 14 jours francs (réductible à 7 jours).</div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 8 : ECO PTZ ─── -->
+      <div class="section" id="fin-s8">
+        <div class="section-header">
+          <div class="section-num">8</div>
+          <div class="section-title">Eco PTZ</div>
+        </div>
+
+        <div class="card">
+          <p><strong>Définition :</strong> Avance remboursable sans intérêts destinée au financement de travaux d'amélioration de la performance énergétique des logements de <strong>plus de 2 ans</strong>, utilisés à titre de résidence principale.</p>
+          <table class="data-table">
+            <thead><tr><th>Critère</th><th>Condition</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Éligibilité</strong></td><td>Propriétaire bailleur ou occupant, syndicat de copropriétaires</td></tr>
+              <tr><td><strong>Condition travaux</strong></td><td>Réalisés par un professionnel agréé <strong>RGE</strong> (Reconnu Garant de l'Environnement)</td></tr>
+              <tr><td><strong>Montant max</strong></td><td><strong>50 000€</strong> (possibilité de complémentaire si 1<sup>er</sup> Eco PTZ &lt; 50 000€)</td></tr>
+              <tr><td><strong>Durée max</strong></td><td><strong>15 ans</strong> (20 ans pour performance énergétique globale, MPR et MPR accompagné)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Types de travaux finançables</h3>
+        <div class="card">
+          <ul>
+            <li>Actions d'isolation et/ou installation d'équipements</li>
+            <li>Travaux d'amélioration de la performance énergétique globale (prescrits par bureau d'étude thermique)</li>
+            <li>Travaux de réhabilitation de système d'assainissement non collectif</li>
+          </ul>
+        </div>
+
+        <h3>Comparatif des Eco-PTZ</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Caractéristique</th><th>Eco-PTZ classique</th><th>Eco-PTZ MPR</th><th>Eco-PTZ ANAH</th><th>Eco-PTZ Performance</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Emprunteur</strong></td><td>Particuliers et SCI</td><td>Particuliers (MaPrimeRénov')</td><td>Éligible ANAH selon RFR</td><td>Particuliers et SCI</td></tr>
+              <tr><td><strong>Durée</strong></td><td>3 – 15 ans</td><td>3 – 20 ans</td><td>3 – 20 ans</td><td>3 – 20 ans</td></tr>
+              <tr><td><strong>Montant max</strong></td><td>30 000€ (1 action 15K, 2 actions 25K, 3 actions 30K)</td><td>50 000€</td><td>50 000€</td><td>50 000€</td></tr>
+              <tr><td><strong>Garantie</strong></td><td>FGRE automatique</td><td>FGRE après vérification revenus</td><td>FGRE après vérification ANAH</td><td>FGRE après vérification</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 9 : PRÊT RELAIS & DIFFÉRÉS ─── -->
+      <div class="section" id="fin-s9">
+        <div class="section-header">
+          <div class="section-num">9</div>
+          <div class="section-title">Prêt relais, anticipation & différés</div>
+        </div>
+
+        <h3>Le prêt relais</h3>
+        <div class="card">
+          <p>Sert à financer l'achat ou la construction d'un bien <strong>dans l'attente de la vente d'un autre bien</strong>.</p>
+          <table class="data-table">
+            <thead><tr><th>Caractéristique</th><th>Détail</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Quotité</strong></td><td>60 à 80% de la valeur du bien à vendre (moins CRD éventuel)</td></tr>
+              <tr><td><strong>Durée</strong></td><td>12 à 24 mois pour vendre et rembourser</td></tr>
+              <tr><td><strong>Renouvellement</strong></td><td>Par période de 6 mois si particularité</td></tr>
+              <tr><td><strong>Remboursement</strong></td><td>Différé partiel : paiement mensuel des intérêts + ADE</td></tr>
+              <tr><td><strong>Mandat</strong></td><td>À l'appui d'un mandat de vente professionnel</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>L'anticipation</h3>
+        <div class="card">
+          <ul>
+            <li>Permet des <strong>déblocages successifs</strong> (construction, VEFA, travaux importants)</li>
+            <li>Pendant l'anticipation : paiement des <strong>intérêts sur capital débloqué + assurance</strong></li>
+            <li>La durée d'anticipation <strong>s'ajoute</strong> à la durée initiale du prêt</li>
+          </ul>
+          <div class="calc-block">
+            <div class="calc-step">Exemple</div>
+            Anticipation 12 mois + Amortissement 120 mois<br>
+            <div class="calc-result">→ Durée totale = <strong>132 mois</strong></div>
+          </div>
+        </div>
+
+        <h3>Les différés</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Principe</th><th>Paiement pendant le différé</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Différé partiel</strong></td>
+                <td>Report du capital, durée variable</td>
+                <td>Intérêts sur capital débloqué + assurance</td>
+              </tr>
+              <tr>
+                <td><strong>Différé total</strong></td>
+                <td>Report total (capital + intérêts)</td>
+                <td>Assurance uniquement. Intérêts capitalisés et répartis sur durée restante</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 10 : OPTIONS DU CRÉDIT ─── -->
+      <div class="section" id="fin-s10">
+        <div class="section-header">
+          <div class="section-num">10</div>
+          <div class="section-title">Options du crédit</div>
+        </div>
+
+        <div class="card">
+          <h4>Options standard (après 12 mois de carence)</h4>
+          <ul>
+            <li><strong>Moduler la mensualité :</strong> jusqu'à ± 30%, dans la limite d'un allongement de 3 ans (taux fixe) ou 5 ans (taux révisable)</li>
+            <li><strong>Pause-mensualité :</strong> suspension d'une échéance avec 3 possibilités (maintien échéance/durée, augmentation, ou choix libre ± 30%)</li>
+            <li><strong>Double-mensualité :</strong> sans IRA, avec choix sur maintien échéance ou durée</li>
+          </ul>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div>Chaque option ne peut être exercée <strong>qu'une seule fois par année civile</strong>.</div>
+          </div>
+
+          <h4>Options temporaires court terme (après 24 mois de carence)</h4>
+          <ul>
+            <li><strong>Suspendre</strong> la mensualité sur 1 à 6 mois</li>
+            <li><strong>Réduire</strong> l'échéance de 50% pendant 1 à 12 mois</li>
+          </ul>
+
+          <h4>Option temporaire projet (après 24 mois)</h4>
+          <p>Minoration de la mensualité à hauteur des intérêts calculés sur le CRD pendant 24 à 84 mois, puis reprise du remboursement selon 3 choix.</p>
+        </div>
+
+        <h3>Taux révisable / variable</h3>
+        <div class="card">
+          <p>Le taux varie en fonction de l'<strong>Euribor</strong> (taux interbancaire européen). Taux du prêt = Euribor + marge de la banque.</p>
+          <h4>Taux révisable « capé »</h4>
+          <p>Fluctuations limitées par des plafonds (capé à 1, 2 ou 3 points). Le taux peut varier de ± 1, 2 ou 3%.</p>
+          <h4>Mensualités plafonnées</h4>
+          <p>Même si les taux augmentent fortement, les mensualités ne dépassent jamais un montant convenu → sécurité budgétaire supplémentaire.</p>
+          <div class="alert alert-tip">
+            <span class="alert-icon">✅</span>
+            <div>Possibilité selon les offres de passer de <strong>taux variable à taux fixe</strong>. Le taux fixe sera = T4M + marge banque.</div>
+          </div>
+        </div>
+
+        <h3>Indemnités de Remboursement Anticipé (IRA)</h3>
+        <div class="card">
+          <div class="calc-block">
+            <div class="calc-step">Calcul des IRA</div>
+            IRA = <strong>6 mois d'intérêts</strong> au taux moyen du prêt sur le capital remboursé<br>
+            <strong>Plafonnées à 3% du CRD</strong> avant le remboursement<br>
+            <div class="calc-result">→ On retient le montant le plus faible des deux</div>
+          </div>
+          <div class="alert alert-tip">
+            <span class="alert-icon">✅</span>
+            <div><strong>Pas d'IRA</strong> sur le PTZ ni sur le prêt relais.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── EXERCICES ─── -->
+      <div class="section" id="fin-ex1">
+        <div class="section-header">
+          <div class="section-num">📝</div>
+          <div class="section-title">Exercice 1 — Cas MAISONNEUVE (Habitat)</div>
+        </div>
+
+        <div class="card">
+          <h4>Énoncé (13 points)</h4>
+          <p>Mr MAISONNEUVE (41 ans, haut fonctionnaire, 60 000€/an) et Mme MAISONNEUVE (38 ans, audioprothésiste, 42 000€/an) — mariés communauté légale, 1 fils de 16 ans.</p>
+          <p><strong>Projet :</strong> Acquisition maison clé en main à MISEREY SALINES (zone B2) — 424 300€ + 12 800€ frais notaire. Livraison janvier 2027.</p>
+          <p><strong>Charges actuelles :</strong> Prêt auto 290€/mois (fin janv. 2027) + LOA voiture 340€/mois (fin mai 2026).</p>
+          <p><strong>Données :</strong> RFR N-2 : 75 400€ · RFR N-1 : 79 700€ · Impôt N-1 : 6 000€ · Patrimoine financier : 130 000€ (dont 90 000€ liquidités) · Apport souhaité : 75 000€.</p>
+          <p><strong>Souhaits :</strong> Coût global minimal, ADE 100% chacun sans PE, garantie hypothécaire si moins chère que caution.</p>
+        </div>
+
+        <details>
+          <summary>Voir le corrigé</summary>
+          <div class="inner">
+            <div class="card">
+              <h4>Question 1 : Éléments financiers avant-projet</h4>
+              <div class="calc-block">
+                <div class="calc-step">Taux d'effort actuel</div>
+                (290 × 12) / (60 000 + 42 000) × 100<br>
+                3 480 / 102 000<br>
+                <div class="calc-result">→ Taux d'effort = <strong>3,41%</strong></div>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Taux de charge actuel</div>
+                (290 + 340) / (5 000 + 3 500 − 500) × 100<br>
+                630 / 8 000<br>
+                <div class="calc-result">→ Taux de charge = <strong>7,88%</strong></div>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Revenu disponible actuel</div>
+                (5 000 + 3 500) − 500 − 290 − 340<br>
+                <div class="calc-result">→ Revenu disponible = <strong>7 370€</strong></div>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Mensualité cible (35%)</div>
+                (8 500) × 0,35 − 290<br>
+                2 975 − 290<br>
+                <div class="calc-result">→ Mensualité cible = <strong>2 685€</strong></div>
+              </div>
+
+              <h4>Question 2 : Éligibilité aux prêts</h4>
+              <table class="data-table">
+                <thead><tr><th>Prêt</th><th>Éligible ?</th><th>Raison</th></tr></thead>
+                <tbody>
+                  <tr><td>PTZ</td><td>❌</td><td>RFR 75 400€ &gt; 45 900€ (3 pers, zone B2) + propriétaires RP</td></tr>
+                  <tr><td>PAS</td><td>❌</td><td>RFR 75 400€ &gt; 45 900€ (3 pers, zone B2)</td></tr>
+                  <tr><td><strong>PC</strong></td><td>✅</td><td>Pas de plafond ressources, RP, apport pour frais</td></tr>
+                  <tr><td><strong>PTH</strong></td><td>✅</td><td>Pas de critère d'éligibilité</td></tr>
+                  <tr><td><strong>CT Relais</strong></td><td>✅</td><td>Bien immobilier à vendre sous mandat</td></tr>
+                </tbody>
+              </table>
+
+              <h4>Question 3 : Plan de financement</h4>
+              <p>Prêt <strong>PC</strong> retenu (taux moins élevé que PTH) + <strong>CT Relais</strong> avec différé partiel.</p>
+              <div class="calc-block">
+                <div class="calc-step">Montant du relais</div>
+                230 000€ × 70% = <strong>161 000€</strong><br>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Montant du PC</div>
+                362 100€ − 161 000€ + 1 900€ (garantie) + 2 000€ (frais dossier plafonnés)<br>
+                <div class="calc-result">→ PC = <strong>205 000€</strong></div>
+              </div>
+              <table class="data-table">
+                <thead><tr><th>Projet</th><th>Montant</th><th>Financement</th><th>Montant</th></tr></thead>
+                <tbody>
+                  <tr><td>Acquisition</td><td>424 300€</td><td>Apport</td><td>75 000€</td></tr>
+                  <tr><td>Frais d'acte</td><td>12 800€</td><td>Prêt Relais</td><td>161 000€</td></tr>
+                  <tr><td>Frais garantie</td><td>1 900€</td><td>Prêt PC</td><td>205 000€</td></tr>
+                  <tr><td>Frais dossier</td><td>2 000€</td><td></td><td></td></tr>
+                  <tr style="font-weight:bold;"><td>Total</td><td>441 000€</td><td>Total</td><td>441 000€</td></tr>
+                </tbody>
+              </table>
+
+              <h4>Question 4 : Détail ADE et échéances</h4>
+              <div class="calc-block">
+                <div class="calc-step">ADE CT Relais (DC/PTIA sans ITT)</div>
+                Mr (41 ans) : 161 000 × 0,264% / 12 = <strong>35,42€/mois</strong><br>
+                Mme (38 ans) : 161 000 × 0,204% / 12 = <strong>27,37€/mois</strong><br>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">ADE PC (DC/PTIA/ITT)</div>
+                Mr (41 ans) : 205 000 × 0,466% / 12 = <strong>79,61€/mois</strong><br>
+                Mme (38 ans) : 205 000 × 0,325% / 12 = <strong>55,52€/mois</strong><br>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Mensualité CT Relais</div>
+                Intérêts : 161 000 × 4,80% / 12 = <strong>644€</strong><br>
+                Mensualité totale : 644 + 35,42 + 27,37 = <strong>706,79€</strong><br>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Durée et mensualité PC</div>
+                Mensualité cible : 2 685 − 79,61 − 55,52 − 706,79 = 1 843,08€<br>
+                Pour 10 000€ : 1 843,08 / 20,5 = 89,91€ → <strong>Durée 144 mois</strong> (87,50€/10K)<br>
+                Taux : <strong>3,99%</strong><br>
+                Mensualité hors ADE : (205 000 / 10 000) × 87,50 = <strong>1 793,75€</strong><br>
+                <div class="calc-result">→ Mensualité PC avec ADE = <strong>1 928,88€</strong></div>
+              </div>
+
+              <h4>Question 5 : Ratios après projet</h4>
+              <div class="calc-block">
+                <div class="calc-step">Taux d'effort après projet</div>
+                (3 480 + 23 146,56) / 102 000<br>
+                <div class="calc-result">→ <strong>26,10%</strong></div>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Taux de charge après projet</div>
+                (290 + 340 + 706,79 + 1 928,88) / (8 500 − 500)<br>
+                3 265,67 / 8 000<br>
+                <div class="calc-result">→ <strong>40,82%</strong></div>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Revenu disponible après projet</div>
+                8 500 − 500 − 290 − 340 − 706,79 − 1 928,88<br>
+                <div class="calc-result">→ <strong>4 734,33€</strong></div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="section" id="fin-ex2">
+        <div class="section-header">
+          <div class="section-num">📝</div>
+          <div class="section-title">Exercice 2 — Cas CEMIN (Épargne Logement)</div>
+        </div>
+
+        <div class="card">
+          <h4>Énoncé (4 points)</h4>
+          <p>Mr et Mme CEMIN, mariés sous le régime de la <strong>séparation de biens</strong>, souhaitent acquérir une résidence principale locative à 50% chacun.</p>
+          <p><strong>Prix :</strong> 80 000€ + 5 000€ frais notaire · <strong>Aucun apport souhaité</strong></p>
+          <p><strong>Droits épargne logement :</strong></p>
+          <ul>
+            <li>Mr : PEL → prêt 51 000€ + CEL → prêt 6 000€</li>
+            <li>Mme : CEL → prêt 19 000€</li>
+            <li>Mère de Mr : peut céder droits PEL → prêt 8 000€</li>
+          </ul>
+        </div>
+
+        <details>
+          <summary>Voir le corrigé</summary>
+          <div class="inner">
+            <div class="card">
+              <p><strong>Règles applicables :</strong> Séparation de biens → cession droits entre époux et beaux-parents possible. Plafond EL par personne = sa quote-part (40 000€). Frais notaire non finançables en EL.</p>
+
+              <h4>Plan de financement Mr CEMIN</h4>
+              <table class="data-table">
+                <thead><tr><th>Projet</th><th>Montant</th><th>Financement</th><th>Montant</th></tr></thead>
+                <tbody>
+                  <tr><td>Acquisition (50%)</td><td>40 000€</td><td>Prêt PEL</td><td>40 000€</td></tr>
+                  <tr><td>Frais (50%)</td><td>2 500€</td><td>PTH</td><td>2 500€</td></tr>
+                  <tr style="font-weight:bold;"><td>Total</td><td>42 500€</td><td>Total</td><td>42 500€</td></tr>
+                </tbody>
+              </table>
+              <p>PEL donne droit à 51 000€ mais limité à la quote-part de 40 000€. Le surplus de droits non utilisé ne peut être cédé.</p>
+
+              <h4>Plan de financement Mme CEMIN</h4>
+              <table class="data-table">
+                <thead><tr><th>Projet</th><th>Montant</th><th>Financement</th><th>Montant</th></tr></thead>
+                <tbody>
+                  <tr><td>Acquisition (50%)</td><td>40 000€</td><td>CEL (droits propres)</td><td>19 000€</td></tr>
+                  <tr><td>Frais (50%)</td><td>2 500€</td><td>CEL (cession mari)</td><td>4 000€</td></tr>
+                  <tr><td></td><td></td><td>PTH</td><td>19 500€</td></tr>
+                  <tr style="font-weight:bold;"><td>Total</td><td>42 500€</td><td>Total</td><td>42 500€</td></tr>
+                </tbody>
+              </table>
+              <div class="alert alert-warn">
+                <span class="alert-icon">⚠️</span>
+                <div>Mme ne peut <strong>pas</strong> bénéficier de la cession PEL de sa belle-mère (elle n'a que des droits CEL). L'encours CEL est plafonné à <strong>23 000€</strong>.</div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="section" id="fin-ex3">
+        <div class="section-header">
+          <div class="section-num">📝</div>
+          <div class="section-title">Exercice 3 — Cas JOINVILLE (Conso)</div>
+        </div>
+
+        <div class="card">
+          <h4>Énoncé (3 points)</h4>
+          <p>Mme JOINVILLE, célibataire sans enfant, graphiste. Salaire mensuel : 3 190€.</p>
+          <p><strong>RFR :</strong> 34 452€ · <strong>Impôt :</strong> 4 308€/an · <strong>Prêt RP :</strong> 628€/mois (ADE : 36€/mois).</p>
+          <p><strong>Besoin :</strong> crédit pour pallier dépenses imprévues et décalages de trésorerie. Souhaite capacité max, couverture ADE optimale, remboursement sans frais à tout moment.</p>
+        </div>
+
+        <details>
+          <summary>Voir le corrigé</summary>
+          <div class="inner">
+            <div class="card">
+              <h4>Q1 : Solution adaptée</h4>
+              <p><strong>Crédit renouvelable</strong> — pallier dépenses imprévues et décalages de trésorerie à tout moment, remboursable sans frais.</p>
+
+              <h4>Q2 : Calculs</h4>
+              <div class="calc-block">
+                <div class="calc-step">Taux de charge actuel</div>
+                (628 + 36) / (3 190 − 359) × 100<br>
+                664 / 2 831<br>
+                <div class="calc-result">→ <strong>23,45%</strong></div>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Revenu disponible</div>
+                3 190 − (628 + 36 + 359)<br>
+                <div class="calc-result">→ <strong>2 167€</strong></div>
+              </div>
+              <div class="calc-block">
+                <div class="calc-step">Capacité résiduelle d'endettement</div>
+                (3 190 − 359) × 35% − (628 + 36)<br>
+                2 831 × 0,35 − 664 = 990,85 − 664<br>
+                <div class="calc-result">→ <strong>326,85€/mois</strong></div>
+              </div>
+
+              <h4>Q3 : Montant maximum</h4>
+              <p>Mensualité max ≤ 326,85€. Selon barème crédit renouvelable, la mensualité inférieure la plus proche est <strong>220€</strong>.</p>
+              <div class="calc-result">→ Montant maximum du crédit renouvelable : <strong>9 000€</strong></div>
+
+              <h4>Q4 : Calcul des intérêts</h4>
+              <p>Les intérêts sont décomptés <strong>sur les sommes dues à la fin de chaque mois</strong> selon le taux déterminé dans le contrat.</p>
+
+              <h4>Q5 : Diminution du montant</h4>
+              <p>La <strong>Loi Châtel</strong> oblige le prêteur à informer chaque mois le client sur la possibilité de demander, à tout moment, la réduction de sa réserve, la suspension de son droit ou la résiliation.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+    </div>
+
+
+    <!-- ══════════════════════════════════════
+         RESPONSABILITÉ DU GESTIONNAIRE DE PATRIMOINE
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-responsabilite" style="display:none">
+
+      <div class="welcome" id="resp-intro">
+        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <h1>Responsabilité du gestionnaire de patrimoine ⚖️</h1>
+        <div class="subtitle">Gestion de portefeuille : quelle responsabilité ?</div>
+        <p>Ce cours examine les conditions de mise en œuvre de la responsabilité civile et pénale du conseiller en gestion de patrimoine (CGP), avec analyse de la jurisprudence et des cas pratiques.</p>
+        <div class="meta">Master 2 GIP · 4 chapitres</div>
+      </div>
+
+      <div class="card">
+        <h3>Plan du cours</h3>
+        <table class="data-table">
+          <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td>Obligations précontractuelles</td><td>Information, évaluation, mise en garde, conseil, couverture</td></tr>
+            <tr><td><strong>2</strong></td><td>Inexécution contractuelle</td><td>Mandat, diligence, loyauté, rendre compte, dénouement</td></tr>
+            <tr><td><strong>3</strong></td><td>Dommage & lien de causalité</td><td>Nature, caractères, perte de chance, exonération</td></tr>
+            <tr><td><strong>4</strong></td><td>Responsabilité pénale</td><td>Infractions de droit commun et spécifiques, prescription</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <div><strong>Principe fondamental :</strong> Le gestionnaire n'engage sa responsabilité civile que s'il a commis une <strong>faute</strong> à l'origine du <strong>dommage</strong> subi par le client. Le <strong>lien de causalité</strong> entre la faute et le dommage est examiné au titre du caractère direct de ce dommage.</div>
+      </div>
+
+      <!-- ─── SECTION 1 : OBLIGATIONS PRÉCONTRACTUELLES ─── -->
+      <div class="section" id="resp-s1">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title">Inexécution d'une obligation précontractuelle</div>
+        </div>
+
+        <h3 id="resp-s1-info">a) Manquement à l'obligation d'information</h3>
+        <div class="card">
+          <p>Le prestataire de services d'investissement qui <strong>n'informe pas</strong> son client des conditions générales pratiquées, des caractéristiques des services et des placements proposés engage sa responsabilité civile.</p>
+          <ul>
+            <li>Vaut quel que soit le mandat de gestion (directe, assistée, sous mandat)</li>
+            <li>La remise d'un prospectus suffit à établir que l'investisseur a été informé (<em>CA Rouen 12/01/12</em>)</li>
+            <li>La banque qui ne justifie pas la remise des prospectus engage sa responsabilité (<em>CA Paris 22/05/08</em>)</li>
+          </ul>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div>La simple mention que l'investisseur a « pris connaissance de la notice d'information » <strong>ne suffit pas</strong> à établir que l'obligation d'information a été remplie (<em>CA Bordeaux 28/11/11</em>).</div>
+          </div>
+          <p>Le prestataire qui délivre une information <strong>inexacte, imprécise et trompeuse</strong> en violation des articles L 533-12 CMF et 314-10 RG AMF engage également sa responsabilité.</p>
+        </div>
+
+        <h3 id="resp-s1-eval">b) Défaut d'évaluation du client</h3>
+        <div class="card">
+          <p>Le prestataire a l'obligation de <strong>« connaître son client »</strong> pour déterminer sa qualité (averti/profane) et s'assurer qu'il possède l'expérience et les connaissances nécessaires.</p>
+          <h4>3 critères d'évaluation :</h4>
+          <table class="data-table">
+            <thead><tr><th>Critère</th><th>Détail</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1. Compétence et expérience</strong></td><td>Profession, diplômes, historique d'investissement</td></tr>
+              <tr><td><strong>2. Objectifs</strong></td><td>Profil de risque, horizon d'investissement</td></tr>
+              <tr><td><strong>3. Situation patrimoniale</strong></td><td>Capacités financières, patrimoine global</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div>La charge de la preuve de l'exécution de cette obligation <strong>pèse sur le gestionnaire</strong> (<em>CA Aix-en-Provence 30/05/13</em>). L'évaluation des <strong>époux</strong> doit être réalisée en la personne de <strong>chacun d'eux</strong> (<em>Cass.com. 03/05/11</em>).</div>
+          </div>
+
+          <h4>Catégorisation des clients</h4>
+          <table class="data-table">
+            <thead><tr><th>Client professionnel</th><th>Client non professionnel</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Établissements de crédit, entreprises d'investissement, assurances, placements collectifs, CDC, entités avec : bilan ≥ 20M€, CA ≥ 40M€ ou capitaux propres ≥ 2M€</td>
+                <td>Défini en négatif : tous ceux qui ne sont pas professionnels</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="resp-s1-garde">c) Défaut d'information sur les risques — Mise en garde</h3>
+        <div class="card">
+          <p>À défaut d'information des clients <strong>non avertis</strong> portant sur les risques d'opérations spéculatives, le prestataire engage sa responsabilité civile, quel que soit le mode de gestion.</p>
+          <ul>
+            <li>La simple signature de la convention ne dispense <strong>pas</strong> du devoir d'information</li>
+            <li>L'information de mise en garde doit être donnée <strong>AVANT</strong> la signature des contrats (<em>Cass.com. 30/11/10</em>)</li>
+            <li>Le caractère averti/non averti s'apprécie <strong>in concreto</strong> (profession, type d'opérations, fréquence, durée)</li>
+          </ul>
+          <div class="alert alert-tip">
+            <span class="alert-icon">✅</span>
+            <div>Les diplômes ne satisfont pas à l'exigence d'expérience mais constituent un <strong>indice</strong> en faveur de la connaissance. En présence d'un couple, l'évaluation doit être <strong>individualisée</strong>.</div>
+          </div>
+        </div>
+
+        <h3 id="resp-s1-conseil">d) Manquement au devoir de conseil</h3>
+        <div class="card">
+          <p>Avec la transposition de la Directive MIF, l'obligation de recommander un service adapté est réservée aux contrats de <strong>conseil en investissements</strong>.</p>
+          <p>Pour la gestion individuelle, le gestionnaire doit fournir un service <strong>adapté à la situation</strong> du client.</p>
+
+          <h4>e) Défaut d'exigence de couverture</h4>
+          <p>Depuis l'arrêt du <strong>26 février 2008</strong>, la Cour de cassation fonde la responsabilité du prestataire sur l'article 1231-1 du Code civil et L 533-11 CMF : la violation des règles de bonne conduite (dont l'exigence de couverture) engage la responsabilité contractuelle.</p>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div>Cette solution s'applique <strong>quel que soit le mode de gestion</strong> (directe, assistée, sous mandat) et vaut aussi pour les appels complémentaires de couverture.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 2 : INEXÉCUTION CONTRACTUELLE ─── -->
+      <div class="section" id="resp-s2">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title">Inexécution d'une obligation contractuelle</div>
+        </div>
+
+        <h3 id="resp-s2-mandat">a) Non-respect des termes du mandat</h3>
+        <div class="card">
+          <h4>Réception-Transmission / Exécution d'ordres</h4>
+          <ul>
+            <li>Le prestataire est tenu de transmettre/exécuter les ordres conformément aux instructions</li>
+            <li>Il ne peut refuser un ordre conforme aux termes du contrat et aux conditions du marché</li>
+            <li><strong>Limite :</strong> le devoir de vigilance oblige à refuser des ordres manifestement anormaux, incohérents ou contradictoires</li>
+          </ul>
+
+          <h4>Mandat de gestion — Dépassement</h4>
+          <ul>
+            <li>Le gestionnaire engage sa responsabilité contractuelle en cas de <strong>dépassement du mandat</strong></li>
+            <li>Le client n'est pas obligé de réagir aux avis envoyés (le mandat est destiné à le libérer des soucis de gestion — <em>CA Paris 25/05/07</em>)</li>
+            <li><strong>Ratification :</strong> si le client ratifie expressément ou tacitement les actes, le gestionnaire n'engage pas sa responsabilité</li>
+          </ul>
+        </div>
+
+        <h3 id="resp-s2-diligence">b) Manquement à l'obligation de diligence</h3>
+        <div class="card">
+          <p>Le prestataire est tenu d'accomplir sa mission avec <strong>soin et professionnalisme</strong> au mieux des intérêts de ses donneurs d'ordres. Sa faute s'apprécie <strong>in abstracto</strong>.</p>
+          <h4>Exemples de fautes :</h4>
+          <ul>
+            <li><strong>Exécution tardive :</strong> attendre plusieurs jours pour exécuter un ordre</li>
+            <li><strong>Exécution erronée :</strong> erreurs matérielles dans l'exécution des ordres</li>
+            <li><strong>Défaut de blocage :</strong> ne pas bloquer les ordres en cas d'insuffisance de provision/couverture</li>
+          </ul>
+
+          <h4>Faute de gestion (obligation de moyens)</h4>
+          <p>Le gestionnaire ne peut être tenu d'une <strong>obligation de résultat</strong> en raison de l'aléa boursier. Il ne peut garantir la progression ni le maintien de la valeur du portefeuille.</p>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Critères de qualification de la faute :</strong> objectif de gestion choisi, limites/interdictions stipulées, réactivité face aux évolutions des marchés. La jurisprudence sanctionne la <strong>lenteur à réinvestir</strong> et l'<strong>inertie</strong> du gestionnaire. <strong>Exception :</strong> si le gestionnaire a promis un résultat → obligation de résultat.</div>
+          </div>
+        </div>
+
+        <h3 id="resp-s2-loyaute">c) Manquement à l'obligation de loyauté</h3>
+        <div class="card">
+          <p>Article L 533-11 CMF : les prestataires doivent agir de <strong>manière honnête, loyale et professionnelle</strong>, servant au mieux les intérêts des clients.</p>
+          <h4>Exemples d'infractions :</h4>
+          <ul>
+            <li>Création ou maintien de <strong>conflits d'intérêts</strong></li>
+            <li>Investissement exclusif dans des produits du groupe du gestionnaire (sauf convention spécifique)</li>
+            <li>Ne pas attirer l'attention sur la nécessité de modifier le profil de gestion</li>
+          </ul>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div><em>CA Rennes 25/02/2022 :</em> Le CGP « était tenu de délivrer à ses clients une information <strong>complète, loyale et cohérente</strong>, sans éluder les aspects les moins favorables du produit et les risques inhérents au placement choisi. »</div>
+          </div>
+        </div>
+
+        <h3 id="resp-s2-compte">d) Obligation de rendre compte</h3>
+        <div class="card">
+          <p>Le manquement prend la forme d'un <strong>défaut ou retard d'envoi</strong> :</p>
+          <table class="data-table">
+            <thead><tr><th>Document</th><th>Fréquence</th><th>Destinataire</th></tr></thead>
+            <tbody>
+              <tr><td>Avis d'opéré</td><td>À chaque opération</td><td>Tout prestataire transmetteur d'ordres</td></tr>
+              <tr><td>Relevés de comptes</td><td>Périodique</td><td>Prestataire teneur de compte</td></tr>
+              <tr><td>Arrêté trimestriel du portefeuille</td><td>Trimestriel</td><td>Mandat de gestion</td></tr>
+              <tr><td>Compte rendu semestriel</td><td>Semestriel</td><td>Mandat de gestion</td></tr>
+              <tr><td>Information mensuelle (positions ouvertes)</td><td>Mensuel</td><td>Mandat avec effet de levier</td></tr>
+              <tr><td>Information annuelle (résultats, rapport)</td><td>Annuel</td><td>Gestion de portefeuille</td></tr>
+              <tr><td>Relevé périodique d'activité (MIF)</td><td>Semestriel (non pro)</td><td>Tous gestionnaires</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Dénouement du contrat</h4>
+          <p>Si après réception de la lettre RAR de dénonciation, le gestionnaire prend l'initiative de nouvelles opérations, il supporte la <strong>pleine responsabilité</strong> du préjudice.</p>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 3 : DOMMAGE & LIEN DE CAUSALITÉ ─── -->
+      <div class="section" id="resp-s3">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <div class="section-title">Le dommage et le lien de causalité</div>
+        </div>
+
+        <h3 id="resp-s3-dommage">Nature et caractères du dommage</h3>
+        <div class="card">
+          <h4>A — Dommage matériel (art. 1231-2 C. civ.)</h4>
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Définition</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Perte éprouvée</strong></td><td>Moins-value accusée par le portefeuille géré</td></tr>
+              <tr><td><strong>Gain manqué</strong></td><td>Différence entre la valeur du portefeuille et celle qu'il aurait eue sans faute (comparaison avec le CAC 40 si portefeuille principalement en valeurs composant l'indice)</td></tr>
+            </tbody>
+          </table>
+
+          <h4>B — Dommage moral</h4>
+          <p>Peut être indemnisé à condition de prouver son existence et son lien de causalité (rare en pratique). Ex. : soucis causés à une cliente septuagénaire par une procédure (<em>CA Paris 03/05/07</em>).</p>
+
+          <h4>Caractères du dommage</h4>
+          <table class="data-table">
+            <thead><tr><th>Caractère</th><th>Explication</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Certain</strong></td><td>Exclut le préjudice hypothétique. Les plus/moins-values restent latentes jusqu'à liquidation effective</td></tr>
+              <tr><td><strong>Direct</strong></td><td>Lien de causalité entre le dommage et la faute. Les pertes dues à l'aléa boursier ne sont pas réparables (sauf obligation de résultat)</td></tr>
+              <tr><td><strong>Prévisible</strong></td><td>Le GP a conscience qu'il s'expose à réparer les conséquences de l'inexécution</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="resp-s3-chance">Perte d'une chance</h3>
+        <div class="card">
+          <p>La grande majorité des décisions ne réparent que la <strong>perte d'une chance</strong>, définie comme la disparition de la probabilité d'un événement favorable.</p>
+          <h4>Définitions jurisprudentielles :</h4>
+          <ul>
+            <li>Perte de chance de <strong>ne pas avoir signé un mandat moins risqué</strong></li>
+            <li>Perte de chance de <strong>trouver un meilleur placement</strong></li>
+            <li>Perte de chance de <strong>choisir une gestion plus prudente</strong></li>
+            <li>Perte de chance de <strong>résilier plus tôt le mandat</strong> (manquement à rendre compte)</li>
+          </ul>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠️</span>
+            <div>La réparation ne correspond <strong>jamais</strong> à la totalité des pertes (il faut tenir compte de l'aléa boursier) ni à la totalité de ce que la chance aurait procuré. L'indemnisation est calculée en fonction des <strong>probabilités de réalisation</strong> de l'événement favorable.</div>
+          </div>
+
+          <h4>Exemples de jurisprudence</h4>
+          <ul>
+            <li><em>CA Caen 23/10/14 :</em> Indemnisation fixée à <strong>50%</strong> de la moins-value des SICAV (défaut de diagnostic patrimonial)</li>
+            <li><em>TGI Paris 13/02/14 :</em> Perte de chance de renoncer au contrat et placer sur un produit exonéré ISF 10 ans</li>
+            <li><em>CA Montpellier 27/01/15 :</em> Préjudice = somme versée + intérêts de retard payés au Trésor (opération Girardin manquée)</li>
+            <li><em>CA Rennes 25/02/22 :</em> Condamnation à <strong>5 000€</strong> pour perte de chance de ne pas emprunter pour un contrat AV</li>
+          </ul>
+        </div>
+
+        <h3 id="resp-s3-exo">Exonération de responsabilité</h3>
+        <div class="card">
+          <h4>A — Force majeure (art. 1218 C. civ.)</h4>
+          <p>3 conditions cumulatives :</p>
+          <table class="data-table">
+            <thead><tr><th>Condition</th><th>Application</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Irrésistible</strong></td><td>Rend l'exécution impossible (pas simplement difficile). Ex. : fermeture de la bourse. L'attentat du 11/09/2001 n'a pas été retenu car le Monep est resté ouvert</td></tr>
+              <tr><td><strong>Imprévisible</strong></td><td>Une crise boursière est imprévisible quant à sa date et son ampleur</td></tr>
+              <tr><td><strong>Extérieur</strong></td><td>Le GP ne peut invoquer la défaillance de son personnel ou matériel</td></tr>
+            </tbody>
+          </table>
+
+          <h4>B — Fait du client</h4>
+          <p>Le prestataire peut être exonéré totalement ou partiellement en prouvant l'imprudence ou la négligence de son client.</p>
+          <ul>
+            <li><strong>Immixtion autorisée :</strong> le GP n'engage pas sa responsabilité</li>
+            <li><strong>Immixtion non autorisée :</strong> le GP dispose d'un pouvoir d'appréciation et peut refuser d'exécuter les ordres</li>
+            <li><strong>Client averti :</strong> l'obligation d'information s'efface quand le client possède une compétence propre ou s'entoure de conseillers</li>
+          </ul>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Attention :</strong> cette atténuation (client averti) vaut pour le devoir d'<strong>information</strong>, mais <strong>pas nécessairement</strong> pour l'obligation de <strong>conseil</strong>.</div>
+          </div>
+
+          <h4>C — Clause d'exonération contractuelle</h4>
+          <ul>
+            <li>Le principe de liberté contractuelle permet d'insérer des clauses limitatives</li>
+            <li><strong>Article 1170 C. civ.</strong> interdit toute clause qui prive de sa substance l'obligation essentielle</li>
+            <li>La clause s'efface en cas de <strong>dol ou faute lourde</strong></li>
+            <li>Susceptible de tomber sous le coup de la réglementation des <strong>clauses abusives</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 4 : RESPONSABILITÉ PÉNALE ─── -->
+      <div class="section" id="resp-s4">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <div class="section-title">Responsabilité pénale</div>
+        </div>
+
+        <div class="card">
+          <p><strong>Principe (art. 121-3 C. pénal) :</strong> « Il n'y a point de crime ou de délit sans intention de le commettre. » L'intention suppose la volonté et la conscience infractionnelles.</p>
+        </div>
+
+        <h3 id="resp-s4-commun">Infractions de droit commun</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Infraction</th><th>Article</th><th>Peines</th><th>Application au CGP</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Abus de confiance</strong></td>
+                <td>314-1 C. pénal</td>
+                <td>5 ans + 375 000€</td>
+                <td>Détournement de fonds, valeurs ou biens remis à charge de les rendre. Circonstance aggravante si activité habituelle sur biens de tiers</td>
+              </tr>
+              <tr>
+                <td><strong>Escroquerie</strong></td>
+                <td>313-1 C. pénal</td>
+                <td>5 ans + 375 000€</td>
+                <td>Usage de faux nom, fausse qualité, manœuvres frauduleuses pour obtenir remise de fonds</td>
+              </tr>
+              <tr>
+                <td><strong>Faux et usage de faux</strong></td>
+                <td>441-1 C. pénal</td>
+                <td>3 ans + 45 000€</td>
+                <td>Altération frauduleuse de la vérité dans un écrit ayant des conséquences juridiques</td>
+              </tr>
+              <tr>
+                <td><strong>Secret professionnel</strong></td>
+                <td>226-13 C. pénal + L 531-12 CMF</td>
+                <td>1 an + 15 000€</td>
+                <td>Tout membre de la direction/gestion d'une entreprise d'investissement ou SGP est tenu au secret</td>
+              </tr>
+              <tr>
+                <td><strong>Abus de faiblesse</strong></td>
+                <td>223-15-2 C. pénal</td>
+                <td>3 ans + 375 000€</td>
+                <td>Abus de l'état d'ignorance ou de vulnérabilité (âge, maladie) pour conduire à un acte gravement préjudiciable</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="resp-s4-specifique">Infractions spécifiques</h3>
+        <div class="card">
+          <h4>Infractions au droit de la consommation</h4>
+          <ul>
+            <li><strong>Refus de prestation de services</strong> (art. L121-11 C. conso) — sauf motif légitime</li>
+            <li><strong>Pratiques commerciales trompeuses</strong> (art. L121-1 C. conso) — allégations fausses ou de nature à induire en erreur</li>
+          </ul>
+
+          <h4>Infractions au droit des sociétés</h4>
+          <ul>
+            <li><strong>Abus de biens sociaux</strong> (art. L242-6 C. com.) — 5 ans + 375 000€. Usage des biens/crédit de la société contraire à son intérêt, à des fins personnelles. Aggravation à 7 ans + 500 000€ si comptes à l'étranger</li>
+          </ul>
+
+          <h4>Infractions boursières</h4>
+          <table class="data-table">
+            <thead><tr><th>Infraction</th><th>Article</th><th>Peines</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Délit d'initié</strong></td><td>L465-1 CMF</td><td>5 ans + 100M€ (jusqu'au décuple de l'avantage)</td></tr>
+              <tr><td><strong>Fausse information / Manipulation de cours</strong></td><td>L465-2 CMF</td><td>Mêmes peines</td></tr>
+              <tr><td><strong>Blanchiment</strong></td><td>—</td><td>La déclaration de soupçon exonère sauf concertation frauduleuse</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Démarchage bancaire ou financier</h4>
+          <table class="data-table">
+            <thead><tr><th>Infraction</th><th>Peine</th></tr></thead>
+            <tbody>
+              <tr><td>Démarchage sans carte / sans information du démarché</td><td>6 mois + 7 500€</td></tr>
+              <tr><td>Démarchage sans remplir les conditions / produits interdits</td><td>5 ans + 375 000€ (peines de l'escroquerie)</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Prestation sans agrément</h4>
+          <p>Fournir des services d'investissement sans agrément : <strong>3 ans + 375 000€</strong> (art. L573-1 CMF).</p>
+        </div>
+
+        <h3 id="resp-s4-prescription">Prescription</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Type</th><th>Prescription de l'action</th><th>Prescription de la peine</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Crime</strong></td><td>20 ans à compter du jour de l'infraction</td><td>20 ans à compter de la condamnation définitive</td></tr>
+              <tr><td><strong>Délit</strong></td><td>6 ans à compter du jour de l'infraction</td><td>6 ans à compter de la condamnation définitive</td></tr>
+              <tr><td><strong>Contravention</strong></td><td>1 an</td><td>3 ans à compter de la condamnation définitive</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Infraction occulte ou dissimulée :</strong> la prescription court à compter du jour où l'infraction a pu être constatée, sans excéder <strong>12 ans</strong> (délits) ou <strong>30 ans</strong> (crimes) à compter de la commission.</div>
+          </div>
+
+          <h4>Action civile</h4>
+          <p>Une infraction commise par le gestionnaire est à l'origine d'un préjudice direct subi par les clients, de nature à justifier l'<strong>action civile devant la juridiction répressive</strong> et l'octroi de dommages et intérêts.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ══════════════════════════════════════
+         INGÉNIERIE FISCALE PP & PATRIMOINE
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-fiscal" style="display:none">
+
+      <div class="welcome" id="fiscal-intro">
+        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <h1>Ingénierie fiscale des personnes physiques et patrimoine 🏛️</h1>
+        <div class="subtitle">Optimisation fiscale — Stratégies patrimoniales pour les personnes physiques</div>
+        <p>Ce cours couvre l'ensemble de la fiscalité applicable aux personnes physiques dans un contexte patrimonial : impôt sur le revenu, plus-values, IFI, droits de mutation à titre gratuit, assurance-vie et structures de détention (démembrement, SCI, holding).</p>
+        <div class="meta">Master 2 GIP · 6 chapitres</div>
+      </div>
+
+      <div class="card">
+        <h3>Plan du cours</h3>
+        <table class="data-table">
+          <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td>Impôt sur le revenu</td><td>Catégories, barème progressif, PFU / option barème, quotient familial</td></tr>
+            <tr><td><strong>2</strong></td><td>Plus-values des particuliers</td><td>PV immobilières, PV mobilières, abattements, exonérations</td></tr>
+            <tr><td><strong>3</strong></td><td>IFI</td><td>Assiette, seuil, barème, biens exonérés, stratégies d'optimisation</td></tr>
+            <tr><td><strong>4</strong></td><td>Droits de mutation à titre gratuit</td><td>Successions, donations, abattements, barème, rapports fiscaux</td></tr>
+            <tr><td><strong>5</strong></td><td>Assurance-vie</td><td>Fiscalité des rachats, transmission (art. 990 I CGI), clause bénéficiaire</td></tr>
+            <tr><td><strong>6</strong></td><td>Démembrement & SCI</td><td>Démembrement de propriété, SCI patrimoniale, holding familiale</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <div><strong>Principe directeur :</strong> L'ingénierie fiscale patrimoniale vise à <strong>optimiser la charge fiscale</strong> dans le respect de la loi, en articulant les différents leviers (revenus, plus-values, transmission, structures) au service de la <strong>stratégie patrimoniale globale</strong> du client.</div>
+      </div>
+
+      <!-- ─── SECTION 1 : IMPÔT SUR LE REVENU ─── -->
+      <div class="section" id="fiscal-s1">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title">Impôt sur le revenu (IR)</div>
+        </div>
+
+        <h3 id="fiscal-s1-categories">a) Catégories de revenus</h3>
+        <div class="card">
+          <p>L'IR frappe l'ensemble des revenus du foyer fiscal, classés en <strong>8 catégories</strong> :</p>
+          <table class="data-table">
+            <thead><tr><th>Catégorie</th><th>Nature</th><th>Exemples</th></tr></thead>
+            <tbody>
+              <tr><td><strong>TS</strong></td><td>Traitements & salaires</td><td>Salaires, pensions, rentes viagères à titre gratuit</td></tr>
+              <tr><td><strong>RCM</strong></td><td>Revenus de capitaux mobiliers</td><td>Dividendes, intérêts, coupons</td></tr>
+              <tr><td><strong>RF</strong></td><td>Revenus fonciers</td><td>Loyers bruts – charges déductibles</td></tr>
+              <tr><td><strong>BIC</strong></td><td>Bénéfices industriels et commerciaux</td><td>LMNP, LMP, activité commerciale</td></tr>
+              <tr><td><strong>BNC</strong></td><td>Bénéfices non commerciaux</td><td>Professions libérales, droits d'auteur</td></tr>
+              <tr><td><strong>BA</strong></td><td>Bénéfices agricoles</td><td>Exploitations agricoles</td></tr>
+              <tr><td><strong>PV</strong></td><td>Plus-values</td><td>Cessions de biens meubles et immeubles</td></tr>
+              <tr><td><strong>RV</strong></td><td>Rentes viagères à titre onéreux</td><td>Fraction imposable selon l'âge du crédirentier</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="fiscal-s1-bareme">b) Barème progressif de l'IR (2024)</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Tranche de revenu imposable</th><th>Taux marginal</th></tr></thead>
+            <tbody>
+              <tr><td>Jusqu'à 11 294 €</td><td><strong>0 %</strong></td></tr>
+              <tr><td>11 295 € – 28 797 €</td><td><strong>11 %</strong></td></tr>
+              <tr><td>28 798 € – 82 341 €</td><td><strong>30 %</strong></td></tr>
+              <tr><td>82 342 € – 177 106 €</td><td><strong>41 %</strong></td></tr>
+              <tr><td>Au-delà de 177 106 €</td><td><strong>45 %</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div>Le <strong>quotient familial</strong> divise le revenu imposable par le nombre de parts du foyer, puis applique le barème à chaque part. Le plafonnement est fixé à <strong>1 759 €</strong> par demi-part supplémentaire.</div>
+          </div>
+        </div>
+
+        <h3 id="fiscal-s1-pfu">c) PFU / Option barème</h3>
+        <div class="card">
+          <p>Depuis le 1er janvier 2018, les revenus du capital sont soumis au <strong>Prélèvement Forfaitaire Unique (PFU)</strong> de <strong>30 %</strong> (12,8 % IR + 17,2 % PS).</p>
+          <table class="data-table">
+            <thead><tr><th>Option</th><th>IR</th><th>PS</th><th>Total</th><th>Intérêt</th></tr></thead>
+            <tbody>
+              <tr><td><strong>PFU (flat tax)</strong></td><td>12,8 %</td><td>17,2 %</td><td><strong>30 %</strong></td><td>TMI ≥ 30 %</td></tr>
+              <tr><td><strong>Barème progressif</strong></td><td>Barème IR</td><td>17,2 %</td><td>Variable</td><td>TMI ≤ 11 % (+ abattement 40 % dividendes)</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div>L'option pour le barème est <strong>globale et irrévocable</strong> pour l'année : elle s'applique à <strong>tous</strong> les revenus du capital (dividendes, intérêts, plus-values mobilières).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 2 : PLUS-VALUES DES PARTICULIERS ─── -->
+      <div class="section" id="fiscal-s2">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title">Plus-values des particuliers</div>
+        </div>
+
+        <h3 id="fiscal-s2-immo">a) Plus-values immobilières</h3>
+        <div class="card">
+          <p>Les plus-values immobilières sont imposées au taux de <strong>19 % IR + 17,2 % PS = 36,2 %</strong>, avec des abattements pour durée de détention :</p>
+          <table class="data-table">
+            <thead><tr><th>Durée de détention</th><th>Abattement IR</th><th>Abattement PS</th></tr></thead>
+            <tbody>
+              <tr><td>0 – 5 ans</td><td>0 %</td><td>0 %</td></tr>
+              <tr><td>6 – 21 ans</td><td>6 % / an</td><td>1,65 % / an</td></tr>
+              <tr><td>22e année</td><td>4 % (exo totale IR)</td><td>1,60 %</td></tr>
+              <tr><td>23 – 30 ans</td><td>Exonéré IR</td><td>9 % / an</td></tr>
+              <tr><td>Au-delà de 30 ans</td><td>Exonéré</td><td>Exonéré</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div><strong>Exonération totale IR</strong> après 22 ans de détention. <strong>Exonération totale PS</strong> après 30 ans. La <strong>résidence principale</strong> est toujours exonérée.</div>
+          </div>
+          <p><strong>Surtaxe sur les PV &gt; 50 000 € :</strong> de 2 % (50 001 – 100 000 €) à 6 % (au-delà de 260 000 €), après abattements.</p>
+        </div>
+
+        <h3 id="fiscal-s2-vm">b) Plus-values sur valeurs mobilières</h3>
+        <div class="card">
+          <p>Les PV de cession de valeurs mobilières et droits sociaux sont soumises au <strong>PFU de 30 %</strong> ou, sur option, au <strong>barème progressif</strong> (avec abattements pour durée de détention pour les titres acquis avant 2018).</p>
+          <table class="data-table">
+            <thead><tr><th>Régime</th><th>Titres acquis avant 2018</th><th>Titres acquis après 2018</th></tr></thead>
+            <tbody>
+              <tr><td><strong>PFU</strong></td><td>30 % (sans abattement)</td><td>30 % (sans abattement)</td></tr>
+              <tr><td><strong>Barème (option)</strong></td><td>Abattement 50 % (2-8 ans) ou 65 % (≥ 8 ans)</td><td>Pas d'abattement</td></tr>
+              <tr><td><strong>Abattement renforcé (PME)</strong></td><td>50 % (1-4 ans), 65 % (4-8 ans), 85 % (≥ 8 ans)</td><td>Non applicable</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="fiscal-s2-exo">c) Exonérations notables</h3>
+        <div class="card">
+          <ul>
+            <li><strong>PEA :</strong> exonération d'IR après 5 ans de détention (PS restent dus)</li>
+            <li><strong>Résidence principale :</strong> exonération totale de PV immobilière</li>
+            <li><strong>Cession &lt; 15 000 € :</strong> exonération pour les biens immobiliers (prix de cession)</li>
+            <li><strong>Art. 150-0 D ter :</strong> abattement fixe de 500 000 € pour le dirigeant partant à la retraite</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 3 : IFI ─── -->
+      <div class="section" id="fiscal-s3">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <div class="section-title">Impôt sur la Fortune Immobilière (IFI)</div>
+        </div>
+
+        <h3 id="fiscal-s3-assiette">a) Assiette & seuil</h3>
+        <div class="card">
+          <p>L'IFI est dû par les foyers fiscaux dont le <strong>patrimoine immobilier net taxable</strong> excède <strong>1 300 000 €</strong> au 1er janvier.</p>
+          <table class="data-table">
+            <thead><tr><th>Actifs taxables</th><th>Actifs exonérés</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>
+                  <ul>
+                    <li>Immeubles bâtis et non bâtis</li>
+                    <li>Parts de SCI, SCPI, OPCI (quote-part immo)</li>
+                    <li>Droits réels immobiliers</li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>Biens professionnels</li>
+                    <li>Bois, forêts, parts de GF (75 %)</li>
+                    <li>Biens ruraux loués à long terme (75 %)</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Résidence principale :</strong> abattement de <strong>30 %</strong> sur la valeur vénale. Cet abattement n'est pas applicable aux parts de SCI détenant la résidence principale.</div>
+          </div>
+        </div>
+
+        <h3 id="fiscal-s3-bareme">b) Barème & calcul</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Tranche</th><th>Taux</th></tr></thead>
+            <tbody>
+              <tr><td>Jusqu'à 800 000 €</td><td><strong>0 %</strong></td></tr>
+              <tr><td>800 001 € – 1 300 000 €</td><td><strong>0,50 %</strong></td></tr>
+              <tr><td>1 300 001 € – 2 570 000 €</td><td><strong>0,70 %</strong></td></tr>
+              <tr><td>2 570 001 € – 5 000 000 €</td><td><strong>1,00 %</strong></td></tr>
+              <tr><td>5 000 001 € – 10 000 000 €</td><td><strong>1,25 %</strong></td></tr>
+              <tr><td>Au-delà de 10 000 000 €</td><td><strong>1,50 %</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Décote :</strong> pour les patrimoines entre 1 300 000 € et 1 400 000 €, une décote s'applique : <strong>17 500 € – 1,25 % × patrimoine net taxable</strong>.</div>
+          </div>
+        </div>
+
+        <h3 id="fiscal-s3-optimisation">c) Stratégies d'optimisation IFI</h3>
+        <div class="card">
+          <ul>
+            <li><strong>Arbitrage vers actifs financiers :</strong> sortir du patrimoine immobilier vers des placements mobiliers (non taxables IFI)</li>
+            <li><strong>Démembrement :</strong> seul l'usufruitier est redevable de l'IFI (sauf exceptions)</li>
+            <li><strong>Investissement en nue-propriété :</strong> la nue-propriété n'entre pas dans l'assiette IFI</li>
+            <li><strong>Endettement déductible :</strong> les emprunts immobiliers sont déductibles (avec amortissement progressif limité à 60 % au-delà de 5 M€)</li>
+            <li><strong>Dons :</strong> réduction IFI de 75 % des dons (plafond 50 000 €/an)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 4 : DROITS DE MUTATION À TITRE GRATUIT ─── -->
+      <div class="section" id="fiscal-s4">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <div class="section-title">Droits de mutation à titre gratuit (DMTG)</div>
+        </div>
+
+        <h3 id="fiscal-s4-succession">a) Droits de succession</h3>
+        <div class="card">
+          <p>Les droits de succession sont calculés sur la <strong>part nette taxable</strong> de chaque héritier, après application des abattements.</p>
+          <h4>Barème en ligne directe (parent → enfant)</h4>
+          <table class="data-table">
+            <thead><tr><th>Tranche</th><th>Taux</th></tr></thead>
+            <tbody>
+              <tr><td>Jusqu'à 8 072 €</td><td><strong>5 %</strong></td></tr>
+              <tr><td>8 073 € – 12 109 €</td><td><strong>10 %</strong></td></tr>
+              <tr><td>12 110 € – 15 932 €</td><td><strong>15 %</strong></td></tr>
+              <tr><td>15 933 € – 552 324 €</td><td><strong>20 %</strong></td></tr>
+              <tr><td>552 325 € – 902 838 €</td><td><strong>30 %</strong></td></tr>
+              <tr><td>902 839 € – 1 805 677 €</td><td><strong>40 %</strong></td></tr>
+              <tr><td>Au-delà de 1 805 677 €</td><td><strong>45 %</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="fiscal-s4-donation">b) Droits de donation</h3>
+        <div class="card">
+          <p>Les donations suivent le <strong>même barème</strong> que les successions. Elles bénéficient d'un <strong>rappel fiscal de 15 ans</strong> : les abattements se reconstituent tous les 15 ans.</p>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div><strong>Donation-partage :</strong> fige la valeur des biens au jour de la donation (pas de réévaluation au décès). Outil privilégié de la stratégie de transmission anticipée.</div>
+          </div>
+        </div>
+
+        <h3 id="fiscal-s4-abattements">c) Abattements & dispositifs</h3>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Lien de parenté</th><th>Abattement</th><th>Renouvellement</th></tr></thead>
+            <tbody>
+              <tr><td>En ligne directe (parent → enfant)</td><td><strong>100 000 €</strong></td><td>Tous les 15 ans</td></tr>
+              <tr><td>Entre époux / partenaires PACS</td><td><strong>80 724 €</strong></td><td>Tous les 15 ans</td></tr>
+              <tr><td>Entre frères et sœurs</td><td><strong>15 932 €</strong></td><td>Tous les 15 ans</td></tr>
+              <tr><td>Neveux et nièces</td><td><strong>7 967 €</strong></td><td>Tous les 15 ans</td></tr>
+              <tr><td>Handicapé</td><td><strong>159 325 €</strong> (cumulable)</td><td>Tous les 15 ans</td></tr>
+              <tr><td>Don familial de sommes d'argent (Sarkozy)</td><td><strong>31 865 €</strong></td><td>Tous les 15 ans</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Pacte Dutreil :</strong> exonération de <strong>75 %</strong> de la valeur des titres transmis (entreprise), sous conditions d'engagement collectif (2 ans) puis individuel (4 ans) de conservation.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 5 : ASSURANCE-VIE ─── -->
+      <div class="section" id="fiscal-s5">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <div class="section-title">Assurance-vie — Fiscalité</div>
+        </div>
+
+        <h3 id="fiscal-s5-rachat">a) Fiscalité des rachats</h3>
+        <div class="card">
+          <p>Seuls les <strong>intérêts (produits)</strong> contenus dans le rachat sont imposés, pas le capital.</p>
+          <table class="data-table">
+            <thead><tr><th>Primes versées</th><th>Durée du contrat</th><th>IR</th><th>PS</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="2"><strong>Avant le 27/09/2017</strong></td><td>< 8 ans</td><td>Barème ou PFL 35 %/15 %</td><td>17,2 %</td></tr>
+              <tr><td>≥ 8 ans</td><td>Barème ou PFL 7,5 % (après abattement)</td><td>17,2 %</td></tr>
+              <tr><td rowspan="2"><strong>Après le 27/09/2017</strong></td><td>< 8 ans</td><td>PFU 12,8 %</td><td>17,2 %</td></tr>
+              <tr><td>≥ 8 ans (≤ 150 000 €)</td><td>7,5 % (après abattement)</td><td>17,2 %</td></tr>
+              <tr><td></td><td>≥ 8 ans (> 150 000 €)</td><td>12,8 % (sur l'excédent)</td><td>17,2 %</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Abattement annuel :</strong> 4 600 € (personne seule) ou 9 200 € (couple) sur les produits des contrats de plus de 8 ans.</div>
+          </div>
+        </div>
+
+        <h3 id="fiscal-s5-transmission">b) Transmission (art. 990 I CGI)</h3>
+        <div class="card">
+          <p>L'assurance-vie bénéficie d'un régime fiscal dérogatoire en matière de transmission :</p>
+          <table class="data-table">
+            <thead><tr><th>Date des primes</th><th>Âge au versement</th><th>Régime</th></tr></thead>
+            <tbody>
+              <tr><td>Avant le 13/10/1998</td><td>Peu importe</td><td><strong>Exonération totale</strong></td></tr>
+              <tr><td rowspan="2">Après le 13/10/1998</td><td><strong>Avant 70 ans</strong></td><td>Art. 990 I : abattement <strong>152 500 €</strong> par bénéficiaire, puis 20 % (≤ 700 000 €), puis 31,25 %</td></tr>
+              <tr><td><strong>Après 70 ans</strong></td><td>Art. 757 B : abattement global <strong>30 500 €</strong>, puis DMTG selon le lien de parenté (intérêts exonérés)</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Stratégie clé :</strong> Maximiser les versements <strong>avant 70 ans</strong> pour bénéficier de l'abattement de 152 500 € par bénéficiaire (art. 990 I), nettement plus favorable que l'art. 757 B.</div>
+          </div>
+        </div>
+
+        <h3 id="fiscal-s5-clause">c) Clause bénéficiaire</h3>
+        <div class="card">
+          <p>La rédaction de la clause bénéficiaire est <strong>déterminante</strong> pour l'efficacité de la transmission :</p>
+          <ul>
+            <li><strong>Clause standard :</strong> « Mon conjoint, à défaut mes enfants nés ou à naître, vivants ou représentés, par parts égales entre eux, à défaut mes héritiers »</li>
+            <li><strong>Clause démembrée :</strong> quasi-usufruit au conjoint, nue-propriété aux enfants → permet de cumuler les abattements de 152 500 € par bénéficiaire</li>
+            <li><strong>Clause à options :</strong> le bénéficiaire choisit entre capital ou rente, pleine propriété ou démembrement</li>
+          </ul>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div>La <strong>clause bénéficiaire démembrée</strong> permet d'optimiser la double transmission : le conjoint survivant dispose des capitaux en quasi-usufruit, et les enfants récupèrent la créance de restitution au second décès (hors succession).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 6 : DÉMEMBREMENT & SCI ─── -->
+      <div class="section" id="fiscal-s6">
+        <div class="section-header">
+          <div class="section-num">6</div>
+          <div class="section-title">Démembrement & SCI</div>
+        </div>
+
+        <h3 id="fiscal-s6-demembrement">a) Démembrement de propriété</h3>
+        <div class="card">
+          <p>Le démembrement de propriété est un outil central de l'ingénierie patrimoniale. La valeur de l'usufruit et de la nue-propriété est déterminée par le <strong>barème fiscal de l'article 669 du CGI</strong> :</p>
+          <table class="data-table">
+            <thead><tr><th>Âge de l'usufruitier</th><th>Valeur usufruit</th><th>Valeur nue-propriété</th></tr></thead>
+            <tbody>
+              <tr><td>Moins de 21 ans</td><td>90 %</td><td>10 %</td></tr>
+              <tr><td>21 – 30 ans</td><td>80 %</td><td>20 %</td></tr>
+              <tr><td>31 – 40 ans</td><td>70 %</td><td>30 %</td></tr>
+              <tr><td>41 – 50 ans</td><td>60 %</td><td>40 %</td></tr>
+              <tr><td>51 – 60 ans</td><td>50 %</td><td>50 %</td></tr>
+              <tr><td>61 – 70 ans</td><td>40 %</td><td>60 %</td></tr>
+              <tr><td>71 – 80 ans</td><td>30 %</td><td>70 %</td></tr>
+              <tr><td>81 – 90 ans</td><td>20 %</td><td>80 %</td></tr>
+              <tr><td>91 ans et plus</td><td>10 %</td><td>90 %</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Avantage fiscal :</strong> la donation de la nue-propriété permet de transmettre un bien en ne payant des droits que sur la valeur de la nue-propriété. Au décès de l'usufruitier, le nu-propriétaire récupère la pleine propriété <strong>sans droits supplémentaires</strong>.</div>
+          </div>
+        </div>
+
+        <h3 id="fiscal-s6-sci">b) SCI patrimoniale</h3>
+        <div class="card">
+          <p>La SCI (Société Civile Immobilière) est un outil de gestion et de transmission du patrimoine immobilier :</p>
+
+          <h4>Avantages</h4>
+          <ul>
+            <li><strong>Transmission facilitée :</strong> donation de parts (décote de 10-20 % pour illiquidité et minorité)</li>
+            <li><strong>Gestion centralisée :</strong> évite l'indivision successorale</li>
+            <li><strong>Option IS :</strong> possibilité d'amortir le bien et de maîtriser la distribution des revenus</li>
+            <li><strong>Démembrement des parts :</strong> les parents conservent l'usufruit (revenus + gestion) et transmettent la nue-propriété aux enfants</li>
+          </ul>
+
+          <h4>IR vs IS</h4>
+          <table class="data-table">
+            <thead><tr><th>Critère</th><th>SCI à l'IR</th><th>SCI à l'IS</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Imposition des revenus</strong></td><td>Revenus fonciers (barème + PS)</td><td>IS 15 % / 25 %</td></tr>
+              <tr><td><strong>Amortissement</strong></td><td>Non</td><td>Oui (déduit du résultat)</td></tr>
+              <tr><td><strong>Plus-value de cession</strong></td><td>PV des particuliers (abattements durée)</td><td>PV professionnelle (pas d'abattement)</td></tr>
+              <tr><td><strong>Déficit</strong></td><td>Imputable sur revenu global (10 700 €/an)</td><td>Reportable indéfiniment</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Attention :</strong> l'option pour l'IS est <strong>irrévocable</strong>. Elle entraîne un avantage en phase de détention (amortissement) mais un coût important à la revente (plus-value professionnelle sur le prix total, sans abattement).</div>
+          </div>
+        </div>
+
+        <h3 id="fiscal-s6-holding">c) Holding familiale</h3>
+        <div class="card">
+          <p>La holding familiale permet de structurer la détention et la transmission du patrimoine professionnel et immobilier :</p>
+          <ul>
+            <li><strong>Régime mère-fille :</strong> exonération de 95 % des dividendes remontés (quote-part de frais de 5 %)</li>
+            <li><strong>Intégration fiscale :</strong> compensation des résultats entre sociétés du groupe</li>
+            <li><strong>Effet de levier :</strong> acquisition de biens via la holding avec déduction des intérêts d'emprunt du résultat IS</li>
+            <li><strong>Pacte Dutreil :</strong> exonération de 75 % pour la transmission des titres de la holding animatrice</li>
+          </ul>
+          <div class="alert alert-tip">
+            <span class="alert-icon">💡</span>
+            <div><strong>Holding animatrice :</strong> pour bénéficier du Pacte Dutreil et de l'exonération de biens professionnels (IFI), la holding doit exercer un rôle <strong>effectif d'animation</strong> de ses filiales (participation à la politique du groupe, fourniture de services).</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
 
 </main>
 </div>
@@ -22205,6 +24042,16 @@ function switchCase(caseName) {
     if (tabBar) tabBar.style.display = '';
     if (sidebarEl) sidebarEl.style.display = 'none';
     if (expandBtn) expandBtn.classList.remove('visible');
+  } else if (caseName === 'financement' || caseName === 'responsabilite' || caseName === 'fiscal') {
+    // Lecture course pages: show sidebar, hide tab bar
+    if (tabBar) tabBar.style.display = 'none';
+    if (sidebarEl) {
+      sidebarEl.style.display = '';
+      sidebarEl.classList.remove('collapsed');
+    }
+    if (expandBtn) expandBtn.classList.remove('visible');
+    const sidebar = document.getElementById('sidebar-' + caseName);
+    if (sidebar) sidebar.style.display = 'block';
   } else {
     // Case/tool pages: show tab bar + sidebar
     if (tabBar) tabBar.style.display = '';
@@ -22223,9 +24070,7 @@ function switchCase(caseName) {
 
 // ============ ENTER COURSE FUNCTION ============
 function enterCourse(courseName) {
-  if (courseName === 'audit') {
-    switchCase('audit');
-  }
+  switchCase(courseName);
 }
 
 // ============ EXPORT HOUETTE PDF ============
