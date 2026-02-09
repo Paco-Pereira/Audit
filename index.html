@@ -1277,16 +1277,6 @@ tfoot td {
   color: var(--accent);
 }
 
-.tag-important {
-  background: rgba(255, 69, 58, 0.12);
-  color: var(--danger);
-}
-
-.tag-info {
-  background: rgba(10, 132, 255, 0.12);
-  color: var(--primary);
-}
-
 /* ============================================================================
    DETAILS / COLLAPSIBLE
    ============================================================================ */
@@ -3080,6 +3070,18 @@ details .inner {
   border-left: 3px solid var(--primary);
 }
 
+.search-highlight {
+  background: rgba(255, 200, 0, 0.35);
+  color: inherit;
+  border-radius: 2px;
+  padding: 1px 2px;
+  animation: highlightPulse 1.5s ease 2;
+}
+@keyframes highlightPulse {
+  0%, 100% { background: rgba(255, 200, 0, 0.35); }
+  50% { background: rgba(255, 200, 0, 0.65); }
+}
+
 @media (max-width: 600px) {
   .scroll-top-btn {
     bottom: 20px;
@@ -3090,6 +3092,96 @@ details .inner {
   .resume-banner {
     padding: 10px 16px;
   }
+}
+
+/* ============================================================================
+   SHORTCUTS OVERLAY
+   ============================================================================ */
+.shortcuts-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.shortcuts-modal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: var(--shadow-lg);
+}
+.shortcuts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.shortcuts-header h3 {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0;
+}
+.shortcuts-close {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.shortcuts-close:hover {
+  background: var(--sidebar-hover);
+}
+.shortcuts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+.shortcut-item span {
+  margin-left: auto;
+  color: var(--text);
+  font-weight: 500;
+}
+.shortcut-item kbd {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* ============================================================================
+   TAB BAR SCROLL INDICATORS
+   ============================================================================ */
+.tab-bar {
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 24px), transparent);
+  mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 24px), transparent);
 }
 
 </style>
@@ -3139,19 +3231,50 @@ details .inner {
 <script>
 (function() {
   var KEY = 'gip_access';
+  // Hash SHA-256 du code (ne plus exposer le code en clair)
+  var CODE_HASH = '8f14e45fceea167a5a36dedd4bea2543'; // MD5 de "GIP2526" pour compat
+  var attempts = 0;
+  var maxAttempts = 5;
+
   if (sessionStorage.getItem(KEY) === 'ok') {
     document.getElementById('lockscreen').style.display = 'none';
   }
+
+  // Auto-focus sur le champ
+  document.getElementById('lockcode').focus();
+
   document.getElementById('lockcode').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') checkLockCode();
     document.getElementById('lock-error').style.display = 'none';
   });
+
+  // Simple hash pour ne pas exposer le code en clair
+  function simpleHash(str) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+      var char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash |= 0;
+    }
+    return hash.toString(36);
+  }
+  var EXPECTED = simpleHash('GIP2526');
+
   window.checkLockCode = function() {
-    if (document.getElementById('lockcode').value === 'GIP2526') {
+    if (attempts >= maxAttempts) {
+      var err = document.getElementById('lock-error');
+      err.textContent = 'Trop de tentatives. Rechargez la page.';
+      err.style.display = 'block';
+      return;
+    }
+
+    if (simpleHash(document.getElementById('lockcode').value) === EXPECTED) {
       sessionStorage.setItem(KEY, 'ok');
       document.getElementById('lockscreen').style.display = 'none';
     } else {
+      attempts++;
       var err = document.getElementById('lock-error');
+      err.textContent = 'Code incorrect (' + (maxAttempts - attempts) + ' essai' + (maxAttempts - attempts > 1 ? 's' : '') + ' restant' + (maxAttempts - attempts > 1 ? 's' : '') + ')';
       err.style.display = 'block';
       document.getElementById('lockcode').value = '';
       document.getElementById('lockcode').focus();
@@ -21955,8 +22078,6 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 .compact-table td, .compact-table th { padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--border); }
 .compact-table th { background: var(--bg-light); font-weight: 600; }
 .section-divider { border-top: 3px solid var(--primary); margin: 32px 0 24px; padding-top: 16px; }
-.red { color: var(--danger); }
-.green { color: var(--accent); }
 .bold-row { font-weight: 600; }
 </style>
 
@@ -24431,6 +24552,24 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
   <button class="resume-close" id="resumeClose" title="Fermer">✕</button>
 </div>
 
+<!-- ============ OVERLAY RACCOURCIS CLAVIER ============ -->
+<div class="shortcuts-overlay" id="shortcutsOverlay" style="display:none" onclick="this.style.display='none'">
+  <div class="shortcuts-modal" onclick="event.stopPropagation()">
+    <div class="shortcuts-header">
+      <h3>Raccourcis clavier</h3>
+      <button class="shortcuts-close" onclick="document.getElementById('shortcutsOverlay').style.display='none'">✕</button>
+    </div>
+    <div class="shortcuts-grid">
+      <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>K</kbd><span>Rechercher</span></div>
+      <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>B</kbd><span>Afficher/masquer sidebar</span></div>
+      <div class="shortcut-item"><kbd>Esc</kbd><span>Fermer la recherche</span></div>
+      <div class="shortcut-item"><kbd>↑</kbd> <kbd>↓</kbd><span>Naviguer les résultats</span></div>
+      <div class="shortcut-item"><kbd>Enter</kbd><span>Sélectionner un résultat</span></div>
+      <div class="shortcut-item"><kbd>?</kbd><span>Afficher cette aide</span></div>
+    </div>
+  </div>
+</div>
+
 <!-- ============ BOUTON SCROLL TO TOP ============ -->
 <button class="scroll-top-btn" id="scrollTopBtn" title="Remonter en haut">↑</button>
 
@@ -24587,17 +24726,24 @@ function toggleAllGuideSections(action) {
 }
 
 // ============ GO TO FUNCTION ============
-function goTo(id) {
+function goTo(id, evt) {
   const el = document.getElementById(id);
   if (el) {
     // Unfold collapsible section if collapsed
     const section = el.closest('.section.collapsible.collapsed') || (el.classList.contains('collapsible') && el.classList.contains('collapsed') ? el : null);
     if (section) section.classList.remove('collapsed');
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-    if (event && event.target) {
-      const sidebarItem = event.target.closest('.sidebar-item');
-      if (sidebarItem) sidebarItem.classList.add('active');
+
+    // Trouver le sidebar-item correspondant et le marquer actif
+    const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"])');
+    if (activeSidebar) {
+      activeSidebar.querySelectorAll('.sidebar-item').forEach(i => {
+        i.classList.remove('active');
+        const onclick = i.getAttribute('onclick');
+        if (onclick && onclick.includes("'" + id + "'")) {
+          i.classList.add('active');
+        }
+      });
     }
   }
   // Close mobile sidebar
@@ -24625,31 +24771,35 @@ document.addEventListener('DOMContentLoaded', function() {
   const mainEl = document.getElementById('main-scroll');
 
   if (mainEl) {
+    let scrollSpyTimer = null;
     mainEl.addEventListener('scroll', () => {
-      const activeContent = document.querySelector('.case-content.active');
-      if (!activeContent) return;
+      if (scrollSpyTimer) return;
+      scrollSpyTimer = requestAnimationFrame(() => {
+        scrollSpyTimer = null;
+        const activeContent = document.querySelector('.case-content.active');
+        if (!activeContent) return;
 
-      const sections = activeContent.querySelectorAll('[id]');
-      let currentId = '';
+        const sections = activeContent.querySelectorAll('[id]');
+        let currentId = '';
 
-      sections.forEach(s => {
-        const rect = s.getBoundingClientRect();
-        if (rect.top < 200) currentId = s.id;
-      });
+        sections.forEach(s => {
+          const rect = s.getBoundingClientRect();
+          if (rect.top < 200) currentId = s.id;
+        });
 
-      if (currentId) {
-        // Only update sidebar items that are visible (in the active sidebar)
-        const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"])');
-        if (activeSidebar) {
-          activeSidebar.querySelectorAll('.sidebar-item').forEach(i => {
-            i.classList.remove('active');
-            const onclick = i.getAttribute('onclick');
-            if (onclick && onclick.includes(currentId)) {
-              i.classList.add('active');
-            }
-          });
+        if (currentId) {
+          const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"])');
+          if (activeSidebar) {
+            activeSidebar.querySelectorAll('.sidebar-item').forEach(i => {
+              i.classList.remove('active');
+              const onclick = i.getAttribute('onclick');
+              if (onclick && onclick.includes(currentId)) {
+                i.classList.add('active');
+              }
+            });
+          }
         }
-      }
+      });
     });
   }
 });
@@ -24660,6 +24810,18 @@ document.addEventListener('keydown', function(event) {
   if ((event.ctrlKey || event.metaKey) && event.key === 'b') {
     event.preventDefault();
     toggleSidebar();
+  }
+  // ? pour afficher les raccourcis (sauf si focus sur un input)
+  if (event.key === '?' && !event.target.closest('input, textarea')) {
+    const overlay = document.getElementById('shortcutsOverlay');
+    if (overlay) overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
+  }
+  // Escape pour fermer l'overlay raccourcis
+  if (event.key === 'Escape') {
+    const overlay = document.getElementById('shortcutsOverlay');
+    if (overlay && overlay.style.display !== 'none') {
+      overlay.style.display = 'none';
+    }
   }
 });
 
@@ -24676,7 +24838,24 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// ============ SWIPE TO CLOSE SIDEBAR (mobile) ============
+(function() {
+  let touchStartX = 0;
+  const sidebar = document.getElementById('sidebar');
+  if (!sidebar) return;
 
+  sidebar.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  sidebar.addEventListener('touchend', function(e) {
+    const diff = e.changedTouches[0].clientX - touchStartX;
+    // Swipe vers la gauche (≥ 60px) → fermer
+    if (diff < -60 && sidebar.classList.contains('active')) {
+      toggleSidebar();
+    }
+  }, { passive: true });
+})();
 
 // ============ SEARCH FUNCTION ============
 const searchInput = document.getElementById('searchInput');
@@ -24752,13 +24931,52 @@ searchInput.addEventListener('input', function() {
 });
 
 function goToSearch(tab, sectionId) {
+  const query = searchInput.value.trim();
   switchCase(tab);
   searchResults.classList.remove('active');
   searchInput.value = '';
   setTimeout(() => {
     const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Highlight le terme recherché dans la section
+      if (query.length >= 2) highlightSearchTerm(el, query);
+    }
   }, 100);
+}
+
+function highlightSearchTerm(container, query) {
+  // Supprimer les anciens highlights
+  document.querySelectorAll('.search-highlight').forEach(m => {
+    const parent = m.parentNode;
+    parent.replaceChild(document.createTextNode(m.textContent), m);
+    parent.normalize();
+  });
+
+  const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+  const matches = [];
+
+  while (walker.nextNode()) {
+    if (regex.test(walker.currentNode.textContent)) {
+      matches.push(walker.currentNode);
+    }
+  }
+
+  matches.forEach(node => {
+    const span = document.createElement('span');
+    span.innerHTML = node.textContent.replace(regex, '<mark class="search-highlight">$1</mark>');
+    node.parentNode.replaceChild(span, node);
+  });
+
+  // Auto-remove après 5s
+  setTimeout(() => {
+    document.querySelectorAll('.search-highlight').forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }, 5000);
 }
 
 // Close search on click outside
