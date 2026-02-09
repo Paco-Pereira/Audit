@@ -1,0 +1,575 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M2 - GIP — Gestion et Ingénierie Patrimoniale</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<!-- ============ LOCKSCREEN ============ -->
+<div id="lockscreen" style="
+  position: fixed; inset: 0; z-index: 99999;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+">
+  <div style="
+    text-align: center; max-width: 360px; width: 90%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    box-shadow: var(--glass-shadow);
+  ">
+    <div style="font-size: 2.5rem; margin-bottom: 12px;">🎓</div>
+    <h1 style="color: var(--text); font-size: 1.4rem; font-weight: 700; margin: 0 0 4px;">M2 — GIP</h1>
+    <p style="color: var(--text-light); font-size: 0.85rem; margin: 0 0 24px;">Entrez le code d'accès</p>
+    <input type="password" id="lockcode" placeholder="Code d'accès" autocomplete="off" style="
+      width: 100%; box-sizing: border-box;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: var(--text); font-size: 1rem;
+      text-align: center; letter-spacing: 3px;
+      outline: none; transition: border-color 0.2s;
+    " onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
+    <button onclick="checkLockCode()" style="
+      width: 100%; margin-top: 14px;
+      background: var(--primary);
+      color: #fff; border: none;
+      padding: 12px; border-radius: var(--radius-sm);
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s;
+    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Accéder</button>
+    <p id="lock-error" style="color: var(--danger); font-size: 0.8rem; margin: 12px 0 0; display: none;">Code incorrect</p>
+  </div>
+</div>
+
+<script src="/js/content-loader.js"></script>
+<script src="/js/app.js"></script>
+
+
+<!-- ============ HEADER ============ -->
+<div class="header">
+  <div class="header-logo" onclick="switchCase('home')" style="cursor:pointer">
+    <div class="icon">🎓</div>
+    <span>M2 - GIP</span>
+  </div>
+  <div class="header-right">
+    <span class="header-badge">Master 2 — 2025-2026</span>
+    <!-- Search -->
+<div class="search-container">
+  <span class="search-icon">🔍</span>
+  <input type="text" class="search-input" id="searchInput" placeholder="Rechercher (Ctrl+K)" autocomplete="off">
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<!-- Exam mode toggle -->
+<button class="header-btn" id="examToggle" onclick="toggleExamMode()" title="Mode examen">📝</button>
+
+<!-- Dark mode toggle -->
+<button class="header-btn" id="darkToggle" onclick="toggleDarkMode()" title="Mode sombre">🌙</button>
+
+<!-- Print button -->
+<button class="header-btn" onclick="window.print()" title="Imprimer">🖨️</button>
+  </div>
+</div>
+
+<!-- ============ TAB BAR ============ -->
+<div class="tab-bar" id="tabBar" style="display:none">
+  <div class="tab" data-case="home" onclick="switchCase('home')" style="margin-right:4px;">
+    <span class="tab-icon">🏠</span>
+    <span>Cours</span>
+  </div>
+  <div class="tab active" data-case="audit" onclick="switchCase('audit')" style="margin-right:4px;">
+    <span class="tab-icon">📊</span>
+    <span>Audit</span>
+  </div>
+  <div class="tab-divider"></div>
+  <div class="tab-group">
+    <span class="tab-group-label">📚 Cas</span>
+    <div class="tab" data-case="snow" onclick="switchCase('snow')">
+      <span class="tab-icon">❄️</span>
+      <span>SNOW</span>
+    </div>
+    <div class="tab" data-case="stark" onclick="switchCase('stark')">
+      <span class="tab-icon">👨‍👩‍👧‍👦</span>
+      <span>STARK</span>
+    </div>
+    <div class="tab" data-case="niote" onclick="switchCase('niote')">
+      <span class="tab-icon">🏢</span>
+      <span>NIOTE</span>
+    </div>
+    <div class="tab" data-case="mengere" onclick="switchCase('mengere')">
+      <span class="tab-icon">🏗️</span>
+      <span>MENGERE</span>
+    </div>
+    <div class="tab" data-case="norris" onclick="switchCase('norris')">
+      <span class="tab-icon">💎</span>
+      <span>NORRIS</span>
+    </div>
+    <div class="tab" data-case="vador" onclick="switchCase('vador')">
+      <span class="tab-icon">⚔️</span>
+      <span>VADOR</span>
+    </div>
+    <div class="tab" data-case="leon" onclick="switchCase('leon')">
+      <span class="tab-icon">👨‍💼</span>
+      <span>LEON</span>
+    </div>
+    <div class="tab" data-case="genereux" onclick="switchCase('genereux')">
+      <span class="tab-icon">💼</span>
+      <span>GÉNÉREUX</span>
+    </div>
+    <div class="tab" data-case="houette" onclick="switchCase('houette')">
+      <span class="tab-icon">🏠</span>
+      <span>HOUETTE</span>
+    </div>
+  </div>
+  <div class="tab-divider"></div>
+  <div class="tab-group">
+    <span class="tab-group-label">🛠️ Outils</span>
+    <div class="tab" data-case="outils" onclick="switchCase('outils')">
+      <span class="tab-icon">🧰</span>
+      <span>Boîte à Outils</span>
+    </div>
+    <div class="tab" data-case="guide" onclick="switchCase('guide')">
+      <span class="tab-icon">📋</span>
+      <span>Guide Stratégique</span>
+    </div>
+    <div class="tab" data-case="montages" onclick="switchCase('montages')">
+      <span class="tab-icon">🔧</span>
+      <span>Montages</span>
+    </div>
+    <div class="tab" data-case="formules" onclick="switchCase('formules')">
+      <span class="tab-icon">📐</span>
+      <span>Formules</span>
+    </div>
+  </div>
+</div>
+
+<button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Ouvrir le menu">☰</button>
+
+<!-- Floating expand button (visible when sidebar collapsed) -->
+<button class="sidebar-expand-btn" id="sidebarExpandBtn" onclick="collapseSidebar()" title="Afficher le menu">☰</button>
+
+<!-- ============ APP BODY ============ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="app-body">
+
+  <!-- ===== SIDEBAR ===== -->
+  <nav class="sidebar" id="sidebar">
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="collapseSidebar()" title="Rétracter le menu">◀</button>
+    <!-- Snow sidebar -->
+    
+
+    <!-- STARK sidebar -->
+    
+
+    <!-- NIOTE sidebar -->
+    
+
+    <!-- Mengere sidebar -->
+    
+    
+
+    <!-- Outils sidebar -->
+<!-- SIDEBAR OUTILS -->
+
+
+
+<!-- Vador sidebar -->
+
+
+<!-- LEON Sidebar -->
+
+
+<!-- GÉNÉREUX sidebar -->
+
+
+
+<!-- HOUETTE sidebar -->
+
+    <!-- MONTAGES sidebar -->
+    
+
+    
+  
+<!-- Formules sidebar -->
+
+
+<!-- Financement des particuliers sidebar -->
+
+
+<!-- Responsabilité du gestionnaire sidebar -->
+
+
+<!-- Ingénierie fiscale PP sidebar -->
+
+
+<!-- Droit des libéralités et des successions sidebar -->
+
+
+<!-- Droit des marchés financiers sidebar -->
+
+
+<!-- Transmission d'entreprises sidebar -->
+
+
+</nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main" id="main-scroll">
+
+    <!-- ══════════════════════════════════════
+         ACCUEIL M2 - GIP
+         ══════════════════════════════════════ -->
+    <div class="case-content active" id="case-home" style="display:block">
+
+      <div class="home-hero">
+        <h1>M2 - GIP</h1>
+        <p>Master 2 — Gestion et Ingénierie Patrimoniale<br>
+        Sélectionnez un cours pour accéder aux cas pratiques, outils et ressources.</p>
+      </div>
+
+      <!-- Dashboard stats -->
+      <div class="dashboard-stats" id="dashboardStats">
+        <div class="stat-card">
+          <div class="stat-value" id="statProgress">0%</div>
+          <div class="stat-label">Progression globale</div>
+          <div class="stat-bar"><div class="stat-bar-fill" id="statProgressBar" style="width:0%"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statSections">0 / 0</div>
+          <div class="stat-label">Sections étudiées</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statStreak">0 j</div>
+          <div class="stat-label">Jours consécutifs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statLast">—</div>
+          <div class="stat-label">Dernière session</div>
+        </div>
+      </div>
+
+      <div class="home-section-title" id="recentTitle" style="display:none">🕐 Activité récente</div>
+      <div class="recent-activity" id="recentActivity"></div>
+
+      <div class="home-section-title">📚 Cours</div>
+      <div class="home-grid">
+
+        <div class="home-card card-audit" onclick="enterCourse('audit')">
+          <span class="home-card-icon">📊</span>
+          <div class="home-card-title">Audit patrimonial</div>
+          <div class="home-card-desc">9 cas pratiques complets (SNOW, STARK, NIOTE, MENGERE, NORRIS, VADOR, LEON, GÉNÉREUX, HOUETTE), boîte à outils, guide stratégique, montages et formules.</div>
+          <div class="home-card-badge">9 cas · 4 outils</div>
+        </div>
+
+        <div class="home-card card-financement" onclick="enterCourse('financement')">
+          <span class="home-card-icon">💰</span>
+          <div class="home-card-title">Financement des particuliers</div>
+          <div class="home-card-desc">Techniques de financement : prêts réglementés, garanties, ADE, crédit conso, Eco PTZ, régimes matrimoniaux, normes HCSF.</div>
+          <div class="home-card-badge">10 chapitres · 3 exercices</div>
+        </div>
+
+        <div class="home-card card-responsabilite" onclick="enterCourse('responsabilite')">
+          <span class="home-card-icon">⚖️</span>
+          <div class="home-card-title">Responsabilité du gestionnaire</div>
+          <div class="home-card-desc">Responsabilité civile et pénale du CGP : faute, dommage, lien de causalité, infractions, jurisprudence.</div>
+          <div class="home-card-badge">4 chapitres</div>
+        </div>
+
+        <div class="home-card card-fiscal" onclick="enterCourse('fiscal')">
+          <span class="home-card-icon">🏛️</span>
+          <div class="home-card-title">Ingénierie fiscale PP</div>
+          <div class="home-card-desc">Fiscalité des personnes physiques et patrimoine : IR, plus-values, IFI, droits de mutation, assurance-vie, démembrement et SCI.</div>
+          <div class="home-card-badge">6 chapitres</div>
+        </div>
+
+        <div class="home-card card-droit" onclick="enterCourse('droit')">
+          <span class="home-card-icon">📜</span>
+          <div class="home-card-title">Droit patrimonial</div>
+          <div class="home-card-desc">Libéralités et successions : donations, testaments, dévolution, réserve héréditaire, partage, liquidation et successions internationales.</div>
+          <div class="home-card-badge">15 chapitres · 3 exercices</div>
+        </div>
+
+        <div class="home-card card-marches" onclick="enterCourse('marches')">
+          <span class="home-card-icon">📈</span>
+          <div class="home-card-title">Droit des marchés financiers</div>
+          <div class="home-card-desc">Contenu à venir.</div>
+          <div class="home-card-badge">À compléter</div>
+        </div>
+
+        <div class="home-card card-transmission" onclick="enterCourse('transmission')">
+          <span class="home-card-icon">🏢</span>
+          <div class="home-card-title">Transmission d'entreprises</div>
+          <div class="home-card-desc">Pacte Dutreil, donation-partage conjonctive, réserve héréditaire, ECC/EIC, holding, cas pratiques LEFRANCOIS &amp; QUESNOY.</div>
+          <div class="home-card-badge">7 chapitres · 2 exercices · Synthèse exam</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         AUDIT PATRIMONIAL — Page cours
+         ══════════════════════════════════════ -->
+    <div class="case-content" id="case-audit" style="display:none">
+
+      <div class="home-hero">
+        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <h1>Audit patrimonial</h1>
+        <p>9 cas pratiques détaillés avec calculs pas à pas, outils de révision et fiches stratégiques.</p>
+      </div>
+
+      <div class="home-section-title">📚 Cas pratiques</div>
+      <div class="home-grid">
+
+        <div class="home-card card-snow" onclick="switchCase('snow')">
+          <span class="home-card-icon">❄️</span>
+          <div class="home-card-title">Cas SNOW</div>
+          <div class="home-card-desc">Mr Julien SNOW &amp; Mme Danny STARK — PACS, IFI, succession, préconisations patrimoniales.</div>
+        </div>
+
+        <div class="home-card card-stark" onclick="switchCase('stark')">
+          <span class="home-card-icon">👨‍👩‍👧‍👦</span>
+          <div class="home-card-title">Cas STARK</div>
+          <div class="home-card-desc">Famille STARK — Patrimoine familial, transmission, optimisation fiscale.</div>
+        </div>
+
+        <div class="home-card card-niote" onclick="switchCase('niote')">
+          <span class="home-card-icon">🏢</span>
+          <div class="home-card-title">Cas NIOTE</div>
+          <div class="home-card-desc">Société NIOTE — Immobilier professionnel, SCI, bilan patrimonial.</div>
+        </div>
+
+        <div class="home-card card-mengere" onclick="switchCase('mengere')">
+          <span class="home-card-icon">🏗️</span>
+          <div class="home-card-title">Cas MENGERE</div>
+          <div class="home-card-desc">Famille MENGERE — Investissement immobilier, défiscalisation, montage.</div>
+        </div>
+
+        <div class="home-card card-norris" onclick="switchCase('norris')">
+          <span class="home-card-icon">💎</span>
+          <div class="home-card-title">Cas NORRIS</div>
+          <div class="home-card-desc">Patrimoine NORRIS — Placements, assurance-vie, stratégie patrimoniale.</div>
+        </div>
+
+        <div class="home-card card-vador" onclick="switchCase('vador')">
+          <span class="home-card-icon">⚔️</span>
+          <div class="home-card-title">Cas VADOR</div>
+          <div class="home-card-desc">Famille VADOR — Cession d'entreprise, plus-values, réinvestissement.</div>
+        </div>
+
+        <div class="home-card card-leon" onclick="switchCase('leon')">
+          <span class="home-card-icon">👨‍💼</span>
+          <div class="home-card-title">Cas LEON</div>
+          <div class="home-card-desc">Mr LEON — Retraite, revenus fonciers, optimisation du patrimoine.</div>
+        </div>
+
+        <div class="home-card card-genereux" onclick="switchCase('genereux')">
+          <span class="home-card-icon">💼</span>
+          <div class="home-card-title">Cas GÉNÉREUX</div>
+          <div class="home-card-desc">Famille GÉNÉREUX — Donation, transmission, stratégie successorale.</div>
+        </div>
+
+        <div class="home-card card-houette" onclick="switchCase('houette')">
+          <span class="home-card-icon">🏠</span>
+          <div class="home-card-title">Cas HOUETTE</div>
+          <div class="home-card-desc">Mr &amp; Mme HOUETTE — Séparation de biens, LMNP, Malraux, IFI, PER, succession &amp; stratégie retraite.</div>
+        </div>
+
+      </div>
+
+      <div class="home-section-title">🛠️ Outils &amp; Ressources</div>
+      <div class="home-grid">
+
+        <div class="home-card card-outils" onclick="switchCase('outils')">
+          <span class="home-card-icon">🧰</span>
+          <div class="home-card-title">Boîte à Outils</div>
+          <div class="home-card-desc">Barèmes fiscaux, tableaux de référence, mémos pratiques pour l'examen.</div>
+        </div>
+
+        <div class="home-card card-guide" onclick="switchCase('guide')">
+          <span class="home-card-icon">📋</span>
+          <div class="home-card-title">Guide Stratégique</div>
+          <div class="home-card-desc">Méthodologie de résolution, check-lists, stratégies par thématique.</div>
+        </div>
+
+        <div class="home-card card-montages" onclick="switchCase('montages')">
+          <span class="home-card-icon">🔧</span>
+          <div class="home-card-title">Montages</div>
+          <div class="home-card-desc">Montages financiers, fiscaux et juridiques : donations, DTUS, SCPI démembrée, quasi-usufruit, effet levier.</div>
+        </div>
+
+        <div class="home-card card-formules" onclick="switchCase('formules')">
+          <span class="home-card-icon">📐</span>
+          <div class="home-card-title">Formules</div>
+          <div class="home-card-desc">Toutes les formules de calcul : fiscalité, succession, rendement, plus-values.</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         CAS SNOW
+         ══════════════════════════════════════ -->
+    <!-- /case-snow -->
+
+    <!-- ══════════════════════════════════════
+         CAS STARK
+         ══════════════════════════════════════ -->
+    <!-- /case-stark -->
+
+    <!-- ══════════════════════════════════════
+         CAS NIOTE
+         ══════════════════════════════════════ -->
+    <!-- /case-niote -->
+
+    <!-- ══════════════════════════════════════
+         CAS MENGERE
+         ══════════════════════════════════════ -->
+    <!-- /case-mengere -->
+
+    <!-- ══════════════════════════════════════
+         CAS NORRIS
+         ══════════════════════════════════════ -->
+    <!-- /case-norris -->
+
+    <!-- ===== CAS OUTILS (Boîte à Outils) ===== -->
+    <!-- /case-outils -->
+
+
+
+<!-- ══════════════════════════════════════
+     CAS LEON — GESTION PATRIMONIALE GLOBALE
+     ══════════════════════════════════════ -->
+
+<!-- FIN CAS LEON -->
+
+<!-- ══════════════════════════════════════
+     CAS GÉNÉREUX
+     ══════════════════════════════════════ -->
+
+<!-- FIN CAS GÉNÉREUX -->
+
+
+
+<!-- ══════════════════════════════════════
+     CAS HOUETTE
+     ══════════════════════════════════════ -->
+
+<!-- FIN CAS HOUETTE -->
+
+
+<!-- ══════════════════════════════════════
+     MONTAGES FINANCIERS, FISCAUX & JURIDIQUES
+     ══════════════════════════════════════ -->
+
+<!-- FIN MONTAGES -->
+
+
+
+  
+
+<link rel="stylesheet" href="/css/styles.css">
+
+
+
+
+    <!-- ══════════════════════════════════════
+         FINANCEMENT DES PARTICULIERS
+         ══════════════════════════════════════ -->
+    
+
+
+    <!-- ══════════════════════════════════════
+         RESPONSABILITÉ DU GESTIONNAIRE DE PATRIMOINE
+         ══════════════════════════════════════ -->
+    
+
+
+    <!-- ══════════════════════════════════════
+         INGÉNIERIE FISCALE PP & PATRIMOINE
+         ══════════════════════════════════════ -->
+    
+
+    <!-- ══════════════════════════════════════
+         DROIT PATRIMONIAL — Libéralités & Successions
+         ══════════════════════════════════════ -->
+    
+
+    <!-- ══════════════════════════════════════
+         DROIT DES MARCHÉS FINANCIERS
+         ══════════════════════════════════════ -->
+    
+
+    <!-- ══════════════════════════════════════
+         TRANSMISSION D'ENTREPRISES — PACTE DUTREIL
+         ══════════════════════════════════════ -->
+    
+
+
+</main>
+</div>
+
+<!-- ============ BANDEAU REPRENDRE ============ -->
+<div class="resume-banner" id="resumeBanner" style="display:none">
+  <span class="resume-text" id="resumeText"></span>
+  <button class="resume-btn" id="resumeBtn">Reprendre</button>
+  <button class="resume-close" id="resumeClose" title="Fermer">✕</button>
+</div>
+
+<!-- ============ OVERLAY RACCOURCIS CLAVIER ============ -->
+<div class="shortcuts-overlay" id="shortcutsOverlay" style="display:none" onclick="this.style.display='none'">
+  <div class="shortcuts-modal" onclick="event.stopPropagation()">
+    <div class="shortcuts-header">
+      <h3>Raccourcis clavier</h3>
+      <button class="shortcuts-close" onclick="document.getElementById('shortcutsOverlay').style.display='none'">✕</button>
+    </div>
+    <div class="shortcuts-grid">
+      <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>K</kbd><span>Rechercher</span></div>
+      <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>B</kbd><span>Afficher/masquer sidebar</span></div>
+      <div class="shortcut-item"><kbd>Esc</kbd><span>Fermer la recherche</span></div>
+      <div class="shortcut-item"><kbd>↑</kbd> <kbd>↓</kbd><span>Naviguer les résultats</span></div>
+      <div class="shortcut-item"><kbd>Enter</kbd><span>Sélectionner un résultat</span></div>
+      <div class="shortcut-item"><kbd>?</kbd><span>Afficher cette aide</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EXAM TIMER ============ -->
+<div class="exam-timer" id="examTimer" style="display:none">
+  <div class="exam-timer-label">Mode Examen</div>
+  <div class="exam-timer-time" id="examTimerTime">0:00</div>
+  <button class="exam-timer-stop" onclick="toggleExamMode()">Terminer</button>
+</div>
+
+<!-- ============ BOUTON SCROLL TO TOP ============ -->
+<button class="scroll-top-btn" id="scrollTopBtn" title="Remonter en haut">↑</button>
+
+<!-- ============ JAVASCRIPT ============ -->
+
+<script src="/js/content-loader.js"></script>
+<script src="/js/app.js"></script>
+
+
+
+
+
+<div id="loadingSpinner" style="display:none; position:fixed; top:50%; left:50%;
+     transform:translate(-50%,-50%); z-index:9999;
+     background:var(--glass-bg); backdrop-filter:var(--blur);
+     padding:32px; border-radius:var(--radius); border:1px solid var(--glass-border);
+     box-shadow:var(--glass-shadow);">
+  <div style="font-size:24px; animation:spin 1s linear infinite; text-align:center;">⏳</div>
+  <div style="margin-top:12px; color:var(--text-light); font-size:14px; white-space:nowrap;">Chargement...</div>
+</div>
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</body></html>

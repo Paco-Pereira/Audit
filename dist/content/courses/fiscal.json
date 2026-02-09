@@ -1,0 +1,215 @@
+{
+  "id": "fiscal",
+  "title": "Droit Fiscal",
+  "icon": "📊",
+  "type": "courses",
+  "sidebar": {
+    "items": [
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      }
+    ]
+  },
+  "content": "\n\n      <div class=\"welcome\" id=\"fiscal-intro\">\n        <div class=\"breadcrumb\" onclick=\"switchCase('home')\">← Retour aux cours</div>\n        <h1>Ingénierie fiscale des personnes physiques et patrimoine 🏛️</h1>\n        <div class=\"subtitle\">Optimisation fiscale — Stratégies patrimoniales pour les personnes physiques</div>\n        <p>Ce cours couvre l'ensemble de la fiscalité applicable aux personnes physiques dans un contexte patrimonial : impôt sur le revenu, plus-values, IFI, droits de mutation à titre gratuit, assurance-vie et structures de détention (démembrement, SCI, holding).</p>\n        <div class=\"meta\">Master 2 GIP · 6 chapitres</div>\n      </div>\n\n      <div class=\"card\">\n        <h3>Plan du cours</h3>\n        <table class=\"data-table\">\n          <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>\n          <tbody>\n            <tr><td><strong>1</strong></td><td>Impôt sur le revenu</td><td>Catégories, barème progressif, PFU / option barème, quotient familial</td></tr>\n            <tr><td><strong>2</strong></td><td>Plus-values des particuliers</td><td>PV immobilières, PV mobilières, abattements, exonérations</td></tr>\n            <tr><td><strong>3</strong></td><td>IFI</td><td>Assiette, seuil, barème, biens exonérés, stratégies d'optimisation</td></tr>\n            <tr><td><strong>4</strong></td><td>Droits de mutation à titre gratuit</td><td>Successions, donations, abattements, barème, rapports fiscaux</td></tr>\n            <tr><td><strong>5</strong></td><td>Assurance-vie</td><td>Fiscalité des rachats, transmission (art. 990 I CGI), clause bénéficiaire</td></tr>\n            <tr><td><strong>6</strong></td><td>Démembrement &amp; SCI</td><td>Démembrement de propriété, SCI patrimoniale, holding familiale</td></tr>\n          </tbody>\n        </table>\n      </div>\n\n      <div class=\"alert alert-info\">\n        <span class=\"alert-icon\">💡</span>\n        <div><strong>Principe directeur :</strong> L'ingénierie fiscale patrimoniale vise à <strong>optimiser la charge fiscale</strong> dans le respect de la loi, en articulant les différents leviers (revenus, plus-values, transmission, structures) au service de la <strong>stratégie patrimoniale globale</strong> du client.</div>\n      </div>\n\n      <!-- ─── SECTION 1 : IMPÔT SUR LE REVENU ─── -->\n      <div class=\"section\" id=\"fiscal-s1\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">1</div>\n          <div class=\"section-title\">Impôt sur le revenu (IR)</div>\n        </div>\n\n        <h3 id=\"fiscal-s1-categories\">a) Catégories de revenus</h3>\n        <div class=\"card\">\n          <p>L'IR frappe l'ensemble des revenus du foyer fiscal, classés en <strong>8 catégories</strong> :</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Catégorie</th><th>Nature</th><th>Exemples</th></tr></thead>\n            <tbody>\n              <tr><td><strong>TS</strong></td><td>Traitements &amp; salaires</td><td>Salaires, pensions, rentes viagères à titre gratuit</td></tr>\n              <tr><td><strong>RCM</strong></td><td>Revenus de capitaux mobiliers</td><td>Dividendes, intérêts, coupons</td></tr>\n              <tr><td><strong>RF</strong></td><td>Revenus fonciers</td><td>Loyers bruts – charges déductibles</td></tr>\n              <tr><td><strong>BIC</strong></td><td>Bénéfices industriels et commerciaux</td><td>LMNP, LMP, activité commerciale</td></tr>\n              <tr><td><strong>BNC</strong></td><td>Bénéfices non commerciaux</td><td>Professions libérales, droits d'auteur</td></tr>\n              <tr><td><strong>BA</strong></td><td>Bénéfices agricoles</td><td>Exploitations agricoles</td></tr>\n              <tr><td><strong>PV</strong></td><td>Plus-values</td><td>Cessions de biens meubles et immeubles</td></tr>\n              <tr><td><strong>RV</strong></td><td>Rentes viagères à titre onéreux</td><td>Fraction imposable selon l'âge du crédirentier</td></tr>\n            </tbody>\n          </table>\n        </div>\n\n        <h3 id=\"fiscal-s1-bareme\">b) Barème progressif de l'IR (2024)</h3>\n        <div class=\"card\">\n          <table class=\"data-table\">\n            <thead><tr><th>Tranche de revenu imposable</th><th>Taux marginal</th></tr></thead>\n            <tbody>\n              <tr><td>Jusqu'à 11 294 €</td><td><strong>0 %</strong></td></tr>\n              <tr><td>11 295 € – 28 797 €</td><td><strong>11 %</strong></td></tr>\n              <tr><td>28 798 € – 82 341 €</td><td><strong>30 %</strong></td></tr>\n              <tr><td>82 342 € – 177 106 €</td><td><strong>41 %</strong></td></tr>\n              <tr><td>Au-delà de 177 106 €</td><td><strong>45 %</strong></td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-tip\">\n            <span class=\"alert-icon\">💡</span>\n            <div>Le <strong>quotient familial</strong> divise le revenu imposable par le nombre de parts du foyer, puis applique le barème à chaque part. Le plafonnement est fixé à <strong>1 759 €</strong> par demi-part supplémentaire.</div>\n          </div>\n        </div>\n\n        <h3 id=\"fiscal-s1-pfu\">c) PFU / Option barème</h3>\n        <div class=\"card\">\n          <p>Depuis le 1er janvier 2018, les revenus du capital sont soumis au <strong>Prélèvement Forfaitaire Unique (PFU)</strong> de <strong>30 %</strong> (12,8 % IR + 17,2 % PS).</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Option</th><th>IR</th><th>PS</th><th>Total</th><th>Intérêt</th></tr></thead>\n            <tbody>\n              <tr><td><strong>PFU (flat tax)</strong></td><td>12,8 %</td><td>17,2 %</td><td><strong>30 %</strong></td><td>TMI ≥ 30 %</td></tr>\n              <tr><td><strong>Barème progressif</strong></td><td>Barème IR</td><td>17,2 %</td><td>Variable</td><td>TMI ≤ 11 % (+ abattement 40 % dividendes)</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-danger\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div>L'option pour le barème est <strong>globale et irrévocable</strong> pour l'année : elle s'applique à <strong>tous</strong> les revenus du capital (dividendes, intérêts, plus-values mobilières).</div>\n          </div>\n        </div>\n      </div>\n\n      <!-- ─── SECTION 2 : PLUS-VALUES DES PARTICULIERS ─── -->\n      <div class=\"section\" id=\"fiscal-s2\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">2</div>\n          <div class=\"section-title\">Plus-values des particuliers</div>\n        </div>\n\n        <h3 id=\"fiscal-s2-immo\">a) Plus-values immobilières</h3>\n        <div class=\"card\">\n          <p>Les plus-values immobilières sont imposées au taux de <strong>19 % IR + 17,2 % PS = 36,2 %</strong>, avec des abattements pour durée de détention :</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Durée de détention</th><th>Abattement IR</th><th>Abattement PS</th></tr></thead>\n            <tbody>\n              <tr><td>0 – 5 ans</td><td>0 %</td><td>0 %</td></tr>\n              <tr><td>6 – 21 ans</td><td>6 % / an</td><td>1,65 % / an</td></tr>\n              <tr><td>22e année</td><td>4 % (exo totale IR)</td><td>1,60 %</td></tr>\n              <tr><td>23 – 30 ans</td><td>Exonéré IR</td><td>9 % / an</td></tr>\n              <tr><td>Au-delà de 30 ans</td><td>Exonéré</td><td>Exonéré</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-tip\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Exonération totale IR</strong> après 22 ans de détention. <strong>Exonération totale PS</strong> après 30 ans. La <strong>résidence principale</strong> est toujours exonérée.</div>\n          </div>\n          <p><strong>Surtaxe sur les PV &gt; 50 000 € :</strong> de 2 % (50 001 – 100 000 €) à 6 % (au-delà de 260 000 €), après abattements.</p>\n        </div>\n\n        <h3 id=\"fiscal-s2-vm\">b) Plus-values sur valeurs mobilières</h3>\n        <div class=\"card\">\n          <p>Les PV de cession de valeurs mobilières et droits sociaux sont soumises au <strong>PFU de 30 %</strong> ou, sur option, au <strong>barème progressif</strong> (avec abattements pour durée de détention pour les titres acquis avant 2018).</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Régime</th><th>Titres acquis avant 2018</th><th>Titres acquis après 2018</th></tr></thead>\n            <tbody>\n              <tr><td><strong>PFU</strong></td><td>30 % (sans abattement)</td><td>30 % (sans abattement)</td></tr>\n              <tr><td><strong>Barème (option)</strong></td><td>Abattement 50 % (2-8 ans) ou 65 % (≥ 8 ans)</td><td>Pas d'abattement</td></tr>\n              <tr><td><strong>Abattement renforcé (PME)</strong></td><td>50 % (1-4 ans), 65 % (4-8 ans), 85 % (≥ 8 ans)</td><td>Non applicable</td></tr>\n            </tbody>\n          </table>\n        </div>\n\n        <h3 id=\"fiscal-s2-exo\">c) Exonérations notables</h3>\n        <div class=\"card\">\n          <ul>\n            <li><strong>PEA :</strong> exonération d'IR après 5 ans de détention (PS restent dus)</li>\n            <li><strong>Résidence principale :</strong> exonération totale de PV immobilière</li>\n            <li><strong>Cession &lt; 15 000 € :</strong> exonération pour les biens immobiliers (prix de cession)</li>\n            <li><strong>Art. 150-0 D ter :</strong> abattement fixe de 500 000 € pour le dirigeant partant à la retraite</li>\n          </ul>\n        </div>\n      </div>\n\n      <!-- ─── SECTION 3 : IFI ─── -->\n      <div class=\"section\" id=\"fiscal-s3\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">3</div>\n          <div class=\"section-title\">Impôt sur la Fortune Immobilière (IFI)</div>\n        </div>\n\n        <h3 id=\"fiscal-s3-assiette\">a) Assiette &amp; seuil</h3>\n        <div class=\"card\">\n          <p>L'IFI est dû par les foyers fiscaux dont le <strong>patrimoine immobilier net taxable</strong> excède <strong>1 300 000 €</strong> au 1er janvier.</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Actifs taxables</th><th>Actifs exonérés</th></tr></thead>\n            <tbody>\n              <tr>\n                <td>\n                  <ul>\n                    <li>Immeubles bâtis et non bâtis</li>\n                    <li>Parts de SCI, SCPI, OPCI (quote-part immo)</li>\n                    <li>Droits réels immobiliers</li>\n                  </ul>\n                </td>\n                <td>\n                  <ul>\n                    <li>Biens professionnels</li>\n                    <li>Bois, forêts, parts de GF (75 %)</li>\n                    <li>Biens ruraux loués à long terme (75 %)</li>\n                  </ul>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-info\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Résidence principale :</strong> abattement de <strong>30 %</strong> sur la valeur vénale. Cet abattement n'est pas applicable aux parts de SCI détenant la résidence principale.</div>\n          </div>\n        </div>\n\n        <h3 id=\"fiscal-s3-bareme\">b) Barème &amp; calcul</h3>\n        <div class=\"card\">\n          <table class=\"data-table\">\n            <thead><tr><th>Tranche</th><th>Taux</th></tr></thead>\n            <tbody>\n              <tr><td>Jusqu'à 800 000 €</td><td><strong>0 %</strong></td></tr>\n              <tr><td>800 001 € – 1 300 000 €</td><td><strong>0,50 %</strong></td></tr>\n              <tr><td>1 300 001 € – 2 570 000 €</td><td><strong>0,70 %</strong></td></tr>\n              <tr><td>2 570 001 € – 5 000 000 €</td><td><strong>1,00 %</strong></td></tr>\n              <tr><td>5 000 001 € – 10 000 000 €</td><td><strong>1,25 %</strong></td></tr>\n              <tr><td>Au-delà de 10 000 000 €</td><td><strong>1,50 %</strong></td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-danger\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div><strong>Décote :</strong> pour les patrimoines entre 1 300 000 € et 1 400 000 €, une décote s'applique : <strong>17 500 € – 1,25 % × patrimoine net taxable</strong>.</div>\n          </div>\n        </div>\n\n        <h3 id=\"fiscal-s3-optimisation\">c) Stratégies d'optimisation IFI</h3>\n        <div class=\"card\">\n          <ul>\n            <li><strong>Arbitrage vers actifs financiers :</strong> sortir du patrimoine immobilier vers des placements mobiliers (non taxables IFI)</li>\n            <li><strong>Démembrement :</strong> seul l'usufruitier est redevable de l'IFI (sauf exceptions)</li>\n            <li><strong>Investissement en nue-propriété :</strong> la nue-propriété n'entre pas dans l'assiette IFI</li>\n            <li><strong>Endettement déductible :</strong> les emprunts immobiliers sont déductibles (avec amortissement progressif limité à 60 % au-delà de 5 M€)</li>\n            <li><strong>Dons :</strong> réduction IFI de 75 % des dons (plafond 50 000 €/an)</li>\n          </ul>\n        </div>\n      </div>\n\n      <!-- ─── SECTION 4 : DROITS DE MUTATION À TITRE GRATUIT ─── -->\n      <div class=\"section\" id=\"fiscal-s4\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">4</div>\n          <div class=\"section-title\">Droits de mutation à titre gratuit (DMTG)</div>\n        </div>\n\n        <h3 id=\"fiscal-s4-succession\">a) Droits de succession</h3>\n        <div class=\"card\">\n          <p>Les droits de succession sont calculés sur la <strong>part nette taxable</strong> de chaque héritier, après application des abattements.</p>\n          <h4>Barème en ligne directe (parent → enfant)</h4>\n          <table class=\"data-table\">\n            <thead><tr><th>Tranche</th><th>Taux</th></tr></thead>\n            <tbody>\n              <tr><td>Jusqu'à 8 072 €</td><td><strong>5 %</strong></td></tr>\n              <tr><td>8 073 € – 12 109 €</td><td><strong>10 %</strong></td></tr>\n              <tr><td>12 110 € – 15 932 €</td><td><strong>15 %</strong></td></tr>\n              <tr><td>15 933 € – 552 324 €</td><td><strong>20 %</strong></td></tr>\n              <tr><td>552 325 € – 902 838 €</td><td><strong>30 %</strong></td></tr>\n              <tr><td>902 839 € – 1 805 677 €</td><td><strong>40 %</strong></td></tr>\n              <tr><td>Au-delà de 1 805 677 €</td><td><strong>45 %</strong></td></tr>\n            </tbody>\n          </table>\n        </div>\n\n        <h3 id=\"fiscal-s4-donation\">b) Droits de donation</h3>\n        <div class=\"card\">\n          <p>Les donations suivent le <strong>même barème</strong> que les successions. Elles bénéficient d'un <strong>rappel fiscal de 15 ans</strong> : les abattements se reconstituent tous les 15 ans.</p>\n          <div class=\"alert alert-tip\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Donation-partage :</strong> fige la valeur des biens au jour de la donation (pas de réévaluation au décès). Outil privilégié de la stratégie de transmission anticipée.</div>\n          </div>\n        </div>\n\n        <h3 id=\"fiscal-s4-abattements\">c) Abattements &amp; dispositifs</h3>\n        <div class=\"card\">\n          <table class=\"data-table\">\n            <thead><tr><th>Lien de parenté</th><th>Abattement</th><th>Renouvellement</th></tr></thead>\n            <tbody>\n              <tr><td>En ligne directe (parent → enfant)</td><td><strong>100 000 €</strong></td><td>Tous les 15 ans</td></tr>\n              <tr><td>Entre époux / partenaires PACS</td><td><strong>80 724 €</strong></td><td>Tous les 15 ans</td></tr>\n              <tr><td>Entre frères et sœurs</td><td><strong>15 932 €</strong></td><td>Tous les 15 ans</td></tr>\n              <tr><td>Neveux et nièces</td><td><strong>7 967 €</strong></td><td>Tous les 15 ans</td></tr>\n              <tr><td>Handicapé</td><td><strong>159 325 €</strong> (cumulable)</td><td>Tous les 15 ans</td></tr>\n              <tr><td>Don familial de sommes d'argent (Sarkozy)</td><td><strong>31 865 €</strong></td><td>Tous les 15 ans</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-danger\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div><strong>Pacte Dutreil :</strong> exonération de <strong>75 %</strong> de la valeur des titres transmis (entreprise), sous conditions d'engagement collectif (2 ans) puis individuel (4 ans) de conservation.</div>\n          </div>\n        </div>\n      </div>\n\n      <!-- ─── SECTION 5 : ASSURANCE-VIE ─── -->\n      <div class=\"section\" id=\"fiscal-s5\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">5</div>\n          <div class=\"section-title\">Assurance-vie — Fiscalité</div>\n        </div>\n\n        <h3 id=\"fiscal-s5-rachat\">a) Fiscalité des rachats</h3>\n        <div class=\"card\">\n          <p>Seuls les <strong>intérêts (produits)</strong> contenus dans le rachat sont imposés, pas le capital.</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Primes versées</th><th>Durée du contrat</th><th>IR</th><th>PS</th></tr></thead>\n            <tbody>\n              <tr><td rowspan=\"2\"><strong>Avant le 27/09/2017</strong></td><td>&lt; 8 ans</td><td>Barème ou PFL 35 %/15 %</td><td>17,2 %</td></tr>\n              <tr><td>≥ 8 ans</td><td>Barème ou PFL 7,5 % (après abattement)</td><td>17,2 %</td></tr>\n              <tr><td rowspan=\"2\"><strong>Après le 27/09/2017</strong></td><td>&lt; 8 ans</td><td>PFU 12,8 %</td><td>17,2 %</td></tr>\n              <tr><td>≥ 8 ans (≤ 150 000 €)</td><td>7,5 % (après abattement)</td><td>17,2 %</td></tr>\n              <tr><td></td><td>≥ 8 ans (&gt; 150 000 €)</td><td>12,8 % (sur l'excédent)</td><td>17,2 %</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-info\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Abattement annuel :</strong> 4 600 € (personne seule) ou 9 200 € (couple) sur les produits des contrats de plus de 8 ans.</div>\n          </div>\n        </div>\n\n        <h3 id=\"fiscal-s5-transmission\">b) Transmission (art. 990 I CGI)</h3>\n        <div class=\"card\">\n          <p>L'assurance-vie bénéficie d'un régime fiscal dérogatoire en matière de transmission :</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Date des primes</th><th>Âge au versement</th><th>Régime</th></tr></thead>\n            <tbody>\n              <tr><td>Avant le 13/10/1998</td><td>Peu importe</td><td><strong>Exonération totale</strong></td></tr>\n              <tr><td rowspan=\"2\">Après le 13/10/1998</td><td><strong>Avant 70 ans</strong></td><td>Art. 990 I : abattement <strong>152 500 €</strong> par bénéficiaire, puis 20 % (≤ 700 000 €), puis 31,25 %</td></tr>\n              <tr><td><strong>Après 70 ans</strong></td><td>Art. 757 B : abattement global <strong>30 500 €</strong>, puis DMTG selon le lien de parenté (intérêts exonérés)</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-danger\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div><strong>Stratégie clé :</strong> Maximiser les versements <strong>avant 70 ans</strong> pour bénéficier de l'abattement de 152 500 € par bénéficiaire (art. 990 I), nettement plus favorable que l'art. 757 B.</div>\n          </div>\n        </div>\n\n        <h3 id=\"fiscal-s5-clause\">c) Clause bénéficiaire</h3>\n        <div class=\"card\">\n          <p>La rédaction de la clause bénéficiaire est <strong>déterminante</strong> pour l'efficacité de la transmission :</p>\n          <ul>\n            <li><strong>Clause standard :</strong> « Mon conjoint, à défaut mes enfants nés ou à naître, vivants ou représentés, par parts égales entre eux, à défaut mes héritiers »</li>\n            <li><strong>Clause démembrée :</strong> quasi-usufruit au conjoint, nue-propriété aux enfants → permet de cumuler les abattements de 152 500 € par bénéficiaire</li>\n            <li><strong>Clause à options :</strong> le bénéficiaire choisit entre capital ou rente, pleine propriété ou démembrement</li>\n          </ul>\n          <div class=\"alert alert-tip\">\n            <span class=\"alert-icon\">💡</span>\n            <div>La <strong>clause bénéficiaire démembrée</strong> permet d'optimiser la double transmission : le conjoint survivant dispose des capitaux en quasi-usufruit, et les enfants récupèrent la créance de restitution au second décès (hors succession).</div>\n          </div>\n        </div>\n      </div>\n\n      <!-- ─── SECTION 6 : DÉMEMBREMENT & SCI ─── -->\n      <div class=\"section\" id=\"fiscal-s6\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">6</div>\n          <div class=\"section-title\">Démembrement &amp; SCI</div>\n        </div>\n\n        <h3 id=\"fiscal-s6-demembrement\">a) Démembrement de propriété</h3>\n        <div class=\"card\">\n          <p>Le démembrement de propriété est un outil central de l'ingénierie patrimoniale. La valeur de l'usufruit et de la nue-propriété est déterminée par le <strong>barème fiscal de l'article 669 du CGI</strong> :</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Âge de l'usufruitier</th><th>Valeur usufruit</th><th>Valeur nue-propriété</th></tr></thead>\n            <tbody>\n              <tr><td>Moins de 21 ans</td><td>90 %</td><td>10 %</td></tr>\n              <tr><td>21 – 30 ans</td><td>80 %</td><td>20 %</td></tr>\n              <tr><td>31 – 40 ans</td><td>70 %</td><td>30 %</td></tr>\n              <tr><td>41 – 50 ans</td><td>60 %</td><td>40 %</td></tr>\n              <tr><td>51 – 60 ans</td><td>50 %</td><td>50 %</td></tr>\n              <tr><td>61 – 70 ans</td><td>40 %</td><td>60 %</td></tr>\n              <tr><td>71 – 80 ans</td><td>30 %</td><td>70 %</td></tr>\n              <tr><td>81 – 90 ans</td><td>20 %</td><td>80 %</td></tr>\n              <tr><td>91 ans et plus</td><td>10 %</td><td>90 %</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-info\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Avantage fiscal :</strong> la donation de la nue-propriété permet de transmettre un bien en ne payant des droits que sur la valeur de la nue-propriété. Au décès de l'usufruitier, le nu-propriétaire récupère la pleine propriété <strong>sans droits supplémentaires</strong>.</div>\n          </div>\n        </div>\n\n        <h3 id=\"fiscal-s6-sci\">b) SCI patrimoniale</h3>\n        <div class=\"card\">\n          <p>La SCI (Société Civile Immobilière) est un outil de gestion et de transmission du patrimoine immobilier :</p>\n\n          <h4>Avantages</h4>\n          <ul>\n            <li><strong>Transmission facilitée :</strong> donation de parts (décote de 10-20 % pour illiquidité et minorité)</li>\n            <li><strong>Gestion centralisée :</strong> évite l'indivision successorale</li>\n            <li><strong>Option IS :</strong> possibilité d'amortir le bien et de maîtriser la distribution des revenus</li>\n            <li><strong>Démembrement des parts :</strong> les parents conservent l'usufruit (revenus + gestion) et transmettent la nue-propriété aux enfants</li>\n          </ul>\n\n          <h4>IR vs IS</h4>\n          <table class=\"data-table\">\n            <thead><tr><th>Critère</th><th>SCI à l'IR</th><th>SCI à l'IS</th></tr></thead>\n            <tbody>\n              <tr><td><strong>Imposition des revenus</strong></td><td>Revenus fonciers (barème + PS)</td><td>IS 15 % / 25 %</td></tr>\n              <tr><td><strong>Amortissement</strong></td><td>Non</td><td>Oui (déduit du résultat)</td></tr>\n              <tr><td><strong>Plus-value de cession</strong></td><td>PV des particuliers (abattements durée)</td><td>PV professionnelle (pas d'abattement)</td></tr>\n              <tr><td><strong>Déficit</strong></td><td>Imputable sur revenu global (10 700 €/an)</td><td>Reportable indéfiniment</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-danger\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div><strong>Attention :</strong> l'option pour l'IS est <strong>irrévocable</strong>. Elle entraîne un avantage en phase de détention (amortissement) mais un coût important à la revente (plus-value professionnelle sur le prix total, sans abattement).</div>\n          </div>\n        </div>\n\n        <h3 id=\"fiscal-s6-holding\">c) Holding familiale</h3>\n        <div class=\"card\">\n          <p>La holding familiale permet de structurer la détention et la transmission du patrimoine professionnel et immobilier :</p>\n          <ul>\n            <li><strong>Régime mère-fille :</strong> exonération de 95 % des dividendes remontés (quote-part de frais de 5 %)</li>\n            <li><strong>Intégration fiscale :</strong> compensation des résultats entre sociétés du groupe</li>\n            <li><strong>Effet de levier :</strong> acquisition de biens via la holding avec déduction des intérêts d'emprunt du résultat IS</li>\n            <li><strong>Pacte Dutreil :</strong> exonération de 75 % pour la transmission des titres de la holding animatrice</li>\n          </ul>\n          <div class=\"alert alert-tip\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Holding animatrice :</strong> pour bénéficier du Pacte Dutreil et de l'exonération de biens professionnels (IFI), la holding doit exercer un rôle <strong>effectif d'animation</strong> de ses filiales (participation à la politique du groupe, fourniture de services).</div>\n          </div>\n        </div>\n      </div>\n\n    ",
+  "searchIndex": {
+    "keywords": [
+      "droit fiscal",
+      "fiscal",
+      "ingénierie",
+      "fiscale",
+      "personnes",
+      "physiques",
+      "patrimoine",
+      "plan",
+      "cours",
+      "catégories",
+      "revenus",
+      "barème",
+      "progressif",
+      "l'ir",
+      "(2024)",
+      "option",
+      "plus-values",
+      "immobilières",
+      "valeurs",
+      "mobilières",
+      "exonérations",
+      "notables",
+      "assiette",
+      "seuil",
+      "calcul",
+      "stratégies",
+      "d'optimisation",
+      "droits",
+      "succession",
+      "ligne",
+      "directe",
+      "(parent",
+      "enfant)",
+      "donation",
+      "abattements",
+      "dispositifs",
+      "fiscalité",
+      "rachats",
+      "transmission",
+      "(art.",
+      "cgi)",
+      "clause",
+      "bénéficiaire",
+      "démembrement",
+      "propriété",
+      "patrimoniale",
+      "avantages",
+      "holding",
+      "familiale",
+      "principe",
+      "directeur",
+      "optimiser",
+      "charge",
+      "stratégie",
+      "globale",
+      "quotient",
+      "familial",
+      "prélèvement",
+      "forfaitaire",
+      "unique",
+      "(pfu)",
+      "(flat",
+      "tax)",
+      "irrévocable",
+      "tous",
+      "17,2",
+      "36,2",
+      "exonération",
+      "totale",
+      "résidence",
+      "principale",
+      "surtaxe",
+      "(option)",
+      "abattement",
+      "renforcé",
+      "(pme)",
+      "cession",
+      "art.",
+      "150-0",
+      "immobilier",
+      "taxable",
+      "0,50",
+      "0,70",
+      "1,00",
+      "1,25",
+      "1,50",
+      "décote",
+      "arbitrage",
+      "vers",
+      "actifs",
+      "financiers",
+      "investissement",
+      "nue-propriété",
+      "endettement",
+      "déductible",
+      "dons",
+      "part",
+      "nette",
+      "même",
+      "rappel"
+    ]
+  }
+}

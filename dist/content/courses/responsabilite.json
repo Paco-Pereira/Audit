@@ -1,0 +1,191 @@
+{
+  "id": "responsabilite",
+  "title": "Responsabilité",
+  "icon": "⚖️",
+  "type": "courses",
+  "sidebar": {
+    "items": [
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      },
+      {
+        "id": "",
+        "label": ""
+      }
+    ]
+  },
+  "content": "\n\n      <div class=\"welcome\" id=\"resp-intro\">\n        <div class=\"breadcrumb\" onclick=\"switchCase('home')\">← Retour aux cours</div>\n        <h1>Responsabilité du gestionnaire de patrimoine ⚖️</h1>\n        <div class=\"subtitle\">Gestion de portefeuille : quelle responsabilité ?</div>\n        <p>Ce cours examine les conditions de mise en œuvre de la responsabilité civile et pénale du conseiller en gestion de patrimoine (CGP), avec analyse de la jurisprudence et des cas pratiques.</p>\n        <div class=\"meta\">Master 2 GIP · 4 chapitres</div>\n      </div>\n\n      <div class=\"card\">\n        <h3>Plan du cours</h3>\n        <table class=\"data-table\">\n          <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>\n          <tbody>\n            <tr><td><strong>1</strong></td><td>Obligations précontractuelles</td><td>Information, évaluation, mise en garde, conseil, couverture</td></tr>\n            <tr><td><strong>2</strong></td><td>Inexécution contractuelle</td><td>Mandat, diligence, loyauté, rendre compte, dénouement</td></tr>\n            <tr><td><strong>3</strong></td><td>Dommage &amp; lien de causalité</td><td>Nature, caractères, perte de chance, exonération</td></tr>\n            <tr><td><strong>4</strong></td><td>Responsabilité pénale</td><td>Infractions de droit commun et spécifiques, prescription</td></tr>\n          </tbody>\n        </table>\n      </div>\n\n      <div class=\"alert alert-info\">\n        <span class=\"alert-icon\">💡</span>\n        <div><strong>Principe fondamental :</strong> Le gestionnaire n'engage sa responsabilité civile que s'il a commis une <strong>faute</strong> à l'origine du <strong>dommage</strong> subi par le client. Le <strong>lien de causalité</strong> entre la faute et le dommage est examiné au titre du caractère direct de ce dommage.</div>\n      </div>\n\n      <!-- ─── SECTION 1 : OBLIGATIONS PRÉCONTRACTUELLES ─── -->\n      <div class=\"section\" id=\"resp-s1\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">1</div>\n          <div class=\"section-title\">Inexécution d'une obligation précontractuelle</div>\n        </div>\n\n        <h3 id=\"resp-s1-info\">a) Manquement à l'obligation d'information</h3>\n        <div class=\"card\">\n          <p>Le prestataire de services d'investissement qui <strong>n'informe pas</strong> son client des conditions générales pratiquées, des caractéristiques des services et des placements proposés engage sa responsabilité civile.</p>\n          <ul>\n            <li>Vaut quel que soit le mandat de gestion (directe, assistée, sous mandat)</li>\n            <li>La remise d'un prospectus suffit à établir que l'investisseur a été informé (<em>CA Rouen 12/01/12</em>)</li>\n            <li>La banque qui ne justifie pas la remise des prospectus engage sa responsabilité (<em>CA Paris 22/05/08</em>)</li>\n          </ul>\n          <div class=\"alert alert-danger\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div>La simple mention que l'investisseur a « pris connaissance de la notice d'information » <strong>ne suffit pas</strong> à établir que l'obligation d'information a été remplie (<em>CA Bordeaux 28/11/11</em>).</div>\n          </div>\n          <p>Le prestataire qui délivre une information <strong>inexacte, imprécise et trompeuse</strong> en violation des articles L 533-12 CMF et 314-10 RG AMF engage également sa responsabilité.</p>\n        </div>\n\n        <h3 id=\"resp-s1-eval\">b) Défaut d'évaluation du client</h3>\n        <div class=\"card\">\n          <p>Le prestataire a l'obligation de <strong>« connaître son client »</strong> pour déterminer sa qualité (averti/profane) et s'assurer qu'il possède l'expérience et les connaissances nécessaires.</p>\n          <h4>3 critères d'évaluation :</h4>\n          <table class=\"data-table\">\n            <thead><tr><th>Critère</th><th>Détail</th></tr></thead>\n            <tbody>\n              <tr><td><strong>1. Compétence et expérience</strong></td><td>Profession, diplômes, historique d'investissement</td></tr>\n              <tr><td><strong>2. Objectifs</strong></td><td>Profil de risque, horizon d'investissement</td></tr>\n              <tr><td><strong>3. Situation patrimoniale</strong></td><td>Capacités financières, patrimoine global</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-warn\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div>La charge de la preuve de l'exécution de cette obligation <strong>pèse sur le gestionnaire</strong> (<em>CA Aix-en-Provence 30/05/13</em>). L'évaluation des <strong>époux</strong> doit être réalisée en la personne de <strong>chacun d'eux</strong> (<em>Cass.com. 03/05/11</em>).</div>\n          </div>\n\n          <h4>Catégorisation des clients</h4>\n          <table class=\"data-table\">\n            <thead><tr><th>Client professionnel</th><th>Client non professionnel</th></tr></thead>\n            <tbody>\n              <tr>\n                <td>Établissements de crédit, entreprises d'investissement, assurances, placements collectifs, CDC, entités avec : bilan ≥ 20M€, CA ≥ 40M€ ou capitaux propres ≥ 2M€</td>\n                <td>Défini en négatif : tous ceux qui ne sont pas professionnels</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n\n        <h3 id=\"resp-s1-garde\">c) Défaut d'information sur les risques — Mise en garde</h3>\n        <div class=\"card\">\n          <p>À défaut d'information des clients <strong>non avertis</strong> portant sur les risques d'opérations spéculatives, le prestataire engage sa responsabilité civile, quel que soit le mode de gestion.</p>\n          <ul>\n            <li>La simple signature de la convention ne dispense <strong>pas</strong> du devoir d'information</li>\n            <li>L'information de mise en garde doit être donnée <strong>AVANT</strong> la signature des contrats (<em>Cass.com. 30/11/10</em>)</li>\n            <li>Le caractère averti/non averti s'apprécie <strong>in concreto</strong> (profession, type d'opérations, fréquence, durée)</li>\n          </ul>\n          <div class=\"alert alert-tip\">\n            <span class=\"alert-icon\">✅</span>\n            <div>Les diplômes ne satisfont pas à l'exigence d'expérience mais constituent un <strong>indice</strong> en faveur de la connaissance. En présence d'un couple, l'évaluation doit être <strong>individualisée</strong>.</div>\n          </div>\n        </div>\n\n        <h3 id=\"resp-s1-conseil\">d) Manquement au devoir de conseil</h3>\n        <div class=\"card\">\n          <p>Avec la transposition de la Directive MIF, l'obligation de recommander un service adapté est réservée aux contrats de <strong>conseil en investissements</strong>.</p>\n          <p>Pour la gestion individuelle, le gestionnaire doit fournir un service <strong>adapté à la situation</strong> du client.</p>\n\n          <h4>e) Défaut d'exigence de couverture</h4>\n          <p>Depuis l'arrêt du <strong>26 février 2008</strong>, la Cour de cassation fonde la responsabilité du prestataire sur l'article 1231-1 du Code civil et L 533-11 CMF : la violation des règles de bonne conduite (dont l'exigence de couverture) engage la responsabilité contractuelle.</p>\n          <div class=\"alert alert-info\">\n            <span class=\"alert-icon\">💡</span>\n            <div>Cette solution s'applique <strong>quel que soit le mode de gestion</strong> (directe, assistée, sous mandat) et vaut aussi pour les appels complémentaires de couverture.</div>\n          </div>\n        </div>\n      </div>\n\n      <!-- ─── SECTION 2 : INEXÉCUTION CONTRACTUELLE ─── -->\n      <div class=\"section\" id=\"resp-s2\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">2</div>\n          <div class=\"section-title\">Inexécution d'une obligation contractuelle</div>\n        </div>\n\n        <h3 id=\"resp-s2-mandat\">a) Non-respect des termes du mandat</h3>\n        <div class=\"card\">\n          <h4>Réception-Transmission / Exécution d'ordres</h4>\n          <ul>\n            <li>Le prestataire est tenu de transmettre/exécuter les ordres conformément aux instructions</li>\n            <li>Il ne peut refuser un ordre conforme aux termes du contrat et aux conditions du marché</li>\n            <li><strong>Limite :</strong> le devoir de vigilance oblige à refuser des ordres manifestement anormaux, incohérents ou contradictoires</li>\n          </ul>\n\n          <h4>Mandat de gestion — Dépassement</h4>\n          <ul>\n            <li>Le gestionnaire engage sa responsabilité contractuelle en cas de <strong>dépassement du mandat</strong></li>\n            <li>Le client n'est pas obligé de réagir aux avis envoyés (le mandat est destiné à le libérer des soucis de gestion — <em>CA Paris 25/05/07</em>)</li>\n            <li><strong>Ratification :</strong> si le client ratifie expressément ou tacitement les actes, le gestionnaire n'engage pas sa responsabilité</li>\n          </ul>\n        </div>\n\n        <h3 id=\"resp-s2-diligence\">b) Manquement à l'obligation de diligence</h3>\n        <div class=\"card\">\n          <p>Le prestataire est tenu d'accomplir sa mission avec <strong>soin et professionnalisme</strong> au mieux des intérêts de ses donneurs d'ordres. Sa faute s'apprécie <strong>in abstracto</strong>.</p>\n          <h4>Exemples de fautes :</h4>\n          <ul>\n            <li><strong>Exécution tardive :</strong> attendre plusieurs jours pour exécuter un ordre</li>\n            <li><strong>Exécution erronée :</strong> erreurs matérielles dans l'exécution des ordres</li>\n            <li><strong>Défaut de blocage :</strong> ne pas bloquer les ordres en cas d'insuffisance de provision/couverture</li>\n          </ul>\n\n          <h4>Faute de gestion (obligation de moyens)</h4>\n          <p>Le gestionnaire ne peut être tenu d'une <strong>obligation de résultat</strong> en raison de l'aléa boursier. Il ne peut garantir la progression ni le maintien de la valeur du portefeuille.</p>\n          <div class=\"alert alert-info\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Critères de qualification de la faute :</strong> objectif de gestion choisi, limites/interdictions stipulées, réactivité face aux évolutions des marchés. La jurisprudence sanctionne la <strong>lenteur à réinvestir</strong> et l'<strong>inertie</strong> du gestionnaire. <strong>Exception :</strong> si le gestionnaire a promis un résultat → obligation de résultat.</div>\n          </div>\n        </div>\n\n        <h3 id=\"resp-s2-loyaute\">c) Manquement à l'obligation de loyauté</h3>\n        <div class=\"card\">\n          <p>Article L 533-11 CMF : les prestataires doivent agir de <strong>manière honnête, loyale et professionnelle</strong>, servant au mieux les intérêts des clients.</p>\n          <h4>Exemples d'infractions :</h4>\n          <ul>\n            <li>Création ou maintien de <strong>conflits d'intérêts</strong></li>\n            <li>Investissement exclusif dans des produits du groupe du gestionnaire (sauf convention spécifique)</li>\n            <li>Ne pas attirer l'attention sur la nécessité de modifier le profil de gestion</li>\n          </ul>\n          <div class=\"alert alert-danger\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div><em>CA Rennes 25/02/2022 :</em> Le CGP « était tenu de délivrer à ses clients une information <strong>complète, loyale et cohérente</strong>, sans éluder les aspects les moins favorables du produit et les risques inhérents au placement choisi. »</div>\n          </div>\n        </div>\n\n        <h3 id=\"resp-s2-compte\">d) Obligation de rendre compte</h3>\n        <div class=\"card\">\n          <p>Le manquement prend la forme d'un <strong>défaut ou retard d'envoi</strong> :</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Document</th><th>Fréquence</th><th>Destinataire</th></tr></thead>\n            <tbody>\n              <tr><td>Avis d'opéré</td><td>À chaque opération</td><td>Tout prestataire transmetteur d'ordres</td></tr>\n              <tr><td>Relevés de comptes</td><td>Périodique</td><td>Prestataire teneur de compte</td></tr>\n              <tr><td>Arrêté trimestriel du portefeuille</td><td>Trimestriel</td><td>Mandat de gestion</td></tr>\n              <tr><td>Compte rendu semestriel</td><td>Semestriel</td><td>Mandat de gestion</td></tr>\n              <tr><td>Information mensuelle (positions ouvertes)</td><td>Mensuel</td><td>Mandat avec effet de levier</td></tr>\n              <tr><td>Information annuelle (résultats, rapport)</td><td>Annuel</td><td>Gestion de portefeuille</td></tr>\n              <tr><td>Relevé périodique d'activité (MIF)</td><td>Semestriel (non pro)</td><td>Tous gestionnaires</td></tr>\n            </tbody>\n          </table>\n\n          <h4>Dénouement du contrat</h4>\n          <p>Si après réception de la lettre RAR de dénonciation, le gestionnaire prend l'initiative de nouvelles opérations, il supporte la <strong>pleine responsabilité</strong> du préjudice.</p>\n        </div>\n      </div>\n\n      <!-- ─── SECTION 3 : DOMMAGE & LIEN DE CAUSALITÉ ─── -->\n      <div class=\"section\" id=\"resp-s3\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">3</div>\n          <div class=\"section-title\">Le dommage et le lien de causalité</div>\n        </div>\n\n        <h3 id=\"resp-s3-dommage\">Nature et caractères du dommage</h3>\n        <div class=\"card\">\n          <h4>A — Dommage matériel (art. 1231-2 C. civ.)</h4>\n          <table class=\"data-table\">\n            <thead><tr><th>Type</th><th>Définition</th></tr></thead>\n            <tbody>\n              <tr><td><strong>Perte éprouvée</strong></td><td>Moins-value accusée par le portefeuille géré</td></tr>\n              <tr><td><strong>Gain manqué</strong></td><td>Différence entre la valeur du portefeuille et celle qu'il aurait eue sans faute (comparaison avec le CAC 40 si portefeuille principalement en valeurs composant l'indice)</td></tr>\n            </tbody>\n          </table>\n\n          <h4>B — Dommage moral</h4>\n          <p>Peut être indemnisé à condition de prouver son existence et son lien de causalité (rare en pratique). Ex. : soucis causés à une cliente septuagénaire par une procédure (<em>CA Paris 03/05/07</em>).</p>\n\n          <h4>Caractères du dommage</h4>\n          <table class=\"data-table\">\n            <thead><tr><th>Caractère</th><th>Explication</th></tr></thead>\n            <tbody>\n              <tr><td><strong>Certain</strong></td><td>Exclut le préjudice hypothétique. Les plus/moins-values restent latentes jusqu'à liquidation effective</td></tr>\n              <tr><td><strong>Direct</strong></td><td>Lien de causalité entre le dommage et la faute. Les pertes dues à l'aléa boursier ne sont pas réparables (sauf obligation de résultat)</td></tr>\n              <tr><td><strong>Prévisible</strong></td><td>Le GP a conscience qu'il s'expose à réparer les conséquences de l'inexécution</td></tr>\n            </tbody>\n          </table>\n        </div>\n\n        <h3 id=\"resp-s3-chance\">Perte d'une chance</h3>\n        <div class=\"card\">\n          <p>La grande majorité des décisions ne réparent que la <strong>perte d'une chance</strong>, définie comme la disparition de la probabilité d'un événement favorable.</p>\n          <h4>Définitions jurisprudentielles :</h4>\n          <ul>\n            <li>Perte de chance de <strong>ne pas avoir signé un mandat moins risqué</strong></li>\n            <li>Perte de chance de <strong>trouver un meilleur placement</strong></li>\n            <li>Perte de chance de <strong>choisir une gestion plus prudente</strong></li>\n            <li>Perte de chance de <strong>résilier plus tôt le mandat</strong> (manquement à rendre compte)</li>\n          </ul>\n          <div class=\"alert alert-warn\">\n            <span class=\"alert-icon\">⚠️</span>\n            <div>La réparation ne correspond <strong>jamais</strong> à la totalité des pertes (il faut tenir compte de l'aléa boursier) ni à la totalité de ce que la chance aurait procuré. L'indemnisation est calculée en fonction des <strong>probabilités de réalisation</strong> de l'événement favorable.</div>\n          </div>\n\n          <h4>Exemples de jurisprudence</h4>\n          <ul>\n            <li><em>CA Caen 23/10/14 :</em> Indemnisation fixée à <strong>50%</strong> de la moins-value des SICAV (défaut de diagnostic patrimonial)</li>\n            <li><em>TGI Paris 13/02/14 :</em> Perte de chance de renoncer au contrat et placer sur un produit exonéré ISF 10 ans</li>\n            <li><em>CA Montpellier 27/01/15 :</em> Préjudice = somme versée + intérêts de retard payés au Trésor (opération Girardin manquée)</li>\n            <li><em>CA Rennes 25/02/22 :</em> Condamnation à <strong>5 000€</strong> pour perte de chance de ne pas emprunter pour un contrat AV</li>\n          </ul>\n        </div>\n\n        <h3 id=\"resp-s3-exo\">Exonération de responsabilité</h3>\n        <div class=\"card\">\n          <h4>A — Force majeure (art. 1218 C. civ.)</h4>\n          <p>3 conditions cumulatives :</p>\n          <table class=\"data-table\">\n            <thead><tr><th>Condition</th><th>Application</th></tr></thead>\n            <tbody>\n              <tr><td><strong>Irrésistible</strong></td><td>Rend l'exécution impossible (pas simplement difficile). Ex. : fermeture de la bourse. L'attentat du 11/09/2001 n'a pas été retenu car le Monep est resté ouvert</td></tr>\n              <tr><td><strong>Imprévisible</strong></td><td>Une crise boursière est imprévisible quant à sa date et son ampleur</td></tr>\n              <tr><td><strong>Extérieur</strong></td><td>Le GP ne peut invoquer la défaillance de son personnel ou matériel</td></tr>\n            </tbody>\n          </table>\n\n          <h4>B — Fait du client</h4>\n          <p>Le prestataire peut être exonéré totalement ou partiellement en prouvant l'imprudence ou la négligence de son client.</p>\n          <ul>\n            <li><strong>Immixtion autorisée :</strong> le GP n'engage pas sa responsabilité</li>\n            <li><strong>Immixtion non autorisée :</strong> le GP dispose d'un pouvoir d'appréciation et peut refuser d'exécuter les ordres</li>\n            <li><strong>Client averti :</strong> l'obligation d'information s'efface quand le client possède une compétence propre ou s'entoure de conseillers</li>\n          </ul>\n          <div class=\"alert alert-info\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Attention :</strong> cette atténuation (client averti) vaut pour le devoir d'<strong>information</strong>, mais <strong>pas nécessairement</strong> pour l'obligation de <strong>conseil</strong>.</div>\n          </div>\n\n          <h4>C — Clause d'exonération contractuelle</h4>\n          <ul>\n            <li>Le principe de liberté contractuelle permet d'insérer des clauses limitatives</li>\n            <li><strong>Article 1170 C. civ.</strong> interdit toute clause qui prive de sa substance l'obligation essentielle</li>\n            <li>La clause s'efface en cas de <strong>dol ou faute lourde</strong></li>\n            <li>Susceptible de tomber sous le coup de la réglementation des <strong>clauses abusives</strong></li>\n          </ul>\n        </div>\n      </div>\n\n      <!-- ─── SECTION 4 : RESPONSABILITÉ PÉNALE ─── -->\n      <div class=\"section\" id=\"resp-s4\">\n        <div class=\"section-header\">\n          <div class=\"section-num\">4</div>\n          <div class=\"section-title\">Responsabilité pénale</div>\n        </div>\n\n        <div class=\"card\">\n          <p><strong>Principe (art. 121-3 C. pénal) :</strong> « Il n'y a point de crime ou de délit sans intention de le commettre. » L'intention suppose la volonté et la conscience infractionnelles.</p>\n        </div>\n\n        <h3 id=\"resp-s4-commun\">Infractions de droit commun</h3>\n        <div class=\"card\">\n          <table class=\"data-table\">\n            <thead><tr><th>Infraction</th><th>Article</th><th>Peines</th><th>Application au CGP</th></tr></thead>\n            <tbody>\n              <tr>\n                <td><strong>Abus de confiance</strong></td>\n                <td>314-1 C. pénal</td>\n                <td>5 ans + 375 000€</td>\n                <td>Détournement de fonds, valeurs ou biens remis à charge de les rendre. Circonstance aggravante si activité habituelle sur biens de tiers</td>\n              </tr>\n              <tr>\n                <td><strong>Escroquerie</strong></td>\n                <td>313-1 C. pénal</td>\n                <td>5 ans + 375 000€</td>\n                <td>Usage de faux nom, fausse qualité, manœuvres frauduleuses pour obtenir remise de fonds</td>\n              </tr>\n              <tr>\n                <td><strong>Faux et usage de faux</strong></td>\n                <td>441-1 C. pénal</td>\n                <td>3 ans + 45 000€</td>\n                <td>Altération frauduleuse de la vérité dans un écrit ayant des conséquences juridiques</td>\n              </tr>\n              <tr>\n                <td><strong>Secret professionnel</strong></td>\n                <td>226-13 C. pénal + L 531-12 CMF</td>\n                <td>1 an + 15 000€</td>\n                <td>Tout membre de la direction/gestion d'une entreprise d'investissement ou SGP est tenu au secret</td>\n              </tr>\n              <tr>\n                <td><strong>Abus de faiblesse</strong></td>\n                <td>223-15-2 C. pénal</td>\n                <td>3 ans + 375 000€</td>\n                <td>Abus de l'état d'ignorance ou de vulnérabilité (âge, maladie) pour conduire à un acte gravement préjudiciable</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n\n        <h3 id=\"resp-s4-specifique\">Infractions spécifiques</h3>\n        <div class=\"card\">\n          <h4>Infractions au droit de la consommation</h4>\n          <ul>\n            <li><strong>Refus de prestation de services</strong> (art. L121-11 C. conso) — sauf motif légitime</li>\n            <li><strong>Pratiques commerciales trompeuses</strong> (art. L121-1 C. conso) — allégations fausses ou de nature à induire en erreur</li>\n          </ul>\n\n          <h4>Infractions au droit des sociétés</h4>\n          <ul>\n            <li><strong>Abus de biens sociaux</strong> (art. L242-6 C. com.) — 5 ans + 375 000€. Usage des biens/crédit de la société contraire à son intérêt, à des fins personnelles. Aggravation à 7 ans + 500 000€ si comptes à l'étranger</li>\n          </ul>\n\n          <h4>Infractions boursières</h4>\n          <table class=\"data-table\">\n            <thead><tr><th>Infraction</th><th>Article</th><th>Peines</th></tr></thead>\n            <tbody>\n              <tr><td><strong>Délit d'initié</strong></td><td>L465-1 CMF</td><td>5 ans + 100M€ (jusqu'au décuple de l'avantage)</td></tr>\n              <tr><td><strong>Fausse information / Manipulation de cours</strong></td><td>L465-2 CMF</td><td>Mêmes peines</td></tr>\n              <tr><td><strong>Blanchiment</strong></td><td>—</td><td>La déclaration de soupçon exonère sauf concertation frauduleuse</td></tr>\n            </tbody>\n          </table>\n\n          <h4>Démarchage bancaire ou financier</h4>\n          <table class=\"data-table\">\n            <thead><tr><th>Infraction</th><th>Peine</th></tr></thead>\n            <tbody>\n              <tr><td>Démarchage sans carte / sans information du démarché</td><td>6 mois + 7 500€</td></tr>\n              <tr><td>Démarchage sans remplir les conditions / produits interdits</td><td>5 ans + 375 000€ (peines de l'escroquerie)</td></tr>\n            </tbody>\n          </table>\n\n          <h4>Prestation sans agrément</h4>\n          <p>Fournir des services d'investissement sans agrément : <strong>3 ans + 375 000€</strong> (art. L573-1 CMF).</p>\n        </div>\n\n        <h3 id=\"resp-s4-prescription\">Prescription</h3>\n        <div class=\"card\">\n          <table class=\"data-table\">\n            <thead><tr><th>Type</th><th>Prescription de l'action</th><th>Prescription de la peine</th></tr></thead>\n            <tbody>\n              <tr><td><strong>Crime</strong></td><td>20 ans à compter du jour de l'infraction</td><td>20 ans à compter de la condamnation définitive</td></tr>\n              <tr><td><strong>Délit</strong></td><td>6 ans à compter du jour de l'infraction</td><td>6 ans à compter de la condamnation définitive</td></tr>\n              <tr><td><strong>Contravention</strong></td><td>1 an</td><td>3 ans à compter de la condamnation définitive</td></tr>\n            </tbody>\n          </table>\n          <div class=\"alert alert-info\">\n            <span class=\"alert-icon\">💡</span>\n            <div><strong>Infraction occulte ou dissimulée :</strong> la prescription court à compter du jour où l'infraction a pu être constatée, sans excéder <strong>12 ans</strong> (délits) ou <strong>30 ans</strong> (crimes) à compter de la commission.</div>\n          </div>\n\n          <h4>Action civile</h4>\n          <p>Une infraction commise par le gestionnaire est à l'origine d'un préjudice direct subi par les clients, de nature à justifier l'<strong>action civile devant la juridiction répressive</strong> et l'octroi de dommages et intérêts.</p>\n        </div>\n      </div>\n\n    ",
+  "searchIndex": {
+    "keywords": [
+      "responsabilité",
+      "responsabilite",
+      "gestionnaire",
+      "patrimoine",
+      "plan",
+      "cours",
+      "manquement",
+      "l'obligation",
+      "d'information",
+      "défaut",
+      "d'évaluation",
+      "client",
+      "critères",
+      "catégorisation",
+      "clients",
+      "risques",
+      "mise",
+      "garde",
+      "devoir",
+      "conseil",
+      "d'exigence",
+      "couverture",
+      "non-respect",
+      "termes",
+      "mandat",
+      "réception-transmission",
+      "exécution",
+      "d'ordres",
+      "gestion",
+      "dépassement",
+      "diligence",
+      "exemples",
+      "fautes",
+      "faute",
+      "(obligation",
+      "moyens)",
+      "loyauté",
+      "d'infractions",
+      "obligation",
+      "rendre",
+      "compte",
+      "dénouement",
+      "contrat",
+      "nature",
+      "caractères",
+      "dommage",
+      "matériel",
+      "(art.",
+      "1231-2",
+      "civ.)",
+      "moral",
+      "perte",
+      "d'une",
+      "chance",
+      "définitions",
+      "jurisprudentielles",
+      "jurisprudence",
+      "exonération",
+      "force",
+      "majeure",
+      "1218",
+      "fait",
+      "clause",
+      "d'exonération",
+      "contractuelle",
+      "infractions",
+      "droit",
+      "commun",
+      "spécifiques",
+      "consommation",
+      "sociétés",
+      "boursières",
+      "démarchage",
+      "bancaire",
+      "financier",
+      "prestation",
+      "sans",
+      "agrément",
+      "prescription",
+      "action",
+      "civile",
+      "principe",
+      "fondamental",
+      "lien",
+      "causalité",
+      "n'informe",
+      "rouen",
+      "12/01/12",
+      "paris",
+      "22/05/08",
+      "suffit",
+      "bordeaux",
+      "28/11/11",
+      "inexacte,",
+      "imprécise",
+      "trompeuse",
+      "connaître",
+      "compétence",
+      "expérience",
+      "objectifs"
+    ]
+  }
+}

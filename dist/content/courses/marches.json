@@ -1,0 +1,24 @@
+{
+  "id": "marches",
+  "title": "Marchés Financiers",
+  "icon": "📈",
+  "type": "courses",
+  "sidebar": {
+    "items": [
+      {
+        "id": "",
+        "label": ""
+      }
+    ]
+  },
+  "content": "\n\n      <div class=\"welcome\" id=\"marches-intro\">\n        <div class=\"breadcrumb\" onclick=\"switchCase('home')\">← Retour aux cours</div>\n        <h1>Droit des marchés financiers 📈</h1>\n        <div class=\"subtitle\">M2 GIP</div>\n        <p>Contenu à venir.</p>\n        <div class=\"meta\">Master 2 GIP</div>\n      </div>\n\n    ",
+  "searchIndex": {
+    "keywords": [
+      "marchés financiers",
+      "marches",
+      "droit",
+      "marchés",
+      "financiers"
+    ]
+  }
+}
