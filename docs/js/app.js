@@ -392,6 +392,26 @@ document.addEventListener('keydown', function(event) {
     event.preventDefault();
     toggleSidebar();
   }
+  // Ctrl+D or Cmd+D to toggle dark mode
+  if ((event.ctrlKey || event.metaKey) && event.key === 'd') {
+    event.preventDefault();
+    toggleDarkMode();
+  }
+  // Ctrl+= or Ctrl+- for font size
+  if ((event.ctrlKey || event.metaKey) && (event.key === '=' || event.key === '+')) {
+    event.preventDefault();
+    // Increase: sm→md→lg
+    var html = document.documentElement;
+    if (html.classList.contains('font-sm')) { html.classList.remove('font-sm'); localStorage.setItem('gip-fontSize','font-md'); }
+    else if (!html.classList.contains('font-lg')) { html.classList.add('font-lg'); localStorage.setItem('gip-fontSize','font-lg'); }
+  }
+  if ((event.ctrlKey || event.metaKey) && event.key === '-') {
+    event.preventDefault();
+    // Decrease: lg→md→sm
+    var html = document.documentElement;
+    if (html.classList.contains('font-lg')) { html.classList.remove('font-lg'); localStorage.setItem('gip-fontSize','font-md'); }
+    else if (!html.classList.contains('font-sm')) { html.classList.add('font-sm'); localStorage.setItem('gip-fontSize','font-sm'); }
+  }
   // ? pour afficher les raccourcis (sauf si focus sur un input)
   if (event.key === '?' && !event.target.closest('input, textarea')) {
     const overlay = document.getElementById('shortcutsOverlay');
@@ -1419,6 +1439,208 @@ function timeAgo(ts) {
       }, 8000);
     }
   } catch(e) {}
+
+// ============ NAVIGATION PRÉCÉDENT/SUIVANT ENTRE SECTIONS ============
+(function() {
+  // Build nav buttons after DOM is ready
+  // Get the active sidebar sections map for navigation
+  function buildSectionNav() {
+    document.querySelectorAll('[id^="sidebar-"]').forEach(function(sidebarDiv) {
+      var caseName = sidebarDiv.id.replace('sidebar-', '');
+      var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+      if (items.length < 2) return;
+
+      var sectionIds = [];
+      var sectionLabels = [];
+      items.forEach(function(item) {
+        var match = item.getAttribute('onclick').match(/goTo\(['"]([^'"]+)['"]\)/);
+        if (match) {
+          sectionIds.push(match[1]);
+          var label = item.querySelector('.sidebar-label');
+          sectionLabels.push(label ? label.textContent.trim() : match[1]);
+        }
+      });
+
+      // Add nav buttons to each section
+      sectionIds.forEach(function(id, idx) {
+        var section = document.getElementById(id);
+        if (!section) return;
+
+        // Skip if nav already exists
+        if (section.querySelector('.section-nav')) return;
+
+        var nav = document.createElement('div');
+        nav.className = 'section-nav';
+
+        if (idx > 0) {
+          nav.innerHTML += '<button class="section-nav-btn nav-prev" onclick="goTo(\'' + sectionIds[idx - 1] + '\')">' +
+            '<span class="section-nav-arrow">←</span>' +
+            '<span class="section-nav-label">' + sectionLabels[idx - 1] + '</span></button>';
+        }
+        if (idx < sectionIds.length - 1) {
+          nav.innerHTML += '<button class="section-nav-btn nav-next" onclick="goTo(\'' + sectionIds[idx + 1] + '\')">' +
+            '<span class="section-nav-label">' + sectionLabels[idx + 1] + '</span>' +
+            '<span class="section-nav-arrow">→</span></button>';
+        }
+
+        if (nav.children.length > 0) {
+          section.appendChild(nav);
+        }
+      });
+    });
+  }
+  buildSectionNav();
+})();
+
+// ============ SYSTÈME DE FAVORIS (BOOKMARKS) ============
+var BOOKMARKS_KEY = 'gip-bookmarks';
+
+function getBookmarks() {
+  try { return JSON.parse(localStorage.getItem(BOOKMARKS_KEY)) || []; } catch(e) { return []; }
+}
+function saveBookmarks(bm) {
+  try { localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(bm)); } catch(e) {}
+  updateBookmarkCount();
+}
+
+function toggleBookmark(caseName, sectionId, sectionTitle) {
+  var bm = getBookmarks();
+  var idx = bm.findIndex(function(b) { return b.case === caseName && b.section === sectionId; });
+  if (idx === -1) {
+    bm.push({ case: caseName, section: sectionId, title: sectionTitle });
+  } else {
+    bm.splice(idx, 1);
+  }
+  saveBookmarks(bm);
+  return idx === -1; // true if added
+}
+
+function isBookmarked(caseName, sectionId) {
+  return getBookmarks().some(function(b) { return b.case === caseName && b.section === sectionId; });
+}
+
+function updateBookmarkCount() {
+  var count = getBookmarks().length;
+  var el = document.getElementById('bookmarkCount');
+  if (el) {
+    el.textContent = count;
+    el.style.display = count > 0 ? 'flex' : 'none';
+  }
+}
+
+function toggleBookmarksPanel() {
+  var panel = document.getElementById('bookmarksPanel');
+  if (!panel) return;
+  var isActive = panel.classList.contains('active');
+  if (isActive) {
+    panel.classList.remove('active');
+    return;
+  }
+
+  var bm = getBookmarks();
+  var courseNames = {
+    'snow': 'SNOW', 'stark': 'STARK', 'niote': 'NIOTE',
+    'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
+    'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
+    'financement': 'Financement', 'responsabilite': 'Responsabilité',
+    'fiscal': 'Fiscalité', 'droit': 'Droit patrimonial',
+    'marches': 'Marchés financiers', 'transmission': 'Transmission',
+    'fiscalite-int': 'Fiscalité Int.', 'outils': 'Outils',
+    'guide': 'Guide', 'montages': 'Montages', 'formules': 'Formules'
+  };
+
+  if (bm.length === 0) {
+    panel.innerHTML = '<div class="bookmarks-panel-header">Favoris</div>' +
+      '<div class="bookmarks-empty">Aucun favori.<br><small>Cliquez ★ dans une section pour l\'ajouter.</small></div>';
+  } else {
+    panel.innerHTML = '<div class="bookmarks-panel-header">Favoris (' + bm.length + ')</div>' +
+      bm.map(function(b, i) {
+        return '<div class="bookmark-item" onclick="goToBookmark(\'' + b.case + '\',\'' + b.section + '\')">' +
+          '<div><div class="bookmark-item-course">' + (courseNames[b.case] || b.case) + '</div>' +
+          '<div class="bookmark-item-title">' + b.title + '</div></div>' +
+          '<button class="bookmark-item-remove" onclick="event.stopPropagation();removeBookmark(' + i + ')" title="Retirer">✕</button></div>';
+      }).join('');
+  }
+  panel.classList.add('active');
+}
+
+function goToBookmark(caseName, sectionId) {
+  document.getElementById('bookmarksPanel').classList.remove('active');
+  switchCase(caseName);
+  setTimeout(function() { goTo(sectionId); }, 150);
+}
+
+function removeBookmark(idx) {
+  var bm = getBookmarks();
+  bm.splice(idx, 1);
+  saveBookmarks(bm);
+  // Refresh panel
+  toggleBookmarksPanel();
+  toggleBookmarksPanel();
+  // Update star buttons
+  refreshBookmarkStars();
+}
+
+function refreshBookmarkStars() {
+  document.querySelectorAll('.bookmark-btn').forEach(function(btn) {
+    var caseName = btn.getAttribute('data-case');
+    var sectionId = btn.getAttribute('data-section');
+    if (isBookmarked(caseName, sectionId)) {
+      btn.classList.add('bookmarked');
+      btn.textContent = '★';
+    } else {
+      btn.classList.remove('bookmarked');
+      btn.textContent = '☆';
+    }
+  });
+}
+
+// Inject bookmark stars into section headers
+(function() {
+  document.querySelectorAll('[id^="sidebar-"]').forEach(function(sidebarDiv) {
+    var caseName = sidebarDiv.id.replace('sidebar-', '');
+    var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+
+    items.forEach(function(item) {
+      var match = item.getAttribute('onclick').match(/goTo\(['"]([^'"]+)['"]\)/);
+      if (!match) return;
+      var sectionId = match[1];
+      var section = document.getElementById(sectionId);
+      if (!section) return;
+
+      var header = section.querySelector('.section-header');
+      if (!header || header.querySelector('.bookmark-btn')) return;
+
+      var label = item.querySelector('.sidebar-label');
+      var title = label ? label.textContent.trim() : sectionId;
+
+      var star = document.createElement('button');
+      star.className = 'bookmark-btn' + (isBookmarked(caseName, sectionId) ? ' bookmarked' : '');
+      star.setAttribute('data-case', caseName);
+      star.setAttribute('data-section', sectionId);
+      star.setAttribute('aria-label', 'Ajouter aux favoris');
+      star.textContent = isBookmarked(caseName, sectionId) ? '★' : '☆';
+      star.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var added = toggleBookmark(caseName, sectionId, title);
+        star.classList.toggle('bookmarked', added);
+        star.textContent = added ? '★' : '☆';
+      });
+      header.appendChild(star);
+    });
+  });
+
+  updateBookmarkCount();
+
+  // Close panel on outside click
+  document.addEventListener('click', function(e) {
+    var panel = document.getElementById('bookmarksPanel');
+    var btn = document.getElementById('bookmarksBtn');
+    if (panel && panel.classList.contains('active') && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      panel.classList.remove('active');
+    }
+  });
+})();
 
 // ============ BOUTON COPIER SUR LES CALC-BLOCKS ============
 (function() {
