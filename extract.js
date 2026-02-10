@@ -30,6 +30,7 @@ const CASE_MAP = {
   'droit': { type: 'courses', title: 'Droit Patrimonial', icon: '📜' },
   'marches': { type: 'courses', title: 'Marchés Financiers', icon: '📈' },
   'transmission': { type: 'courses', title: 'Transmission d\'entreprises', icon: '🏢' },
+  'fiscalite-int': { type: 'courses', title: 'Fiscalité Internationale', icon: '🌍' },
   'outils': { type: 'tools', title: 'Outils', icon: '🛠️' },
   'guide': { type: 'tools', title: 'Guide', icon: '📘' },
   'montages': { type: 'tools', title: 'Montages', icon: '🏗️' },

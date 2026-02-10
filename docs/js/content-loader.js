@@ -100,6 +100,7 @@ class ContentLoader {
       'droit': 'courses',
       'marches': 'courses',
       'transmission': 'courses',
+      'fiscalite-int': 'courses',
       // Tools
       'outils': 'tools',
       'guide': 'tools',
