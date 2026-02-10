@@ -229,6 +229,8 @@ function enterCourse(courseName) {
       _enterCourseLoading = false;
       if (spinner) spinner.style.display = 'none';
       console.error('Erreur chargement ' + courseName + ':', err);
+      // Restore home page so the user isn't stuck on a blank screen
+      switchCase('home');
       var toast = document.createElement('div');
       toast.className = 'alert alert-danger';
       toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:2000;max-width:380px;animation:fadeIn 0.2s ease;';
