@@ -573,31 +573,127 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// ============ MODE EXAMEN ============
+// ============ MODE EXAMEN (avec choix de durée) ============
 var examTimerInterval = null;
 var examStartTime = null;
+var examDuration = 0; // 0 = chronomètre, >0 = countdown en secondes
 
 function toggleExamMode() {
-  document.body.classList.toggle('exam-mode');
   var isExam = document.body.classList.contains('exam-mode');
-  var timerEl = document.getElementById('examTimer');
-  var timeEl = document.getElementById('examTimerTime');
 
   if (isExam) {
-    examStartTime = Date.now();
-    if (timerEl) timerEl.style.display = 'block';
-    examTimerInterval = setInterval(function() {
-      var elapsed = Math.floor((Date.now() - examStartTime) / 1000);
+    // Stop exam
+    document.body.classList.remove('exam-mode');
+    if (examTimerInterval) clearInterval(examTimerInterval);
+    var timerEl = document.getElementById('examTimer');
+    var timeEl = document.getElementById('examTimerTime');
+    if (timerEl) { timerEl.style.display = 'none'; timerEl.classList.remove('exam-timer-warning'); }
+    if (timeEl) timeEl.textContent = '0:00';
+    examDuration = 0;
+    return;
+  }
+
+  // Show duration selector
+  var overlay = document.createElement('div');
+  overlay.className = 'exam-duration-overlay';
+  overlay.innerHTML =
+    '<div class="exam-duration-modal">' +
+    '<h3>Mode Examen</h3>' +
+    '<p>Choisissez la durée de l\'épreuve</p>' +
+    '<div class="exam-duration-options">' +
+    '<button class="exam-duration-btn" data-duration="3600">1h<small>Épreuve courte</small></button>' +
+    '<button class="exam-duration-btn" data-duration="7200">2h<small>Standard</small></button>' +
+    '<button class="exam-duration-btn" data-duration="10800">3h<small>Épreuve longue</small></button>' +
+    '<button class="exam-duration-btn" data-duration="0">Chrono<small>Temps libre</small></button>' +
+    '</div>' +
+    '<button class="exam-duration-cancel">Annuler</button>' +
+    '</div>';
+  document.body.appendChild(overlay);
+
+  overlay.querySelector('.exam-duration-cancel').onclick = function() { overlay.remove(); };
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+
+  overlay.querySelectorAll('.exam-duration-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      examDuration = parseInt(btn.getAttribute('data-duration'));
+      overlay.remove();
+      startExam();
+    });
+  });
+}
+
+function startExam() {
+  document.body.classList.add('exam-mode');
+  examStartTime = Date.now();
+  var timerEl = document.getElementById('examTimer');
+  var timeEl = document.getElementById('examTimerTime');
+  var labelEl = timerEl ? timerEl.querySelector('.exam-timer-label') : null;
+
+  if (timerEl) { timerEl.style.display = 'block'; timerEl.classList.remove('exam-timer-warning'); }
+  if (labelEl) labelEl.textContent = examDuration > 0 ? 'Temps restant' : 'Mode Examen';
+
+  examTimerInterval = setInterval(function() {
+    var elapsed = Math.floor((Date.now() - examStartTime) / 1000);
+
+    if (examDuration > 0) {
+      // Countdown mode
+      var remaining = Math.max(0, examDuration - elapsed);
+      var mins = Math.floor(remaining / 60);
+      var secs = remaining % 60;
+      if (timeEl) timeEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+
+      // Warning at 15 min
+      if (remaining <= 900 && remaining > 0 && timerEl) {
+        timerEl.classList.add('exam-timer-warning');
+      }
+      // Time's up
+      if (remaining <= 0) {
+        clearInterval(examTimerInterval);
+        if (timeEl) timeEl.textContent = 'Terminé !';
+        if (timerEl) timerEl.classList.remove('exam-timer-warning');
+        if (labelEl) labelEl.textContent = 'Temps écoulé';
+      }
+    } else {
+      // Chrono mode (count up)
       var mins = Math.floor(elapsed / 60);
       var secs = elapsed % 60;
       if (timeEl) timeEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
-    }, 1000);
-  } else {
-    if (examTimerInterval) clearInterval(examTimerInterval);
-    if (timerEl) timerEl.style.display = 'none';
-    if (timeEl) timeEl.textContent = '0:00';
+    }
+  }, 1000);
+}
+
+// ============ FONT SIZE CONTROL ============
+var fontSizes = ['font-sm', 'font-md', 'font-lg'];
+var fontLabels = ['Petit', 'Moyen', 'Grand'];
+
+function cycleFontSize() {
+  var html = document.documentElement;
+  var current = fontSizes.findIndex(function(c) { return html.classList.contains(c); });
+  if (current === -1) current = 1; // default = medium (no class)
+
+  fontSizes.forEach(function(c) { html.classList.remove(c); });
+
+  var next = (current + 1) % fontSizes.length;
+  if (next !== 1) { // 1 = medium = default = no class needed
+    html.classList.add(fontSizes[next]);
+  }
+  localStorage.setItem('gip-fontSize', fontSizes[next]);
+
+  // Brief toast
+  var btn = document.getElementById('fontSizeBtn');
+  if (btn) {
+    btn.title = 'Taille : ' + fontLabels[next];
+    btn.setAttribute('aria-label', 'Taille du texte : ' + fontLabels[next]);
   }
 }
+
+// Restore font size
+(function() {
+  var saved = localStorage.getItem('gip-fontSize');
+  if (saved && saved !== 'font-md' && fontSizes.indexOf(saved) !== -1) {
+    document.documentElement.classList.add(saved);
+  }
+})();
 
 // ============ DARK MODE ============
 function toggleDarkMode() {
@@ -963,14 +1059,29 @@ function updateProgressBar(caseName) {
 
     if (totalSections === 0) return;
     const pct = Math.round((doneSections / totalSections) * 100);
-    if (doneSections === 0) return; // Pas de barre si rien commencé
+    if (doneSections === 0) return;
+
+    const radius = 15;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (pct / 100) * circumference;
 
     const div = document.createElement('div');
     div.className = 'home-card-progress';
     div.innerHTML =
-      '<div class="home-card-progress-bar"><div class="home-card-progress-fill" style="width:' + pct + '%"></div></div>' +
+      '<svg class="progress-ring" width="38" height="38" viewBox="0 0 38 38">' +
+      '<circle class="progress-ring-bg" cx="19" cy="19" r="' + radius + '"/>' +
+      '<circle class="progress-ring-fill" cx="19" cy="19" r="' + radius + '" ' +
+      'stroke-dasharray="' + circumference + '" stroke-dashoffset="' + circumference + '" ' +
+      'transform="rotate(-90 19 19)"/>' +
+      '</svg>' +
       '<span class="home-card-progress-text">' + pct + '%</span>';
     cardEl.appendChild(div);
+
+    // Animate ring on next frame
+    requestAnimationFrame(function() {
+      var fill = div.querySelector('.progress-ring-fill');
+      if (fill) fill.style.strokeDashoffset = offset;
+    });
   }
 
   // Carte "Audit patrimonial" — agrège tous les cas
