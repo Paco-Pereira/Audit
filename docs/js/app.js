@@ -326,9 +326,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const mainEl = document.getElementById('main-scroll');
 
+  // Reading progress bar
+  var readingFill = document.getElementById('readingProgressFill');
+
   if (mainEl) {
     let scrollSpyTimer = null;
     mainEl.addEventListener('scroll', () => {
+      // Update reading progress bar
+      if (readingFill) {
+        var pct = mainEl.scrollHeight > mainEl.clientHeight
+          ? (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100
+          : 0;
+        readingFill.style.width = Math.min(100, pct) + '%';
+      }
+
       if (scrollSpyTimer) return;
       scrollSpyTimer = requestAnimationFrame(() => {
         scrollSpyTimer = null;
@@ -447,10 +458,60 @@ const tabNames = {
   'fiscalite-int': '🌍 Fiscalité Internationale'
 };
 
+// Search history
+var SEARCH_HISTORY_KEY = 'gip-searchHistory';
+function getSearchHistory() {
+  try { return JSON.parse(localStorage.getItem(SEARCH_HISTORY_KEY)) || []; } catch(e) { return []; }
+}
+function saveSearchHistory(history) {
+  try { localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(history.slice(0, 5))); } catch(e) {}
+}
+function addToSearchHistory(query) {
+  var history = getSearchHistory().filter(function(h) { return h !== query; });
+  history.unshift(query);
+  saveSearchHistory(history);
+}
+function showSearchHistory() {
+  var history = getSearchHistory();
+  if (history.length === 0) return;
+  searchResults.innerHTML =
+    '<div class="search-history-header">Recherches récentes</div>' +
+    history.map(function(h, i) {
+      return '<div class="search-history-item" data-query="' + h.replace(/"/g, '&quot;') + '">' +
+        '<span class="search-history-icon">🕐</span>' +
+        '<span class="search-history-text">' + h + '</span>' +
+        '<button class="search-history-remove" data-idx="' + i + '" title="Supprimer">✕</button>' +
+        '</div>';
+    }).join('');
+  searchResults.classList.add('active');
+
+  searchResults.querySelectorAll('.search-history-item').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      if (e.target.classList.contains('search-history-remove')) return;
+      searchInput.value = item.getAttribute('data-query');
+      searchInput.dispatchEvent(new Event('input'));
+    });
+  });
+  searchResults.querySelectorAll('.search-history-remove').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var history = getSearchHistory();
+      history.splice(parseInt(btn.getAttribute('data-idx')), 1);
+      saveSearchHistory(history);
+      showSearchHistory();
+      if (history.length === 0) searchResults.classList.remove('active');
+    });
+  });
+}
+
+searchInput && searchInput.addEventListener('focus', function() {
+  if (this.value.trim().length < 2) showSearchHistory();
+});
+
 searchInput && searchInput.addEventListener('input', function() {
   const query = this.value.trim().toLowerCase();
   if (query.length < 2) {
-    searchResults.classList.remove('active');
+    showSearchHistory();
     return;
   }
 
@@ -507,6 +568,7 @@ searchInput && searchInput.addEventListener('input', function() {
 
 function goToSearch(tab, sectionId) {
   const query = searchInput.value.trim();
+  if (query.length >= 2) addToSearchHistory(query);
   switchCase(tab);
   searchResults.classList.remove('active');
   searchInput.value = '';
@@ -974,6 +1036,8 @@ function toggleSectionRead(caseName, sectionId, checkEl) {
   }
   saveProgress(progress);
   updateProgressBar(caseName);
+  // Trigger milestone check
+  if (typeof checkMilestone === 'function') checkMilestone(caseName);
 }
 
 function updateProgressBar(caseName) {
@@ -1355,6 +1419,72 @@ function timeAgo(ts) {
       }, 8000);
     }
   } catch(e) {}
+
+// ============ BOUTON COPIER SUR LES CALC-BLOCKS ============
+(function() {
+  document.querySelectorAll('.calc-block').forEach(function(block) {
+    var btn = document.createElement('button');
+    btn.className = 'calc-copy-btn';
+    btn.textContent = 'Copier';
+    btn.setAttribute('aria-label', 'Copier le calcul');
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var text = block.textContent.replace('Copier', '').trim();
+      navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = 'Copié !';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copier';
+          btn.classList.remove('copied');
+        }, 1500);
+      }).catch(function() {
+        // Fallback
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        btn.textContent = 'Copié !';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copier';
+          btn.classList.remove('copied');
+        }, 1500);
+      });
+    });
+    block.appendChild(btn);
+  });
+})();
+
+// ============ MILESTONES DE PROGRESSION ============
+var MILESTONE_KEY = 'gip-milestones';
+var milestoneMessages = { 25: 'Bien parti !', 50: 'A mi-chemin !', 75: 'Presque fini !', 100: 'Terminé !' };
+
+function checkMilestone(caseName) {
+  var total = document.querySelectorAll('#sidebar-' + caseName + ' .check-read').length;
+  if (total === 0) return;
+  var progress = getProgress();
+  var done = (progress[caseName] || []).length;
+  var pct = Math.round((done / total) * 100);
+
+  var reached;
+  try { reached = JSON.parse(localStorage.getItem(MILESTONE_KEY)) || {}; } catch(e) { reached = {}; }
+  if (!reached[caseName]) reached[caseName] = [];
+
+  [25, 50, 75, 100].forEach(function(m) {
+    if (pct >= m && reached[caseName].indexOf(m) === -1) {
+      reached[caseName].push(m);
+      try { localStorage.setItem(MILESTONE_KEY, JSON.stringify(reached)); } catch(e) {}
+      var toast = document.createElement('div');
+      toast.className = 'milestone-toast';
+      toast.textContent = m + '% — ' + milestoneMessages[m];
+      document.body.appendChild(toast);
+      setTimeout(function() { toast.remove(); }, 2800);
+    }
+  });
+}
 
 // ============ QCM INTERACTIFS — Score, progression, sauvegarde ============
 (function() {
