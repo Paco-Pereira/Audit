@@ -592,10 +592,16 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-tertiary);
-  padding: 20px 12px 8px;
-  margin-top: 8px;
+  letter-spacing: 1.2px;
+  color: var(--primary);
+  padding: 14px 12px 6px;
+  margin-top: 10px;
+  border-top: 1px solid var(--glass-border);
+  opacity: 0.8;
+}
+.sidebar-label:first-child {
+  border-top: none;
+  margin-top: 0;
 }
 
 .sidebar-item {
@@ -642,19 +648,32 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 24px;
-  height: 24px;
+  min-width: 26px;
+  height: 26px;
   background: var(--gold-light);
   color: var(--gold);
-  border-radius: 7px;
+  border-radius: 8px;
   font-size: 11px;
   font-weight: 700;
   flex-shrink: 0;
   font-family: var(--font-display);
+  border: 1px solid rgba(186, 155, 95, 0.2);
+}
+
+/* Progress chips dans le sidebar */
+.sidebar-item .progress-chip {
+  font-size: 8px;
+  padding: 2px 6px;
+  margin: 0;
+  margin-left: auto;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
 }
 
 .sidebar-sub {
-  padding-left: 20px;
+  padding-left: 0;
+  margin-left: 22px;
+  border-left: 2px solid rgba(186, 155, 95, 0.15);
   overflow: hidden;
   max-height: 500px;
   transition: max-height 0.3s ease, opacity 0.3s ease;
@@ -676,13 +695,29 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 
 .sidebar-sub .sidebar-item {
   font-size: 12px;
-  min-height: 34px;
-  padding: 6px 12px;
-  color: var(--text-tertiary);
+  min-height: 32px;
+  padding: 6px 10px 6px 14px;
+  color: var(--sidebar-text);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+.sidebar-sub .sidebar-item::before {
+  display: none;
 }
 
 .sidebar-sub .sidebar-item:hover {
-  color: var(--text-light);
+  color: var(--sidebar-text-active);
+  background: var(--sidebar-hover);
+}
+
+.sidebar-sub .sidebar-item.active {
+  color: var(--sidebar-text-active);
+  background: var(--sidebar-active);
+  font-weight: 600;
+  margin-left: -2px;
+  padding-left: 16px;
+  border-left: 2px solid var(--gold);
 }
 
 /* ============================================================================
