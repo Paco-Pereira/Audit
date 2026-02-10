@@ -171,6 +171,137 @@ body.light-mode details .inner {
   border-top-color: rgba(0, 0, 0, 0.06);
 }
 
+/* Light mode — Tabs */
+body.light-mode .tab {
+  color: var(--text-light);
+}
+body.light-mode .tab:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text);
+}
+body.light-mode .tab.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* Light mode — Header buttons */
+body.light-mode .header-github,
+body.light-mode .header-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-light);
+}
+body.light-mode .header-github:hover,
+body.light-mode .header-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Light mode — Search results */
+body.light-mode .search-results {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-liquid-lg);
+}
+body.light-mode .search-result-item:hover,
+body.light-mode .search-result-item.active {
+  background: rgba(150, 120, 60, 0.08);
+}
+
+/* Light mode — Cards */
+body.light-mode .card::before,
+body.light-mode .glass-card::before,
+body.light-mode .home-card::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+}
+body.light-mode .home-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-liquid-lg);
+}
+body.light-mode .home-card-badge {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Light mode — Flashcard filters */
+body.light-mode .fc-filter {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-light);
+}
+body.light-mode .fc-filter:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text);
+}
+body.light-mode .fc-filter.active {
+  background: var(--primary-light);
+  border-color: rgba(186, 155, 95, 0.3);
+  color: var(--primary);
+}
+body.light-mode .fc-shuffle-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-light);
+}
+
+/* Light mode — Alerts */
+body.light-mode .alert {
+  box-shadow: var(--shadow-liquid-sm);
+}
+
+/* Light mode — Scrollbar */
+body.light-mode ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* Light mode — Resume banner */
+body.light-mode .resume-banner {
+  background: rgba(255, 255, 255, 0.92);
+  border-top-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Light mode — Scroll to top */
+body.light-mode .scroll-top-btn {
+  background: rgba(255, 255, 255, 0.90);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text);
+  box-shadow: var(--shadow-liquid-md);
+}
+
+/* ============================================================================
+   FOCUS-VISIBLE STATES
+   ============================================================================ */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.tab:focus-visible,
+.sidebar-item:focus-visible,
+.header-btn:focus-visible,
+.fc-filter:focus-visible,
+.fc-shuffle-btn:focus-visible,
+.resume-btn:focus-visible,
+.resume-close:focus-visible,
+.scroll-top-btn:focus-visible,
+.search-result-item:focus-visible,
+.sidebar-toggle-btn:focus-visible,
+.sidebar-expand-btn:focus-visible,
+.sidebar-collapse-btn:focus-visible,
+.home-card:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(186, 155, 95, 0.2);
+}
+.search-input:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(186, 155, 95, 0.15);
+}
+
 /* ============================================================================
    GLOBAL RESET
    ============================================================================ */
@@ -3556,7 +3687,7 @@ body.exam-mode #examToggle {
 <body>
 
 <!-- ============ LOCKSCREEN ============ -->
-<div id="lockscreen" style="
+<div id="lockscreen" role="dialog" aria-modal="true" aria-label="Écran de verrouillage" style="
   position: fixed; inset: 0; z-index: 99999;
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
@@ -3651,39 +3782,39 @@ body.exam-mode #examToggle {
 </script>
 
 <!-- ============ HEADER ============ -->
-<div class="header">
-  <div class="header-logo" onclick="switchCase('home')" style="cursor:pointer">
+<header class="header" role="banner">
+  <div class="header-logo" onclick="switchCase('home')" style="cursor:pointer" role="button" tabindex="0" aria-label="Retour à l'accueil">
     <div class="icon">🎓</div>
     <span>M2 - GIP</span>
   </div>
   <div class="header-right">
     <span class="header-badge">Master 2 — 2025-2026</span>
     <!-- Search -->
-<div class="search-container">
-  <span class="search-icon">🔍</span>
-  <input type="text" class="search-input" id="searchInput" placeholder="Rechercher (Ctrl+K)" autocomplete="off">
-  <div class="search-results" id="searchResults"></div>
+<div class="search-container" role="search" aria-label="Recherche">
+  <span class="search-icon" aria-hidden="true">🔍</span>
+  <input type="text" class="search-input" id="searchInput" placeholder="Rechercher (Ctrl+K)" autocomplete="off" aria-label="Rechercher dans les cours" aria-autocomplete="list" aria-controls="searchResults">
+  <div class="search-results" id="searchResults" role="listbox" aria-label="Résultats de recherche"></div>
 </div>
 
 <!-- Exam mode toggle -->
-<button class="header-btn" id="examToggle" onclick="toggleExamMode()" title="Mode examen">📝</button>
+<button class="header-btn" id="examToggle" onclick="toggleExamMode()" title="Mode examen" aria-label="Mode examen"><span aria-hidden="true">📝</span></button>
 
 <!-- Dark mode toggle -->
-<button class="header-btn" id="darkToggle" onclick="toggleDarkMode()" title="Mode sombre">🌙</button>
+<button class="header-btn" id="darkToggle" onclick="toggleDarkMode()" title="Mode sombre" aria-label="Mode sombre"><span aria-hidden="true">🌙</span></button>
 
 <!-- Print button -->
-<button class="header-btn" onclick="window.print()" title="Imprimer">🖨️</button>
+<button class="header-btn" onclick="window.print()" title="Imprimer" aria-label="Imprimer"><span aria-hidden="true">🖨️</span></button>
   </div>
-</div>
+</header>
 
 <!-- ============ TAB BAR ============ -->
-<div class="tab-bar" id="tabBar" style="display:none">
-  <div class="tab" data-case="home" onclick="switchCase('home')" style="margin-right:4px;">
-    <span class="tab-icon">🏠</span>
+<nav class="tab-bar" id="tabBar" style="display:none" role="tablist" aria-label="Navigation principale">
+  <div class="tab" data-case="home" onclick="switchCase('home')" style="margin-right:4px;" role="tab" tabindex="0" aria-selected="false">
+    <span class="tab-icon" aria-hidden="true">🏠</span>
     <span>Cours</span>
   </div>
-  <div class="tab active" data-case="audit" onclick="switchCase('audit')" style="margin-right:4px;">
-    <span class="tab-icon">📊</span>
+  <div class="tab active" data-case="audit" onclick="switchCase('audit')" style="margin-right:4px;" role="tab" tabindex="0" aria-selected="true">
+    <span class="tab-icon" aria-hidden="true">📊</span>
     <span>Audit</span>
   </div>
   <div class="tab-divider"></div>
@@ -3746,20 +3877,20 @@ body.exam-mode #examToggle {
       <span>Formules</span>
     </div>
   </div>
-</div>
+</nav>
 
-<button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Ouvrir le menu">☰</button>
+<button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Ouvrir le menu" aria-label="Ouvrir le menu latéral" aria-expanded="false" aria-controls="sidebar">☰</button>
 
 <!-- Floating expand button (visible when sidebar collapsed) -->
-<button class="sidebar-expand-btn" id="sidebarExpandBtn" onclick="collapseSidebar()" title="Afficher le menu">☰</button>
+<button class="sidebar-expand-btn" id="sidebarExpandBtn" onclick="collapseSidebar()" title="Afficher le menu" aria-label="Afficher le menu latéral" aria-controls="sidebar">☰</button>
 
 <!-- ============ APP BODY ============ -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <div class="app-body">
 
   <!-- ===== SIDEBAR ===== -->
-  <nav class="sidebar" id="sidebar" style="display:none">
-    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="collapseSidebar()" title="Rétracter le menu">◀</button>
+  <nav class="sidebar" id="sidebar" style="display:none" aria-label="Sommaire du cas">
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="collapseSidebar()" title="Rétracter le menu" aria-label="Rétracter le menu latéral">◀</button>
     <!-- Snow sidebar -->
     <div id="sidebar-snow">
       <div class="sidebar-label">Plan de l'examen</div>
@@ -30864,18 +30995,18 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 </div>
 
 <!-- ============ BANDEAU REPRENDRE ============ -->
-<div class="resume-banner" id="resumeBanner" style="display:none">
+<div class="resume-banner" id="resumeBanner" style="display:none" role="status" aria-live="polite">
   <span class="resume-text" id="resumeText"></span>
-  <button class="resume-btn" id="resumeBtn">Reprendre</button>
-  <button class="resume-close" id="resumeClose" title="Fermer">✕</button>
+  <button class="resume-btn" id="resumeBtn" aria-label="Reprendre la lecture">Reprendre</button>
+  <button class="resume-close" id="resumeClose" title="Fermer" aria-label="Fermer le bandeau">✕</button>
 </div>
 
 <!-- ============ OVERLAY RACCOURCIS CLAVIER ============ -->
-<div class="shortcuts-overlay" id="shortcutsOverlay" style="display:none" onclick="this.style.display='none'">
+<div class="shortcuts-overlay" id="shortcutsOverlay" style="display:none" onclick="this.style.display='none'" role="dialog" aria-modal="true" aria-label="Raccourcis clavier">
   <div class="shortcuts-modal" onclick="event.stopPropagation()">
     <div class="shortcuts-header">
       <h3>Raccourcis clavier</h3>
-      <button class="shortcuts-close" onclick="document.getElementById('shortcutsOverlay').style.display='none'">✕</button>
+      <button class="shortcuts-close" onclick="document.getElementById('shortcutsOverlay').style.display='none'" aria-label="Fermer">✕</button>
     </div>
     <div class="shortcuts-grid">
       <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>K</kbd><span>Rechercher</span></div>
@@ -30896,7 +31027,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 </div>
 
 <!-- ============ BOUTON SCROLL TO TOP ============ -->
-<button class="scroll-top-btn" id="scrollTopBtn" title="Remonter en haut">↑</button>
+<button class="scroll-top-btn" id="scrollTopBtn" title="Remonter en haut" aria-label="Remonter en haut de la page">↑</button>
 
 <!-- ============ JAVASCRIPT ============ -->
 <script>

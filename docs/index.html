@@ -8,7 +8,7 @@
 <body>
 
 <!-- ============ LOCKSCREEN ============ -->
-<div id="lockscreen" style="
+<div id="lockscreen" role="dialog" aria-modal="true" aria-label="Écran de verrouillage" style="
   position: fixed; inset: 0; z-index: 99999;
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
@@ -50,39 +50,39 @@
 
 
 <!-- ============ HEADER ============ -->
-<div class="header">
-  <div class="header-logo" onclick="switchCase('home')" style="cursor:pointer">
+<header class="header" role="banner">
+  <div class="header-logo" onclick="switchCase('home')" style="cursor:pointer" role="button" tabindex="0" aria-label="Retour à l'accueil">
     <div class="icon">🎓</div>
     <span>M2 - GIP</span>
   </div>
   <div class="header-right">
     <span class="header-badge">Master 2 — 2025-2026</span>
     <!-- Search -->
-<div class="search-container">
-  <span class="search-icon">🔍</span>
-  <input type="text" class="search-input" id="searchInput" placeholder="Rechercher (Ctrl+K)" autocomplete="off">
-  <div class="search-results" id="searchResults"></div>
+<div class="search-container" role="search" aria-label="Recherche">
+  <span class="search-icon" aria-hidden="true">🔍</span>
+  <input type="text" class="search-input" id="searchInput" placeholder="Rechercher (Ctrl+K)" autocomplete="off" aria-label="Rechercher dans les cours" aria-autocomplete="list" aria-controls="searchResults">
+  <div class="search-results" id="searchResults" role="listbox" aria-label="Résultats de recherche"></div>
 </div>
 
 <!-- Exam mode toggle -->
-<button class="header-btn" id="examToggle" onclick="toggleExamMode()" title="Mode examen">📝</button>
+<button class="header-btn" id="examToggle" onclick="toggleExamMode()" title="Mode examen" aria-label="Mode examen"><span aria-hidden="true">📝</span></button>
 
 <!-- Dark mode toggle -->
-<button class="header-btn" id="darkToggle" onclick="toggleDarkMode()" title="Mode sombre">🌙</button>
+<button class="header-btn" id="darkToggle" onclick="toggleDarkMode()" title="Mode sombre" aria-label="Mode sombre"><span aria-hidden="true">🌙</span></button>
 
 <!-- Print button -->
-<button class="header-btn" onclick="window.print()" title="Imprimer">🖨️</button>
+<button class="header-btn" onclick="window.print()" title="Imprimer" aria-label="Imprimer"><span aria-hidden="true">🖨️</span></button>
   </div>
-</div>
+</header>
 
 <!-- ============ TAB BAR ============ -->
-<div class="tab-bar" id="tabBar" style="display:none">
-  <div class="tab" data-case="home" onclick="switchCase('home')" style="margin-right:4px;">
-    <span class="tab-icon">🏠</span>
+<nav class="tab-bar" id="tabBar" style="display:none" role="tablist" aria-label="Navigation principale">
+  <div class="tab" data-case="home" onclick="switchCase('home')" style="margin-right:4px;" role="tab" tabindex="0" aria-selected="false">
+    <span class="tab-icon" aria-hidden="true">🏠</span>
     <span>Cours</span>
   </div>
-  <div class="tab active" data-case="audit" onclick="switchCase('audit')" style="margin-right:4px;">
-    <span class="tab-icon">📊</span>
+  <div class="tab active" data-case="audit" onclick="switchCase('audit')" style="margin-right:4px;" role="tab" tabindex="0" aria-selected="true">
+    <span class="tab-icon" aria-hidden="true">📊</span>
     <span>Audit</span>
   </div>
   <div class="tab-divider"></div>
@@ -145,20 +145,20 @@
       <span>Formules</span>
     </div>
   </div>
-</div>
+</nav>
 
-<button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Ouvrir le menu">☰</button>
+<button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Ouvrir le menu" aria-label="Ouvrir le menu latéral" aria-expanded="false" aria-controls="sidebar">☰</button>
 
 <!-- Floating expand button (visible when sidebar collapsed) -->
-<button class="sidebar-expand-btn" id="sidebarExpandBtn" onclick="collapseSidebar()" title="Afficher le menu">☰</button>
+<button class="sidebar-expand-btn" id="sidebarExpandBtn" onclick="collapseSidebar()" title="Afficher le menu" aria-label="Afficher le menu latéral" aria-controls="sidebar">☰</button>
 
 <!-- ============ APP BODY ============ -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <div class="app-body">
 
   <!-- ===== SIDEBAR ===== -->
-  <nav class="sidebar" id="sidebar" style="display:none">
-    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="collapseSidebar()" title="Rétracter le menu">◀</button>
+  <nav class="sidebar" id="sidebar" style="display:none" aria-label="Sommaire du cas">
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="collapseSidebar()" title="Rétracter le menu" aria-label="Rétracter le menu latéral">◀</button>
     <!-- Snow sidebar -->
     
 
@@ -530,18 +530,18 @@
 </div>
 
 <!-- ============ BANDEAU REPRENDRE ============ -->
-<div class="resume-banner" id="resumeBanner" style="display:none">
+<div class="resume-banner" id="resumeBanner" style="display:none" role="status" aria-live="polite">
   <span class="resume-text" id="resumeText"></span>
-  <button class="resume-btn" id="resumeBtn">Reprendre</button>
-  <button class="resume-close" id="resumeClose" title="Fermer">✕</button>
+  <button class="resume-btn" id="resumeBtn" aria-label="Reprendre la lecture">Reprendre</button>
+  <button class="resume-close" id="resumeClose" title="Fermer" aria-label="Fermer le bandeau">✕</button>
 </div>
 
 <!-- ============ OVERLAY RACCOURCIS CLAVIER ============ -->
-<div class="shortcuts-overlay" id="shortcutsOverlay" style="display:none" onclick="this.style.display='none'">
+<div class="shortcuts-overlay" id="shortcutsOverlay" style="display:none" onclick="this.style.display='none'" role="dialog" aria-modal="true" aria-label="Raccourcis clavier">
   <div class="shortcuts-modal" onclick="event.stopPropagation()">
     <div class="shortcuts-header">
       <h3>Raccourcis clavier</h3>
-      <button class="shortcuts-close" onclick="document.getElementById('shortcutsOverlay').style.display='none'">✕</button>
+      <button class="shortcuts-close" onclick="document.getElementById('shortcutsOverlay').style.display='none'" aria-label="Fermer">✕</button>
     </div>
     <div class="shortcuts-grid">
       <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>K</kbd><span>Rechercher</span></div>
@@ -562,7 +562,7 @@
 </div>
 
 <!-- ============ BOUTON SCROLL TO TOP ============ -->
-<button class="scroll-top-btn" id="scrollTopBtn" title="Remonter en haut">↑</button>
+<button class="scroll-top-btn" id="scrollTopBtn" title="Remonter en haut" aria-label="Remonter en haut de la page">↑</button>
 
 <!-- ============ JAVASCRIPT ============ -->
 
