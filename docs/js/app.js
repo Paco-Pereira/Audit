@@ -61,10 +61,14 @@ function switchCase(caseName) {
   const expandBtn = document.getElementById('sidebarExpandBtn');
 
   // Update tabs
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.remove('active');
+    if (t.hasAttribute('aria-selected')) t.setAttribute('aria-selected', 'false');
+  });
   const targetTab = document.querySelector(`.tab[data-case="${caseName}"]`);
   if (targetTab) {
     targetTab.classList.add('active');
+    if (targetTab.hasAttribute('aria-selected')) targetTab.setAttribute('aria-selected', 'true');
     targetTab.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
   }
 
@@ -170,6 +174,12 @@ function enterCourse(courseName) {
     }).catch(function(err) {
       if (spinner) spinner.style.display = 'none';
       console.error('Erreur chargement ' + courseName + ':', err);
+      var toast = document.createElement('div');
+      toast.className = 'alert alert-danger';
+      toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:9999;max-width:380px;animation:fadeIn 0.2s ease;';
+      toast.innerHTML = '<span class="alert-icon">\u26a0\ufe0f</span><div><strong>Erreur de chargement</strong><br>Impossible de charger le contenu. V\u00e9rifiez votre connexion et r\u00e9essayez.</div>';
+      document.body.appendChild(toast);
+      setTimeout(function() { toast.remove(); }, 5000);
     });
   } else {
     switchCase(courseName);

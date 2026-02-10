@@ -555,10 +555,10 @@
 </div>
 
 <!-- ============ EXAM TIMER ============ -->
-<div class="exam-timer" id="examTimer" style="display:none">
+<div class="exam-timer" id="examTimer" style="display:none" role="timer" aria-live="polite" aria-atomic="true">
   <div class="exam-timer-label">Mode Examen</div>
-  <div class="exam-timer-time" id="examTimerTime">0:00</div>
-  <button class="exam-timer-stop" onclick="toggleExamMode()">Terminer</button>
+  <div class="exam-timer-time" id="examTimerTime" aria-label="Temps écoulé">0:00</div>
+  <button class="exam-timer-stop" onclick="toggleExamMode()" aria-label="Terminer le mode examen">Terminer</button>
 </div>
 
 <!-- ============ BOUTON SCROLL TO TOP ============ -->

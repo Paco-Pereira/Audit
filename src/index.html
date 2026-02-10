@@ -326,6 +326,7 @@ body {
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
@@ -477,6 +478,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   display: flex;
   align-items: center;
   overflow-x: auto;
+  scroll-behavior: smooth;
   padding: 0 24px;
   gap: 6px;
   position: relative;
@@ -574,6 +576,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-light);
   color: var(--primary);
   border-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(-2px);
 }
 
 /* Collapsed state */
@@ -2117,12 +2120,14 @@ button:focus-visible,
   .tab-bar {
     padding: 0 14px;
     gap: 4px;
+    scroll-snap-type: x proximity;
   }
 
   .tab {
     height: 30px;
     padding: 0 10px;
     font-size: 12px;
+    scroll-snap-align: start;
   }
 
   .main {
@@ -3133,9 +3138,10 @@ button:focus-visible,
 .home-card.card-fiscalite-int { --card-accent: #30d158; }
 
 .home-card.card-disabled {
-  opacity: 0.45;
-  cursor: default;
+  opacity: 0.4;
+  cursor: not-allowed;
   pointer-events: none;
+  filter: grayscale(0.3);
 }
 .home-card.card-disabled:hover {
   transform: none;
@@ -31020,10 +31026,10 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 </div>
 
 <!-- ============ EXAM TIMER ============ -->
-<div class="exam-timer" id="examTimer" style="display:none">
+<div class="exam-timer" id="examTimer" style="display:none" role="timer" aria-live="polite" aria-atomic="true">
   <div class="exam-timer-label">Mode Examen</div>
-  <div class="exam-timer-time" id="examTimerTime">0:00</div>
-  <button class="exam-timer-stop" onclick="toggleExamMode()">Terminer</button>
+  <div class="exam-timer-time" id="examTimerTime" aria-label="Temps écoulé">0:00</div>
+  <button class="exam-timer-stop" onclick="toggleExamMode()" aria-label="Terminer le mode examen">Terminer</button>
 </div>
 
 <!-- ============ BOUTON SCROLL TO TOP ============ -->
@@ -31038,10 +31044,14 @@ function switchCase(caseName) {
   const expandBtn = document.getElementById('sidebarExpandBtn');
 
   // Update tabs
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.remove('active');
+    if (t.hasAttribute('aria-selected')) t.setAttribute('aria-selected', 'false');
+  });
   const targetTab = document.querySelector(`.tab[data-case="${caseName}"]`);
   if (targetTab) {
     targetTab.classList.add('active');
+    if (targetTab.hasAttribute('aria-selected')) targetTab.setAttribute('aria-selected', 'true');
     targetTab.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
   }
 
@@ -31147,6 +31157,12 @@ function enterCourse(courseName) {
     }).catch(function(err) {
       if (spinner) spinner.style.display = 'none';
       console.error('Erreur chargement ' + courseName + ':', err);
+      var toast = document.createElement('div');
+      toast.className = 'alert alert-danger';
+      toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:9999;max-width:380px;animation:fadeIn 0.2s ease;';
+      toast.innerHTML = '<span class="alert-icon">\u26a0\ufe0f</span><div><strong>Erreur de chargement</strong><br>Impossible de charger le contenu. V\u00e9rifiez votre connexion et r\u00e9essayez.</div>';
+      document.body.appendChild(toast);
+      setTimeout(function() { toast.remove(); }, 5000);
     });
   } else {
     switchCase(courseName);
