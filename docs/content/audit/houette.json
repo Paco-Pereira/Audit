@@ -6,116 +6,129 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "houette-intro",
+        "label": "Vue d'ensemble",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s1",
+        "label": "Bilan patrimonial",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s1-stocks",
+        "label": "Tableau des stocks"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s1-commentaires",
+        "label": "Commentaires"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s2",
+        "label": "Micro BIC vs Micro Foncier",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s3",
+        "label": "PV CTO — PFU vs IR",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s3-pfu",
+        "label": "Option PFU"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s3-ir",
+        "label": "Option IR"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s4",
+        "label": "Calcul IR + Malraux + IFI",
+        "num": "4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s4-ir",
+        "label": "Nouvel IR 2027"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s4-malraux",
+        "label": "Réduction Malraux"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s4-ifi",
+        "label": "Calcul IFI"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s5",
+        "label": "PER — Disponible fiscal",
+        "num": "5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s6",
+        "label": "Donation grands-parents → Tim",
+        "num": "6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-e62-intro",
+        "label": "Bilan 2046",
+        "num": "📊"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s7",
+        "label": "DDS — Succession Mr",
+        "num": "7"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s7-tableau",
+        "label": "Tableau DDS"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s7-analyse",
+        "label": "Analyse & options"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s8",
+        "label": "Réduction pression fiscale",
+        "num": "8"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s9",
+        "label": "PV Malraux + Donation Tim",
+        "num": "9"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s9-pv",
+        "label": "Calcul PV immobilière"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s9-donation",
+        "label": "Donation avec prise en charge"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s10",
+        "label": "Réinvestissement 800k€",
+        "num": "10"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s10-multi",
+        "label": "Stratégie multi-contrats"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s10-amelio",
+        "label": "Amélioration + Capi"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s11",
+        "label": "Transmission NP Cortina",
+        "num": "11"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s11-droits",
+        "label": "Calcul des droits"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "houette-s11-transgen",
+        "label": "Donation transgénérationnelle"
       }
     ]
   },

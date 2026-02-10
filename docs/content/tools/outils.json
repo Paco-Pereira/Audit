@@ -6,204 +6,213 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "out-s1",
+        "label": "Méthodologie Exam",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s1-stocks",
+        "label": "Tableau des Stocks"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s1-flux",
+        "label": "Flux d'Activité"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s1-retraite",
+        "label": "Flux de Retraite"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s2",
+        "label": "Assurance Vie",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s2-rachats",
+        "label": "Fiscalité rachats"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s2-deces",
+        "label": "Fiscalité décès"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s2-clause",
+        "label": "Clause bénéficiaire"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s2-strat",
+        "label": "Stratégies AV"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s2-comp",
+        "label": "Comparatif PER/AV/Capi"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s3",
+        "label": "Donations & Succession",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s3-cjs",
+        "label": "Droits CJS"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s3-reserve",
+        "label": "Réserve héréditaire"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s3-deMemb",
+        "label": "Démembrement 669"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s3-abatt",
+        "label": "Abattements DMTG"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s3-bareme",
+        "label": "Barème DDS"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s4",
+        "label": "Techniques Donation",
+        "num": "4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s4-dac",
+        "label": "Donation avant cession"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s4-np",
+        "label": "Donation NP 669-1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s4-temp",
+        "label": "Donation temporaire US"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s4-trans",
+        "label": "Transgénérationnelle"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s4-sci",
+        "label": "Parts SCI NP"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s5",
+        "label": "Immobilier Défiscalisation",
+        "num": "5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s5-pinel",
+        "label": "Pinel / Pinel+"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s5-malraux",
+        "label": "Malraux"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s5-mh",
+        "label": "Monuments Historiques"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s5-deficit",
+        "label": "Déficit Foncier"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s5-recap",
+        "label": "Tableau comparatif"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s6",
+        "label": "Régimes Matrimoniaux",
+        "num": "6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s6-regimes",
+        "label": "Comparatif régimes"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s6-am",
+        "label": "Avantages matrimoniaux"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s6-pacs",
+        "label": "PACS vs Mariage"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s7",
+        "label": "Fiscalité Patrimoniale",
+        "num": "7"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s7-ir",
+        "label": "Barème IR"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s7-pfu",
+        "label": "PFU / Flat Tax"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s7-ps",
+        "label": "Prélèvements Sociaux"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s7-ifi",
+        "label": "IFI"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s7-pvi",
+        "label": "Plus-values immo"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s7-niches",
+        "label": "Niches fiscales"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s8",
+        "label": "Retraite & PER",
+        "num": "8"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s8-per",
+        "label": "Le PER"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s8-sortie",
+        "label": "Sortie du PER"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s8-strat",
+        "label": "Stratégie PER"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s8-taux",
+        "label": "Taux de remplacement"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s9",
+        "label": "Régimes Immobiliers",
+        "num": "9"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s9-nue",
+        "label": "Location Nue"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s9-meuble",
+        "label": "Location Meublée"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s9-lmnp-lmp",
+        "label": "LMNP vs LMP"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s9-np",
+        "label": "Nue-Propriété"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "out-s9-defis",
+        "label": "Dispositifs défiscalisation"
       }
     ]
   },

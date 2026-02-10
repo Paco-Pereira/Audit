@@ -6,72 +6,82 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "snow-intro",
+        "label": "Vue d'ensemble",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s1",
+        "label": "Situation du client",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s2",
+        "label": "Documents requis",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s3",
+        "label": "Tableau des STOCKS",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s3-ifi",
+        "label": "IFI — barème détaillé"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s4",
+        "label": "Flux — Calculs fiscaux",
+        "num": "4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s4-ir",
+        "label": "IR tranche par tranche"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s4-ps",
+        "label": "PS — 17,2% vs 18,6%"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s4-pfu",
+        "label": "PFU dividendes"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s4-recap",
+        "label": "Récap. charges"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s4-solde",
+        "label": "Solde & épargne"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s4-ret",
+        "label": "Projection retraite"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s5",
+        "label": "DDS — Succession",
+        "num": "5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s6",
+        "label": "Constats",
+        "num": "6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s7",
+        "label": "Préconisations",
+        "num": "7"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-s8",
+        "label": "Synthèse examen",
+        "num": "8"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "snow-memo",
+        "label": "Mémo Express",
+        "num": "📋"
       }
     ]
   },

@@ -6,68 +6,78 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "meng-intro",
+        "label": "Vue d'ensemble",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s1",
+        "label": "Situation du client",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s2",
+        "label": "Tableau des STOCKS",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s3",
+        "label": "Flux Activité",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s3-ir",
+        "label": "IR — calcul détaillé"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s3-couple",
+        "label": "Flux couple (PACS)"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s3-solde",
+        "label": "Solde & épargne"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s4",
+        "label": "Projection Retraite",
+        "num": "4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s5",
+        "label": "Constats",
+        "num": "5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s6",
+        "label": "Préconisations",
+        "num": "6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s6-endet",
+        "label": "Cap. d'endettement"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s6-epargne",
+        "label": "Cap. d'épargne (PER)"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s6-arb",
+        "label": "Arbitrage CTO → PEA"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s7",
+        "label": "Synthèse après précos",
+        "num": "7"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "meng-s8",
+        "label": "Bilan final N+15",
+        "num": "8"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mengere-memo",
+        "label": "Mémo Express",
+        "num": "📋"
       }
     ]
   },

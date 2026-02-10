@@ -6,84 +6,104 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "niote-intro",
+        "label": "Vue d'ensemble",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-situation",
+        "label": "Situation",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-patrimoine",
+        "label": "Patrimoine",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q1",
+        "label": "Micro BIC 2025",
+        "num": "Q1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q2",
+        "label": "IR actuel",
+        "num": "Q2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q3",
+        "label": "PV CTO",
+        "num": "Q3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q4",
+        "label": "IR 2028",
+        "num": "Q4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q5",
+        "label": "Capacité endettement",
+        "num": "Q5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q6",
+        "label": "IFI 2028",
+        "num": "Q6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q7",
+        "label": "Investissement locatif",
+        "num": "Q7"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q8",
+        "label": "PER disponible",
+        "num": "Q8"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q9",
+        "label": "Cumul PER + Denormandie",
+        "num": "Q9"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-q10",
+        "label": "Bilan 01/01/2027",
+        "num": "Q10"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-p2-q1",
+        "label": "Bilan successoral",
+        "num": "Q1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-p2-q2",
+        "label": "Solutions succession",
+        "num": "Q2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-p2-q3",
+        "label": "PV Denormandie",
+        "num": "Q3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-p2-q4",
+        "label": "Donation avec charges",
+        "num": "Q4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-p2-q5",
+        "label": "Grands-parents",
+        "num": "Q5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-p2-q6",
+        "label": "Gain loto 600k€",
+        "num": "Q6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "niote-memo",
+        "label": "Mémo Express",
+        "num": "📋"
       }
     ]
   },

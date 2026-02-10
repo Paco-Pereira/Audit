@@ -6,56 +6,63 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "mont-intro",
+        "label": "Introduction",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s1",
+        "label": "Donations",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s2",
+        "label": "Études enfants",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s3",
+        "label": "Retraite & investissement",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s3",
+        "label": "PER"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s3",
+        "label": "AV multicouche"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s3",
+        "label": "SCPI démembrée"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s4",
+        "label": "Protection CJS",
+        "num": "4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s4",
+        "label": "Quasi-usufruit"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s4",
+        "label": "Contrat capitalisation"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s4",
+        "label": "Réversion"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s5",
+        "label": "Transgénérationnelle",
+        "num": "5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "mont-s6",
+        "label": "Synthèse croisée",
+        "num": "📋"
       }
     ]
   },

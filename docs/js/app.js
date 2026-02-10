@@ -72,7 +72,50 @@ function switchCase(caseName) {
   const currentActive = document.querySelector('.case-content.active');
   const target = document.getElementById('case-' + caseName);
 
+  // Préparer le sidebar AVANT la transition
+  document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
+
+  if (caseName === 'home') {
+    if (tabBar) tabBar.style.display = 'none';
+    if (sidebarEl) sidebarEl.style.display = 'none';
+    if (expandBtn) expandBtn.classList.remove('visible');
+  } else if (caseName === 'audit') {
+    if (tabBar) tabBar.style.display = '';
+    if (sidebarEl) sidebarEl.style.display = 'none';
+    if (expandBtn) expandBtn.classList.remove('visible');
+  } else if (caseName === 'financement' || caseName === 'responsabilite' || caseName === 'fiscal' || caseName === 'droit' || caseName === 'marches' || caseName === 'transmission' || caseName === 'fiscalite-int') {
+    if (tabBar) tabBar.style.display = 'none';
+    if (sidebarEl) {
+      sidebarEl.style.display = '';
+      sidebarEl.classList.remove('collapsed');
+    }
+    if (expandBtn) expandBtn.classList.remove('visible');
+    const sidebar = document.getElementById('sidebar-' + caseName);
+    if (sidebar) {
+      sidebar.style.display = 'block';
+      // Auto-activer le premier item du sidebar
+      const firstItem = sidebar.querySelector('.sidebar-item[onclick]');
+      if (firstItem) {
+        sidebar.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+        firstItem.classList.add('active');
+      }
+    }
+  } else {
+    if (tabBar) tabBar.style.display = '';
+    if (sidebarEl) {
+      sidebarEl.style.display = '';
+      sidebarEl.classList.remove('collapsed');
+    }
+    if (expandBtn) expandBtn.classList.remove('visible');
+    const sidebar = document.getElementById('sidebar-' + caseName);
+    if (sidebar) sidebar.style.display = 'block';
+  }
+
+  // Transition du contenu — scrollTop APRÈS affichage
+  let targetShown = false;
   function showTarget() {
+    if (targetShown) return;
+    targetShown = true;
     document.querySelectorAll('.case-content').forEach(c => {
       c.classList.remove('active', 'fade-out');
       c.style.display = 'none';
@@ -81,54 +124,17 @@ function switchCase(caseName) {
       target.classList.add('active');
       target.style.display = 'block';
     }
+    // Scroll en haut APRÈS que le contenu est visible
+    document.getElementById('main-scroll').scrollTop = 0;
   }
 
   if (currentActive && currentActive !== target) {
     currentActive.classList.add('fade-out');
     currentActive.addEventListener('animationend', showTarget, { once: true });
-    // Fallback si animationend ne se déclenche pas
     setTimeout(showTarget, 200);
   } else {
     showTarget();
   }
-
-  // Update sidebar
-  document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
-
-  if (caseName === 'home') {
-    // Home M2-GIP: hide tab bar + sidebar
-    if (tabBar) tabBar.style.display = 'none';
-    if (sidebarEl) sidebarEl.style.display = 'none';
-    if (expandBtn) expandBtn.classList.remove('visible');
-  } else if (caseName === 'audit') {
-    // Audit course home: show tab bar, hide sidebar
-    if (tabBar) tabBar.style.display = '';
-    if (sidebarEl) sidebarEl.style.display = 'none';
-    if (expandBtn) expandBtn.classList.remove('visible');
-  } else if (caseName === 'financement' || caseName === 'responsabilite' || caseName === 'fiscal' || caseName === 'droit' || caseName === 'marches' || caseName === 'transmission') {
-    // Lecture course pages: show sidebar, hide tab bar
-    if (tabBar) tabBar.style.display = 'none';
-    if (sidebarEl) {
-      sidebarEl.style.display = '';
-      sidebarEl.classList.remove('collapsed');
-    }
-    if (expandBtn) expandBtn.classList.remove('visible');
-    const sidebar = document.getElementById('sidebar-' + caseName);
-    if (sidebar) sidebar.style.display = 'block';
-  } else {
-    // Case/tool pages: show tab bar + sidebar
-    if (tabBar) tabBar.style.display = '';
-    if (sidebarEl) {
-      sidebarEl.style.display = '';
-      sidebarEl.classList.remove('collapsed');
-    }
-    if (expandBtn) expandBtn.classList.remove('visible');
-    const sidebar = document.getElementById('sidebar-' + caseName);
-    if (sidebar) sidebar.style.display = 'block';
-  }
-
-  // Scroll to top
-  document.getElementById('main-scroll').scrollTop = 0;
 
   // Update URL hash (sans déclencher hashchange)
   if (caseName !== 'home') {
@@ -152,7 +158,22 @@ function switchCase(caseName) {
 
 // ============ ENTER COURSE FUNCTION ============
 function enterCourse(courseName) {
-  switchCase(courseName);
+  // Si le contenu n'est pas dans le DOM, charger via contentLoader (version docs/)
+  var existing = document.getElementById('case-' + courseName);
+  if (!existing && window.contentLoader) {
+    var spinner = document.getElementById('loadingSpinner');
+    if (spinner) spinner.style.display = '';
+    window.contentLoader.load(courseName).then(function(data) {
+      window.contentLoader.inject(courseName, data);
+      if (spinner) spinner.style.display = 'none';
+      switchCase(courseName);
+    }).catch(function(err) {
+      if (spinner) spinner.style.display = 'none';
+      console.error('Erreur chargement ' + courseName + ':', err);
+    });
+  } else {
+    switchCase(courseName);
+  }
 }
 
 // ============ EXPORT PDF GÉNÉRIQUE ============
@@ -280,30 +301,43 @@ document.addEventListener('DOMContentLoaded', function() {
       if (scrollSpyTimer) return;
       scrollSpyTimer = requestAnimationFrame(() => {
         scrollSpyTimer = null;
-        const activeContent = document.querySelector('.case-content.active');
-        if (!activeContent) return;
 
-        const sections = activeContent.querySelectorAll('[id]');
-        let currentId = '';
+        // Find visible sidebar and build section-to-item map
+        const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"]):not([style*="display:none"])');
+        if (!activeSidebar) return;
 
-        sections.forEach(s => {
-          const rect = s.getBoundingClientRect();
-          if (rect.top < 200) currentId = s.id;
+        const items = activeSidebar.querySelectorAll('.sidebar-item[onclick]');
+        if (!items.length) return;
+
+        // Extract target IDs from sidebar onclick attributes
+        const sectionMap = [];
+        items.forEach(item => {
+          const match = item.getAttribute('onclick').match(/(?:goTo|scrollToSection)\(['"]([^'"]+)['"]\)/);
+          if (match) {
+            const el = document.getElementById(match[1]);
+            if (el) sectionMap.push({ id: match[1], el: el, item: item });
+          }
         });
 
-        if (currentId) {
-          const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"])');
-          if (activeSidebar) {
-            activeSidebar.querySelectorAll('.sidebar-item').forEach(i => {
-              i.classList.remove('active');
-              const onclick = i.getAttribute('onclick');
-              if (onclick && onclick.includes(currentId)) {
-                i.classList.add('active');
-                i.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-              }
-            });
+        if (!sectionMap.length) return;
+
+        // Find which section is currently visible (last one above threshold)
+        let currentEntry = sectionMap[0];
+        const scrollTop = mainEl.scrollTop;
+        const threshold = 160;
+
+        for (let i = sectionMap.length - 1; i >= 0; i--) {
+          const rect = sectionMap[i].el.getBoundingClientRect();
+          if (rect.top < threshold) {
+            currentEntry = sectionMap[i];
+            break;
           }
         }
+
+        // Update active state
+        items.forEach(i => i.classList.remove('active'));
+        currentEntry.item.classList.add('active');
+        currentEntry.item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       });
     });
   }
@@ -378,7 +412,8 @@ const tabNames = {
   'fiscal': '🏛️ Fiscalité',
   'droit': '📜 Droit patrimonial',
   'marches': '📈 Marchés financiers',
-  'transmission': '🏢 Transmission d\'entreprises'
+  'transmission': '🏢 Transmission d\'entreprises',
+  'fiscalite-int': '🌍 Fiscalité Internationale'
 };
 
 searchInput && searchInput.addEventListener('input', function() {
@@ -579,7 +614,7 @@ try {
 // ============ HASH ROUTING — CHARGEMENT INITIAL ============
 window.addEventListener('hashchange', function() {
   const hash = window.location.hash.replace('#', '');
-  if (hash) switchCase(hash);
+  if (hash) enterCourse(hash);
 });
 
 // ============ FLASHCARDS — FILTRAGE & MÉLANGE ============
@@ -670,7 +705,7 @@ restoreFcState();
 // ============ INJECTION BOUTONS EXPORT PDF ============
 (function() {
   // Cas qui ne sont pas home/audit (pages avec du contenu imprimable)
-  const printableCases = ['snow','stark','niote','mengere','norris','vador','leon','genereux','houette','outils','guide','montages','formules','financement','responsabilite','fiscal','droit','marches','transmission'];
+  const printableCases = ['snow','stark','niote','mengere','norris','vador','leon','genereux','houette','outils','guide','montages','formules','financement','responsabilite','fiscal','droit','marches','transmission','fiscalite-int'];
 
   printableCases.forEach(function(caseName) {
     const caseEl = document.getElementById('case-' + caseName);
@@ -861,7 +896,7 @@ function updateProgressBar(caseName) {
   // Map des cas pour le cours "Audit" (cartes dans case-audit)
   const auditCases = ['snow','stark','niote','mengere','norris','vador','leon','genereux','houette','outils','guide','montages','formules'];
   // Cours autonomes (cartes dans case-home)
-  const courses = ['financement','responsabilite','fiscal','droit','marches','transmission'];
+  const courses = ['financement','responsabilite','fiscal','droit','marches','transmission','fiscalite-int'];
 
   function injectCardProgress(cardEl, caseNames) {
     if (!cardEl) return;
@@ -955,7 +990,8 @@ function updateProgressBar(caseName) {
       'formules': 'Formules', 'audit': 'Audit', 'financement': 'Financement',
       'responsabilite': 'Responsabilité', 'fiscal': 'Fiscalité',
       'droit': 'Droit patrimonial', 'marches': 'Marchés financiers',
-      'transmission': 'Transmission d\'entreprises'
+      'transmission': 'Transmission d\'entreprises',
+      'fiscalite-int': 'Fiscalité Internationale'
     };
     if (elLast && lastPage && lastPage !== 'home') {
       elLast.textContent = courseNames[lastPage] || lastPage;
@@ -974,7 +1010,8 @@ function updateProgressBar(caseName) {
         'vador': '🌑', 'leon': '🎭', 'genereux': '🎁', 'houette': '🏦',
         'outils': '🧰', 'guide': '📖', 'montages': '🏗️', 'formules': '🔢',
         'audit': '📊', 'financement': '💰', 'responsabilite': '⚖️', 'fiscal': '🧾',
-        'droit': '📜', 'marches': '📈', 'transmission': '🏢'
+        'droit': '📜', 'marches': '📈', 'transmission': '🏢',
+        'fiscalite-int': '🌍'
       };
       hist.forEach(function(h) {
         var name = courseNames[h.page] || h.page;
@@ -1098,7 +1135,8 @@ function timeAgo(ts) {
     'audit': 'Audit patrimonial', 'financement': 'Financement des particuliers',
     'responsabilite': 'Responsabilité du gestionnaire', 'fiscal': 'Ingénierie fiscale PP',
     'droit': 'Droit patrimonial', 'marches': 'Marchés financiers',
-    'transmission': 'Transmission d\'entreprises'
+    'transmission': 'Transmission d\'entreprises',
+    'fiscalite-int': 'Fiscalité Internationale'
   };
 
   try {
@@ -1111,7 +1149,7 @@ function timeAgo(ts) {
       banner.style.display = 'flex';
 
       btn.addEventListener('click', function() {
-        switchCase(lastPage);
+        enterCourse(lastPage);
         banner.style.display = 'none';
       });
       close.addEventListener('click', function() {
@@ -1129,21 +1167,26 @@ function timeAgo(ts) {
     }
   } catch(e) {}
 
-  // Navigation par hash au chargement (prioritaire sur le bandeau)
-  const hash = window.location.hash.replace('#', '');
-  if (hash) {
-    banner.style.display = 'none';
-    // Attendre que le lockscreen soit passé si nécessaire
-    const checkAndNavigate = function() {
-      const lockscreen = document.getElementById('lockscreen');
-      if (lockscreen && lockscreen.style.display !== 'none') {
-        setTimeout(checkAndNavigate, 200);
-      } else {
-        switchCase(hash);
-      }
-    };
-    checkAndNavigate();
+  // Au chargement, toujours forcer l'accueil
+  // 1) Nettoyer le hash
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname);
   }
+  // 2) Forcer case-home visible, masquer tout le reste
+  document.querySelectorAll('.case-content').forEach(function(c) {
+    if (c.id === 'case-home') {
+      c.classList.add('active');
+      c.style.display = 'block';
+    } else {
+      c.classList.remove('active');
+      c.style.display = 'none';
+    }
+  });
+  // 3) Masquer sidebar et tabBar
+  var sb = document.getElementById('sidebar');
+  var tb = document.getElementById('tabBar');
+  if (sb) sb.style.display = 'none';
+  if (tb) tb.style.display = 'none';
 })();
 
 

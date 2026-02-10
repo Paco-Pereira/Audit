@@ -6,44 +6,54 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "gui-intro",
+        "label": "Mode d'emploi",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s1",
+        "label": "Revenus complémentaires",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s2",
+        "label": "Réduire les DDS",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s3",
+        "label": "Optimiser l'IR",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s4",
+        "label": "Réduire l'IFI",
+        "num": "4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s5",
+        "label": "Protéger le conjoint",
+        "num": "5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s6",
+        "label": "Préparer la retraite",
+        "num": "6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s7",
+        "label": "Transmettre le patrimoine",
+        "num": "7"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s8",
+        "label": "Diversifier le patrimoine",
+        "num": "8"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "gui-s9",
+        "label": "Matrice de synthèse",
+        "num": "9"
       }
     ]
   },

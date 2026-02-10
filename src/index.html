@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>M2 - GIP — Gestion et Ingénierie Patrimoniale</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================================
-   APPLE GLASS LIQUID DESIGN SYSTEM
-   Dark-first, Glassmorphism, Fluid Animations
+   PATRIMOINE ÉDITORIAL DESIGN SYSTEM
+   Warm dark tones, refined typography, gold accents
+   Inspired by luxury financial publications
    ============================================================================ */
 
 /* ============================================================================
@@ -16,42 +17,52 @@
    ============================================================================ */
 
 :root {
-  --bg: #0a0a0f;
-  --bg-elevated: #14141f;
-  --glass-bg: rgba(22, 22, 35, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --bg: #111118;
+  --bg-elevated: #1a1a24;
+  --glass-bg: rgba(26, 26, 36, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   --blur: blur(20px);
 
-  --sidebar-bg: rgba(12, 12, 20, 0.85);
-  --sidebar-active: rgba(0, 122, 255, 0.18);
-  --sidebar-hover: rgba(255, 255, 255, 0.06);
-  --sidebar-text: rgba(255, 255, 255, 0.5);
-  --sidebar-text-active: #ffffff;
+  --sidebar-bg: rgba(14, 14, 22, 0.9);
+  --sidebar-active: rgba(186, 155, 95, 0.14);
+  --sidebar-hover: rgba(255, 255, 255, 0.05);
+  --sidebar-text: rgba(255, 255, 255, 0.45);
+  --sidebar-text-active: #f0e8d8;
 
-  --primary: #0a84ff;
-  --primary-light: rgba(10, 132, 255, 0.12);
-  --primary-dark: #0066cc;
-  --accent: #30d158;
-  --danger: #ff453a;
-  --warning: #ff9f0a;
-  --purple: #bf5af2;
+  --primary: #ba9b5f;
+  --primary-light: rgba(186, 155, 95, 0.1);
+  --primary-dark: #9a7d45;
+  --accent: #6b9e78;
+  --danger: #c75450;
+  --warning: #d4a04a;
+  --purple: #8b7bb8;
 
-  --text: #f5f5f7;
-  --text-light: rgba(255, 255, 255, 0.55);
-  --text-tertiary: rgba(255, 255, 255, 0.3);
-  --card-bg: rgba(22, 22, 35, 0.65);
+  --text: #e8e2d6;
+  --text-light: rgba(232, 226, 214, 0.55);
+  --text-tertiary: rgba(232, 226, 214, 0.28);
+  --card-bg: rgba(26, 26, 36, 0.72);
   --border: rgba(255, 255, 255, 0.06);
 
-  --radius: 16px;
-  --radius-sm: 10px;
-  --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 
   --header-h: 56px;
   --tab-h: 48px;
   --sidebar-w: 280px;
+
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-body: 'Outfit', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+
+  --accent-light: rgba(186, 155, 95, 0.08);
+  --gold: #ba9b5f;
+  --gold-light: rgba(186, 155, 95, 0.15);
+  --sage: #6b9e78;
+  --cream: #f0e8d8;
 }
 
 /* ============================================================================
@@ -59,26 +70,28 @@
    ============================================================================ */
 
 body.light-mode {
-  --bg: #f2f2f7;
-  --bg-elevated: #ffffff;
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --bg: #f6f2eb;
+  --bg-elevated: #fdfbf7;
+  --glass-bg: rgba(253, 251, 247, 0.82);
+  --glass-border: rgba(0, 0, 0, 0.07);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
 
-  --sidebar-bg: rgba(240, 240, 245, 0.92);
-  --sidebar-active: rgba(0, 122, 255, 0.12);
-  --sidebar-hover: rgba(0, 0, 0, 0.04);
-  --sidebar-text: rgba(0, 0, 0, 0.5);
-  --sidebar-text-active: #1d1d1f;
+  --sidebar-bg: rgba(240, 235, 225, 0.92);
+  --sidebar-active: rgba(150, 120, 60, 0.1);
+  --sidebar-hover: rgba(0, 0, 0, 0.03);
+  --sidebar-text: rgba(60, 50, 35, 0.5);
+  --sidebar-text-active: #2a2520;
 
-  --text: #1d1d1f;
-  --text-light: rgba(0, 0, 0, 0.45);
-  --text-tertiary: rgba(0, 0, 0, 0.25);
-  --card-bg: rgba(255, 255, 255, 0.72);
-  --border: rgba(0, 0, 0, 0.08);
-  --primary-light: rgba(0, 122, 255, 0.08);
-  --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --text: #2a2520;
+  --text-light: rgba(42, 37, 32, 0.5);
+  --text-tertiary: rgba(42, 37, 32, 0.28);
+  --card-bg: rgba(253, 251, 247, 0.82);
+  --border: rgba(42, 37, 32, 0.08);
+  --primary-light: rgba(150, 120, 60, 0.08);
+  --shadow: 0 2px 12px rgba(42, 37, 32, 0.06);
+  --shadow-lg: 0 16px 48px rgba(42, 37, 32, 0.1);
+  --accent-light: rgba(150, 120, 60, 0.06);
+  --gold-light: rgba(150, 120, 60, 0.1);
 }
 
 body.light-mode .header {
@@ -152,7 +165,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
@@ -164,7 +177,7 @@ body {
 }
 
 ::selection {
-  background: rgba(10, 132, 255, 0.3);
+  background: rgba(186, 155, 95, 0.35);
   color: #fff;
 }
 
@@ -199,7 +212,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 
 .header {
   height: var(--header-h);
-  background: rgba(10, 10, 18, 0.82);
+  background: rgba(14, 14, 22, 0.88);
   backdrop-filter: var(--blur);
   -webkit-backdrop-filter: var(--blur);
   border-bottom: 1px solid var(--glass-border);
@@ -217,8 +230,9 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: #fff;
-  font-size: 16px;
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.02em;
   transition: opacity var(--transition);
@@ -232,13 +246,13 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   width: 32px;
   height: 32px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #0a84ff, #bf5af2);
+  background: linear-gradient(135deg, var(--gold), var(--sage));
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
   flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(10, 132, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(186, 155, 95, 0.3);
 }
 
 .header-right {
@@ -290,7 +304,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
   color: #fff;
   border-color: var(--primary);
-  box-shadow: 0 4px 16px rgba(10, 132, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(186, 155, 95, 0.3);
 }
 
 /* ============================================================================
@@ -299,7 +313,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 
 .tab-bar {
   height: var(--tab-h);
-  background: rgba(10, 10, 18, 0.6);
+  background: rgba(14, 14, 22, 0.6);
   backdrop-filter: var(--blur);
   -webkit-backdrop-filter: var(--blur);
   border-bottom: 1px solid var(--glass-border);
@@ -339,6 +353,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   border: none;
   border-radius: var(--radius-sm);
   color: var(--text-light);
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -360,7 +375,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-light);
   color: var(--primary);
   font-weight: 600;
-  box-shadow: inset 0 0 0 1px rgba(10, 132, 255, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(186, 155, 95, 0.2);
 }
 
 .tab-icon {
@@ -608,7 +623,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 .sidebar-item.active {
   background: var(--sidebar-active);
   color: var(--sidebar-text-active);
-  box-shadow: inset 0 0 0 1px rgba(10, 132, 255, 0.15);
+  box-shadow: inset 0 0 0 1px rgba(186, 155, 95, 0.12);
 }
 
 .sidebar-item.active::before {
@@ -618,9 +633,9 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   top: 8px;
   bottom: 8px;
   width: 3px;
-  background: var(--primary);
+  background: var(--gold);
   border-radius: 2px;
-  box-shadow: 0 0 8px rgba(10, 132, 255, 0.5);
+  box-shadow: 0 0 8px rgba(186, 155, 95, 0.4);
 }
 
 .sidebar-item .num {
@@ -629,12 +644,13 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   justify-content: center;
   min-width: 24px;
   height: 24px;
-  background: rgba(10, 132, 255, 0.15);
-  color: var(--primary);
+  background: var(--gold-light);
+  color: var(--gold);
   border-radius: 7px;
   font-size: 11px;
   font-weight: 700;
   flex-shrink: 0;
+  font-family: var(--font-display);
 }
 
 .sidebar-sub {
@@ -732,7 +748,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 }
 
 .section-header:hover {
-  border-bottom-color: rgba(10, 132, 255, 0.3);
+  border-bottom-color: rgba(186, 155, 95, 0.3);
 }
 
 .section-num {
@@ -742,20 +758,22 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   min-width: 32px;
   height: 32px;
   padding: 0 8px;
-  background: linear-gradient(135deg, var(--primary), var(--purple));
+  background: linear-gradient(135deg, var(--gold), var(--sage));
   color: #fff;
   border-radius: var(--radius-sm);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 13px;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(10, 132, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(186, 155, 95, 0.25);
 }
 
 .section-title {
-  font-size: 20px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
   color: var(--text);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 /* ============================================================================
@@ -763,26 +781,29 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
    ============================================================================ */
 
 h3 {
+  font-family: var(--font-display);
   font-size: 17px;
   font-weight: 600;
   color: var(--text);
   margin-top: 24px;
   margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 h4 {
+  font-family: var(--font-display);
   font-size: 15px;
   font-weight: 600;
   color: var(--text);
   margin-top: 20px;
   margin-bottom: 10px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 h5 {
+  font-family: var(--font-display);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-light);
   margin-top: 16px;
   margin-bottom: 8px;
@@ -889,7 +910,7 @@ strong {
 
 .highlight-box {
   background: var(--primary-light);
-  border: 1px solid rgba(10, 132, 255, 0.25);
+  border: 1px solid rgba(186, 155, 95, 0.2);
   border-radius: var(--radius);
   padding: 24px;
   text-align: center;
@@ -899,8 +920,9 @@ strong {
 }
 
 .big-number {
+  font-family: var(--font-display);
   font-size: 36px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary);
   margin: 8px 0;
   line-height: 1.2;
@@ -984,12 +1006,12 @@ tr:last-child td {
 }
 
 tr:hover td {
-  background: rgba(10, 132, 255, 0.04);
+  background: rgba(186, 155, 95, 0.04);
 }
 
 .bold-row td {
   font-weight: 600;
-  background: rgba(10, 132, 255, 0.06);
+  background: rgba(186, 155, 95, 0.06);
 }
 
 .right {
@@ -1009,7 +1031,7 @@ tr:hover td {
 td.number,
 th.number {
   text-align: right;
-  font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+  font-family: var(--font-mono);
   font-weight: 600;
   color: var(--primary);
   font-size: 13px;
@@ -1037,12 +1059,12 @@ tfoot td {
 }
 
 .patrimoine-table .category-row {
-  background: rgba(10, 132, 255, 0.08);
+  background: var(--gold-light);
 }
 
 .patrimoine-table .category-row td {
   padding: 10px 18px;
-  color: var(--primary);
+  color: var(--gold);
   font-weight: 700;
   text-transform: uppercase;
   font-size: 11px;
@@ -1050,8 +1072,8 @@ tfoot td {
 }
 
 .patrimoine-table .total-row {
-  background: rgba(10, 132, 255, 0.12);
-  border-top: 1px solid rgba(10, 132, 255, 0.3);
+  background: rgba(186, 155, 95, 0.12);
+  border-top: 1px solid rgba(186, 155, 95, 0.3);
 }
 
 .patrimoine-table .total-row td {
@@ -1107,8 +1129,8 @@ tfoot td {
 }
 
 .alert-info {
-  border-left-color: var(--primary);
-  background: rgba(10, 132, 255, 0.06);
+  border-left-color: var(--gold);
+  background: var(--gold-light);
 }
 
 .alert-danger {
@@ -1127,7 +1149,7 @@ tfoot td {
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
-  font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
 }
 
@@ -1135,14 +1157,15 @@ tfoot td {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 12px;
-  color: var(--primary);
+  color: var(--gold);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 14px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(10, 132, 255, 0.2);
+  border-bottom: 1px solid rgba(186, 155, 95, 0.2);
 }
 
 .calc-header::before {
@@ -1173,11 +1196,11 @@ tfoot td {
   padding: 14px 0;
   margin-top: 14px;
   padding-top: 14px;
-  border-top: 2px solid var(--primary);
+  border-top: 2px solid var(--gold);
   font-weight: 700;
-  color: var(--primary);
+  color: var(--gold);
   font-size: 14px;
-  text-shadow: 0 0 20px rgba(10, 132, 255, 0.3);
+  text-shadow: 0 0 20px rgba(186, 155, 95, 0.25);
 }
 
 /* ============================================================================
@@ -3638,7 +3661,7 @@ body.exam-mode #examToggle {
 <div class="app-body">
 
   <!-- ===== SIDEBAR ===== -->
-  <nav class="sidebar" id="sidebar">
+  <nav class="sidebar" id="sidebar" style="display:none">
     <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="collapseSidebar()" title="Rétracter le menu">◀</button>
     <!-- Snow sidebar -->
     <div id="sidebar-snow">
@@ -4626,6 +4649,10 @@ body.exam-mode #examToggle {
     <span class="num">✏️</span> Cas pratiques (5)
     <span class="progress-chip new">NEW</span>
   </a>
+  <a class="sidebar-item" onclick="goTo('fiscal-qcm')">
+    <span class="num">✏️</span> QCM (15 questions)
+    <span class="progress-chip new">NEW</span>
+  </a>
   <a class="sidebar-item" onclick="goTo('fiscal-synthese')">
     <span class="num">📋</span> Synthèse examen
     <span class="progress-chip exam">EXAM</span>
@@ -4746,6 +4773,10 @@ body.exam-mode #examToggle {
   <a class="sidebar-item" onclick="goTo('droit-ex3')">
     <span class="num">📝</span> Liquidation complète
   </a>
+  <a class="sidebar-item" onclick="goTo('droit-qcm')">
+    <span class="num">✏️</span> QCM (15 questions)
+    <span class="progress-chip new">NEW</span>
+  </a>
   <div class="sidebar-label" style="margin-top: 12px;">Révisions</div>
   <a class="sidebar-item" onclick="goTo('droit-synthese')">
     <span class="num">📋</span> Synthèse examen
@@ -4814,6 +4845,7 @@ body.exam-mode #examToggle {
     <a class="sidebar-item" onclick="goTo('trans-s5-ecc')">ECC & EIC</a>
     <a class="sidebar-item" onclick="goTo('trans-s5-repute')">ECC réputé acquis</a>
     <a class="sidebar-item" onclick="goTo('trans-s5-comparaison')">Pacte standard vs réputé</a>
+    <a class="sidebar-item" onclick="goTo('trans-s5-exemple')">Exemple chiffré</a>
   </div>
   <a class="sidebar-item" onclick="goTo('trans-s6')">
     <span class="num">6</span> Remises en cause
@@ -4823,29 +4855,37 @@ body.exam-mode #examToggle {
     <a class="sidebar-item" onclick="goTo('trans-s6-scenarios')">Scénarios & coûts chiffrés</a>
   </div>
   <a class="sidebar-item" onclick="goTo('trans-s7')">
-    <span class="num">7</span> Holding & interposition
+    <span class="num">7</span> Holding Dutreil & interposition
   </a>
   <div class="sidebar-sub">
     <a class="sidebar-item" onclick="goTo('trans-s7-schema')">Schéma interposition</a>
-    <a class="sidebar-item" onclick="goTo('trans-s7-donation-cession')">Donation-cession</a>
-    <a class="sidebar-item" onclick="goTo('trans-s7-apport-holding')">Apport à holding</a>
-    <a class="sidebar-item" onclick="goTo('trans-s7-150bter')">Art. 150-0 B ter (sursis)</a>
-    <a class="sidebar-item" onclick="goTo('trans-s7-lbo')">LBO / OBO</a>
+    <a class="sidebar-item" onclick="goTo('trans-s7-exemple')">Exemple holding</a>
   </div>
-  <div class="sidebar-label" style="margin-top: 12px;">Plus-values professionnelles</div>
+  <div class="sidebar-label" style="margin-top: 12px;">Cession société IS</div>
+  <a class="sidebar-item" onclick="goTo('trans-s7b')">
+    <span class="num">7b</span> Outils cession IS
+    <span class="progress-chip key">CLÉ</span>
+  </a>
+  <div class="sidebar-sub">
+    <a class="sidebar-item" onclick="goTo('trans-s7-donation-cession')">Donation-cession</a>
+    <a class="sidebar-item" onclick="goTo('trans-s7-150bter')">Apport-cession (150-0 B ter)</a>
+    <a class="sidebar-item" onclick="goTo('trans-s7-150dter')">Art. 150-0 D ter (retraite)</a>
+    <a class="sidebar-item" onclick="goTo('trans-s7-lbo')">LBO / OBO</a>
+    <a class="sidebar-item" onclick="goTo('trans-s7b-comparaison')">Synthèse outils IS</a>
+  </div>
+  <div class="sidebar-label" style="margin-top: 12px;">Cession EI / société IR</div>
   <a class="sidebar-item" onclick="goTo('trans-s8')">
-    <span class="num">8</span> Régimes PV professionnelles
+    <span class="num">8</span> Exonérations PV professionnelles
     <span class="progress-chip exam">EXAM</span>
   </a>
   <div class="sidebar-sub">
-    <a class="sidebar-item" onclick="goTo('trans-s8-synthese')">Synthèse des régimes</a>
+    <a class="sidebar-item" onclick="goTo('trans-s8-synthese')">Synthèse des régimes IR</a>
     <a class="sidebar-item" onclick="goTo('trans-s8-septies')">Art. 151 septies</a>
     <a class="sidebar-item" onclick="goTo('trans-s8-septiesA')">Art. 151 septies A</a>
     <a class="sidebar-item" onclick="goTo('trans-s8-septiesB')">Art. 151 septies B</a>
-    <a class="sidebar-item" onclick="goTo('trans-s8-quindecies')">Art. 238 quindecies</a>
+    <a class="sidebar-item" onclick="goTo('trans-s8-quindecies')">Art. 238 quindecies (IR & IS)</a>
     <a class="sidebar-item" onclick="goTo('trans-s8-report')">Reports (41, 151 octies, nonies)</a>
     <a class="sidebar-item" onclick="goTo('trans-s8-ordre')">Ordre d'application</a>
-    <a class="sidebar-item" onclick="goTo('trans-s8-150dter')">Art. 150-0 D ter (retraite IS)</a>
   </div>
   <div class="sidebar-label" style="margin-top: 12px;">Outils civils</div>
   <a class="sidebar-item" onclick="goTo('trans-s9')">
@@ -4940,6 +4980,10 @@ body.exam-mode #examToggle {
     <span class="num">📝</span> Cas pratiques RAS
     <span class="progress-chip exam">EXAM</span>
   </a>
+  <a class="sidebar-item" onclick="goTo('fi-qcm')">
+    <span class="num">✏️</span> QCM (12 questions)
+    <span class="progress-chip new">NEW</span>
+  </a>
   <a class="sidebar-item" onclick="goTo('fi-synthese')">
     <span class="num">🎯</span> Synthèse examen
     <span class="progress-chip exam">EXAM</span>
@@ -5014,14 +5058,14 @@ body.exam-mode #examToggle {
           <span class="home-card-icon">🏛️</span>
           <div class="home-card-title">Ingénierie fiscale PP</div>
           <div class="home-card-desc">Fiscalité des personnes physiques et patrimoine : IR, plus-values, IFI, droits de mutation, assurance-vie, démembrement et SCI.</div>
-          <div class="home-card-badge">9 chapitres · 5 exercices · Synthèse exam</div>
+          <div class="home-card-badge">9 chapitres · 5 exercices · QCM · Synthèse exam</div>
         </div>
 
         <div class="home-card card-droit" onclick="enterCourse('droit')">
           <span class="home-card-icon">📜</span>
           <div class="home-card-title">Droit patrimonial</div>
           <div class="home-card-desc">Libéralités et successions : donations, testaments, dévolution, réserve héréditaire, partage, liquidation et successions internationales.</div>
-          <div class="home-card-badge">15 chapitres · 3 exercices · Synthèse exam</div>
+          <div class="home-card-badge">15 chapitres · 3 exercices · QCM · Synthèse exam</div>
         </div>
 
         <div class="home-card card-marches" onclick="enterCourse('marches')">
@@ -5035,14 +5079,14 @@ body.exam-mode #examToggle {
           <span class="home-card-icon">🏢</span>
           <div class="home-card-title">Transmission d'entreprises</div>
           <div class="home-card-desc">Pacte Dutreil, donation-partage conjonctive, réserve héréditaire, ECC/EIC, holding, donation-cession, outils civils avancés, cas pratiques LEFRANCOIS & QUESNOY.</div>
-          <div class="home-card-badge">9 chapitres · 3 exercices · Synthèse exam</div>
+          <div class="home-card-badge">10 chapitres · 3 exercices · Synthèse exam</div>
         </div>
 
         <div class="home-card card-fiscalite-int" onclick="enterCourse('fiscalite-int')">
           <span class="home-card-icon">🌍</span>
           <div class="home-card-title">Fiscalité Internationale</div>
           <div class="home-card-desc">Territorialité IR, droit conventionnel, RAS (182A/B, 119 bis), ETNC, exit tax, expatriés/impatriés, couples mixtes, Schumacker.</div>
-          <div class="home-card-badge">8 chapitres · Cas pratiques · Synthèse exam</div>
+          <div class="home-card-badge">8 chapitres · Cas pratiques · QCM · Synthèse exam</div>
         </div>
 
       </div>
@@ -26538,6 +26582,77 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         </div>
       </div>
 
+      <!-- ─── QCM ─── -->
+      <div class="section" id="fiscal-qcm">
+        <div class="section-header">
+          <div class="section-num">✏️</div>
+          <div class="section-title">QCM — Ingénierie fiscale PP</div>
+        </div>
+        <div class="card">
+          <p>15 questions pour tester vos connaissances sur les principaux mécanismes fiscaux du cours.</p>
+
+          <details><summary><strong>1. Quel est le taux du PFU (Prélèvement Forfaitaire Unique) ?</strong></summary>
+            <div class="alert alert-success"><strong>30 %</strong> (12,8 % IR + 17,2 % PS). L'option pour le barème est globale et irrévocable pour l'année.</div>
+          </details>
+
+          <details><summary><strong>2. Quelle est la durée de détention pour une exonération totale de la PV immobilière (IR + PS) ?</strong></summary>
+            <div class="alert alert-success"><strong>30 ans</strong> pour les PS (22 ans suffisent pour l'IR). La résidence principale est exonérée sans condition de durée.</div>
+          </details>
+
+          <details><summary><strong>3. L'abattement de 30 % sur la résidence principale s'applique-t-il aux parts de SCI ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> L'abattement de 30 % IFI ne s'applique pas aux parts de SCI détenant la résidence principale. Piège classique d'examen.</div>
+          </details>
+
+          <details><summary><strong>4. Quel est le plafond du déficit foncier imputable sur le revenu global ?</strong></summary>
+            <div class="alert alert-success"><strong>10 700 €/an</strong> (hors intérêts d'emprunt). Le surplus est reportable sur les revenus fonciers des 10 années suivantes.</div>
+          </details>
+
+          <details><summary><strong>5. Après 5 ans, le PEA est-il exonéré d'IR ET de prélèvements sociaux ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> Le PEA est exonéré d'IR après 5 ans, mais les <strong>PS (17,2 %) restent dus</strong>.</div>
+          </details>
+
+          <details><summary><strong>6. Quel est le seuil d'imposition à l'IFI ?</strong></summary>
+            <div class="alert alert-success"><strong>1 300 000 €</strong> de patrimoine immobilier net. La décote s'applique entre 1,3 M€ et 1,4 M€ (formule : 17 500 − 1,25 % × patrimoine).</div>
+          </details>
+
+          <details><summary><strong>7. Art. 990 I (AV avant 70 ans) : quel abattement par bénéficiaire ?</strong></summary>
+            <div class="alert alert-success"><strong>152 500 € par bénéficiaire</strong>, puis 20 % jusqu'à 700 000 €, puis 31,25 %. Ne pas confondre avec l'art. 757 B (après 70 ans) : 30 500 € global.</div>
+          </details>
+
+          <details><summary><strong>8. La réduction Malraux est-elle soumise au plafonnement des niches fiscales ?</strong></summary>
+            <div class="alert alert-success"><strong>Non.</strong> Malraux est <strong>hors plafonnement</strong> des niches fiscales (contrairement au Pinel qui est plafonné à 10 000 €/an).</div>
+          </details>
+
+          <details><summary><strong>9. Quelles sont les 2 conditions cumulatives du statut LMP ?</strong></summary>
+            <div class="alert alert-success">Recettes > <strong>23 000 €/an</strong> ET recettes > <strong>50 % des revenus professionnels</strong> du foyer. Le LMP est assujetti aux cotisations SSI (~40 % du bénéfice).</div>
+          </details>
+
+          <details><summary><strong>10. En LMNP, l'amortissement peut-il créer un déficit BIC ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> L'amortissement ne peut pas créer de déficit en LMNP. L'excédent est reportable sans limite de durée sur les BIC meublés futurs.</div>
+          </details>
+
+          <details><summary><strong>11. Quel est le plafond du Girardin industriel dans les niches fiscales ?</strong></summary>
+            <div class="alert alert-success"><strong>18 000 € Outre-Mer</strong> (plafond spécifique, au lieu de 10 000 € pour les autres dispositifs). Le Girardin est un « one-shot » année N.</div>
+          </details>
+
+          <details><summary><strong>12. L'option SCI à l'IS est-elle révocable ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> L'option pour l'IS est <strong>irrévocable</strong>. Avantage : amortissement possible. Inconvénient : PV de cession = PV professionnelle sans abattement durée.</div>
+          </details>
+
+          <details><summary><strong>13. Quel est le barème de l'usufruit selon l'art. 669 CGI pour un usufruitier de 65 ans ?</strong></summary>
+            <div class="alert alert-success">Tranche 61-70 ans : usufruit = <strong>40 %</strong>, nue-propriété = <strong>60 %</strong>.</div>
+          </details>
+
+          <details><summary><strong>14. Le crédit Lombard déclenche-t-il une plus-value imposable ?</strong></summary>
+            <div class="alert alert-success"><strong>Non.</strong> Pas de cession = pas de PV. C'est un simple nantissement du portefeuille (AV, CTO, PEA). L'AV continue de capitaliser pendant le prêt.</div>
+          </details>
+
+          <details><summary><strong>15. Quel est le taux de Pinel+ sur 12 ans et le plafond d'investissement ?</strong></summary>
+            <div class="alert alert-success"><strong>21 %</strong> de réduction d'impôt (max 63 000 €). Plafond : <strong>300 000 €</strong> et <strong>5 500 €/m²</strong>. Zones A bis, A, B1 uniquement.</div>
+          </details>
+        </div>
+      </div>
+
       <!-- ─── SYNTHÈSE EXAMEN ─── -->
       <div class="section" id="fiscal-synthese">
         <div class="section-header">
@@ -27664,6 +27779,77 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         </div>
       </div>
 
+      <!-- ===== QCM ===== -->
+      <div class="section" id="droit-qcm">
+        <div class="section-header">
+          <div class="section-num">✏️</div>
+          <div class="section-title">QCM — Droit patrimonial</div>
+        </div>
+        <div class="card">
+          <p>15 questions sur les libéralités, successions et droit patrimonial.</p>
+
+          <details><summary><strong>1. Quelles sont les 3 conditions de forme d'un testament olographe ?</strong></summary>
+            <div class="alert alert-success">Écrit <strong>entièrement de la main</strong> du testateur + <strong>daté</strong> + <strong>signé</strong>. L'absence d'une seule condition entraîne la nullité.</div>
+          </details>
+
+          <details><summary><strong>2. Un testament authentique prime-t-il sur un testament olographe ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> Aucune forme de testament n'est « plus forte » qu'une autre. C'est toujours le <strong>dernier en date</strong> qui prime.</div>
+          </details>
+
+          <details><summary><strong>3. Quelle est la réserve héréditaire en présence de 2 enfants ?</strong></summary>
+            <div class="alert alert-success"><strong>⅔</strong> du patrimoine (réserve globale). La quotité disponible ordinaire est donc de <strong>⅓</strong>.</div>
+          </details>
+
+          <details><summary><strong>4. Le conjoint est-il réservataire en présence d'enfants ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> Le conjoint n'est réservataire que <strong>en l'absence de descendants</strong> (réserve = ¼). En présence d'enfants, il bénéficie de la QD spéciale (art. 1094-1).</div>
+          </details>
+
+          <details><summary><strong>5. Les ascendants sont-ils encore réservataires ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> Les ascendants ne sont plus réservataires depuis la <strong>loi du 23 juin 2006</strong>. Ils conservent un droit de retour légal (art. 738-2).</div>
+          </details>
+
+          <details><summary><strong>6. Le droit temporaire au logement du conjoint (1 an) peut-il être supprimé par testament ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> C'est un droit d'<strong>ordre public</strong>, impossible à supprimer. À ne pas confondre avec le droit viager au logement (art. 764) qui peut être supprimé par testament authentique.</div>
+          </details>
+
+          <details><summary><strong>7. Quel est le délai pour exercer l'option successorale ?</strong></summary>
+            <div class="alert alert-success"><strong>10 ans</strong>. Au-delà, l'héritier est réputé renonçant. L'action interrogatoire peut être exercée après 4 mois, avec un délai de réponse de 2 mois.</div>
+          </details>
+
+          <details><summary><strong>8. La donation-partage fige-t-elle la valeur des biens au jour de la donation ?</strong></summary>
+            <div class="alert alert-success"><strong>Oui.</strong> C'est l'avantage principal par rapport à la donation simple (dont les biens sont réévalués au jour du partage). Art. 1076 CC.</div>
+          </details>
+
+          <details><summary><strong>9. Une donation entre époux de biens présents est-elle révocable ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> Depuis 2004, la donation entre époux de biens <strong>présents</strong> est irrévocable (sauf ingratitude). Seule la DDV (biens à venir) reste révocable.</div>
+          </details>
+
+          <details><summary><strong>10. En présence de 3 enfants, quelles sont les options du conjoint avec une DDV ?</strong></summary>
+            <div class="alert alert-success">QD spéciale (art. 1094-1) : <strong>¼ PP</strong>, ou <strong>¼ PP + ¾ UF</strong>, ou <strong>totalité en UF</strong>. Le choix se fait au décès.</div>
+          </details>
+
+          <details><summary><strong>11. Un héritier qui renonce à la succession peut-il conserver le bénéfice d'une assurance-vie ?</strong></summary>
+            <div class="alert alert-success"><strong>Oui.</strong> L'assurance-vie est <strong>hors succession</strong>. La renonciation à la succession ne prive pas du bénéfice du contrat d'AV.</div>
+          </details>
+
+          <details><summary><strong>12. Quelle est la sanction du recel successoral ?</strong></summary>
+            <div class="alert alert-success">Acceptation <strong>pure et simple forcée</strong> + privation des droits sur les biens dissimulés. Le receleur ne peut renoncer à la succession.</div>
+          </details>
+
+          <details><summary><strong>13. Quelle est la valeur rapportable d'un bien donné puis revendu par le donataire ?</strong></summary>
+            <div class="alert alert-success">Le <strong>prix de vente</strong> (art. 860 CC). Si le bien n'est pas vendu : valeur au jour du partage, dans son état au jour de la donation (on ne tient pas compte des travaux du donataire).</div>
+          </details>
+
+          <details><summary><strong>14. Quel est le régime de la loi applicable aux successions internationales (UE) ?</strong></summary>
+            <div class="alert alert-success"><strong>Dernière résidence habituelle</strong> du défunt (Règlement UE n° 650/2012). Le défunt peut aussi choisir par testament sa <strong>loi nationale</strong>.</div>
+          </details>
+
+          <details><summary><strong>15. Une charge illicite dans une donation entraîne-t-elle la nullité de la donation ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> La charge illicite est simplement <strong>réputée non écrite</strong> (art. 900 CC). La donation reste valable.</div>
+          </details>
+        </div>
+      </div>
+
       <!-- ===== SYNTHÈSE EXAMEN ===== -->
       <div class="section" id="droit-synthese">
         <div class="section-header">
@@ -27851,7 +28037,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <h1>Transmission d'entreprises — Pacte Dutreil 🏢</h1>
         <div class="subtitle">V - Pacte Dutreil — M2 GIP</div>
         <p>Ce cours couvre les rappels de droit civil (donation-partage conjonctive, vérification de l'atteinte à la réserve), le dispositif Dutreil (art. 787 B et 787 C CGI), les engagements collectifs et individuels de conservation, les remises en cause, les holdings, les outils civils avancés (mandats, libéralités graduelles/résiduelles), et des cas pratiques d'examen.</p>
-        <div class="meta">Master 2 GIP · 9 chapitres · 3 exercices · Synthèse examen</div>
+        <div class="meta">Master 2 GIP · 10 chapitres · 3 exercices · Synthèse examen</div>
       </div>
 
       <div class="card">
@@ -27865,8 +28051,9 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
             <tr><td><strong>4</strong></td><td>Art. 787 C — Entreprise individuelle</td><td>Conditions, location-gérance, nouveau statut EI 2022, apport à société, exemple boulangerie</td></tr>
             <tr><td><strong>5</strong></td><td>Art. 787 B — Sociétés</td><td>ECC, EIC, engagement réputé acquis, seuils, direction</td></tr>
             <tr><td><strong>6</strong></td><td>Remises en cause</td><td>Scénarios cédant/dirigeant, coûts chiffrés, safe harbors</td></tr>
-            <tr><td><strong>7</strong></td><td>Holding & interposition</td><td>Schéma interposition, donation-cession, apport à holding, exemple chiffré</td></tr>
-            <tr><td><strong>8</strong></td><td>Régimes PV professionnelles</td><td>151 septies, septies A/B, 238 quindecies, 151 octies, nonies, art. 41</td></tr>
+            <tr><td><strong>7</strong></td><td>Holding Dutreil & interposition</td><td>Conditions holding animatrice, schéma interposition 2 niveaux</td></tr>
+            <tr style="background:var(--accent-light);"><td><strong>7b</strong></td><td>Cession société IS — Outils fiscaux</td><td>Donation-cession, apport-cession (150-0 B ter), 150-0 D ter retraite, LBO, OBO</td></tr>
+            <tr><td><strong>8</strong></td><td>Cession EI / société IR — Exonérations PV</td><td>151 septies, septies A/B, 238 quindecies (IR & IS), reports (art. 41, octies, nonies)</td></tr>
             <tr style="background:var(--accent-light);"><td><strong>9</strong></td><td>Outils civils avancés</td><td>Libéralités graduelles/résiduelles, mandats posthume/protection, préciput, transgénérationnelle</td></tr>
             <tr><td><strong>📝</strong></td><td>Exercice 3 — LEFRANCOIS</td><td>Transmission SA 20 M€ — corrigé complet avec calculs DMTG, PV, structuration</td></tr>
             <tr><td><strong>📝</strong></td><td>Exercice 4 — QUESNOY</td><td>Montage complet : Dutreil, donation-partage, soulte, calcul DMTG</td></tr>
@@ -27926,9 +28113,39 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
             </tbody>
           </table>
 
+          <h4>Comparaison : attribution réelle (sans DPC)</h4>
+          <p>Supposons que les parents fassent une <strong>donation simple</strong> (pas une donation-partage conjonctive) avec des lots différents :</p>
+
+          <table class="data-table">
+            <thead><tr><th></th><th>De A (masse 150 000)</th><th>De B (masse 250 000)</th><th>Total</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Enfant C</strong></td><td>150 000</td><td>50 000</td><td><strong>200 000</strong></td></tr>
+              <tr><td><strong>Enfant D</strong></td><td>0</td><td>200 000</td><td><strong>200 000</strong></td></tr>
+            </tbody>
+          </table>
+
+          <p>Les DMTG sont alors calculés sur ce que chaque enfant reçoit <strong>réellement</strong> de chaque parent :</p>
+          <table class="data-table">
+            <thead><tr><th></th><th>Donation de A</th><th>Donation de B</th><th>Total DMTG</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Enfant C</strong></td><td>150 000 − 100 000 = 50 000 → <strong>8 194 €</strong></td><td>50 000 − 100 000 = 0 → <strong>0 €</strong></td><td><strong>8 194 €</strong></td></tr>
+              <tr><td><strong>Enfant D</strong></td><td>0 → <strong>0 €</strong></td><td>200 000 − 100 000 = 100 000 → <strong>18 194 €</strong></td><td><strong>18 194 €</strong></td></tr>
+              <tr><td><strong>TOTAL</strong></td><td></td><td></td><td><strong class="red">26 388 €</strong></td></tr>
+            </tbody>
+          </table>
+
+          <h4>Synthèse : DPC vs attribution réelle</h4>
+          <table class="data-table">
+            <thead><tr><th>Méthode</th><th>DMTG Enfant C</th><th>DMTG Enfant D</th><th>TOTAL</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Droits théoriques</strong> (DPC)</td><td>3 194 €</td><td>3 194 €</td><td><strong class="green">6 388 €</strong></td></tr>
+              <tr><td><strong>Attribution réelle</strong> (sans DPC)</td><td>8 194 €</td><td>18 194 €</td><td><strong class="red">26 388 €</strong></td></tr>
+            </tbody>
+          </table>
+
           <div class="alert alert-info">
             <span class="alert-icon">⚠️</span>
-            <div><strong>Si partage pur et simple (attribution réelle différente) :</strong> les DMTG restent les théoriques = <strong>6 388 €</strong>. Si en revanche ce n'est PAS une donation-partage conjonctive mais un partage avec attribution réelle non proportionnelle, les DMTG peuvent exploser (ex : 18 194 € dans l'exemple du cours).</div>
+            <div><strong>Conclusion :</strong> Sans donation-partage conjonctive, les DMTG passent de <strong>6 388 € à 26 388 €</strong> — soit <strong>× 4,1</strong>. La DPC permet de constituer des lots inégaux entre les enfants tout en conservant une fiscalité calculée sur les droits théoriques (répartition proportionnelle).</div>
           </div>
         </div>
 
@@ -28007,17 +28224,69 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 
         <h3 id="trans-s1-cumulative">c) Donation-partage cumulative</h3>
         <div class="card">
-          <p>Elle permet, dans un <strong>seul et même acte</strong>, de réaliser :</p>
+          <p><strong>Problème :</strong> Lorsqu'un parent décède, sa succession reste souvent en <strong>indivision</strong>. Si le parent survivant veut faire une donation-partage à ses enfants, il ne peut donner que <strong>ses propres biens</strong> — les biens du prédécédé restent bloqués dans l'indivision successorale.</p>
+
+          <p><strong>Solution :</strong> La <strong>donation-partage cumulative</strong> (art. 1076-1 CC) permet, dans un <strong>seul et même acte</strong> notarié, de :</p>
           <ul>
-            <li>Une <strong>donation-partage</strong> par l'ascendant survivant</li>
-            <li>Un <strong>partage de la succession</strong> de l'ascendant prédécédé</li>
+            <li>Réaliser le <strong>partage de la succession</strong> de l'ascendant prédécédé</li>
+            <li>Consentir une <strong>donation-partage</strong> par l'ascendant survivant de ses propres biens</li>
           </ul>
-          <p>Cela permet d'allotir les enfants <strong>sans considération de l'origine réelle</strong> (maternelle ou paternelle) des biens.</p>
+          <p>Les lots sont constitués <strong>librement</strong>, sans considération de l'origine réelle (maternelle ou paternelle) des biens.</p>
 
           <div class="alert alert-info">
             <span class="alert-icon">⚠️</span>
-            <div><strong>Condition de validité :</strong> Tous les héritiers de l'ascendant prédécédé doivent <strong>obligatoirement y participer</strong>. Les réserves doivent être respectées.</div>
+            <div><strong>Conditions de validité :</strong><br>
+            — <strong>Tous</strong> les héritiers de l'ascendant prédécédé doivent <strong>obligatoirement participer</strong> à l'acte<br>
+            — Les <strong>réserves héréditaires</strong> doivent être respectées<br>
+            — L'ascendant survivant doit avoir la qualité d'<strong>héritier ou de conjoint</strong> du prédécédé</div>
           </div>
+
+          <h4>Exemple : Mme survivante, 2 enfants (Alice et Bruno)</h4>
+          <p>Mr est décédé il y a 3 ans. Sa succession n'a pas encore été partagée. Mme souhaite organiser la transmission.</p>
+
+          <table class="data-table">
+            <thead><tr><th>Masse</th><th>Biens</th><th>Valeur</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="2"><strong>Succession de Mr</strong><br><small>(en indivision)</small></td><td>Maison de famille</td><td>400 000</td></tr>
+              <tr><td>Portefeuille titres</td><td>200 000</td></tr>
+              <tr><td colspan="2" style="text-align:right"><strong>Total succession Mr</strong></td><td><strong>600 000</strong></td></tr>
+              <tr><td><strong>Patrimoine Mme</strong></td><td>Liquidités</td><td>400 000</td></tr>
+              <tr><td colspan="2" style="text-align:right"><strong>Total général</strong></td><td><strong>1 000 000</strong></td></tr>
+            </tbody>
+          </table>
+
+          <h4>Sans donation-partage cumulative (2 actes séparés)</h4>
+          <table class="data-table">
+            <thead><tr><th>Étape</th><th>Opération</th><th>Difficulté</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1</strong></td><td>Partage successoral de Mr : Alice et Bruno reçoivent chacun 300K</td><td>La maison (400K) doit être découpée ou vendue → <strong>soulte de 100K</strong></td></tr>
+              <tr><td><strong>2</strong></td><td>Donation-partage par Mme de 400K : 200K à chacun</td><td>Lots limités aux biens propres de Mme</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Résultat :</strong> 2 actes notariés, lots contraints par l'origine des biens, maison impossible à attribuer entièrement sans soulte.</p>
+
+          <h4>Avec donation-partage cumulative (1 seul acte)</h4>
+          <table class="data-table">
+            <thead><tr><th></th><th>Alice reçoit</th><th>Valeur</th><th>Bruno reçoit</th><th>Valeur</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Succession Mr</strong></td><td>Maison de famille</td><td>400 000</td><td>Portefeuille titres</td><td>200 000</td></tr>
+              <tr><td><strong>Donation Mme</strong></td><td>Cash</td><td>100 000</td><td>Cash</td><td>300 000</td></tr>
+              <tr><td><strong>Total</strong></td><td></td><td><strong>500 000</strong></td><td></td><td><strong>500 000</strong></td></tr>
+            </tbody>
+          </table>
+          <p><strong>Résultat :</strong> Alice obtient la maison <strong>entière</strong> sans soulte. Bruno est compensé par davantage de cash de Mme. Les lots sont égaux (500K chacun) malgré des origines différentes.</p>
+
+          <h4>Avantages de la donation-partage cumulative</h4>
+          <table class="data-table">
+            <thead><tr><th>Avantage</th><th>Explication</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Liberté d'allotissement</strong></td><td>Les biens du prédécédé et du survivant sont mélangés librement dans les lots</td></tr>
+              <tr><td><strong>Gel des valeurs</strong></td><td>Les biens sont évalués au <strong>jour de la donation-partage</strong>, pas au décès de Mme → pas de réévaluation ultérieure</td></tr>
+              <tr><td><strong>Pas de rapport</strong></td><td>Donation-partage : les biens <strong>ne sont pas rapportables</strong> à la succession de Mme (contrairement à une donation simple)</td></tr>
+              <tr><td><strong>Simplicité</strong></td><td>Un seul acte notarié au lieu de deux opérations distinctes</td></tr>
+              <tr><td><strong>Évite l'indivision</strong></td><td>Sort définitivement les biens de Mr de l'indivision successorale</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -28450,6 +28719,52 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
             </tbody>
           </table>
         </div>
+
+        <h3 id="trans-s5-exemple">d) Exemple chiffré : impact fiscal du Pacte Dutreil</h3>
+        <div class="card">
+          <p><strong>Situation :</strong> Mr Martin (62 ans), président et associé unique d'une SAS valorisée à <strong>2 000 000 €</strong>, souhaite donner l'intégralité des parts en <strong>pleine propriété</strong> à ses 2 enfants (Alice et Bruno, parts égales). Abattement de 100 000 € par enfant non encore consommé.</p>
+
+          <h4>Scénario 1 : Donation SANS Pacte Dutreil</h4>
+          <table class="data-table">
+            <thead><tr><th></th><th>Alice</th><th>Bruno</th></tr></thead>
+            <tbody>
+              <tr><td>Valeur des parts reçues</td><td>1 000 000</td><td>1 000 000</td></tr>
+              <tr><td>Abattement ligne directe</td><td>- 100 000</td><td>- 100 000</td></tr>
+              <tr><td>Base taxable</td><td>900 000</td><td>900 000</td></tr>
+              <tr><td><strong>DMTG par enfant</strong></td><td><strong>194 194 €</strong></td><td><strong>194 194 €</strong></td></tr>
+              <tr><td><strong>TOTAL DMTG</strong></td><td colspan="2" style="text-align:center"><strong class="red">388 388 €</strong></td></tr>
+            </tbody>
+          </table>
+
+          <h4>Scénario 2 : Donation AVEC Pacte Dutreil (exo 75%)</h4>
+          <table class="data-table">
+            <thead><tr><th></th><th>Alice</th><th>Bruno</th></tr></thead>
+            <tbody>
+              <tr><td>Valeur des parts reçues</td><td>1 000 000</td><td>1 000 000</td></tr>
+              <tr><td>Exonération Dutreil (75%)</td><td>- 750 000</td><td>- 750 000</td></tr>
+              <tr><td>Base après Dutreil</td><td>250 000</td><td>250 000</td></tr>
+              <tr><td>Abattement ligne directe</td><td>- 100 000</td><td>- 100 000</td></tr>
+              <tr><td>Base taxable</td><td>150 000</td><td>150 000</td></tr>
+              <tr><td><strong>DMTG par enfant</strong></td><td><strong>28 194 €</strong></td><td><strong>28 194 €</strong></td></tr>
+              <tr><td><strong>TOTAL DMTG</strong></td><td colspan="2" style="text-align:center"><strong class="green">56 388 €</strong></td></tr>
+            </tbody>
+          </table>
+
+          <h4>Comparaison</h4>
+          <table class="data-table">
+            <thead><tr><th>Méthode</th><th>DMTG Total</th><th>Économie</th></tr></thead>
+            <tbody>
+              <tr><td>Sans Dutreil</td><td class="red"><strong>388 388 €</strong></td><td>—</td></tr>
+              <tr><td>Avec Dutreil</td><td class="green"><strong>56 388 €</strong></td><td class="green"><strong>332 000 € (−85%)</strong></td></tr>
+              <tr><td>Dutreil + donation avant 70 ans (réduction 50%)</td><td class="green"><strong>28 194 €</strong></td><td class="green"><strong>360 194 € (−93%)</strong></td></tr>
+            </tbody>
+          </table>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Réduction pour donation avant 70 ans :</strong> L'art. 790 CGI accorde une <strong>réduction de 50%</strong> des DMTG calculés sur la part exonérée (75%) si le donateur a <strong>moins de 70 ans</strong> au jour de la donation. Cette réduction se cumule avec le Pacte Dutreil et fait passer les DMTG de 56 388 € à <strong>28 194 €</strong> dans cet exemple.</div>
+          </div>
+        </div>
       </div>
 
       <!-- ===== CHAPITRE 6 : REMISES EN CAUSE ===== -->
@@ -28542,7 +28857,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
       <div class="section" id="trans-s7">
         <div class="section-header">
           <div class="section-num">7</div>
-          <div class="section-title">Holding & interposition</div>
+          <div class="section-title">Holding Dutreil & interposition</div>
         </div>
 
         <div class="card">
@@ -28589,6 +28904,73 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
             <span class="alert-icon">⚠️</span>
             <div><strong>3 niveaux d'interposition = Dutreil impossible.</strong> Si la structure comporte un 3e niveau entre le donateur et la société opérationnelle, l'exonération est refusée.</div>
           </div>
+        </div>
+
+        <h3 id="trans-s7-exemple">Exemple : Donation avec holding interposée</h3>
+        <div class="card">
+          <p><strong>Situation :</strong> Mme Leblanc détient <strong>100%</strong> d'une Holding SAS qui détient elle-même <strong>80%</strong> d'une SAS opérationnelle (menuiserie industrielle). Mme est présidente de la Holding et de la SAS opérationnelle depuis 15 ans. Elle souhaite transmettre à son fils Paul.</p>
+
+          <table class="data-table">
+            <thead><tr><th>Entité</th><th>Valorisation</th><th>Détention</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Holding SAS</strong></td><td>1 600 000 € (dont 80% = participation dans SAS opé)</td><td>100% Mme Leblanc</td></tr>
+              <tr><td><strong>SAS opérationnelle</strong></td><td>2 000 000 € (menuiserie)</td><td>80% Holding + 20% tiers</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Vérification des conditions Dutreil</h4>
+          <table class="data-table">
+            <thead><tr><th>Condition</th><th>Vérification</th><th>Résultat</th></tr></thead>
+            <tbody>
+              <tr><td>Actif brut Holding &gt; 50% en participation</td><td>80% de 2M€ = 1,6M€ sur 1,6M€ total = 100%</td><td class="green"><strong>✓</strong></td></tr>
+              <tr><td>Niveaux d'interposition ≤ 2</td><td>Mme → Holding (1) → SAS opé = 1 niveau</td><td class="green"><strong>✓</strong></td></tr>
+              <tr><td>Engagement réputé acquis</td><td>Détention + direction &gt; 2 ans</td><td class="green"><strong>✓</strong></td></tr>
+              <tr><td>Direction par Paul post-transmission</td><td>Paul doit exercer la direction pendant 3 ans</td><td class="green"><strong>✓ (à organiser)</strong></td></tr>
+            </tbody>
+          </table>
+
+          <h4>Fiscalité de la donation</h4>
+          <table class="data-table">
+            <thead><tr><th>Étape</th><th>Calcul</th></tr></thead>
+            <tbody>
+              <tr><td>Valeur transmise (parts Holding)</td><td>1 600 000 €</td></tr>
+              <tr><td>Exonération Dutreil (75%)</td><td>- 1 200 000 €</td></tr>
+              <tr><td>Base après Dutreil</td><td>400 000 €</td></tr>
+              <tr><td>Abattement ligne directe</td><td>- 100 000 €</td></tr>
+              <tr><td>Base taxable</td><td>300 000 €</td></tr>
+              <tr><td><strong>DMTG</strong></td><td><strong>58 194 €</strong> (vs 325 194 € sans Dutreil)</td></tr>
+            </tbody>
+          </table>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Point clé :</strong> On transmet les <strong>parts de la Holding</strong> (pas de la SAS opérationnelle). L'engagement de conservation porte sur les <strong>parts de la SAS opérationnelle</strong> détenues par la Holding. Les participations Holding → SAS opé doivent rester <strong>inchangées</strong> pendant toute la durée de l'EIC (4 ans).<br><br>
+            <strong>Avantage de la Holding :</strong> après l'EIC, Paul pourra réorganiser la structure (filialiser, céder des branches) en agissant au niveau de la Holding, sans remettre en cause le bénéfice du Dutreil déjà acquis.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHAPITRE 7b : CESSION SOCIÉTÉ IS — OUTILS D'OPTIMISATION ===== -->
+      <div class="section" id="trans-s7b">
+        <div class="section-header">
+          <div class="section-num">7b</div>
+          <div class="section-title">Cession de société IS — Outils d'optimisation fiscale</div>
+        </div>
+
+        <div class="card">
+          <div class="alert alert-info">
+            <span class="alert-icon">🏢</span>
+            <div><strong>Contexte :</strong> Lorsqu'un dirigeant cède les titres d'une société soumise à l'<strong>IS</strong>, la plus-value de cession est imposée au <strong>PFU 30%</strong> (12,8% IR + 17,2% PS), ou sur option au <strong>barème progressif IR + PS</strong>. À la différence des EI/sociétés IR (qui bénéficient des exonérations 151 septies — voir chapitre 8), les cessions de titres IS disposent d'outils spécifiques : donation-cession, apport-cession (150-0 B ter), abattement retraite (150-0 D ter), et montages LBO/OBO.</div>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Outil</th><th>Principe</th><th>Article CGI</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Donation-cession</strong></td><td>Purge de la PV par donation avant cession</td><td>150-0 A</td></tr>
+              <tr><td><strong>Apport-cession</strong></td><td>Report (sursis) de la PV par apport à holding</td><td>150-0 B ter</td></tr>
+              <tr><td><strong>Abattement retraite</strong></td><td>Abattement fixe 500 000 € au départ à la retraite</td><td>150-0 D ter</td></tr>
+              <tr><td><strong>LBO / OBO</strong></td><td>Rachat à effet de levier (externe ou par soi-même)</td><td>150-0 B ter + droit des sociétés</td></tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="card" id="trans-s7-donation-cession">
@@ -28765,40 +29147,133 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
           </div>
           <div class="alert alert-success"><strong>Résultat :</strong> M. MARTIN récupère 572 000 € nets de liquidités, conserve le contrôle de la SARL via la Holding (100%), et peut préparer la transmission aux enfants en donnant des parts de la Holding (avec Dutreil).</div>
         </div>
+
+        <a id="trans-s7-150dter"></a>
+        <h3 id="trans-s7b-150dter">Art. 150-0 D ter — Abattement retraite dirigeant (sociétés IS)</h3>
+        <div class="card">
+          <div class="alert alert-info">
+            <span class="alert-icon">🎯</span>
+            <div><strong>Principe :</strong> Abattement fixe de <strong>500 000 €</strong> sur la PV de cession de titres pour le <strong>dirigeant partant à la retraite</strong> d'une PME soumise à l'IS. C'est l'équivalent du 151 septies A (chapitre 8, réservé aux EI/IR) pour les sociétés à l'IS.</div>
+          </div>
+
+          <table class="data-table">
+            <thead><tr><th>Condition</th><th>Détail</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Société</strong></td><td>PME soumise à l'IS (ou mixte IS), activité opérationnelle, siège dans l'UE/EEE</td></tr>
+              <tr><td><strong>Taille PME</strong></td><td>&lt; 250 salariés, CA &lt; 50 M€ ou total bilan &lt; 43 M€</td></tr>
+              <tr><td><strong>Dirigeant</strong></td><td>A exercé une fonction de direction (gérant, PDG, DG, membre du directoire) pendant les <strong>5 années précédant la cession</strong></td></tr>
+              <tr><td><strong>Détention</strong></td><td>Détention de ≥ <strong>25%</strong> des droits de vote ou droits financiers (directement ou famille) à un moment dans les 5 ans</td></tr>
+              <tr><td><strong>Retraite</strong></td><td>Cessation de toute fonction dans la société dans les <strong>24 mois</strong> suivant ou précédant la cession. Départ en retraite effectif.</td></tr>
+              <tr><td><strong>Cession</strong></td><td>Cession de la <strong>totalité</strong> des titres ou d'une participation > 50% des droits de vote</td></tr>
+              <tr><td><strong>Abattement</strong></td><td><strong>500 000 € fixe</strong> sur la PV brute (indépendant de la durée de détention)</td></tr>
+              <tr><td><strong>Imposition résiduelle</strong></td><td>La PV au-delà de 500 000 € est soumise au PFU 30% ou au barème IR (sur option globale)</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Comparaison 151 septies A (IR) vs 150-0 D ter (IS)</h4>
+          <table class="data-table">
+            <thead><tr><th></th><th>151 septies A (EI / IR)</th><th>150-0 D ter (Société IS)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Régime fiscal</strong></td><td>EI ou société IR</td><td>Société IS</td></tr>
+              <tr><td><strong>Avantage</strong></td><td>Exonération totale d'IR</td><td>Abattement fixe 500 000 €</td></tr>
+              <tr><td><strong>PS / CS</strong></td><td class="red">Restent dus</td><td>Inclus dans le PFU ou barème</td></tr>
+              <tr><td><strong>Immobilier</strong></td><td class="red">Exclu</td><td>N/A (cession de titres)</td></tr>
+              <tr><td><strong>Plafond</strong></td><td>Pas de plafond (exo totale IR)</td><td>500 000 € (au-delà : PFU 30%)</td></tr>
+              <tr><td><strong>Délai retraite</strong></td><td>24 mois</td><td>24 mois</td></tr>
+              <tr><td><strong>Cumul</strong></td><td>151 septies, B, quindecies</td><td>Non cumulable avec barème + abattement durée détention</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Exemple chiffré</h4>
+          <p>M. BERNARD, 62 ans, PDG et actionnaire à 80% d'une SAS valorisée 4 M€ (PV latente : 3,5 M€). Départ en retraite prévu.</p>
+          <div class="calc-block">
+            <div class="calc-step">Application art. 150-0 D ter</div>
+            PV brute : 3 500 000 €<br>
+            Abattement fixe : − 500 000 €<br>
+            PV imposable : 3 000 000 €<br>
+            PFU 30% : 3 000 000 × 30% = 900 000 €<br>
+            <div class="calc-result">→ <strong>Impôt = 900 000 €</strong> (taux effectif 25,7%)</div>
+          </div>
+          <div class="calc-block">
+            <div class="calc-step">Sans abattement retraite</div>
+            PFU 30% : 3 500 000 × 30% = 1 050 000 €<br>
+            <div class="calc-result">→ <strong>Économie = 150 000 €</strong></div>
+          </div>
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <div><strong>Optimisation :</strong> Si titres acquis avant 2018 et TMI élevé, l'option pour le barème IR + abattement renforcé pour durée de détention (65% si > 8 ans PME, art. 150-0 D 1 quater) peut être plus avantageuse que le PFU + abattement 500 000 €. <strong>À simuler au cas par cas.</strong></div>
+          </div>
+        </div>
+
+        <div class="card" id="trans-s7b-comparaison">
+          <h4>Synthèse — Quel outil IS selon la situation du dirigeant ?</h4>
+          <table class="data-table">
+            <thead><tr><th>Situation du dirigeant</th><th>Outil principal</th><th>Article CGI</th><th>Effet fiscal</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Cession + départ retraite</strong></td><td>Abattement retraite</td><td>150-0 D ter</td><td>Abattement fixe 500 000 €</td></tr>
+              <tr><td><strong>Transmission aux enfants + purge PV</strong></td><td>Donation-cession</td><td>150-0 A</td><td>PV = 0 si cession au prix de la donation</td></tr>
+              <tr><td><strong>Cession + réinvestissement</strong></td><td>Apport-cession à holding</td><td>150-0 B ter</td><td>Report PV → réinvest. 60% sous 2 ans</td></tr>
+              <tr><td><strong>Monétisation sans perte de contrôle</strong></td><td>OBO (Owner Buy-Out)</td><td>150-0 B ter + LBO</td><td>Liquidités + maintien contrôle via holding</td></tr>
+              <tr><td><strong>Cession branche d'activité (PME)</strong></td><td>Exonération fonds &lt; 500k</td><td>238 quindecies</td><td>Exo totale si valeur &lt; 300 000 €</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-success">
+            <span class="alert-icon">💡</span>
+            <div><strong>Cumul possible :</strong> Le 150-0 D ter (retraite) est cumulable avec la donation-cession. Stratégie : céder 51% avec abattement 500k€, puis donner 49% aux enfants (purge PV). <strong>Résultat : optimisation maximale.</strong></div>
+          </div>
+        </div>
       </div>
 
-      <!-- ===== CHAPITRE 8 : RÉGIMES D'EXONÉRATION DES PV PROFESSIONNELLES ===== -->
+      <!-- ===== CHAPITRE 8 : CESSION EI / SOCIÉTÉ IR — EXONÉRATIONS PV PROFESSIONNELLES ===== -->
       <div class="section" id="trans-s8">
         <div class="section-header">
           <div class="section-num">8</div>
-          <div class="section-title">Régimes d'exonération des PV professionnelles</div>
+          <div class="section-title">Cession EI / société IR — Exonérations PV professionnelles</div>
         </div>
 
         <div class="card">
-          <p>Lors de la transmission d'une entreprise (cession, donation, apport en société), les <strong>plus-values professionnelles</strong> sont en principe imposables. Plusieurs dispositifs fiscaux permettent d'<strong>atténuer ou supprimer</strong> cette imposition :</p>
+          <div class="alert alert-info">
+            <span class="alert-icon">📋</span>
+            <div><strong>Périmètre :</strong> Ce chapitre couvre les régimes d'exonération et de report des <strong>PV professionnelles</strong>, applicables aux <strong>EI et sociétés à l'IR</strong>. Pour les outils spécifiques aux <strong>sociétés IS</strong> (donation-cession, 150-0 B ter, 150-0 D ter, LBO/OBO), voir le <strong>chapitre 7b</strong>.</div>
+          </div>
           <ul>
-            <li><strong>Exonérations :</strong> art. 151 septies, 151 septies A, 151 septies B, 238 quindecies</li>
+            <li><strong>Exonérations :</strong> art. 151 septies, 151 septies A, 151 septies B, 238 quindecies (IR & IS)</li>
             <li><strong>Reports d'imposition :</strong> art. 41, 151 octies, 151 nonies</li>
           </ul>
         </div>
 
         <h3 id="trans-s8-synthese">a) Vue d'ensemble des régimes</h3>
         <div class="card">
-          <table class="data-table">
-            <thead><tr><th>Article</th><th>Type</th><th>Critère principal</th><th>Portée</th></tr></thead>
+          <style>
+            .pv-badges{display:inline-flex;gap:3px;align-items:center;}
+            .pv-badge{display:inline-flex;align-items:center;justify-content:center;padding:3px 7px;border-radius:4px;font-size:0.72em;font-weight:700;color:#fff;white-space:nowrap;letter-spacing:0.02em;line-height:1.3;}
+            .pv-badge.on{background:#2e7d32;}
+            .pv-badge.off{background:#c62828;opacity:0.82;}
+            .pv-sep{width:1px;height:16px;background:rgba(255,255,255,0.25);margin:0 2px;border-radius:1px;}
+          </style>
+          <table class="data-table" style="font-size:0.92em;">
+            <thead><tr><th>Article</th><th>Mécanisme</th><th>Cible</th><th style="min-width:200px;">Couverture fiscale</th><th>Condition clé</th></tr></thead>
             <tbody>
-              <tr><td><strong>39 duodecies</strong></td><td>Droit commun</td><td>Applicable si pas d'exonération</td><td>PV CT/LT, IR + PS</td></tr>
-              <tr><td><strong>151 septies</strong></td><td>Exonération</td><td>CA HT (petites entreprises)</td><td>PVCT + PVLT, IR + PS</td></tr>
-              <tr><td><strong>151 septies A</strong></td><td>Exonération</td><td>Départ à la retraite</td><td>PV CT/LT hors immo, IR seul</td></tr>
-              <tr><td><strong>151 septies B</strong></td><td>Abattement</td><td>Durée détention immobilier</td><td>PVLT immobilier, IR + PS</td></tr>
-              <tr><td><strong>238 quindecies</strong></td><td>Exonération</td><td>Valeur du fonds cédé</td><td>PVLT hors immo, IR + PS</td></tr>
-              <tr><td><strong>Art. 41</strong></td><td>Report</td><td>Donation d'une EI</td><td>Report → exo après 5 ans</td></tr>
-              <tr><td><strong>151 octies</strong></td><td>Report</td><td>Apport EI à une société</td><td>Report PV non amortissables</td></tr>
-              <tr><td><strong>151 nonies</strong></td><td>Report</td><td>TATG parts société IR</td><td>Parts = actif professionnel</td></tr>
-              <tr><td><strong>150-0 B ter</strong></td><td>Sursis</td><td>Apport de titres à holding</td><td>Report PV → réinvest. 60%/2 ans</td></tr>
-              <tr><td><strong>150-0 D ter</strong></td><td>Abattement</td><td>Départ retraite dirigeant IS</td><td>Abattement fixe 500 000 €</td></tr>
+              <tr style="background:rgba(107,158,120,0.18);"><td colspan="5"><strong>Exonérations</strong></td></tr>
+              <tr><td><strong>151 septies</strong></td><td>Exonération</td><td>EI · Soc IR</td><td><div class="pv-badges"><span class="pv-badge on">CT·IR</span><span class="pv-badge off">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge on">LT·PS</span></div></td><td>CA HT &lt; seuil, ≥ 5 ans activité</td></tr>
+              <tr><td><strong>151 septies A</strong></td><td>Exonération</td><td>EI · Soc IR</td><td><div class="pv-badges"><span class="pv-badge on">CT·IR</span><span class="pv-badge off">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge off">LT·PS</span></div></td><td>Départ retraite, délai 24 mois</td></tr>
+              <tr><td><strong>238 quindecies</strong></td><td>Exonération</td><td>EI · Soc IR · <strong>IS</strong></td><td><div class="pv-badges"><span class="pv-badge off">CT·IR</span><span class="pv-badge off">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge on">LT·PS</span></div></td><td>Valeur fonds &lt; 500K / 1M€</td></tr>
+              <tr style="background:rgba(186,155,95,0.15);"><td colspan="5"><strong>Abattements</strong></td></tr>
+              <tr><td><strong>151 septies B</strong></td><td>Abattement 10%/an</td><td>EI · Soc IR</td><td><div class="pv-badges"><span class="pv-badge off">CT·IR</span><span class="pv-badge off">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge on">LT·PS</span></div></td><td>Détention &gt; 5 ans, exo totale à 15 ans</td></tr>
+              <tr><td><strong>150-0 D ter</strong></td><td>Abat. fixe 500K€</td><td><strong>Soc IS</strong> PME</td><td><div class="pv-badges"><span class="pv-badge off">CT·IR</span><span class="pv-badge off">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge off">LT·PS</span></div></td><td>Départ retraite, délai 24 mois</td></tr>
+              <tr style="background:rgba(33,150,243,0.15);"><td colspan="5"><strong>Reports d'imposition</strong></td></tr>
+              <tr><td><strong>Art. 41</strong></td><td>Report → exo 5 ans</td><td>EI</td><td><div class="pv-badges"><span class="pv-badge on">CT·IR</span><span class="pv-badge on">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge on">LT·PS</span></div></td><td>Donation d'une EI</td></tr>
+              <tr><td><strong>151 octies</strong></td><td>Report</td><td>EI → Société</td><td><div class="pv-badges"><span class="pv-badge on">CT·IR</span><span class="pv-badge on">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge on">LT·PS</span></div></td><td>Apport EI à une société</td></tr>
+              <tr><td><strong>151 nonies</strong></td><td>Report</td><td>Soc IR</td><td><div class="pv-badges"><span class="pv-badge on">CT·IR</span><span class="pv-badge on">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge on">LT·PS</span></div></td><td>TATG / passage IS / retrait privé</td></tr>
+              <tr><td><strong>150-0 B ter</strong></td><td>Sursis</td><td><strong>Soc IS</strong></td><td><div class="pv-badges"><span class="pv-badge on">CT·IR</span><span class="pv-badge on">CT·CS</span><span class="pv-sep"></span><span class="pv-badge on">LT·IR</span><span class="pv-badge on">LT·PS</span></div></td><td>Apport titres à holding contrôlée</td></tr>
             </tbody>
           </table>
+          <div class="alert alert-info" style="margin-top:12px;">
+            <span class="alert-icon">💡</span>
+            <div><strong>Légende :</strong> <span class="pv-badge on" style="font-size:0.82em;">vert</span> = le régime exonère/reporte cette composante · <span class="pv-badge off" style="font-size:0.82em;">rouge</span> = reste dû.<br>
+            <strong>CT</strong> = court terme · <strong>LT</strong> = long terme · <strong>IR</strong> = impôt sur le revenu · <strong>CS</strong> = cotisations sociales TNS · <strong>PS</strong> = prélèvements sociaux (17,2%).<br>
+            <strong>39 duodecies</strong> (droit commun) : sans exonération → PVCT taxées au barème IR + CS, PVLT taxées à 12,8% IR + 17,2% PS.</div>
+          </div>
         </div>
 
         <h3 id="trans-s8-septies">b) Art. 151 septies — Exonération des petites entreprises</h3>
@@ -28849,67 +29324,11 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
               <tr><td><strong>Immobilier</strong></td><td class="red"><strong>Exclu</strong></td></tr>
               <tr><td><strong>Location-gérance</strong></td><td>Sous conditions (y compris si acquéreur ≠ locataire, LF 2022 art. 19)</td></tr>
               <tr><td><strong>Applicable à</strong></td><td>EI et parts de sociétés IR</td></tr>
-              <tr><td><strong>Sociétés IS</strong></td><td>Art. 150-0 D ter (abattement renforcé départ retraite)</td></tr>
+              <tr><td><strong>Sociétés IS</strong></td><td>→ Art. 150-0 D ter (voir chapitre 7b)</td></tr>
               <tr><td><strong>Exonération</strong></td><td><strong>IR seul</strong>. Pas d'exo sur CS ni PS.</td></tr>
               <tr><td><strong>Cumulable avec</strong></td><td>151 septies, 151 septies B, 238 quindecies</td></tr>
             </tbody>
           </table>
-        </div>
-
-        <h3 id="trans-s8-150dter">c bis) Art. 150-0 D ter — Abattement retraite dirigeant (sociétés IS)</h3>
-        <div class="card">
-          <div class="alert alert-info">
-            <span class="alert-icon">🎯</span>
-            <div><strong>Principe :</strong> Abattement fixe de <strong>500 000 €</strong> sur la PV de cession de titres pour le <strong>dirigeant partant à la retraite</strong> d'une PME soumise à l'IS. C'est l'équivalent du 151 septies A pour les sociétés à l'IS.</div>
-          </div>
-
-          <table class="data-table">
-            <thead><tr><th>Condition</th><th>Détail</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Société</strong></td><td>PME soumise à l'IS (ou mixte IS), activité opérationnelle, siège dans l'UE/EEE</td></tr>
-              <tr><td><strong>Taille PME</strong></td><td>&lt; 250 salariés, CA &lt; 50 M€ ou total bilan &lt; 43 M€</td></tr>
-              <tr><td><strong>Dirigeant</strong></td><td>A exercé une fonction de direction (gérant, PDG, DG, membre du directoire) pendant les <strong>5 années précédant la cession</strong></td></tr>
-              <tr><td><strong>Détention</strong></td><td>Détention de ≥ <strong>25%</strong> des droits de vote ou droits financiers (directement ou famille) à un moment dans les 5 ans</td></tr>
-              <tr><td><strong>Retraite</strong></td><td>Cessation de toute fonction dans la société dans les <strong>24 mois</strong> suivant ou précédant la cession. Départ en retraite effectif.</td></tr>
-              <tr><td><strong>Cession</strong></td><td>Cession de la <strong>totalité</strong> des titres ou d'une participation > 50% des droits de vote</td></tr>
-              <tr><td><strong>Abattement</strong></td><td><strong>500 000 € fixe</strong> sur la PV brute (indépendant de la durée de détention)</td></tr>
-              <tr><td><strong>Imposition résiduelle</strong></td><td>La PV au-delà de 500 000 € est soumise au PFU 30% ou au barème IR (sur option globale)</td></tr>
-            </tbody>
-          </table>
-
-          <h4>Comparaison 151 septies A vs 150-0 D ter</h4>
-          <table class="data-table">
-            <thead><tr><th></th><th>151 septies A (EI / IR)</th><th>150-0 D ter (Société IS)</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Régime fiscal de l'entreprise</strong></td><td>EI ou société IR</td><td>Société IS</td></tr>
-              <tr><td><strong>Type d'avantage</strong></td><td>Exonération totale d'IR</td><td>Abattement fixe 500 000 €</td></tr>
-              <tr><td><strong>PS / CS</strong></td><td class="red">Restent dus</td><td>Inclus dans le PFU ou barème</td></tr>
-              <tr><td><strong>Immobilier</strong></td><td class="red">Exclu</td><td>N/A (cession de titres)</td></tr>
-              <tr><td><strong>Plafond</strong></td><td>Pas de plafond (exo totale IR)</td><td>500 000 € (au-delà : PFU 30%)</td></tr>
-              <tr><td><strong>Délai retraite</strong></td><td>24 mois</td><td>24 mois</td></tr>
-              <tr><td><strong>Cumul</strong></td><td>151 septies, B, quindecies</td><td>Non cumulable avec barème + abattement durée détention (choix PFU ou barème)</td></tr>
-            </tbody>
-          </table>
-
-          <h4>Exemple chiffré</h4>
-          <p>M. BERNARD, 62 ans, PDG et actionnaire à 80% d'une SAS valorisée 4 M€ (PV latente : 3,5 M€). Départ en retraite prévu.</p>
-          <div class="calc-block">
-            <div class="calc-step">Application art. 150-0 D ter</div>
-            PV brute : 3 500 000 €<br>
-            Abattement fixe : − 500 000 €<br>
-            PV imposable : 3 000 000 €<br>
-            PFU 30% : 3 000 000 × 30% = 900 000 €<br>
-            <div class="calc-result">→ <strong>Impôt = 900 000 €</strong> (taux effectif 25,7%)</div>
-          </div>
-          <div class="calc-block">
-            <div class="calc-step">Sans abattement retraite</div>
-            PFU 30% : 3 500 000 × 30% = 1 050 000 €<br>
-            <div class="calc-result">→ <strong>Économie = 150 000 €</strong></div>
-          </div>
-          <div class="alert alert-info">
-            <span class="alert-icon">💡</span>
-            <div><strong>Optimisation :</strong> Si titres acquis avant 2018 et TMI élevé, l'option pour le barème IR + abattement renforcé pour durée de détention (65% si > 8 ans PME, art. 150-0 D 1 quater) peut être plus avantageuse que le PFU + abattement 500 000 €. <strong>À simuler au cas par cas.</strong></div>
-          </div>
         </div>
 
         <h3 id="trans-s8-septiesB">d) Art. 151 septies B — Abattement PV immobilier professionnel</h3>
@@ -29715,7 +30134,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         </div>
 
         <div class="card">
-          <h3>9. RÉGIMES PV PROFESSIONNELLES — CHIFFRES CLÉS</h3>
+          <h3>9. CESSION EI / SOCIÉTÉ IR — EXONÉRATIONS PV</h3>
           <table class="data-table">
             <thead><tr><th>Article</th><th>Seuils / Conditions</th><th>Exo</th></tr></thead>
             <tbody>
@@ -29731,8 +30150,23 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
           <div class="alert alert-info">
             <span class="alert-icon">⚠️</span>
             <div><strong>Ordre d'application :</strong> 151 septies B (immo) → 151 septies A (retraite) → 151 septies <em>ou</em> 238 quindecies (général).<br>
-            <strong>Cumul interdit :</strong> 151 septies et 238 quindecies ne se cumulent PAS entre eux.<br>
-            <strong>Attention :</strong> 238 quindecies est le seul applicable aux <strong>sociétés IS</strong> (PME &lt; 250 salariés).</div>
+            <strong>Cumul interdit :</strong> 151 septies et 238 quindecies ne se cumulent PAS entre eux.</div>
+          </div>
+
+          <h3>9 bis. CESSION SOCIÉTÉ IS — OUTILS D'OPTIMISATION</h3>
+          <table class="data-table">
+            <thead><tr><th>Outil</th><th>Conditions / Mécanisme</th><th>Effet fiscal</th></tr></thead>
+            <tbody>
+              <tr><td><strong>150-0 D ter</strong></td><td>Départ retraite dirigeant PME IS. 24 mois. ≥ 25% participation.</td><td>Abattement 500 000 €</td></tr>
+              <tr><td><strong>Donation-cession</strong></td><td>Donation titres puis cession. Purge PV (art. 150-0 A).</td><td>PV = 0 si cession au prix donation</td></tr>
+              <tr><td><strong>150-0 B ter</strong></td><td>Apport titres à holding contrôlée. Réinvest. 60% si cession &lt; 3 ans.</td><td>Report (sursis) d'imposition</td></tr>
+              <tr><td><strong>238 quindecies</strong></td><td>Aussi applicable IS. Cession branche d'activité / fonds &lt; 500k.</td><td>Exonération totale PVLT</td></tr>
+              <tr><td><strong>OBO</strong></td><td>Apport titres + rachat par holding. Liquidités + maintien contrôle.</td><td>150-0 B ter + effet de levier</td></tr>
+            </tbody>
+          </table>
+          <div class="alert alert-success">
+            <span class="alert-icon">💡</span>
+            <div><strong>Cumul possible :</strong> 150-0 D ter (retraite) + donation-cession pour les titres restants. <strong>Résultat : optimisation maximale sur l'ensemble de la participation.</strong></div>
           </div>
         </div>
 
@@ -29758,7 +30192,11 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 
               <strong>Réduction 50% :</strong> PP uniquement + donateur < 70 ans.<br>
               <strong>Usufruit Dutreil :</strong> droits de vote limités aux bénéfices, irréversible.<br>
-              <strong>Remise en cause :</strong> cession pendant EIC = cédant seul. Pas de dirigeant = TOUS.
+              <strong>Remise en cause :</strong> cession pendant EIC = cédant seul. Pas de dirigeant = TOUS.<br><br>
+
+              <strong>CESSION IR :</strong> 151 septies (CA), septies A (retraite), septies B (immo), 238 quindecies (fonds), reports (41, octies, nonies).<br>
+              <strong>CESSION IS :</strong> Donation-cession (purge PV), 150-0 B ter (sursis apport-cession), 150-0 D ter (abattement 500k€ retraite), LBO/OBO.<br>
+              <strong>Pont IR & IS :</strong> 238 quindecies (seul régime applicable aux deux).
             </div>
           </div>
         </div>
@@ -30200,6 +30638,65 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         </div>
       </div>
 
+      <!-- ===== QCM ===== -->
+      <div class="section" id="fi-qcm">
+        <div class="section-header">
+          <div class="section-num">✏️</div>
+          <div class="section-title">QCM — Fiscalité internationale</div>
+        </div>
+        <div class="card">
+          <p>12 questions sur la fiscalité internationale : domiciliation, conventions, RAS, exit tax, impatriés.</p>
+
+          <details><summary><strong>1. Les 4 critères de domiciliation fiscale (art. 4B CGI) sont-ils cumulatifs ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> Ils sont <strong>alternatifs</strong> — un seul suffit : foyer/séjour principal, activité professionnelle principale, centre des intérêts économiques, agent de l'État.</div>
+          </details>
+
+          <details><summary><strong>2. Une convention fiscale peut-elle créer une imposition ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> Une convention ne fait qu'<strong>éliminer ou limiter</strong> les doubles impositions, jamais créer une imposition qui n'existe pas en droit interne.</div>
+          </details>
+
+          <details><summary><strong>3. Quel est le taux de RAS pour les prestations de services (art. 182 B) ?</strong></summary>
+            <div class="alert alert-success"><strong>25 %</strong> (depuis 2022). Ce taux s'applique aux BNC, redevances et prestations versées à des non-résidents.</div>
+          </details>
+
+          <details><summary><strong>4. Quel est le taux de RAS applicable aux versements vers un ETNC ?</strong></summary>
+            <div class="alert alert-success"><strong>75 %</strong>. Les ETNC (États et Territoires Non Coopératifs) font l'objet d'un taux dissuasif. Liste actuelle : 13 pays dont la Russie.</div>
+          </details>
+
+          <details><summary><strong>5. Le sursis d'exit tax pour un transfert en UE/EEE est-il automatique ?</strong></summary>
+            <div class="alert alert-success"><strong>Oui.</strong> Pas besoin de demande ni de garanties pour les transferts en UE/EEE. Pour les pays hors UE/EEE, le sursis est sur demande avec constitution de garanties.</div>
+          </details>
+
+          <details><summary><strong>6. Quel est le seuil de participation pour l'exit tax ?</strong></summary>
+            <div class="alert alert-success"><strong>≥ 50 %</strong> des bénéfices sociaux d'une société, OU portefeuille de valeurs mobilières ≥ <strong>800 000 €</strong>. Condition de domiciliation : résident fiscal français pendant au moins <strong>6 ans sur les 10 dernières années</strong>.</div>
+          </details>
+
+          <details><summary><strong>7. L'Île de Man est-elle couverte par la convention fiscale France-Royaume-Uni ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> L'Île de Man, Jersey, Guernesey et Gibraltar sont des <strong>territoires exclus</strong> de la convention FR-UK.</div>
+          </details>
+
+          <details><summary><strong>8. Quelle est la durée du régime des impatriés ?</strong></summary>
+            <div class="alert alert-success"><strong>8 ans</strong> (pour les arrivées depuis le 6 juillet 2016). L'impatrié bénéficie d'une exonération de <strong>50 %</strong> des revenus patrimoniaux de source étrangère et d'une option pour un plafonnement de la prime à <strong>30 %</strong> de la rémunération nette.</div>
+          </details>
+
+          <details><summary><strong>9. Quel est le critère de la jurisprudence Schumacker ?</strong></summary>
+            <div class="alert alert-success">Un non-résident tire <strong>≥ 75 %</strong> de ses revenus mondiaux de source française. Il peut alors demander à être traité comme un résident fiscal (accès au QF, déductions personnelles).</div>
+          </details>
+
+          <details><summary><strong>10. Quel est le seuil de CA pour la présomption de domiciliation des dirigeants (art. 4B) ?</strong></summary>
+            <div class="alert alert-success"><strong>> 250 M€</strong> de CA (depuis 2020). Seules les fonctions <strong>exécutives</strong> sont concernées (PDG, DG, gérant). Le président du conseil de surveillance n'est pas visé.</div>
+          </details>
+
+          <details><summary><strong>11. Un impatrié bénéficie-t-il de l'exonération de 50 % sur ses PV de source française ?</strong></summary>
+            <div class="alert alert-danger"><strong>Non.</strong> L'exonération de 50 % ne porte que sur les revenus patrimoniaux de <strong>source étrangère</strong>. Les PV de source française restent imposables normalement.</div>
+          </details>
+
+          <details><summary><strong>12. L'attestation de résidence est-elle obligatoire pour appliquer une convention fiscale ?</strong></summary>
+            <div class="alert alert-success"><strong>Oui.</strong> L'attestation de résidence délivrée par l'administration fiscale du pays de résidence est un préalable obligatoire avant toute application d'une convention.</div>
+          </details>
+        </div>
+      </div>
+
       <!-- ===== SYNTHÈSE EXAMEN ===== -->
       <div class="section" id="fi-synthese">
         <div class="section-header">
@@ -30324,7 +30821,50 @@ function switchCase(caseName) {
   const currentActive = document.querySelector('.case-content.active');
   const target = document.getElementById('case-' + caseName);
 
+  // Préparer le sidebar AVANT la transition
+  document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
+
+  if (caseName === 'home') {
+    if (tabBar) tabBar.style.display = 'none';
+    if (sidebarEl) sidebarEl.style.display = 'none';
+    if (expandBtn) expandBtn.classList.remove('visible');
+  } else if (caseName === 'audit') {
+    if (tabBar) tabBar.style.display = '';
+    if (sidebarEl) sidebarEl.style.display = 'none';
+    if (expandBtn) expandBtn.classList.remove('visible');
+  } else if (caseName === 'financement' || caseName === 'responsabilite' || caseName === 'fiscal' || caseName === 'droit' || caseName === 'marches' || caseName === 'transmission' || caseName === 'fiscalite-int') {
+    if (tabBar) tabBar.style.display = 'none';
+    if (sidebarEl) {
+      sidebarEl.style.display = '';
+      sidebarEl.classList.remove('collapsed');
+    }
+    if (expandBtn) expandBtn.classList.remove('visible');
+    const sidebar = document.getElementById('sidebar-' + caseName);
+    if (sidebar) {
+      sidebar.style.display = 'block';
+      // Auto-activer le premier item du sidebar
+      const firstItem = sidebar.querySelector('.sidebar-item[onclick]');
+      if (firstItem) {
+        sidebar.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+        firstItem.classList.add('active');
+      }
+    }
+  } else {
+    if (tabBar) tabBar.style.display = '';
+    if (sidebarEl) {
+      sidebarEl.style.display = '';
+      sidebarEl.classList.remove('collapsed');
+    }
+    if (expandBtn) expandBtn.classList.remove('visible');
+    const sidebar = document.getElementById('sidebar-' + caseName);
+    if (sidebar) sidebar.style.display = 'block';
+  }
+
+  // Transition du contenu — scrollTop APRÈS affichage
+  let targetShown = false;
   function showTarget() {
+    if (targetShown) return;
+    targetShown = true;
     document.querySelectorAll('.case-content').forEach(c => {
       c.classList.remove('active', 'fade-out');
       c.style.display = 'none';
@@ -30333,54 +30873,17 @@ function switchCase(caseName) {
       target.classList.add('active');
       target.style.display = 'block';
     }
+    // Scroll en haut APRÈS que le contenu est visible
+    document.getElementById('main-scroll').scrollTop = 0;
   }
 
   if (currentActive && currentActive !== target) {
     currentActive.classList.add('fade-out');
     currentActive.addEventListener('animationend', showTarget, { once: true });
-    // Fallback si animationend ne se déclenche pas
     setTimeout(showTarget, 200);
   } else {
     showTarget();
   }
-
-  // Update sidebar
-  document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
-
-  if (caseName === 'home') {
-    // Home M2-GIP: hide tab bar + sidebar
-    if (tabBar) tabBar.style.display = 'none';
-    if (sidebarEl) sidebarEl.style.display = 'none';
-    if (expandBtn) expandBtn.classList.remove('visible');
-  } else if (caseName === 'audit') {
-    // Audit course home: show tab bar, hide sidebar
-    if (tabBar) tabBar.style.display = '';
-    if (sidebarEl) sidebarEl.style.display = 'none';
-    if (expandBtn) expandBtn.classList.remove('visible');
-  } else if (caseName === 'financement' || caseName === 'responsabilite' || caseName === 'fiscal' || caseName === 'droit' || caseName === 'marches' || caseName === 'transmission' || caseName === 'fiscalite-int') {
-    // Lecture course pages: show sidebar, hide tab bar
-    if (tabBar) tabBar.style.display = 'none';
-    if (sidebarEl) {
-      sidebarEl.style.display = '';
-      sidebarEl.classList.remove('collapsed');
-    }
-    if (expandBtn) expandBtn.classList.remove('visible');
-    const sidebar = document.getElementById('sidebar-' + caseName);
-    if (sidebar) sidebar.style.display = 'block';
-  } else {
-    // Case/tool pages: show tab bar + sidebar
-    if (tabBar) tabBar.style.display = '';
-    if (sidebarEl) {
-      sidebarEl.style.display = '';
-      sidebarEl.classList.remove('collapsed');
-    }
-    if (expandBtn) expandBtn.classList.remove('visible');
-    const sidebar = document.getElementById('sidebar-' + caseName);
-    if (sidebar) sidebar.style.display = 'block';
-  }
-
-  // Scroll to top
-  document.getElementById('main-scroll').scrollTop = 0;
 
   // Update URL hash (sans déclencher hashchange)
   if (caseName !== 'home') {
@@ -30404,7 +30907,22 @@ function switchCase(caseName) {
 
 // ============ ENTER COURSE FUNCTION ============
 function enterCourse(courseName) {
-  switchCase(courseName);
+  // Si le contenu n'est pas dans le DOM, charger via contentLoader (version docs/)
+  var existing = document.getElementById('case-' + courseName);
+  if (!existing && window.contentLoader) {
+    var spinner = document.getElementById('loadingSpinner');
+    if (spinner) spinner.style.display = '';
+    window.contentLoader.load(courseName).then(function(data) {
+      window.contentLoader.inject(courseName, data);
+      if (spinner) spinner.style.display = 'none';
+      switchCase(courseName);
+    }).catch(function(err) {
+      if (spinner) spinner.style.display = 'none';
+      console.error('Erreur chargement ' + courseName + ':', err);
+    });
+  } else {
+    switchCase(courseName);
+  }
 }
 
 // ============ EXPORT PDF GÉNÉRIQUE ============
@@ -30845,7 +31363,7 @@ try {
 // ============ HASH ROUTING — CHARGEMENT INITIAL ============
 window.addEventListener('hashchange', function() {
   const hash = window.location.hash.replace('#', '');
-  if (hash) switchCase(hash);
+  if (hash) enterCourse(hash);
 });
 
 // ============ FLASHCARDS — FILTRAGE & MÉLANGE ============
@@ -31380,7 +31898,7 @@ function timeAgo(ts) {
       banner.style.display = 'flex';
 
       btn.addEventListener('click', function() {
-        switchCase(lastPage);
+        enterCourse(lastPage);
         banner.style.display = 'none';
       });
       close.addEventListener('click', function() {
@@ -31398,21 +31916,26 @@ function timeAgo(ts) {
     }
   } catch(e) {}
 
-  // Navigation par hash au chargement (prioritaire sur le bandeau)
-  const hash = window.location.hash.replace('#', '');
-  if (hash) {
-    banner.style.display = 'none';
-    // Attendre que le lockscreen soit passé si nécessaire
-    const checkAndNavigate = function() {
-      const lockscreen = document.getElementById('lockscreen');
-      if (lockscreen && lockscreen.style.display !== 'none') {
-        setTimeout(checkAndNavigate, 200);
-      } else {
-        switchCase(hash);
-      }
-    };
-    checkAndNavigate();
+  // Au chargement, toujours forcer l'accueil
+  // 1) Nettoyer le hash
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname);
   }
+  // 2) Forcer case-home visible, masquer tout le reste
+  document.querySelectorAll('.case-content').forEach(function(c) {
+    if (c.id === 'case-home') {
+      c.classList.add('active');
+      c.style.display = 'block';
+    } else {
+      c.classList.remove('active');
+      c.style.display = 'none';
+    }
+  });
+  // 3) Masquer sidebar et tabBar
+  var sb = document.getElementById('sidebar');
+  var tb = document.getElementById('tabBar');
+  if (sb) sb.style.display = 'none';
+  if (tb) tb.style.display = 'none';
 })();
 
 </script>

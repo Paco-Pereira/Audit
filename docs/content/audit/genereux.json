@@ -6,60 +6,74 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-intro",
+        "label": "Vue d'ensemble",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-s1",
+        "label": "Situation du client",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-s2",
+        "label": "Patrimoine",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-s3",
+        "label": "Objectifs",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-e6i-q1",
+        "label": "Question 1",
+        "num": "Q1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-e6i-q2",
+        "label": "Question 2",
+        "num": "Q2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-e6i-q3",
+        "label": "Question 3",
+        "num": "Q3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-e6i-q4",
+        "label": "Question 4",
+        "num": "Q4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-e6ii-q1",
+        "label": "Question 1",
+        "num": "Q1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-e6ii-q2",
+        "label": "Question 2",
+        "num": "Q2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-e6ii-q3",
+        "label": "Question 3",
+        "num": "Q3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-e6ii-q4",
+        "label": "Question 4",
+        "num": "Q4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-annexes",
+        "label": "Annexes",
+        "num": "📎"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "genereux-memo",
+        "label": "Mémo Express",
+        "num": "📋"
       }
     ]
   },

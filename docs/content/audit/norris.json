@@ -6,88 +6,99 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "norr-intro",
+        "label": "Vue d'ensemble",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s1",
+        "label": "Situation du couple",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s2",
+        "label": "Tableau des STOCKS",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s2-ifi",
+        "label": "IFI — calcul détaillé"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s3",
+        "label": "Flux Activité",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s3-ir",
+        "label": "IR — calcul détaillé"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s3-ps",
+        "label": "PS & IFI"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s3-solde",
+        "label": "Solde & capacités"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s4",
+        "label": "Flux Retraite",
+        "num": "4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s5",
+        "label": "DDS Initial",
+        "num": "5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s5-dc1",
+        "label": "DC1 — Décès Mr"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s5-dc2",
+        "label": "DC2 — Décès Mme"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s6",
+        "label": "Constats",
+        "num": "6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s7",
+        "label": "20 Préconisations",
+        "num": "7"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s7-civil",
+        "label": "Civil & matrimonial"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s7-immo",
+        "label": "OBO SCI IS"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s7-fin",
+        "label": "Financier & fiscal"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s7-av",
+        "label": "Assurance vie & tontines"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s8",
+        "label": "DDS Après Précos",
+        "num": "8"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norr-s9",
+        "label": "Bilan N+20",
+        "num": "9"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "norris-memo",
+        "label": "Mémo Express",
+        "num": "📋"
       }
     ]
   },

@@ -6,72 +6,89 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "form-intro",
+        "label": "Vue d'ensemble",
+        "num": "📐"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s1",
+        "label": "Barème IR",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s2",
+        "label": "PFU & PS",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s3",
+        "label": "Barème IFI",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s4",
+        "label": "Droits de Succession",
+        "num": "4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s5",
+        "label": "Abattements",
+        "num": "5"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s6",
+        "label": "Démembrement",
+        "num": "6"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s7",
+        "label": "Assurance Vie",
+        "num": "7"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s8",
+        "label": "Immobilier",
+        "num": "8"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s9",
+        "label": "PER & Retraite",
+        "num": "9"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s10",
+        "label": "Réserve & QD",
+        "num": "10"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s11",
+        "label": "Régimes Matrimoniaux",
+        "num": "11"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s12",
+        "label": "Plus-Values Immo",
+        "num": "12"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s13",
+        "label": "Réductions d'Impôt",
+        "num": "13"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s14",
+        "label": "Crédits d'Impôt",
+        "num": "14"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-s15",
+        "label": "Déductions",
+        "num": "15"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "form-flashcards",
+        "label": "Flashcards Quiz",
+        "num": "⚡"
       }
     ]
   },

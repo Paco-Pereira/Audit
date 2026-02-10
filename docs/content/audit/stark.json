@@ -6,52 +6,64 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "stark-intro",
+        "label": "Vue d'ensemble",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-situation",
+        "label": "Situation",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-patrimoine",
+        "label": "Patrimoine",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-e6i-q1",
+        "label": "Bilan patrimonial",
+        "num": "Q1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-e6i-q2",
+        "label": "Bilan successoral",
+        "num": "Q2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-e6i-q3",
+        "label": "Bilan financier",
+        "num": "Q3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-e6i-q4",
+        "label": "Préconisations",
+        "num": "Q4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-e6ii-q1",
+        "label": "Profil de risque",
+        "num": "Q1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-e6ii-q2",
+        "label": "Préconisations",
+        "num": "Q2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-e6ii-q3",
+        "label": "Donation NP",
+        "num": "Q3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-e6ii-q4",
+        "label": "Retraite",
+        "num": "Q4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "stark-memo",
+        "label": "Mémo Express",
+        "num": "📋"
       }
     ]
   },

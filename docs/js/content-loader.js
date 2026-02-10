@@ -132,7 +132,7 @@ class ContentLoader {
       container.className = 'case-content';
       container.style.display = 'none';
 
-      const mainElement = document.getElementById('main');
+      const mainElement = document.getElementById('main-scroll');
       if (mainElement) {
         mainElement.appendChild(container);
       }
@@ -167,7 +167,7 @@ class ContentLoader {
     let html = `<div id="sidebar-${caseId}" class="sidebar-sections" style="display:none;">`;
 
     sidebarData.items.forEach(item => {
-      html += `<a href="#${item.id}" class="sidebar-item" onclick="scrollToSection('${item.id}')">`;
+      html += `<a href="#${item.id}" class="sidebar-item" onclick="goTo('${item.id}')">`;
 
       if (item.num) {
         html += `<span class="sidebar-num">${item.num}</span>`;

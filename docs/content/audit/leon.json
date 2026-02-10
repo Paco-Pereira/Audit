@@ -6,64 +6,79 @@
   "sidebar": {
     "items": [
       {
-        "id": "",
-        "label": ""
+        "id": "leon-intro",
+        "label": "Vue d'ensemble",
+        "num": "0"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-s1",
+        "label": "Situation du client",
+        "num": "1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-s2",
+        "label": "Patrimoine",
+        "num": "2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-s3",
+        "label": "Objectifs",
+        "num": "3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6i-q1",
+        "label": "Impôt sur le revenu & RFR",
+        "num": "Q1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6i-q2",
+        "label": "PER — Économie d'impôt",
+        "num": "Q2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6i-q3",
+        "label": "Traitement fiscal PER",
+        "num": "Q3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6i-q4",
+        "label": "Placement 100 000€",
+        "num": "Q4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6ii-situation",
+        "label": "Situation 10 ans après",
+        "num": "📊"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6ii-q1",
+        "label": "Droit d'habitation",
+        "num": "Q1"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6ii-q2",
+        "label": "Dévolution légale",
+        "num": "Q2"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6ii-q3",
+        "label": "Droits de succession",
+        "num": "Q3"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-e6ii-q4",
+        "label": "Résidence secondaire",
+        "num": "Q4"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-annexes",
+        "label": "Annexes",
+        "num": "📎"
       },
       {
-        "id": "",
-        "label": ""
+        "id": "leon-memo",
+        "label": "Mémo Express",
+        "num": "📋"
       }
     ]
   },

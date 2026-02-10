@@ -59,16 +59,31 @@ for (const [caseId, meta] of Object.entries(CASE_MAP)) {
   const sidebarItems = [];
   sidebar.find('.sidebar-item').each((i, el) => {
     const $el = $(el);
-    const href = $el.attr('href') || '';
-    const id = href.replace('#', '');
-    const num = $el.find('.sidebar-num').text();
-    const label = $el.find('.sidebar-label').text();
+    // ID: from href attribute or onclick goTo('...')
+    let id = ($el.attr('href') || '').replace('#', '');
+    if (!id) {
+      const onclick = $el.attr('onclick') || '';
+      const match = onclick.match(/goTo\(['"]([^'"]+)['"]\)/);
+      if (match) id = match[1];
+    }
+    // Num: from .sidebar-num or .num span
+    const num = ($el.find('.sidebar-num').text() || $el.find('.num').text()).trim();
+    // Label: from .sidebar-label child, or full text minus num
+    let label = $el.find('.sidebar-label').text().trim();
+    if (!label) {
+      // Clone, remove num/chip spans, get remaining text
+      const clone = $el.clone();
+      clone.find('.num, .sidebar-num, .progress-chip').remove();
+      label = clone.text().trim();
+    }
 
-    sidebarItems.push({
-      id,
-      label,
-      num: num || undefined
-    });
+    if (id || label) {
+      sidebarItems.push({
+        id,
+        label,
+        num: num || undefined
+      });
+    }
   });
 
   // Extract search keywords
