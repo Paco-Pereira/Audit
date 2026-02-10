@@ -79,12 +79,12 @@ body.light-mode {
   --sidebar-bg: rgba(240, 235, 225, 0.92);
   --sidebar-active: rgba(150, 120, 60, 0.1);
   --sidebar-hover: rgba(0, 0, 0, 0.03);
-  --sidebar-text: rgba(60, 50, 35, 0.5);
+  --sidebar-text: rgba(60, 50, 35, 0.75);
   --sidebar-text-active: #2a2520;
 
   --text: #2a2520;
   --text-light: rgba(42, 37, 32, 0.5);
-  --text-tertiary: rgba(42, 37, 32, 0.28);
+  --text-tertiary: rgba(42, 37, 32, 0.5);
   --card-bg: rgba(253, 251, 247, 0.82);
   --border: rgba(42, 37, 32, 0.08);
   --primary-light: rgba(150, 120, 60, 0.08);
@@ -617,7 +617,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 
 .sidebar-item:hover {
   background: var(--sidebar-hover);
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--sidebar-text-active);
 }
 
 .sidebar-item.active {
