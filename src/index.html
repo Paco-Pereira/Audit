@@ -427,7 +427,10 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  border: 1px solid rgba(186, 155, 95, 0.15);
+  border: 1px solid rgba(186, 155, 95, 0.2);
+  box-shadow: 0 0 12px rgba(186, 155, 95, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .header-github,
@@ -1845,7 +1848,7 @@ button:focus-visible,
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  transition: all var(--transition);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
@@ -1865,8 +1868,8 @@ button:focus-visible,
 
 .flashcard:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg), 0 0 30px rgba(10, 132, 255, 0.1);
-  border-color: rgba(10, 132, 255, 0.2);
+  box-shadow: var(--shadow-liquid-lg), 0 0 24px rgba(186, 155, 95, 0.1);
+  border-color: var(--glass-border-hover);
 }
 
 .flashcard:hover::before {
@@ -1892,7 +1895,8 @@ button:focus-visible,
   color: var(--primary);
   font-weight: 500;
   opacity: 0;
-  transition: all var(--transition);
+  transform: translateY(6px);
+  transition: opacity 0.3s ease 0.05s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, max-height 0.4s ease;
   max-height: 0;
   overflow: hidden;
 }
@@ -1900,11 +1904,13 @@ button:focus-visible,
 .flashcard-a.show,
 .flashcard.revealed .flashcard-a {
   opacity: 1;
-  max-height: 200px;
+  transform: translateY(0);
+  max-height: 300px;
 }
 .flashcard.revealed {
-  border-color: rgba(10, 132, 255, 0.3);
-  background: rgba(10, 132, 255, 0.04);
+  border-color: rgba(186, 155, 95, 0.35);
+  background: rgba(186, 155, 95, 0.05);
+  box-shadow: var(--shadow-liquid-md), 0 0 20px rgba(186, 155, 95, 0.08);
 }
 .flashcard.revealed::before {
   opacity: 1;
@@ -3047,8 +3053,18 @@ button:focus-visible,
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-light);
-  padding: 0 24px;
-  margin: 32px 0 16px;
+  padding: 0 24px 10px;
+  margin: 36px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--glass-border);
+}
+.home-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--glass-border), transparent);
 }
 
 .home-grid {
