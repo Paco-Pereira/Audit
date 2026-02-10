@@ -72,8 +72,16 @@ function switchCase(caseName) {
     targetTab.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
   }
 
-  // Update content with fade transition
+  // Sauvegarder la position de scroll avant de changer de page
   const currentActive = document.querySelector('.case-content.active');
+  if (currentActive && currentActive.id !== 'case-home') {
+    try {
+      var scrollPos = document.getElementById('main-scroll').scrollTop;
+      localStorage.setItem('gip-scroll-' + currentActive.id.replace('case-', ''), scrollPos);
+    } catch(e) {}
+  }
+
+  // Update content with fade transition
   const target = document.getElementById('case-' + caseName);
 
   // Préparer le sidebar AVANT la transition
@@ -128,8 +136,16 @@ function switchCase(caseName) {
       target.classList.add('active');
       target.style.display = 'block';
     }
-    // Scroll en haut APRÈS que le contenu est visible
-    document.getElementById('main-scroll').scrollTop = 0;
+    // Restaurer la position de scroll ou remonter en haut
+    var mainEl = document.getElementById('main-scroll');
+    try {
+      var savedScroll = localStorage.getItem('gip-scroll-' + caseName);
+      if (savedScroll && caseName !== 'home') {
+        mainEl.scrollTop = parseInt(savedScroll);
+      } else {
+        mainEl.scrollTop = 0;
+      }
+    } catch(e) { mainEl.scrollTop = 0; }
   }
 
   if (currentActive && currentActive !== target) {
@@ -1180,7 +1196,15 @@ function timeAgo(ts) {
 
     // Afficher le bandeau seulement si on arrive sur home et qu'on a une dernière page
     if (lastPage && lastPage !== 'home' && !hash) {
-      text.innerHTML = 'Reprendre : <strong>' + (courseNames[lastPage] || lastPage) + '</strong>';
+      var progressInfo = '';
+      try {
+        var prog = JSON.parse(localStorage.getItem('gip-progress') || '{}');
+        var doneSections = (prog[lastPage] || []).length;
+        if (doneSections > 0) {
+          progressInfo = ' <span style="opacity:0.7;font-size:0.85em">(' + doneSections + ' section' + (doneSections > 1 ? 's' : '') + ' lu' + (doneSections > 1 ? 'es' : 'e') + ')</span>';
+        }
+      } catch(e) {}
+      text.innerHTML = 'Reprendre : <strong>' + (courseNames[lastPage] || lastPage) + '</strong>' + progressInfo;
       banner.style.display = 'flex';
 
       btn.addEventListener('click', function() {
