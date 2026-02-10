@@ -331,6 +331,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (mainEl) {
     let scrollSpyTimer = null;
+    let cachedSidebarId = null;
+    let cachedSectionMap = [];
+    let cachedItems = [];
+
     mainEl.addEventListener('scroll', () => {
       // Update reading progress bar
       if (readingFill) {
@@ -344,40 +348,40 @@ document.addEventListener('DOMContentLoaded', function() {
       scrollSpyTimer = requestAnimationFrame(() => {
         scrollSpyTimer = null;
 
-        // Find visible sidebar and build section-to-item map
+        // Find visible sidebar
         const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"]):not([style*="display:none"])');
         if (!activeSidebar) return;
 
-        const items = activeSidebar.querySelectorAll('.sidebar-item[onclick]');
-        if (!items.length) return;
+        // Rebuild cache only when sidebar changes
+        if (activeSidebar.id !== cachedSidebarId) {
+          cachedSidebarId = activeSidebar.id;
+          cachedItems = activeSidebar.querySelectorAll('.sidebar-item[onclick]');
+          cachedSectionMap = [];
+          cachedItems.forEach(item => {
+            const match = item.getAttribute('onclick').match(/(?:goTo|scrollToSection)\(['"]([^'"]+)['"]\)/);
+            if (match) {
+              const el = document.getElementById(match[1]);
+              if (el) cachedSectionMap.push({ id: match[1], el: el, item: item });
+            }
+          });
+        }
 
-        // Extract target IDs from sidebar onclick attributes
-        const sectionMap = [];
-        items.forEach(item => {
-          const match = item.getAttribute('onclick').match(/(?:goTo|scrollToSection)\(['"]([^'"]+)['"]\)/);
-          if (match) {
-            const el = document.getElementById(match[1]);
-            if (el) sectionMap.push({ id: match[1], el: el, item: item });
-          }
-        });
-
-        if (!sectionMap.length) return;
+        if (!cachedSectionMap.length) return;
 
         // Find which section is currently visible (last one above threshold)
-        let currentEntry = sectionMap[0];
-        const scrollTop = mainEl.scrollTop;
+        let currentEntry = cachedSectionMap[0];
         const threshold = 160;
 
-        for (let i = sectionMap.length - 1; i >= 0; i--) {
-          const rect = sectionMap[i].el.getBoundingClientRect();
+        for (let i = cachedSectionMap.length - 1; i >= 0; i--) {
+          const rect = cachedSectionMap[i].el.getBoundingClientRect();
           if (rect.top < threshold) {
-            currentEntry = sectionMap[i];
+            currentEntry = cachedSectionMap[i];
             break;
           }
         }
 
         // Update active state
-        items.forEach(i => i.classList.remove('active'));
+        cachedItems.forEach(i => i.classList.remove('active'));
         currentEntry.item.classList.add('active');
         currentEntry.item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       });
@@ -528,13 +532,22 @@ searchInput && searchInput.addEventListener('focus', function() {
   if (this.value.trim().length < 2) showSearchHistory();
 });
 
+var searchDebounceTimer = null;
 searchInput && searchInput.addEventListener('input', function() {
-  const query = this.value.trim().toLowerCase();
+  var self = this;
+  clearTimeout(searchDebounceTimer);
+  var query = self.value.trim().toLowerCase();
   if (query.length < 2) {
     showSearchHistory();
     return;
   }
+  searchDebounceTimer = setTimeout(function() {
+    doSearch(self.value.trim().toLowerCase());
+  }, 250);
+});
 
+function doSearch(query) {
+  if (query.length < 2) return;
   const results = [];
   document.querySelectorAll('.case-content').forEach(caseEl => {
     const caseName = caseEl.id.replace('case-', '');
@@ -584,7 +597,7 @@ searchInput && searchInput.addEventListener('input', function() {
   }
 
   searchResults.classList.add('active');
-});
+}
 
 function goToSearch(tab, sectionId) {
   const query = searchInput.value.trim();
@@ -1232,8 +1245,8 @@ function updateProgressBar(caseName) {
       'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
       'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
       'outils': 'Outils', 'guide': 'Guide', 'montages': 'Montages',
-      'formules': 'Formules', 'audit': 'Audit', 'financement': 'Financement',
-      'responsabilite': 'Responsabilité', 'fiscal': 'Fiscalité',
+      'formules': 'Formules', 'audit': 'Audit patrimonial', 'financement': 'Financement',
+      'responsabilite': 'Responsabilité', 'fiscal': 'Ingénierie fiscale PP',
       'droit': 'Droit patrimonial', 'marches': 'Marchés financiers',
       'transmission': 'Transmission d\'entreprises',
       'fiscalite-int': 'Fiscalité Internationale'
@@ -1543,9 +1556,9 @@ function toggleBookmarksPanel() {
     'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
     'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
     'financement': 'Financement', 'responsabilite': 'Responsabilité',
-    'fiscal': 'Fiscalité', 'droit': 'Droit patrimonial',
-    'marches': 'Marchés financiers', 'transmission': 'Transmission',
-    'fiscalite-int': 'Fiscalité Int.', 'outils': 'Outils',
+    'fiscal': 'Ingénierie fiscale PP', 'droit': 'Droit patrimonial',
+    'marches': 'Marchés financiers', 'transmission': 'Transmission d\'entreprises',
+    'fiscalite-int': 'Fiscalité Internationale', 'outils': 'Outils',
     'guide': 'Guide', 'montages': 'Montages', 'formules': 'Formules'
   };
 
@@ -1710,7 +1723,7 @@ function checkMilestone(caseName) {
 
 // ============ QCM INTERACTIFS — Score, progression, sauvegarde ============
 (function() {
-  var qcmSections = ['fin-qcm', 'fiscal-qcm', 'droit-qcm', 'trans-qcm', 'fi-qcm'];
+  var qcmSections = ['fin-qcm', 'fiscal-qcm', 'droit-qcm', 'trans-qcm', 'fi-qcm', 'mf-qcm'];
 
   qcmSections.forEach(function(sectionId) {
     var section = document.getElementById(sectionId);

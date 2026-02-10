@@ -582,7 +582,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 .sidebar-collapse-btn:hover {
   background: var(--primary-light);
   color: var(--primary);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--glass-border);
   transform: translateX(-2px);
 }
 
@@ -623,7 +623,7 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
   align-items: center;
   justify-content: center;
   transition: all var(--transition);
-  box-shadow: var(--glass-shadow);
+  box-shadow: var(--shadow-liquid-sm);
 }
 
 .sidebar-expand-btn:hover {
@@ -1363,6 +1363,7 @@ tfoot td {
    ============================================================================ */
 
 .calc-block {
+  position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
@@ -3124,6 +3125,7 @@ button:focus-visible,
 .home-card:hover {
   transform: translateY(-4px);
   border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-liquid-lg), 0 0 40px rgba(186, 155, 95, 0.15);
   box-shadow: var(--shadow-liquid-lg), 0 0 40px color-mix(in srgb, var(--card-accent, var(--primary)) 15%, transparent);
 }
 
@@ -3750,7 +3752,7 @@ html.font-lg { font-size: 18px; }
 .font-size-btn-text {
   font-weight: 700;
   font-size: 0.8rem;
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   letter-spacing: -0.02em;
 }
 
@@ -4105,9 +4107,6 @@ body.light-mode .progress-ring-bg {
 /* ============================================================================
    COPY BUTTON (calc-blocks)
    ============================================================================ */
-.calc-block {
-  position: relative;
-}
 .calc-copy-btn {
   position: absolute;
   top: 8px;
@@ -4133,8 +4132,8 @@ body.light-mode .progress-ring-bg {
 }
 .calc-copy-btn.copied {
   opacity: 1 !important;
-  color: var(--success);
-  border-color: var(--success);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ============================================================================
@@ -4273,7 +4272,7 @@ body.light-mode .qcm-stats-bar.qcm-complete {
     backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
     border-radius: var(--radius);
     padding: 40px 32px;
-    box-shadow: var(--glass-shadow);
+    box-shadow: var(--shadow-liquid-sm);
   ">
     <div style="font-size: 2.5rem; margin-bottom: 12px;">🎓</div>
     <h1 style="color: var(--text); font-size: 1.4rem; font-weight: 700; margin: 0 0 4px;">M2 — GIP</h1>
@@ -24479,16 +24478,16 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <table class="data-table">
           <thead><tr><th>N°</th><th>Thématique</th><th>Points clés</th></tr></thead>
           <tbody>
-            <tr><td><strong>1</strong></td><td>Loi Scrivener & DCI</td><td>Délais, formalisme, sanctions</td></tr>
-            <tr><td><strong>2</strong></td><td>Prêts réglementés</td><td>PTZ, PAS, PC, PEL/CEL</td></tr>
-            <tr><td><strong>3</strong></td><td>Garanties immobilières</td><td>Hypothèque, caution, nantissement</td></tr>
-            <tr><td><strong>4</strong></td><td>ADE & Loi Lemoine</td><td>Risques couverts, résiliation, AERAS</td></tr>
-            <tr><td><strong>5</strong></td><td>Étude du dossier & HCSF</td><td>Taux d'effort, maturité, flexibilité</td></tr>
-            <tr><td><strong>6</strong></td><td>Régime matrimonial & prêt</td><td>Biens engagés, communauté/séparation</td></tr>
-            <tr><td><strong>7</strong></td><td>Crédit consommation</td><td>Renouvelable, amortissable, LOA</td></tr>
-            <tr><td><strong>8</strong></td><td>Eco PTZ</td><td>Conditions, travaux, comparatif</td></tr>
-            <tr><td><strong>9</strong></td><td>Prêt relais & différés</td><td>Relais, anticipation, différé partiel/total</td></tr>
-            <tr><td><strong>10</strong></td><td>Options du crédit</td><td>Modularité, suspension, taux capé</td></tr>
+            <tr onclick="goTo('fin-s1')" style="cursor:pointer"><td><strong>1</strong></td><td>Loi Scrivener & DCI</td><td>Délais, formalisme, sanctions</td></tr>
+            <tr onclick="goTo('fin-s2')" style="cursor:pointer"><td><strong>2</strong></td><td>Prêts réglementés</td><td>PTZ, PAS, PC, PEL/CEL</td></tr>
+            <tr onclick="goTo('fin-s3')" style="cursor:pointer"><td><strong>3</strong></td><td>Garanties immobilières</td><td>Hypothèque, caution, nantissement</td></tr>
+            <tr onclick="goTo('fin-s4')" style="cursor:pointer"><td><strong>4</strong></td><td>ADE & Loi Lemoine</td><td>Risques couverts, résiliation, AERAS</td></tr>
+            <tr onclick="goTo('fin-s5')" style="cursor:pointer"><td><strong>5</strong></td><td>Étude du dossier & HCSF</td><td>Taux d'effort, maturité, flexibilité</td></tr>
+            <tr onclick="goTo('fin-s6')" style="cursor:pointer"><td><strong>6</strong></td><td>Régime matrimonial & prêt</td><td>Biens engagés, communauté/séparation</td></tr>
+            <tr onclick="goTo('fin-s7')" style="cursor:pointer"><td><strong>7</strong></td><td>Crédit consommation</td><td>Renouvelable, amortissable, LOA</td></tr>
+            <tr onclick="goTo('fin-s8')" style="cursor:pointer"><td><strong>8</strong></td><td>Eco PTZ</td><td>Conditions, travaux, comparatif</td></tr>
+            <tr onclick="goTo('fin-s9')" style="cursor:pointer"><td><strong>9</strong></td><td>Prêt relais & différés</td><td>Relais, anticipation, différé partiel/total</td></tr>
+            <tr onclick="goTo('fin-s10')" style="cursor:pointer"><td><strong>10</strong></td><td>Options du crédit</td><td>Modularité, suspension, taux capé</td></tr>
           </tbody>
         </table>
       </div>
@@ -25687,13 +25686,13 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <table class="data-table">
           <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>
           <tbody>
-            <tr><td><strong>1</strong></td><td>Obligations précontractuelles</td><td>Information, évaluation, mise en garde, conseil, couverture</td></tr>
-            <tr><td><strong>2</strong></td><td>Inexécution contractuelle</td><td>Mandat, diligence, loyauté, rendre compte, dénouement</td></tr>
-            <tr><td><strong>3</strong></td><td>Dommage & lien de causalité</td><td>Nature, caractères, perte de chance, exonération</td></tr>
-            <tr><td><strong>4</strong></td><td>Responsabilité pénale</td><td>Infractions de droit commun et spécifiques, prescription</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>5</strong></td><td>Charge de la preuve & Atténuation</td><td>Régime de preuve, client averti, conseil illicite</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>6</strong></td><td>Blanchiment & Obligations déclaratives</td><td>Art. 324-1 CP, TRACFIN, démarchage financier détaillé</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>7</strong></td><td>Jurisprudence clé annotée</td><td>Arrêts commentés : information, gestion, condamnations pénales</td></tr>
+            <tr onclick="goTo('resp-s1')" style="cursor:pointer"><td><strong>1</strong></td><td>Obligations précontractuelles</td><td>Information, évaluation, mise en garde, conseil, couverture</td></tr>
+            <tr onclick="goTo('resp-s2')" style="cursor:pointer"><td><strong>2</strong></td><td>Inexécution contractuelle</td><td>Mandat, diligence, loyauté, rendre compte, dénouement</td></tr>
+            <tr onclick="goTo('resp-s3')" style="cursor:pointer"><td><strong>3</strong></td><td>Dommage & lien de causalité</td><td>Nature, caractères, perte de chance, exonération</td></tr>
+            <tr onclick="goTo('resp-s4')" style="cursor:pointer"><td><strong>4</strong></td><td>Responsabilité pénale</td><td>Infractions de droit commun et spécifiques, prescription</td></tr>
+            <tr onclick="goTo('resp-s5')" style="cursor:pointer; background:var(--accent-light);"><td><strong>5</strong></td><td>Charge de la preuve & Atténuation</td><td>Régime de preuve, client averti, conseil illicite</td></tr>
+            <tr onclick="goTo('resp-s6')" style="cursor:pointer; background:var(--accent-light);"><td><strong>6</strong></td><td>Blanchiment & Obligations déclaratives</td><td>Art. 324-1 CP, TRACFIN, démarchage financier détaillé</td></tr>
+            <tr onclick="goTo('resp-s7')" style="cursor:pointer; background:var(--accent-light);"><td><strong>7</strong></td><td>Jurisprudence clé annotée</td><td>Arrêts commentés : information, gestion, condamnations pénales</td></tr>
           </tbody>
         </table>
       </div>
@@ -26550,15 +26549,15 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <table class="data-table">
           <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>
           <tbody>
-            <tr><td><strong>1</strong></td><td>Impôt sur le revenu</td><td>Catégories, barème progressif, PFU / option barème, quotient familial</td></tr>
-            <tr><td><strong>2</strong></td><td>Plus-values des particuliers</td><td>PV immobilières, PV mobilières, abattements, exonérations</td></tr>
-            <tr><td><strong>3</strong></td><td>IFI</td><td>Assiette, seuil, barème, biens exonérés, stratégies d'optimisation</td></tr>
-            <tr><td><strong>4</strong></td><td>Droits de mutation à titre gratuit</td><td>Successions, donations, abattements, barème, rapports fiscaux</td></tr>
-            <tr><td><strong>5</strong></td><td>Assurance-vie</td><td>Fiscalité des rachats, transmission (art. 990 I CGI), clause bénéficiaire</td></tr>
-            <tr><td><strong>6</strong></td><td>Démembrement & SCI</td><td>Démembrement de propriété, SCI patrimoniale, holding familiale</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>7</strong></td><td>Défiscalisation immobilière</td><td>Pinel, Girardin outre-mer, Malraux, Denormandie, Censi-Bouvard</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>8</strong></td><td>Location meublée — LMP / LMNP</td><td>Revenus fonciers vs BIC, statuts LMP/LMNP, amortissement, déficit foncier</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>9</strong></td><td>Stratégies de détention avancées</td><td>SCI IR vs IS, SARL de famille, crédit Lombard, effet de levier, combinaisons</td></tr>
+            <tr onclick="goTo('fiscal-s1')" style="cursor:pointer"><td><strong>1</strong></td><td>Impôt sur le revenu</td><td>Catégories, barème progressif, PFU / option barème, quotient familial</td></tr>
+            <tr onclick="goTo('fiscal-s2')" style="cursor:pointer"><td><strong>2</strong></td><td>Plus-values des particuliers</td><td>PV immobilières, PV mobilières, abattements, exonérations</td></tr>
+            <tr onclick="goTo('fiscal-s3')" style="cursor:pointer"><td><strong>3</strong></td><td>IFI</td><td>Assiette, seuil, barème, biens exonérés, stratégies d'optimisation</td></tr>
+            <tr onclick="goTo('fiscal-s4')" style="cursor:pointer"><td><strong>4</strong></td><td>Droits de mutation à titre gratuit</td><td>Successions, donations, abattements, barème, rapports fiscaux</td></tr>
+            <tr onclick="goTo('fiscal-s5')" style="cursor:pointer"><td><strong>5</strong></td><td>Assurance-vie</td><td>Fiscalité des rachats, transmission (art. 990 I CGI), clause bénéficiaire</td></tr>
+            <tr onclick="goTo('fiscal-s6')" style="cursor:pointer"><td><strong>6</strong></td><td>Démembrement & SCI</td><td>Démembrement de propriété, SCI patrimoniale, holding familiale</td></tr>
+            <tr onclick="goTo('fiscal-s7')" style="cursor:pointer; background:var(--accent-light);"><td><strong>7</strong></td><td>Défiscalisation immobilière</td><td>Pinel, Girardin outre-mer, Malraux, Denormandie, Censi-Bouvard</td></tr>
+            <tr onclick="goTo('fiscal-s8')" style="cursor:pointer; background:var(--accent-light);"><td><strong>8</strong></td><td>Location meublée — LMP / LMNP</td><td>Revenus fonciers vs BIC, statuts LMP/LMNP, amortissement, déficit foncier</td></tr>
+            <tr onclick="goTo('fiscal-s9')" style="cursor:pointer; background:var(--accent-light);"><td><strong>9</strong></td><td>Stratégies de détention avancées</td><td>SCI IR vs IS, SARL de famille, crédit Lombard, effet de levier, combinaisons</td></tr>
           </tbody>
         </table>
       </div>
@@ -27721,21 +27720,21 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <table class="data-table">
           <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>
           <tbody>
-            <tr><td><strong>1</strong></td><td>Conditions des libéralités</td><td>Consentement, capacité, objet</td></tr>
-            <tr><td><strong>2</strong></td><td>Libéralités avec charge</td><td>Validité, révision judiciaire, inaliénabilité</td></tr>
-            <tr><td><strong>3</strong></td><td>Solennité des donations</td><td>Acte notarié, formalités, nullité</td></tr>
-            <tr><td><strong>4</strong></td><td>Exceptions à la solennité</td><td>Don manuel, donation indirecte, déguisée</td></tr>
-            <tr><td><strong>5</strong></td><td>Irrévocabilité des donations</td><td>Clauses prohibées, permises, révocation</td></tr>
-            <tr><td><strong>6</strong></td><td>Donations spécifiques</td><td>Matrimoniales, graduelles, donation-partage</td></tr>
-            <tr><td><strong>7</strong></td><td>Formes de testaments</td><td>Olographe, authentique, mystique, international</td></tr>
-            <tr><td><strong>8</strong></td><td>Révocabilité des testaments</td><td>Volontaire, judiciaire, de plein droit</td></tr>
-            <tr><td><strong>9</strong></td><td>Dévolution ab intestat</td><td>Ordres, degrés, conjoint survivant</td></tr>
-            <tr><td><strong>10</strong></td><td>Dévolution volontaire & réserve</td><td>Réserve héréditaire, QD ordinaire et spéciale</td></tr>
-            <tr><td><strong>11</strong></td><td>Option successorale</td><td>Acceptation, renonciation, effets</td></tr>
-            <tr><td><strong>12</strong></td><td>Partage de la succession</td><td>Masse partageable, rapport des libéralités</td></tr>
-            <tr><td><strong>13</strong></td><td>Successions internationales</td><td>Règlement européen, certificat, fiscalité</td></tr>
-            <tr><td><strong>14</strong></td><td>Paiement des droits</td><td>Modalités, différé, fractionné</td></tr>
-            <tr><td><strong>15</strong></td><td>Gestion par mandataire</td><td>Mandat posthume, conventionnel, successoral</td></tr>
+            <tr onclick="goTo('droit-s1')" style="cursor:pointer"><td><strong>1</strong></td><td>Conditions des libéralités</td><td>Consentement, capacité, objet</td></tr>
+            <tr onclick="goTo('droit-s2')" style="cursor:pointer"><td><strong>2</strong></td><td>Libéralités avec charge</td><td>Validité, révision judiciaire, inaliénabilité</td></tr>
+            <tr onclick="goTo('droit-s3')" style="cursor:pointer"><td><strong>3</strong></td><td>Solennité des donations</td><td>Acte notarié, formalités, nullité</td></tr>
+            <tr onclick="goTo('droit-s4')" style="cursor:pointer"><td><strong>4</strong></td><td>Exceptions à la solennité</td><td>Don manuel, donation indirecte, déguisée</td></tr>
+            <tr onclick="goTo('droit-s5')" style="cursor:pointer"><td><strong>5</strong></td><td>Irrévocabilité des donations</td><td>Clauses prohibées, permises, révocation</td></tr>
+            <tr onclick="goTo('droit-s6')" style="cursor:pointer"><td><strong>6</strong></td><td>Donations spécifiques</td><td>Matrimoniales, graduelles, donation-partage</td></tr>
+            <tr onclick="goTo('droit-s7')" style="cursor:pointer"><td><strong>7</strong></td><td>Formes de testaments</td><td>Olographe, authentique, mystique, international</td></tr>
+            <tr onclick="goTo('droit-s8')" style="cursor:pointer"><td><strong>8</strong></td><td>Révocabilité des testaments</td><td>Volontaire, judiciaire, de plein droit</td></tr>
+            <tr onclick="goTo('droit-s9')" style="cursor:pointer"><td><strong>9</strong></td><td>Dévolution ab intestat</td><td>Ordres, degrés, conjoint survivant</td></tr>
+            <tr onclick="goTo('droit-s10')" style="cursor:pointer"><td><strong>10</strong></td><td>Dévolution volontaire & réserve</td><td>Réserve héréditaire, QD ordinaire et spéciale</td></tr>
+            <tr onclick="goTo('droit-s11')" style="cursor:pointer"><td><strong>11</strong></td><td>Option successorale</td><td>Acceptation, renonciation, effets</td></tr>
+            <tr onclick="goTo('droit-s12')" style="cursor:pointer"><td><strong>12</strong></td><td>Partage de la succession</td><td>Masse partageable, rapport des libéralités</td></tr>
+            <tr onclick="goTo('droit-s13')" style="cursor:pointer"><td><strong>13</strong></td><td>Successions internationales</td><td>Règlement européen, certificat, fiscalité</td></tr>
+            <tr onclick="goTo('droit-s14')" style="cursor:pointer"><td><strong>14</strong></td><td>Paiement des droits</td><td>Modalités, différé, fractionné</td></tr>
+            <tr onclick="goTo('droit-s15')" style="cursor:pointer"><td><strong>15</strong></td><td>Gestion par mandataire</td><td>Mandat posthume, conventionnel, successoral</td></tr>
           </tbody>
         </table>
       </div>
@@ -29477,19 +29476,19 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <table class="data-table">
           <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>
           <tbody>
-            <tr><td><strong>1</strong></td><td>Donation-partage conjonctive</td><td>Principes, DMTG théoriques vs réels, famille recomposée</td></tr>
-            <tr><td><strong>2</strong></td><td>Atteinte à la réserve</td><td>4 étapes de calcul, réduction, renonciation anticipée</td></tr>
-            <tr><td><strong>3</strong></td><td>Principes du Pacte Dutreil</td><td>Exonération 75%, enjeux, paiement différé-fractionné, abus de droit, exemple chiffré</td></tr>
-            <tr><td><strong>4</strong></td><td>Art. 787 C — Entreprise individuelle</td><td>Conditions, location-gérance, nouveau statut EI 2022, apport à société, exemple boulangerie</td></tr>
-            <tr><td><strong>5</strong></td><td>Art. 787 B — Sociétés</td><td>ECC, EIC, engagement réputé acquis, seuils, direction</td></tr>
-            <tr><td><strong>6</strong></td><td>Remises en cause</td><td>Scénarios cédant/dirigeant, coûts chiffrés, safe harbors</td></tr>
-            <tr><td><strong>7</strong></td><td>Holding Dutreil & interposition</td><td>Conditions holding animatrice, schéma interposition 2 niveaux</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>7b</strong></td><td>Cession société IS — Outils fiscaux</td><td>Donation-cession, apport-cession (150-0 B ter), 150-0 D ter retraite, LBO, OBO</td></tr>
-            <tr><td><strong>8</strong></td><td>Cession EI / société IR — Exonérations PV</td><td>151 septies, septies A/B, 238 quindecies (IR & IS), reports (art. 41, octies, nonies)</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>9</strong></td><td>Outils civils avancés</td><td>Libéralités graduelles/résiduelles, mandats posthume/protection, préciput, transgénérationnelle</td></tr>
-            <tr><td><strong>📝</strong></td><td>Exercice 3 — LEFRANCOIS</td><td>Transmission SA 20 M€ — corrigé complet avec calculs DMTG, PV, structuration</td></tr>
-            <tr><td><strong>📝</strong></td><td>Exercice 4 — QUESNOY</td><td>Montage complet : Dutreil, donation-partage, soulte, calcul DMTG</td></tr>
-            <tr><td><strong>🎯</strong></td><td>Synthèse examen</td><td>Tout ce qu'il faut savoir pour les QCM</td></tr>
+            <tr onclick="goTo('trans-s1')" style="cursor:pointer"><td><strong>1</strong></td><td>Donation-partage conjonctive</td><td>Principes, DMTG théoriques vs réels, famille recomposée</td></tr>
+            <tr onclick="goTo('trans-s2')" style="cursor:pointer"><td><strong>2</strong></td><td>Atteinte à la réserve</td><td>4 étapes de calcul, réduction, renonciation anticipée</td></tr>
+            <tr onclick="goTo('trans-s3')" style="cursor:pointer"><td><strong>3</strong></td><td>Principes du Pacte Dutreil</td><td>Exonération 75%, enjeux, paiement différé-fractionné, abus de droit, exemple chiffré</td></tr>
+            <tr onclick="goTo('trans-s4')" style="cursor:pointer"><td><strong>4</strong></td><td>Art. 787 C — Entreprise individuelle</td><td>Conditions, location-gérance, nouveau statut EI 2022, apport à société, exemple boulangerie</td></tr>
+            <tr onclick="goTo('trans-s5')" style="cursor:pointer"><td><strong>5</strong></td><td>Art. 787 B — Sociétés</td><td>ECC, EIC, engagement réputé acquis, seuils, direction</td></tr>
+            <tr onclick="goTo('trans-s6')" style="cursor:pointer"><td><strong>6</strong></td><td>Remises en cause</td><td>Scénarios cédant/dirigeant, coûts chiffrés, safe harbors</td></tr>
+            <tr onclick="goTo('trans-s7')" style="cursor:pointer"><td><strong>7</strong></td><td>Holding Dutreil & interposition</td><td>Conditions holding animatrice, schéma interposition 2 niveaux</td></tr>
+            <tr onclick="goTo('trans-s7b')" style="cursor:pointer; background:var(--accent-light);"><td><strong>7b</strong></td><td>Cession société IS — Outils fiscaux</td><td>Donation-cession, apport-cession (150-0 B ter), 150-0 D ter retraite, LBO, OBO</td></tr>
+            <tr onclick="goTo('trans-s8')" style="cursor:pointer"><td><strong>8</strong></td><td>Cession EI / société IR — Exonérations PV</td><td>151 septies, septies A/B, 238 quindecies (IR & IS), reports (art. 41, octies, nonies)</td></tr>
+            <tr onclick="goTo('trans-s9')" style="cursor:pointer; background:var(--accent-light);"><td><strong>9</strong></td><td>Outils civils avancés</td><td>Libéralités graduelles/résiduelles, mandats posthume/protection, préciput, transgénérationnelle</td></tr>
+            <tr onclick="goTo('trans-ex3')" style="cursor:pointer"><td><strong>📝</strong></td><td>Exercice 3 — LEFRANCOIS</td><td>Transmission SA 20 M€ — corrigé complet avec calculs DMTG, PV, structuration</td></tr>
+            <tr onclick="goTo('trans-ex4')" style="cursor:pointer"><td><strong>📝</strong></td><td>Exercice 4 — QUESNOY</td><td>Montage complet : Dutreil, donation-partage, soulte, calcul DMTG</td></tr>
+            <tr onclick="goTo('trans-synthese')" style="cursor:pointer"><td><strong>🎯</strong></td><td>Synthèse examen</td><td>Tout ce qu'il faut savoir pour les QCM</td></tr>
           </tbody>
         </table>
       </div>
@@ -31655,16 +31654,16 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <table class="data-table">
           <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu</th></tr></thead>
           <tbody>
-            <tr><td><strong>1</strong></td><td>Domicile fiscal</td><td>Art. 4A/4B CGI, foyer, séjour, critère pro, critère éco</td></tr>
-            <tr><td><strong>2</strong></td><td>Droit conventionnel</td><td>Conventions OCDE, résidence, sujet fiscal, bénéficiaire effectif, IML</td></tr>
-            <tr><td><strong>3</strong></td><td>Résident — Revenus étrangers</td><td>Décl. 2042+2047, exonération avec progressivité, crédits d'impôt</td></tr>
-            <tr><td><strong>4</strong></td><td>Non-résident — Revenus français</td><td>Art. 164B, revenus imposables, taux minimum 20%/30%</td></tr>
-            <tr><td><strong>5</strong></td><td>Retenue à la source</td><td>Art. 182A/B/A bis, 119 bis, ETNC, sportifs/artistes</td></tr>
-            <tr><td><strong>6</strong></td><td>Exit Tax & Installation</td><td>PV latentes, sursis UE, seuils 50%/800k€</td></tr>
-            <tr><td><strong>7</strong></td><td>Expatriés & Impatriés</td><td>Art. 81A (expatriés), Art. 155B (impatriés), conditions, exonérations</td></tr>
-            <tr><td><strong>8</strong></td><td>Couples mixtes & Schumacker</td><td>Imposition séparée/conjointe, 3 conditions Schumacker</td></tr>
-            <tr><td><strong>📝</strong></td><td>Cas pratiques RAS</td><td>3 exercices sur conventions et RAS</td></tr>
-            <tr><td><strong>🎯</strong></td><td>Synthèse examen</td><td>Chiffres clés, tableaux, méthode</td></tr>
+            <tr onclick="goTo('fi-s1')" style="cursor:pointer"><td><strong>1</strong></td><td>Domicile fiscal</td><td>Art. 4A/4B CGI, foyer, séjour, critère pro, critère éco</td></tr>
+            <tr onclick="goTo('fi-s2')" style="cursor:pointer"><td><strong>2</strong></td><td>Droit conventionnel</td><td>Conventions OCDE, résidence, sujet fiscal, bénéficiaire effectif, IML</td></tr>
+            <tr onclick="goTo('fi-s3')" style="cursor:pointer"><td><strong>3</strong></td><td>Résident — Revenus étrangers</td><td>Décl. 2042+2047, exonération avec progressivité, crédits d'impôt</td></tr>
+            <tr onclick="goTo('fi-s4')" style="cursor:pointer"><td><strong>4</strong></td><td>Non-résident — Revenus français</td><td>Art. 164B, revenus imposables, taux minimum 20%/30%</td></tr>
+            <tr onclick="goTo('fi-s5')" style="cursor:pointer"><td><strong>5</strong></td><td>Retenue à la source</td><td>Art. 182A/B/A bis, 119 bis, ETNC, sportifs/artistes</td></tr>
+            <tr onclick="goTo('fi-s6')" style="cursor:pointer"><td><strong>6</strong></td><td>Exit Tax & Installation</td><td>PV latentes, sursis UE, seuils 50%/800k€</td></tr>
+            <tr onclick="goTo('fi-s7')" style="cursor:pointer"><td><strong>7</strong></td><td>Expatriés & Impatriés</td><td>Art. 81A (expatriés), Art. 155B (impatriés), conditions, exonérations</td></tr>
+            <tr onclick="goTo('fi-s8')" style="cursor:pointer"><td><strong>8</strong></td><td>Couples mixtes & Schumacker</td><td>Imposition séparée/conjointe, 3 conditions Schumacker</td></tr>
+            <tr onclick="goTo('fi-cas')" style="cursor:pointer"><td><strong>📝</strong></td><td>Cas pratiques RAS</td><td>3 exercices sur conventions et RAS</td></tr>
+            <tr onclick="goTo('fi-synthese')" style="cursor:pointer"><td><strong>🎯</strong></td><td>Synthèse examen</td><td>Chiffres clés, tableaux, méthode</td></tr>
           </tbody>
         </table>
       </div>
@@ -32515,6 +32514,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (mainEl) {
     let scrollSpyTimer = null;
+    let cachedSidebarId = null;
+    let cachedSectionMap = [];
+    let cachedItems = [];
+
     mainEl.addEventListener('scroll', () => {
       // Update reading progress bar
       if (readingFill) {
@@ -32528,40 +32531,40 @@ document.addEventListener('DOMContentLoaded', function() {
       scrollSpyTimer = requestAnimationFrame(() => {
         scrollSpyTimer = null;
 
-        // Find visible sidebar and build section-to-item map
+        // Find visible sidebar
         const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"]):not([style*="display:none"])');
         if (!activeSidebar) return;
 
-        const items = activeSidebar.querySelectorAll('.sidebar-item[onclick]');
-        if (!items.length) return;
+        // Rebuild cache only when sidebar changes
+        if (activeSidebar.id !== cachedSidebarId) {
+          cachedSidebarId = activeSidebar.id;
+          cachedItems = activeSidebar.querySelectorAll('.sidebar-item[onclick]');
+          cachedSectionMap = [];
+          cachedItems.forEach(item => {
+            const match = item.getAttribute('onclick').match(/(?:goTo|scrollToSection)\(['"]([^'"]+)['"]\)/);
+            if (match) {
+              const el = document.getElementById(match[1]);
+              if (el) cachedSectionMap.push({ id: match[1], el: el, item: item });
+            }
+          });
+        }
 
-        // Extract target IDs from sidebar onclick attributes
-        const sectionMap = [];
-        items.forEach(item => {
-          const match = item.getAttribute('onclick').match(/(?:goTo|scrollToSection)\(['"]([^'"]+)['"]\)/);
-          if (match) {
-            const el = document.getElementById(match[1]);
-            if (el) sectionMap.push({ id: match[1], el: el, item: item });
-          }
-        });
-
-        if (!sectionMap.length) return;
+        if (!cachedSectionMap.length) return;
 
         // Find which section is currently visible (last one above threshold)
-        let currentEntry = sectionMap[0];
-        const scrollTop = mainEl.scrollTop;
+        let currentEntry = cachedSectionMap[0];
         const threshold = 160;
 
-        for (let i = sectionMap.length - 1; i >= 0; i--) {
-          const rect = sectionMap[i].el.getBoundingClientRect();
+        for (let i = cachedSectionMap.length - 1; i >= 0; i--) {
+          const rect = cachedSectionMap[i].el.getBoundingClientRect();
           if (rect.top < threshold) {
-            currentEntry = sectionMap[i];
+            currentEntry = cachedSectionMap[i];
             break;
           }
         }
 
         // Update active state
-        items.forEach(i => i.classList.remove('active'));
+        cachedItems.forEach(i => i.classList.remove('active'));
         currentEntry.item.classList.add('active');
         currentEntry.item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       });
@@ -32712,13 +32715,22 @@ searchInput && searchInput.addEventListener('focus', function() {
   if (this.value.trim().length < 2) showSearchHistory();
 });
 
+var searchDebounceTimer = null;
 searchInput && searchInput.addEventListener('input', function() {
-  const query = this.value.trim().toLowerCase();
+  var self = this;
+  clearTimeout(searchDebounceTimer);
+  var query = self.value.trim().toLowerCase();
   if (query.length < 2) {
     showSearchHistory();
     return;
   }
+  searchDebounceTimer = setTimeout(function() {
+    doSearch(self.value.trim().toLowerCase());
+  }, 250);
+});
 
+function doSearch(query) {
+  if (query.length < 2) return;
   const results = [];
   document.querySelectorAll('.case-content').forEach(caseEl => {
     const caseName = caseEl.id.replace('case-', '');
@@ -32768,7 +32780,7 @@ searchInput && searchInput.addEventListener('input', function() {
   }
 
   searchResults.classList.add('active');
-});
+}
 
 function goToSearch(tab, sectionId) {
   const query = searchInput.value.trim();
@@ -33416,8 +33428,8 @@ function updateProgressBar(caseName) {
       'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
       'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
       'outils': 'Outils', 'guide': 'Guide', 'montages': 'Montages',
-      'formules': 'Formules', 'audit': 'Audit', 'financement': 'Financement',
-      'responsabilite': 'Responsabilité', 'fiscal': 'Fiscalité',
+      'formules': 'Formules', 'audit': 'Audit patrimonial', 'financement': 'Financement',
+      'responsabilite': 'Responsabilité', 'fiscal': 'Ingénierie fiscale PP',
       'droit': 'Droit patrimonial', 'marches': 'Marchés financiers',
       'transmission': 'Transmission d\'entreprises',
       'fiscalite-int': 'Fiscalité Internationale'
@@ -33727,9 +33739,9 @@ function toggleBookmarksPanel() {
     'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
     'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
     'financement': 'Financement', 'responsabilite': 'Responsabilité',
-    'fiscal': 'Fiscalité', 'droit': 'Droit patrimonial',
-    'marches': 'Marchés financiers', 'transmission': 'Transmission',
-    'fiscalite-int': 'Fiscalité Int.', 'outils': 'Outils',
+    'fiscal': 'Ingénierie fiscale PP', 'droit': 'Droit patrimonial',
+    'marches': 'Marchés financiers', 'transmission': 'Transmission d\'entreprises',
+    'fiscalite-int': 'Fiscalité Internationale', 'outils': 'Outils',
     'guide': 'Guide', 'montages': 'Montages', 'formules': 'Formules'
   };
 
@@ -33894,7 +33906,7 @@ function checkMilestone(caseName) {
 
 // ============ QCM INTERACTIFS — Score, progression, sauvegarde ============
 (function() {
-  var qcmSections = ['fin-qcm', 'fiscal-qcm', 'droit-qcm', 'trans-qcm', 'fi-qcm'];
+  var qcmSections = ['fin-qcm', 'fiscal-qcm', 'droit-qcm', 'trans-qcm', 'fi-qcm', 'mf-qcm'];
 
   qcmSections.forEach(function(sectionId) {
     var section = document.getElementById(sectionId);
