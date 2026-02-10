@@ -222,6 +222,7 @@ function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
   const toggleBtn = document.getElementById('sidebarToggleBtn');
   const overlay = document.getElementById('sidebarOverlay');
+  const mainScroll = document.getElementById('main-scroll');
 
   sidebar.classList.toggle('active');
   if (overlay) overlay.classList.toggle('active');
@@ -229,9 +230,11 @@ function toggleSidebar() {
   if (sidebar.classList.contains('active')) {
     toggleBtn.innerHTML = '✕';
     toggleBtn.title = 'Fermer le menu';
+    if (mainScroll) mainScroll.style.overflow = 'hidden';
   } else {
     toggleBtn.innerHTML = '☰';
     toggleBtn.title = 'Ouvrir le menu';
+    if (mainScroll) mainScroll.style.overflow = '';
   }
 }
 
@@ -286,12 +289,14 @@ function goTo(id, evt) {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
     const toggleBtn = document.getElementById('sidebarToggleBtn');
+    const mainScroll = document.getElementById('main-scroll');
 
     if (sidebar.classList.contains('active')) {
       sidebar.classList.remove('active');
       if (overlay) overlay.classList.remove('active');
       toggleBtn.innerHTML = '☰';
       toggleBtn.title = 'Ouvrir le menu';
+      if (mainScroll) mainScroll.style.overflow = '';
     }
   }
 }
@@ -1098,7 +1103,7 @@ function timeAgo(ts) {
     var html = el.innerHTML;
     Object.keys(abbrMap).forEach(function(abbr) {
       var regex = new RegExp('\\b(' + abbr + ')\\b(?![^<]*>)', 'g');
-      html = html.replace(regex, '<span class="abbr-tip" data-tip="' + abbrMap[abbr] + '">$1</span>');
+      html = html.replace(regex, '<span class="abbr-tip" tabindex="0" data-tip="' + abbrMap[abbr] + '">$1</span>');
     });
     el.innerHTML = html;
   });
@@ -1134,6 +1139,15 @@ function timeAgo(ts) {
         e.preventDefault();
         el.click();
       }
+    }
+    // Arrow key navigation for tabs
+    if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && document.activeElement && document.activeElement.classList.contains('tab')) {
+      var tabs = Array.from(document.querySelectorAll('.tab-bar .tab'));
+      var idx = tabs.indexOf(document.activeElement);
+      if (idx === -1) return;
+      e.preventDefault();
+      var next = e.key === 'ArrowRight' ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
+      tabs[next].focus();
     }
   });
 })();
