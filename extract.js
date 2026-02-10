@@ -215,14 +215,13 @@ $('head').append('<link rel="stylesheet" href="css/styles.css">');
 // Add loading spinner and external scripts at end of <body>
 $('body').append(`
 <div id="loadingSpinner" style="display:none; position:fixed; top:50%; left:50%;
-     transform:translate(-50%,-50%); z-index:9999;
+     transform:translate(-50%,-50%); z-index:2000;
      background:var(--glass-bg); backdrop-filter:var(--blur);
      padding:32px; border-radius:var(--radius); border:1px solid var(--glass-border);
      box-shadow:var(--glass-shadow);">
   <div style="font-size:24px; animation:spin 1s linear infinite; text-align:center;">⏳</div>
   <div style="margin-top:12px; color:var(--text-light); font-size:14px; white-space:nowrap;">Chargement...</div>
 </div>
-<style>@keyframes spin { to { transform: rotate(360deg); } }</style>
 <script src="js/content-loader.js"></script>
 <script src="js/app.js"></script>
 `);

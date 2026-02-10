@@ -1,3 +1,16 @@
+// ============ GLOBAL ERROR HANDLER ============
+window.onerror = function(msg, src, line) {
+  var toast = document.createElement('div');
+  toast.className = 'alert alert-danger toast-error';
+  toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:2000;max-width:380px;animation:fadeIn 0.2s ease;cursor:pointer;';
+  toast.innerHTML = '<span class="alert-icon">\u26a0\ufe0f</span><div>Une erreur est survenue. <br><small>Cliquez pour fermer.</small></div>';
+  toast.onclick = function() { toast.remove(); };
+  document.body.appendChild(toast);
+  setTimeout(function() { if (toast.parentNode) toast.remove(); }, 10000);
+};
+window.addEventListener('unhandledrejection', function(e) {
+  e.preventDefault();
+});
 
 (function() {
   var KEY = 'gip_access';
@@ -63,11 +76,13 @@ function switchCase(caseName) {
   // Update tabs
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.remove('active');
+    t.removeAttribute('aria-current');
     if (t.hasAttribute('aria-selected')) t.setAttribute('aria-selected', 'false');
   });
   const targetTab = document.querySelector(`.tab[data-case="${caseName}"]`);
   if (targetTab) {
     targetTab.classList.add('active');
+    targetTab.setAttribute('aria-current', 'page');
     if (targetTab.hasAttribute('aria-selected')) targetTab.setAttribute('aria-selected', 'true');
     targetTab.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
   }
@@ -145,7 +160,7 @@ function switchCase(caseName) {
       } else {
         mainEl.scrollTop = 0;
       }
-    } catch(e) { mainEl.scrollTop = 0; }
+    } catch(e) { if (mainEl) mainEl.scrollTop = 0; }
   }
 
   if (currentActive && currentActive !== target) {
@@ -156,11 +171,11 @@ function switchCase(caseName) {
     showTarget();
   }
 
-  // Update URL hash (sans déclencher hashchange)
+  // Update URL hash avec pushState pour le bouton retour
   if (caseName !== 'home') {
-    history.replaceState(null, '', '#' + caseName);
+    history.pushState({ page: caseName }, '', '#' + caseName);
   } else {
-    history.replaceState(null, '', window.location.pathname);
+    history.pushState({ page: 'home' }, '', window.location.pathname);
   }
 
   // Sauvegarder dernière page visitée + historique
@@ -176,8 +191,25 @@ function switchCase(caseName) {
   } catch(e) {}
 }
 
+// ============ REINITIALISER LE CONTENU DYNAMIQUE ============
+function initDynamicContent(courseName) {
+  initProgressChecks(courseName);
+  if (window._buildSectionNav) window._buildSectionNav(courseName);
+  initBookmarkStars(courseName);
+  initCalcCopyButtons(courseName);
+  initResponsiveTables(courseName);
+  initCollapsibleSections(courseName);
+  // Tabindex sur les nouveaux éléments interactifs
+  var caseEl = document.getElementById('case-' + courseName);
+  if (caseEl) {
+    caseEl.querySelectorAll('.sidebar-item, .tab, .flashcard, .home-card:not(.card-disabled)').forEach(function(el) {
+      if (!el.getAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    });
+  }
+}
+
 // ============ ENTER COURSE FUNCTION ============
-var _enterCourseLoading = false;
+let _enterCourseLoading = false;
 function enterCourse(courseName) {
   if (_enterCourseLoading) return;
   // Si le contenu n'est pas dans le DOM, charger via contentLoader (version docs/)
@@ -188,19 +220,34 @@ function enterCourse(courseName) {
     if (spinner) spinner.style.display = '';
     window.contentLoader.load(courseName).then(function(data) {
       window.contentLoader.inject(courseName, data);
+      initDynamicContent(courseName);
       if (spinner) spinner.style.display = 'none';
       _enterCourseLoading = false;
       switchCase(courseName);
+      announce(courseFull(courseName) + ' chargé');
     }).catch(function(err) {
       _enterCourseLoading = false;
       if (spinner) spinner.style.display = 'none';
       console.error('Erreur chargement ' + courseName + ':', err);
       var toast = document.createElement('div');
       toast.className = 'alert alert-danger';
-      toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:9999;max-width:380px;animation:fadeIn 0.2s ease;';
-      toast.innerHTML = '<span class="alert-icon">\u26a0\ufe0f</span><div><strong>Erreur de chargement</strong><br>Impossible de charger le contenu. V\u00e9rifiez votre connexion et r\u00e9essayez.</div>';
+      toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:2000;max-width:380px;animation:fadeIn 0.2s ease;';
+      toast.style.cssText += 'display:flex;align-items:center;gap:8px;';
+      var toastIcon = document.createElement('span');
+      toastIcon.className = 'alert-icon';
+      toastIcon.textContent = '\u26a0\ufe0f';
+      var toastMsg = document.createElement('div');
+      toastMsg.innerHTML = '<strong>Erreur de chargement</strong><br>Impossible de charger le contenu. V\u00e9rifiez votre connexion et r\u00e9essayez.';
+      var toastClose = document.createElement('button');
+      toastClose.style.cssText = 'background:none;border:none;color:var(--text-light);font-size:18px;cursor:pointer;padding:0 0 0 12px;line-height:1;';
+      toastClose.setAttribute('aria-label', 'Fermer');
+      toastClose.textContent = '\u2715';
+      toastClose.addEventListener('click', function() { toast.remove(); });
+      toast.appendChild(toastIcon);
+      toast.appendChild(toastMsg);
+      toast.appendChild(toastClose);
       document.body.appendChild(toast);
-      setTimeout(function() { toast.remove(); }, 5000);
+      setTimeout(function() { if (toast.parentNode) toast.remove(); }, 12000);
     });
   } else {
     switchCase(courseName);
@@ -274,6 +321,9 @@ function collapseSidebar() {
     expandBtn.classList.remove('visible');
     if (collapseBtn) collapseBtn.title = 'Rétracter le menu';
   }
+
+  // Persist sidebar state
+  try { localStorage.setItem('gip-sidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0'); } catch(e) {}
 }
 
 // ============ GUIDE COLLAPSIBLE SECTIONS ============
@@ -281,8 +331,32 @@ function toggleAllGuideSections(action) {
   document.querySelectorAll('#case-guide .section.collapsible').forEach(s => {
     if (action === 'collapse') s.classList.add('collapsed');
     else s.classList.remove('collapsed');
+    var title = s.querySelector('.section-title');
+    if (title) title.setAttribute('aria-expanded', action !== 'collapse');
   });
 }
+
+// Rendre les sections repliables accessibles au clavier
+function initCollapsibleSections(targetCase) {
+  var scope = targetCase ? document.getElementById('case-' + targetCase) : document;
+  if (!scope) return;
+  scope.querySelectorAll('.section.collapsible > .section-title').forEach(function(title) {
+    if (title.hasAttribute('data-collapse-init')) return;
+    title.setAttribute('data-collapse-init', '1');
+    title.setAttribute('tabindex', '0');
+    title.setAttribute('role', 'button');
+    title.setAttribute('aria-expanded', !title.closest('.section').classList.contains('collapsed'));
+    title.addEventListener('click', function() {
+      var section = this.closest('.section.collapsible');
+      section.classList.toggle('collapsed');
+      this.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
+    });
+    title.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+    });
+  });
+}
+initCollapsibleSections();
 
 // ============ GO TO FUNCTION ============
 function goTo(id, evt) {
@@ -340,6 +414,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let cachedSectionMap = [];
     let cachedItems = [];
 
+    // Scroll-to-top button reference
+    const scrollBtn = document.getElementById('scrollTopBtn');
+
     mainEl.addEventListener('scroll', () => {
       // Update reading progress bar
       if (readingFill) {
@@ -349,8 +426,14 @@ document.addEventListener('DOMContentLoaded', function() {
         readingFill.style.width = Math.min(100, pct) + '%';
       }
 
+      // Scroll-to-top visibility
+      if (scrollBtn) {
+        if (mainEl.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+
       if (scrollSpyTimer) return;
-      scrollSpyTimer = requestAnimationFrame(() => {
+      scrollSpyTimer = requestAnimationFrame(function() {
         scrollSpyTimer = null;
 
         // Find visible sidebar
@@ -386,67 +469,123 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Update active state
-        cachedItems.forEach(i => i.classList.remove('active'));
+        cachedItems.forEach(function(i) { i.classList.remove('active'); i.removeAttribute('aria-current'); });
         currentEntry.item.classList.add('active');
-        currentEntry.item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        currentEntry.item.setAttribute('aria-current', 'section');
+        // Only scroll sidebar if active item is out of visible area
+        var sidebar = currentEntry.item.closest('.sidebar-sections');
+        if (sidebar) {
+          var sRect = sidebar.getBoundingClientRect();
+          var iRect = currentEntry.item.getBoundingClientRect();
+          if (iRect.top < sRect.top || iRect.bottom > sRect.bottom) {
+            currentEntry.item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }
       });
-    });
-  }
-});
+    }, { passive: true });
 
-// ============ KEYBOARD SHORTCUTS ============
-document.addEventListener('keydown', function(event) {
-  // Ctrl+B or Cmd+B to toggle sidebar
-  if ((event.ctrlKey || event.metaKey) && event.key === 'b') {
-    event.preventDefault();
-    toggleSidebar();
-  }
-  // Ctrl+D or Cmd+D to toggle dark mode
-  if ((event.ctrlKey || event.metaKey) && event.key === 'd') {
-    event.preventDefault();
-    toggleDarkMode();
-  }
-  // Ctrl+= or Ctrl+- for font size
-  if ((event.ctrlKey || event.metaKey) && (event.key === '=' || event.key === '+')) {
-    event.preventDefault();
-    // Increase: sm→md→lg
-    var html = document.documentElement;
-    if (html.classList.contains('font-sm')) { html.classList.remove('font-sm'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
-    else if (!html.classList.contains('font-lg')) { html.classList.add('font-lg'); try { localStorage.setItem('gip-fontSize','font-lg'); } catch(e) {} }
-  }
-  if ((event.ctrlKey || event.metaKey) && event.key === '-') {
-    event.preventDefault();
-    // Decrease: lg→md→sm
-    var html = document.documentElement;
-    if (html.classList.contains('font-lg')) { html.classList.remove('font-lg'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
-    else if (!html.classList.contains('font-sm')) { html.classList.add('font-sm'); try { localStorage.setItem('gip-fontSize','font-sm'); } catch(e) {} }
-  }
-  // ? pour afficher les raccourcis (sauf si focus sur un input)
-  if (event.key === '?' && !event.target.closest('input, textarea')) {
-    const overlay = document.getElementById('shortcutsOverlay');
-    if (overlay) overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
-  }
-  // Escape pour fermer l'overlay raccourcis
-  if (event.key === 'Escape') {
-    const overlay = document.getElementById('shortcutsOverlay');
-    if (overlay && overlay.style.display !== 'none') {
-      overlay.style.display = 'none';
+    // Scroll-to-top click handler
+    if (scrollBtn) {
+      scrollBtn.addEventListener('click', function() {
+        mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
   }
-});
 
-// ============ MOBILE SIDEBAR TOGGLE ============
-document.addEventListener('DOMContentLoaded', function() {
+  // Mobile sidebar toggle (consolidated from separate DOMContentLoaded)
   const mobileToggle = document.getElementById('mobileSidebarToggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', function() {
       const sidebar = document.getElementById('sidebar');
-      if (sidebar) {
-        sidebar.classList.toggle('open');
-      }
+      if (sidebar) sidebar.classList.toggle('open');
     });
   }
 });
+
+// ============ UNIFIED KEYBOARD SHORTCUTS ============
+document.addEventListener('keydown', function(event) {
+  var mod = event.ctrlKey || event.metaKey;
+
+  // Ctrl+B or Cmd+B — toggle sidebar
+  if (mod && event.key === 'b') { event.preventDefault(); toggleSidebar(); }
+  // Ctrl+D or Cmd+D — toggle dark mode
+  if (mod && event.key === 'd') { event.preventDefault(); toggleDarkMode(); }
+  // Ctrl+K or Cmd+K — focus search
+  if (mod && event.key === 'k') { event.preventDefault(); if (searchInput) searchInput.focus(); }
+  // Ctrl+= / Ctrl+- — font size
+  if (mod && (event.key === '=' || event.key === '+')) {
+    event.preventDefault();
+    var html = document.documentElement;
+    if (html.classList.contains('font-sm')) { html.classList.remove('font-sm'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
+    else if (!html.classList.contains('font-lg')) { html.classList.add('font-lg'); try { localStorage.setItem('gip-fontSize','font-lg'); } catch(e) {} }
+  }
+  if (mod && event.key === '-') {
+    event.preventDefault();
+    var html = document.documentElement;
+    if (html.classList.contains('font-lg')) { html.classList.remove('font-lg'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
+    else if (!html.classList.contains('font-sm')) { html.classList.add('font-sm'); try { localStorage.setItem('gip-fontSize','font-sm'); } catch(e) {} }
+  }
+  // ? — show shortcuts overlay (unless in input)
+  if (event.key === '?' && !event.target.closest('input, textarea')) {
+    var overlay = document.getElementById('shortcutsOverlay');
+    if (overlay) {
+      var isVisible = overlay.style.display !== 'none';
+      overlay.style.display = isVisible ? 'none' : 'flex';
+      if (!isVisible) trapFocus(overlay);
+    }
+  }
+  // Escape — close overlays & search (priority order)
+  if (event.key === 'Escape') {
+    var examOverlay = document.querySelector('.exam-duration-overlay');
+    if (examOverlay) { examOverlay.remove(); return; }
+    var overlay = document.getElementById('shortcutsOverlay');
+    if (overlay && overlay.style.display !== 'none') { overlay.style.display = 'none'; return; }
+    if (searchResults) searchResults.classList.remove('active');
+    if (searchInput) { searchInput.value = ''; searchInput.blur(); }
+  }
+  // Enter/Space — activate focused interactive elements
+  if (event.key === 'Enter' || event.key === ' ') {
+    var el = document.activeElement;
+    if (el && (el.classList.contains('sidebar-item') || el.classList.contains('tab') || el.classList.contains('flashcard') || el.classList.contains('home-card'))) {
+      event.preventDefault();
+      el.click();
+    }
+  }
+  // Arrow keys — tab navigation
+  if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && document.activeElement && document.activeElement.classList.contains('tab')) {
+    var tabs = Array.from(document.querySelectorAll('.tab-bar .tab'));
+    var idx = tabs.indexOf(document.activeElement);
+    if (idx === -1) return;
+    event.preventDefault();
+    var next = event.key === 'ArrowRight' ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
+    tabs[next].focus();
+  }
+});
+
+// ============ ARIA LIVE ANNOUNCEMENTS ============
+function announce(message) {
+  var el = document.getElementById('ariaLive');
+  if (el) { el.textContent = ''; setTimeout(function() { el.textContent = message; }, 100); }
+}
+
+// ============ FOCUS TRAP UTILITY ============
+function trapFocus(container) {
+  var focusable = container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (focusable.length === 0) return null;
+  var first = focusable[0];
+  var last = focusable[focusable.length - 1];
+  first.focus();
+  function handler(e) {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+  container.addEventListener('keydown', handler);
+  return function() { container.removeEventListener('keydown', handler); };
+}
 
 // ============ SWIPE TO CLOSE SIDEBAR (mobile) ============
 (function() {
@@ -470,25 +609,45 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============ SEARCH FUNCTION ============
 const searchInput = document.getElementById('searchInput');
 const searchResults = document.getElementById('searchResults');
-if (!searchInput || !searchResults) { console.warn('Search elements not found'); }
+if (!searchInput || !searchResults) { /* search elements missing */ }
 
-// Tab name mapping
-const tabNames = {
-  'snow': '❄️ SNOW', 'stark': '👨‍👩‍👧‍👦 STARK', 'niote': '🏢 NIOTE',
-  'mengere': '🏗️ MENGERE', 'norris': '💎 NORRIS', 'vador': '⚔️ VADOR',
-  'leon': '👨‍💼 LEON', 'genereux': '💼 GÉNÉREUX', 'houette': '🏠 HOUETTE',
-  'outils': '🧰 Outils', 'guide': '📋 Guide', 'formules': '📐 Formules',
-  'montages': '🔧 Montages', 'audit': '📊 Audit',
-  'financement': '💰 Financement', 'responsabilite': '⚖️ Responsabilité',
-  'fiscal': '🏛️ Fiscalité',
-  'droit': '📜 Droit patrimonial',
-  'marches': '📈 Marchés financiers',
-  'transmission': '🏢 Transmission d\'entreprises',
-  'fiscalite-int': '🌍 Fiscalité Internationale'
+// ============ SOURCE UNIQUE DES NOMS DE COURS ============
+var COURSE_META = {
+  'snow':           { short: 'SNOW',         full: 'Cas SNOW',            icon: '❄️' },
+  'stark':          { short: 'STARK',        full: 'Cas STARK',           icon: '👨‍👩‍👧‍👦' },
+  'niote':          { short: 'NIOTE',        full: 'Cas NIOTE',           icon: '🏢' },
+  'mengere':        { short: 'MENGERE',      full: 'Cas MENGERE',         icon: '🏗️' },
+  'norris':         { short: 'NORRIS',       full: 'Cas NORRIS',          icon: '💎' },
+  'vador':          { short: 'VADOR',        full: 'Cas VADOR',           icon: '⚔️' },
+  'leon':           { short: 'LEON',         full: 'Cas LEON',            icon: '👨‍💼' },
+  'genereux':       { short: 'GÉNÉREUX',     full: 'Cas GÉNÉREUX',        icon: '💼' },
+  'houette':        { short: 'HOUETTE',      full: 'Cas HOUETTE',         icon: '🏠' },
+  'outils':         { short: 'Outils',       full: 'Boîte à Outils',     icon: '🧰' },
+  'guide':          { short: 'Guide',        full: 'Guide Stratégique',   icon: '📋' },
+  'formules':       { short: 'Formules',     full: 'Formules',            icon: '📐' },
+  'montages':       { short: 'Montages',     full: 'Montages',            icon: '🔧' },
+  'audit':          { short: 'Audit patrimonial', full: 'Audit patrimonial', icon: '📊' },
+  'financement':    { short: 'Financement',  full: 'Financement des particuliers',      icon: '💰' },
+  'responsabilite': { short: 'Responsabilité', full: 'Responsabilité du gestionnaire', icon: '⚖️' },
+  'fiscal':         { short: 'Ingénierie fiscale PP', full: 'Ingénierie fiscale PP',  icon: '🏛️' },
+  'droit':          { short: 'Droit patrimonial', full: 'Droit patrimonial',           icon: '📜' },
+  'marches':        { short: 'Marchés financiers', full: 'Marchés financiers',         icon: '📈' },
+  'transmission':   { short: 'Transmission d\'entreprises', full: 'Transmission d\'entreprises', icon: '🏢' },
+  'fiscalite-int':  { short: 'Fiscalité Internationale', full: 'Fiscalité Internationale', icon: '🌍' }
 };
 
+// Helpers — dérivés de COURSE_META
+function courseShort(id) { var m = COURSE_META[id]; return m ? m.short : id; }
+function courseFull(id)  { var m = COURSE_META[id]; return m ? m.full : id; }
+function courseIcon(id)  { var m = COURSE_META[id]; return m ? m.icon : '📄'; }
+function courseTab(id)   { var m = COURSE_META[id]; return m ? m.icon + ' ' + m.short : id; }
+
+// Tab name mapping (utilisé par la recherche)
+var tabNames = {};
+Object.keys(COURSE_META).forEach(function(k) { tabNames[k] = courseTab(k); });
+
 // Search history
-var SEARCH_HISTORY_KEY = 'gip-searchHistory';
+const SEARCH_HISTORY_KEY = 'gip-searchHistory';
 function getSearchHistory() {
   try { return JSON.parse(localStorage.getItem(SEARCH_HISTORY_KEY)) || []; } catch(e) { return []; }
 }
@@ -537,7 +696,7 @@ searchInput && searchInput.addEventListener('focus', function() {
   if (this.value.trim().length < 2) showSearchHistory();
 });
 
-var searchDebounceTimer = null;
+let searchDebounceTimer = null;
 searchInput && searchInput.addEventListener('input', function() {
   var self = this;
   clearTimeout(searchDebounceTimer);
@@ -571,9 +730,10 @@ function doSearch(query) {
         // Get snippet
         const start = Math.max(0, idx - 40);
         const end = Math.min(text.length, idx + query.length + 60);
-        let snippet = (start > 0 ? '...' : '') + text.substring(start, end).trim() + (end < text.length ? '...' : '');
-        // Highlight match
-        const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        let snippet = escapeHtml((start > 0 ? '...' : '') + text.substring(start, end).trim() + (end < text.length ? '...' : ''));
+        // Highlight match (escape query for consistency with escaped snippet)
+        var escapedQ = escapeHtml(query);
+        const regex = new RegExp('(' + escapedQ.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
         snippet = snippet.replace(regex, '<mark>$1</mark>');
 
         results.push({
@@ -595,6 +755,7 @@ function doSearch(query) {
 
   if (unique.length === 0) {
     searchResults.innerHTML = '<div class="search-no-results">Aucun résultat pour "' + escapeHtml(query) + '"</div>';
+    announce('Aucun résultat pour ' + query);
   } else {
     searchResults.innerHTML = '<div class="search-count">' + unique.length + ' résultat(s)</div>' +
       unique.map(r =>
@@ -637,14 +798,17 @@ function highlightSearchTerm(container, query) {
   const matches = [];
 
   while (walker.nextNode()) {
+    regex.lastIndex = 0;
     if (regex.test(walker.currentNode.textContent)) {
       matches.push(walker.currentNode);
     }
   }
 
+  var escapedHL = escapeHtml(query);
+  var hlRegex = new RegExp('(' + escapedHL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
   matches.forEach(node => {
     const span = document.createElement('span');
-    span.innerHTML = node.textContent.replace(regex, '<mark class="search-highlight">$1</mark>');
+    span.innerHTML = escapeHtml(node.textContent).replace(hlRegex, '<mark class="search-highlight">$1</mark>');
     node.parentNode.replaceChild(span, node);
   });
 
@@ -665,22 +829,10 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Ctrl+K shortcut for search
-document.addEventListener('keydown', function(e) {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    e.preventDefault();
-    searchInput.focus();
-  }
-  if (e.key === 'Escape') {
-    searchResults.classList.remove('active');
-    searchInput.blur();
-  }
-});
-
 // ============ MODE EXAMEN (avec choix de durée) ============
-var examTimerInterval = null;
-var examStartTime = null;
-var examDuration = 0; // 0 = chronomètre, >0 = countdown en secondes
+let examTimerInterval = null;
+let examStartTime = null;
+let examDuration = 0; // 0 = chronomètre, >0 = countdown en secondes
 
 function toggleExamMode() {
   var isExam = document.body.classList.contains('exam-mode');
@@ -694,6 +846,7 @@ function toggleExamMode() {
     if (timerEl) { timerEl.style.display = 'none'; timerEl.classList.remove('exam-timer-warning'); }
     if (timeEl) timeEl.textContent = '0:00';
     examDuration = 0;
+    announce('Mode examen désactivé');
     return;
   }
 
@@ -714,13 +867,15 @@ function toggleExamMode() {
     '</div>';
   document.body.appendChild(overlay);
 
-  overlay.querySelector('.exam-duration-cancel').onclick = function() { overlay.remove(); };
-  overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+  var releaseTrap = trapFocus(overlay);
+  function closeOverlay() { if (releaseTrap) releaseTrap(); overlay.remove(); }
+  overlay.querySelector('.exam-duration-cancel').onclick = closeOverlay;
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeOverlay(); });
 
   overlay.querySelectorAll('.exam-duration-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       examDuration = parseInt(btn.getAttribute('data-duration'));
-      overlay.remove();
+      closeOverlay();
       startExam();
     });
   });
@@ -729,6 +884,7 @@ function toggleExamMode() {
 function startExam() {
   document.body.classList.add('exam-mode');
   examStartTime = Date.now();
+  announce('Mode examen activé' + (examDuration > 0 ? ' — ' + Math.floor(examDuration / 3600) + 'h' : ''));
   var timerEl = document.getElementById('examTimer');
   var timeEl = document.getElementById('examTimerTime');
   var labelEl = timerEl ? timerEl.querySelector('.exam-timer-label') : null;
@@ -748,6 +904,9 @@ function startExam() {
 
       // Warning at 15 min
       if (remaining <= 900 && remaining > 0 && timerEl) {
+        if (!timerEl.classList.contains('exam-timer-warning')) {
+          announce('Attention : 15 minutes restantes');
+        }
         timerEl.classList.add('exam-timer-warning');
       }
       // Time's up
@@ -766,9 +925,35 @@ function startExam() {
   }, 1000);
 }
 
+// Rafraîchir l'affichage du timer quand l'onglet redevient visible
+document.addEventListener('visibilitychange', function() {
+  if (!document.hidden && examStartTime && examTimerInterval) {
+    var timeEl = document.getElementById('examTimerTime');
+    var timerEl = document.getElementById('examTimer');
+    if (!timeEl) return;
+    var elapsed = Math.floor((Date.now() - examStartTime) / 1000);
+    if (examDuration > 0) {
+      var remaining = Math.max(0, examDuration - elapsed);
+      var mins = Math.floor(remaining / 60);
+      var secs = remaining % 60;
+      timeEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+      if (remaining <= 900 && remaining > 0 && timerEl) timerEl.classList.add('exam-timer-warning');
+      if (remaining <= 0) {
+        clearInterval(examTimerInterval);
+        timeEl.textContent = 'Terminé !';
+        if (timerEl) timerEl.classList.remove('exam-timer-warning');
+      }
+    } else {
+      var mins = Math.floor(elapsed / 60);
+      var secs = elapsed % 60;
+      timeEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }
+  }
+});
+
 // ============ FONT SIZE CONTROL ============
-var fontSizes = ['font-sm', 'font-md', 'font-lg'];
-var fontLabels = ['Petit', 'Moyen', 'Grand'];
+const fontSizes = ['font-sm', 'font-md', 'font-lg'];
+const fontLabels = ['Petit', 'Moyen', 'Grand'];
 
 function cycleFontSize() {
   var html = document.documentElement;
@@ -789,6 +974,7 @@ function cycleFontSize() {
     btn.title = 'Taille : ' + fontLabels[next];
     btn.setAttribute('aria-label', 'Taille du texte : ' + fontLabels[next]);
   }
+  announce('Taille du texte : ' + fontLabels[next]);
 }
 
 // Restore font size
@@ -806,6 +992,7 @@ function toggleDarkMode() {
   const isLight = document.body.classList.contains('light-mode');
   document.getElementById('darkToggle').textContent = isLight ? '🌙' : '☀️';
   try { localStorage.setItem('lightMode', isLight ? '1' : '0'); } catch(e) {}
+  announce(isLight ? 'Mode clair activé' : 'Mode sombre activé');
 }
 
 // Restore theme preference (dark is default)
@@ -843,13 +1030,23 @@ try {
 } catch(e) {}
 
 // ============ HASH ROUTING — CHARGEMENT INITIAL ============
+var _knownPages = ['home','audit','snow','stark','niote','mengere','norris','vador','leon','genereux','houette',
+  'financement','responsabilite','fiscal','droit','marches','transmission','fiscalite-int',
+  'outils','guide','montages','formules'];
+
 window.addEventListener('hashchange', function() {
-  const hash = window.location.hash.replace('#', '');
-  // Only handle known case/course IDs, not section anchors like mf-s2
-  const knownPages = ['home','audit','snow','stark','niote','mengere','norris','vador','leon','genereux','houette',
-    'financement','responsabilite','fiscal','droit','marches','transmission','fiscalite-int',
-    'outils','guide','montages','formules'];
-  if (hash && knownPages.indexOf(hash) !== -1) enterCourse(hash);
+  var hash = window.location.hash.replace('#', '');
+  if (hash && _knownPages.indexOf(hash) !== -1) enterCourse(hash);
+});
+
+// Back/forward button support
+window.addEventListener('popstate', function(e) {
+  var hash = window.location.hash.replace('#', '');
+  if (hash && _knownPages.indexOf(hash) !== -1) {
+    enterCourse(hash);
+  } else {
+    switchCase('home');
+  }
 });
 
 // ============ FLASHCARDS — FILTRAGE & MÉLANGE ============
@@ -914,7 +1111,7 @@ function updateFcScore() {
 }
 
 // ============ FLASHCARD PERSISTANCE ============
-var GIP_FC_KEY = 'gip-flashcards';
+const GIP_FC_KEY = 'gip-flashcards';
 
 function toggleFlashcard(card) {
   card.classList.toggle('revealed');
@@ -946,6 +1143,7 @@ function restoreFcState() {
 }
 
 function resetFlashcards() {
+  if (!confirm('Réinitialiser toutes les flashcards ?')) return;
   var grid = document.getElementById('flashcardGrid');
   if (!grid) return;
   grid.querySelectorAll('.flashcard').forEach(function(c) { c.classList.remove('revealed'); });
@@ -975,29 +1173,7 @@ restoreFcState();
     btn.textContent = '📄 Exporter PDF';
     btn.title = 'Exporter ce contenu en PDF';
     btn.onclick = function() { exportCasePDF(caseName); };
-    btn.style.cssText = 'margin-top:12px;padding:8px 16px;border-radius:10px;border:1px solid var(--glass-border);background:var(--glass-bg);backdrop-filter:var(--blur);color:var(--text);font-size:0.8rem;font-weight:600;cursor:pointer;transition:background 0.2s;';
-    btn.onmouseover = function() { this.style.background = 'var(--primary)'; this.style.color = '#fff'; };
-    btn.onmouseout = function() { this.style.background = 'var(--glass-bg)'; this.style.color = 'var(--text)'; };
     welcome.appendChild(btn);
-  });
-})();
-
-// ============ SCROLL TO TOP ============
-(function() {
-  const scrollBtn = document.getElementById('scrollTopBtn');
-  const mainEl = document.getElementById('main-scroll');
-  if (!scrollBtn || !mainEl) return;
-
-  mainEl.addEventListener('scroll', function() {
-    if (mainEl.scrollTop > 400) {
-      scrollBtn.classList.add('visible');
-    } else {
-      scrollBtn.classList.remove('visible');
-    }
-  });
-
-  scrollBtn.addEventListener('click', function() {
-    mainEl.scrollTo({ top: 0, behavior: 'smooth' });
   });
 })();
 
@@ -1045,16 +1221,6 @@ restoreFcState();
   } catch(e) {}
 })();
 
-// Patcher collapseSidebar pour persister l'état
-const _origCollapseSidebar = collapseSidebar;
-collapseSidebar = function() {
-  _origCollapseSidebar();
-  try {
-    const sidebar = document.getElementById('sidebar');
-    localStorage.setItem('gip-sidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
-  } catch(e) {}
-};
-
 // ============ SUIVI DE PROGRESSION ============
 const GIP_PROGRESS_KEY = 'gip-progress';
 
@@ -1100,31 +1266,29 @@ function updateProgressBar(caseName) {
   if (textEl) textEl.textContent = done + '/' + total;
 }
 
-// Injecter les checkboxes de progression dans toutes les sidebars
-(function() {
-  const progress = getProgress();
+// Injecter les checkboxes de progression dans les sidebars
+function initProgressChecks(targetCase) {
+  var progress = getProgress();
+  var selector = targetCase ? '#sidebar-' + targetCase : '[id^="sidebar-"]';
 
-  document.querySelectorAll('[id^="sidebar-"]').forEach(sidebarDiv => {
-    const caseName = sidebarDiv.id.replace('sidebar-', '');
-    const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+  document.querySelectorAll(selector).forEach(function(sidebarDiv) {
+    var caseName = sidebarDiv.id.replace('sidebar-', '');
+    // Éviter de doubler les checks
+    if (sidebarDiv.querySelector('.check-read')) return;
+    var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
     if (items.length === 0) return;
 
-    // Ajouter les checks
-    items.forEach(item => {
-      const onclick = item.getAttribute('onclick') || '';
-      const match = onclick.match(/goTo\('([^']+)'\)/);
+    items.forEach(function(item) {
+      var onclick = item.getAttribute('onclick') || '';
+      var match = onclick.match(/goTo\('([^']+)'\)/);
       if (!match) return;
-      const sectionId = match[1];
+      var sectionId = match[1];
 
-      const check = document.createElement('span');
+      var check = document.createElement('span');
       check.className = 'check-read';
-      const isDone = progress[caseName] && progress[caseName].includes(sectionId);
-      if (isDone) {
-        check.classList.add('done');
-        check.textContent = '✓';
-      } else {
-        check.textContent = '○';
-      }
+      var isDone = progress[caseName] && progress[caseName].includes(sectionId);
+      if (isDone) { check.classList.add('done'); check.textContent = '✓'; }
+      else { check.textContent = '○'; }
       check.addEventListener('click', function(e) {
         e.stopPropagation();
         toggleSectionRead(caseName, sectionId, check);
@@ -1132,18 +1296,21 @@ function updateProgressBar(caseName) {
       item.appendChild(check);
     });
 
-    // Ajouter la barre de progression en haut
-    const progressHtml = document.createElement('div');
-    progressHtml.className = 'sidebar-progress';
-    const done = (progress[caseName] || []).length;
-    const total = items.length;
-    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-    progressHtml.innerHTML =
-      '<div class="sidebar-progress-bar"><div class="sidebar-progress-fill" style="width:' + pct + '%"></div></div>' +
-      '<span class="sidebar-progress-text">' + done + '/' + total + '</span>';
-    sidebarDiv.insertBefore(progressHtml, sidebarDiv.querySelector('.sidebar-item'));
+    // Barre de progression en haut
+    if (!sidebarDiv.querySelector('.sidebar-progress')) {
+      var progressEl = document.createElement('div');
+      progressEl.className = 'sidebar-progress';
+      var done = (progress[caseName] || []).length;
+      var total = items.length;
+      var pct = total > 0 ? Math.round((done / total) * 100) : 0;
+      progressEl.innerHTML =
+        '<div class="sidebar-progress-bar"><div class="sidebar-progress-fill" style="width:' + pct + '%"></div></div>' +
+        '<span class="sidebar-progress-text">' + done + '/' + total + '</span>';
+      sidebarDiv.insertBefore(progressEl, sidebarDiv.querySelector('.sidebar-item'));
+    }
   });
-})();
+}
+initProgressChecks();
 
 // ============ PROGRESSION SUR LES CARTES D'ACCUEIL ============
 (function() {
@@ -1230,22 +1397,28 @@ function updateProgressBar(caseName) {
   if (elBar) elBar.style.width = pct + '%';
   if (elSections) elSections.textContent = doneSections + ' / ' + totalSections;
 
-  // Streak : jours consécutifs d'étude
+  // Streak : jours consécutifs d'étude (comparaison par date YYYY-MM-DD)
   try {
     var days = JSON.parse(localStorage.getItem('gip-studyDays')) || [];
     var today = new Date().toISOString().slice(0, 10);
     if (days[days.length - 1] !== today) {
       days.push(today);
+      // Limiter l'historique à 365 jours
+      if (days.length > 365) days = days.slice(-365);
       localStorage.setItem('gip-studyDays', JSON.stringify(days));
     }
-    // Calculer le streak
-    var streak = 1;
-    for (var i = days.length - 1; i > 0; i--) {
-      var d1 = new Date(days[i]);
-      var d2 = new Date(days[i - 1]);
-      var diff = (d1 - d2) / (1000 * 60 * 60 * 24);
-      if (diff <= 1) streak++;
-      else break;
+    var streak = 0;
+    if (days.length > 0) {
+      streak = 1;
+      for (var i = days.length - 1; i > 0; i--) {
+        // Comparer les dates comme chaînes YYYY-MM-DD (pas de problème de timezone)
+        var prev = new Date(days[i - 1] + 'T00:00:00');
+        var curr = new Date(days[i] + 'T00:00:00');
+        var diffDays = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+        if (diffDays === 1) streak++;
+        else if (diffDays > 1) break;
+        // diffDays === 0 : même jour, on skip
+      }
     }
     if (elStreak) elStreak.textContent = streak + ' j';
   } catch(e) {}
@@ -1253,19 +1426,8 @@ function updateProgressBar(caseName) {
   // Dernière session
   try {
     var lastPage = localStorage.getItem('gip-lastPage');
-    var courseNames = {
-      'snow': 'SNOW', 'stark': 'STARK', 'niote': 'NIOTE',
-      'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
-      'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
-      'outils': 'Outils', 'guide': 'Guide', 'montages': 'Montages',
-      'formules': 'Formules', 'audit': 'Audit patrimonial', 'financement': 'Financement',
-      'responsabilite': 'Responsabilité', 'fiscal': 'Ingénierie fiscale PP',
-      'droit': 'Droit patrimonial', 'marches': 'Marchés financiers',
-      'transmission': 'Transmission d\'entreprises',
-      'fiscalite-int': 'Fiscalité Internationale'
-    };
     if (elLast && lastPage && lastPage !== 'home') {
-      elLast.textContent = courseNames[lastPage] || lastPage;
+      elLast.textContent = courseShort(lastPage);
     }
   } catch(e) {}
 
@@ -1276,23 +1438,18 @@ function updateProgressBar(caseName) {
     var title = document.getElementById('recentTitle');
     if (container && hist.length > 0 && title) {
       title.style.display = '';
-      var icons = {
-        'snow': '❄️', 'stark': '🦁', 'niote': '🏠', 'mengere': '👨‍👩‍👧', 'norris': '💪',
-        'vador': '🌑', 'leon': '🎭', 'genereux': '🎁', 'houette': '🏦',
-        'outils': '🧰', 'guide': '📖', 'montages': '🏗️', 'formules': '🔢',
-        'audit': '📊', 'financement': '💰', 'responsabilite': '⚖️', 'fiscal': '🧾',
-        'droit': '📜', 'marches': '📈', 'transmission': '🏢',
-        'fiscalite-int': '🌍'
-      };
       hist.forEach(function(h) {
-        var name = courseNames[h.page] || h.page;
+        var name = courseShort(h.page);
         var ago = timeAgo(h.ts);
         var el = document.createElement('div');
         el.className = 'recent-item';
         el.setAttribute('role', 'button');
         el.setAttribute('tabindex', '0');
         el.onclick = function() { switchCase(h.page); };
-        el.innerHTML = '<span class="recent-item-icon">' + (icons[h.page] || '📄') + '</span>' +
+        el.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+        });
+        el.innerHTML = '<span class="recent-item-icon">' + courseIcon(h.page) + '</span>' +
           '<div class="recent-item-info"><div class="recent-item-title">' + name + '</div>' +
           '<div class="recent-item-time">' + ago + '</div></div>';
         container.appendChild(el);
@@ -1313,15 +1470,16 @@ function timeAgo(ts) {
 }
 
 // ============ TABLES RESPONSIVES (auto-wrap + scroll indicators) ============
-(function() {
-  document.querySelectorAll('.data-table, .patrimoine-table').forEach(function(table) {
+function initResponsiveTables(targetCase) {
+  var scope = targetCase ? document.getElementById('case-' + targetCase) : document;
+  if (!scope) return;
+  scope.querySelectorAll('.data-table, .patrimoine-table').forEach(function(table) {
     if (table.parentElement.classList.contains('table-responsive')) return;
     var wrapper = document.createElement('div');
     wrapper.className = 'table-responsive';
     wrapper.style.cssText = 'overflow-x:auto;border-radius:var(--radius-sm);';
     table.parentNode.insertBefore(wrapper, table);
     wrapper.appendChild(table);
-    // Detect scroll state
     function checkScroll() {
       if (wrapper.scrollWidth > wrapper.clientWidth + 2) {
         wrapper.classList.add('has-scroll');
@@ -1333,7 +1491,8 @@ function timeAgo(ts) {
     wrapper.addEventListener('scroll', checkScroll, { passive: true });
     setTimeout(checkScroll, 100);
   });
-})();
+}
+initResponsiveTables();
 
 // ============ TOOLTIPS ABRÉVIATIONS ============
 (function() {
@@ -1370,41 +1529,25 @@ function timeAgo(ts) {
   document.querySelectorAll('.sidebar-sub').forEach(function(sub) {
     var prev = sub.previousElementSibling;
     if (prev && prev.classList.contains('sidebar-item')) {
+      if (prev.hasAttribute('data-sub-init')) return;
+      prev.setAttribute('data-sub-init', '1');
       prev.classList.add('has-sub');
-      prev.addEventListener('dblclick', function(e) {
+      prev.setAttribute('aria-expanded', !sub.classList.contains('collapsed'));
+      prev.addEventListener('click', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         sub.classList.toggle('collapsed');
         prev.classList.toggle('sub-collapsed');
+        prev.setAttribute('aria-expanded', !sub.classList.contains('collapsed'));
       });
     }
   });
 })();
 
-// ============ ACCESSIBILITÉ — FOCUS VISIBLE ============
+// ============ ACCESSIBILITÉ — TABINDEX ============
 (function() {
-  // Ajouter tabindex aux éléments interactifs de la sidebar
   document.querySelectorAll('.sidebar-item, .tab, .flashcard, .home-card:not(.card-disabled)').forEach(function(el) {
     if (!el.getAttribute('tabindex')) el.setAttribute('tabindex', '0');
-  });
-
-  // Permettre l'activation par Entrée/Espace
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      var el = document.activeElement;
-      if (el && (el.classList.contains('sidebar-item') || el.classList.contains('tab') || el.classList.contains('flashcard') || el.classList.contains('home-card'))) {
-        e.preventDefault();
-        el.click();
-      }
-    }
-    // Arrow key navigation for tabs
-    if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && document.activeElement && document.activeElement.classList.contains('tab')) {
-      var tabs = Array.from(document.querySelectorAll('.tab-bar .tab'));
-      var idx = tabs.indexOf(document.activeElement);
-      if (idx === -1) return;
-      e.preventDefault();
-      var next = e.key === 'ArrowRight' ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
-      tabs[next].focus();
-    }
   });
 })();
 
@@ -1415,20 +1558,6 @@ function timeAgo(ts) {
   const btn = document.getElementById('resumeBtn');
   const close = document.getElementById('resumeClose');
   if (!banner || !text || !btn || !close) return;
-
-  // Noms lisibles
-  const courseNames = {
-    'snow': 'Cas SNOW', 'stark': 'Cas STARK', 'niote': 'Cas NIOTE',
-    'mengere': 'Cas MENGERE', 'norris': 'Cas NORRIS', 'vador': 'Cas VADOR',
-    'leon': 'Cas LEON', 'genereux': 'Cas GÉNÉREUX', 'houette': 'Cas HOUETTE',
-    'outils': 'Boîte à Outils', 'guide': 'Guide Stratégique',
-    'montages': 'Montages', 'formules': 'Formules',
-    'audit': 'Audit patrimonial', 'financement': 'Financement des particuliers',
-    'responsabilite': 'Responsabilité du gestionnaire', 'fiscal': 'Ingénierie fiscale PP',
-    'droit': 'Droit patrimonial', 'marches': 'Marchés financiers',
-    'transmission': 'Transmission d\'entreprises',
-    'fiscalite-int': 'Fiscalité Internationale'
-  };
 
   try {
     const lastPage = localStorage.getItem('gip-lastPage');
@@ -1444,7 +1573,7 @@ function timeAgo(ts) {
           progressInfo = ' <span style="opacity:0.7;font-size:0.85em">(' + doneSections + ' section' + (doneSections > 1 ? 's' : '') + ' lu' + (doneSections > 1 ? 'es' : 'e') + ')</span>';
         }
       } catch(e) {}
-      text.innerHTML = 'Reprendre : <strong>' + (courseNames[lastPage] || lastPage) + '</strong>' + progressInfo;
+      text.innerHTML = 'Reprendre : <strong>' + escapeHtml(courseFull(lastPage)) + '</strong>' + progressInfo;
       banner.style.display = 'flex';
 
       btn.addEventListener('click', function() {
@@ -1463,15 +1592,19 @@ function timeAgo(ts) {
           setTimeout(function() { banner.style.display = 'none'; }, 400);
         }
       }, 8000);
+
+      // Preload last visited course content in background for instant resume
+      if (window.contentLoader && !document.getElementById('case-' + lastPage)) {
+        window.contentLoader.load(lastPage).catch(function() {});
+      }
     }
   } catch(e) {}
 
 // ============ NAVIGATION PRÉCÉDENT/SUIVANT ENTRE SECTIONS ============
 (function() {
-  // Build nav buttons after DOM is ready
-  // Get the active sidebar sections map for navigation
-  function buildSectionNav() {
-    document.querySelectorAll('[id^="sidebar-"]').forEach(function(sidebarDiv) {
+  function buildSectionNav(targetCase) {
+    var selector = targetCase ? '#sidebar-' + targetCase : '[id^="sidebar-"]';
+    document.querySelectorAll(selector).forEach(function(sidebarDiv) {
       var caseName = sidebarDiv.id.replace('sidebar-', '');
       var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
       if (items.length < 2) return;
@@ -1499,15 +1632,22 @@ function timeAgo(ts) {
         nav.className = 'section-nav';
 
         if (idx > 0) {
-          nav.innerHTML += '<button class="section-nav-btn nav-prev" onclick="goTo(\'' + sectionIds[idx - 1] + '\')">' +
+          nav.innerHTML += '<button class="section-nav-btn nav-prev" data-target="' + escapeHtml(sectionIds[idx - 1]) + '" aria-label="Précédent : ' + escapeHtml(sectionLabels[idx - 1]) + '">' +
             '<span class="section-nav-arrow">←</span>' +
-            '<span class="section-nav-label">' + sectionLabels[idx - 1] + '</span></button>';
+            '<span class="section-nav-label">' + escapeHtml(sectionLabels[idx - 1]) + '</span></button>';
         }
         if (idx < sectionIds.length - 1) {
-          nav.innerHTML += '<button class="section-nav-btn nav-next" onclick="goTo(\'' + sectionIds[idx + 1] + '\')">' +
-            '<span class="section-nav-label">' + sectionLabels[idx + 1] + '</span>' +
+          nav.innerHTML += '<button class="section-nav-btn nav-next" data-target="' + escapeHtml(sectionIds[idx + 1]) + '" aria-label="Suivant : ' + escapeHtml(sectionLabels[idx + 1]) + '">' +
+            '<span class="section-nav-label">' + escapeHtml(sectionLabels[idx + 1]) + '</span>' +
             '<span class="section-nav-arrow">→</span></button>';
         }
+
+        // Attach click handlers via addEventListener (no inline onclick)
+        nav.querySelectorAll('.section-nav-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            goTo(btn.dataset.target);
+          });
+        });
 
         if (nav.children.length > 0) {
           section.appendChild(nav);
@@ -1515,11 +1655,12 @@ function timeAgo(ts) {
       });
     });
   }
+  window._buildSectionNav = buildSectionNav;
   buildSectionNav();
 })();
 
 // ============ SYSTÈME DE FAVORIS (BOOKMARKS) ============
-var BOOKMARKS_KEY = 'gip-bookmarks';
+const BOOKMARKS_KEY = 'gip-bookmarks';
 
 function getBookmarks() {
   try { return JSON.parse(localStorage.getItem(BOOKMARKS_KEY)) || []; } catch(e) { return []; }
@@ -1564,16 +1705,6 @@ function toggleBookmarksPanel() {
   }
 
   var bm = getBookmarks();
-  var courseNames = {
-    'snow': 'SNOW', 'stark': 'STARK', 'niote': 'NIOTE',
-    'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
-    'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
-    'financement': 'Financement', 'responsabilite': 'Responsabilité',
-    'fiscal': 'Ingénierie fiscale PP', 'droit': 'Droit patrimonial',
-    'marches': 'Marchés financiers', 'transmission': 'Transmission d\'entreprises',
-    'fiscalite-int': 'Fiscalité Internationale', 'outils': 'Outils',
-    'guide': 'Guide', 'montages': 'Montages', 'formules': 'Formules'
-  };
 
   if (bm.length === 0) {
     panel.innerHTML = '<div class="bookmarks-panel-header">Favoris</div>' +
@@ -1581,12 +1712,31 @@ function toggleBookmarksPanel() {
   } else {
     panel.innerHTML = '<div class="bookmarks-panel-header">Favoris (' + bm.length + ')</div>' +
       bm.map(function(b, i) {
-        return '<div class="bookmark-item" onclick="goToBookmark(\'' + b.case + '\',\'' + b.section + '\')">' +
-          '<div><div class="bookmark-item-course">' + (courseNames[b.case] || b.case) + '</div>' +
-          '<div class="bookmark-item-title">' + b.title + '</div></div>' +
-          '<button class="bookmark-item-remove" onclick="event.stopPropagation();removeBookmark(' + i + ')" title="Retirer">✕</button></div>';
+        return '<div class="bookmark-item" data-case="' + escapeHtml(b.case) + '" data-section="' + escapeHtml(b.section) + '" data-idx="' + i + '">' +
+          '<div><div class="bookmark-item-course">' + escapeHtml(courseShort(b.case)) + '</div>' +
+          '<div class="bookmark-item-title">' + escapeHtml(b.title) + '</div></div>' +
+          '<button class="bookmark-item-remove" data-idx="' + i + '" title="Retirer">✕</button></div>';
       }).join('');
   }
+  // Attach event delegation for bookmark items (no inline onclick)
+  panel.querySelectorAll('.bookmark-item').forEach(function(item) {
+    item.style.cursor = 'pointer';
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    item.addEventListener('click', function(e) {
+      if (e.target.closest('.bookmark-item-remove')) return;
+      goToBookmark(item.dataset.case, item.dataset.section);
+    });
+    item.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+    });
+  });
+  panel.querySelectorAll('.bookmark-item-remove').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      removeBookmark(parseInt(btn.dataset.idx, 10));
+    });
+  });
   panel.classList.add('active');
 }
 
@@ -1622,8 +1772,9 @@ function refreshBookmarkStars() {
 }
 
 // Inject bookmark stars into section headers
-(function() {
-  document.querySelectorAll('[id^="sidebar-"]').forEach(function(sidebarDiv) {
+function initBookmarkStars(targetCase) {
+  var selector = targetCase ? '#sidebar-' + targetCase : '[id^="sidebar-"]';
+  document.querySelectorAll(selector).forEach(function(sidebarDiv) {
     var caseName = sidebarDiv.id.replace('sidebar-', '');
     var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
 
@@ -1644,19 +1795,24 @@ function refreshBookmarkStars() {
       star.className = 'bookmark-btn' + (isBookmarked(caseName, sectionId) ? ' bookmarked' : '');
       star.setAttribute('data-case', caseName);
       star.setAttribute('data-section', sectionId);
-      star.setAttribute('aria-label', 'Ajouter aux favoris');
-      star.textContent = isBookmarked(caseName, sectionId) ? '★' : '☆';
+      var _isBm = isBookmarked(caseName, sectionId);
+      star.setAttribute('aria-label', _isBm ? 'Retirer des favoris' : 'Ajouter aux favoris');
+      star.textContent = _isBm ? '★' : '☆';
       star.addEventListener('click', function(e) {
         e.stopPropagation();
         var added = toggleBookmark(caseName, sectionId, title);
         star.classList.toggle('bookmarked', added);
         star.textContent = added ? '★' : '☆';
+        star.setAttribute('aria-label', added ? 'Retirer des favoris' : 'Ajouter aux favoris');
       });
       header.appendChild(star);
     });
   });
 
   updateBookmarkCount();
+}
+(function() {
+  initBookmarkStars();
 
   // Close panel on outside click
   document.addEventListener('click', function(e) {
@@ -1669,8 +1825,11 @@ function refreshBookmarkStars() {
 })();
 
 // ============ BOUTON COPIER SUR LES CALC-BLOCKS ============
-(function() {
-  document.querySelectorAll('.calc-block').forEach(function(block) {
+function initCalcCopyButtons(targetCase) {
+  var scope = targetCase ? document.getElementById('case-' + targetCase) : document;
+  if (!scope) return;
+  scope.querySelectorAll('.calc-block').forEach(function(block) {
+    if (block.querySelector('.calc-copy-btn')) return;
     var btn = document.createElement('button');
     btn.className = 'calc-copy-btn';
     btn.textContent = 'Copier';
@@ -1681,34 +1840,23 @@ function refreshBookmarkStars() {
       navigator.clipboard.writeText(text).then(function() {
         btn.textContent = 'Copié !';
         btn.classList.add('copied');
-        setTimeout(function() {
-          btn.textContent = 'Copier';
-          btn.classList.remove('copied');
-        }, 1500);
+        setTimeout(function() { btn.textContent = 'Copier'; btn.classList.remove('copied'); }, 1500);
       }).catch(function() {
-        // Fallback
         var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.cssText = 'position:fixed;opacity:0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        ta.remove();
-        btn.textContent = 'Copié !';
-        btn.classList.add('copied');
-        setTimeout(function() {
-          btn.textContent = 'Copier';
-          btn.classList.remove('copied');
-        }, 1500);
+        ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+        btn.textContent = 'Copié !'; btn.classList.add('copied');
+        setTimeout(function() { btn.textContent = 'Copier'; btn.classList.remove('copied'); }, 1500);
       });
     });
     block.appendChild(btn);
   });
-})();
+}
+initCalcCopyButtons();
 
 // ============ MILESTONES DE PROGRESSION ============
-var MILESTONE_KEY = 'gip-milestones';
-var milestoneMessages = { 25: 'Bien parti !', 50: 'A mi-chemin !', 75: 'Presque fini !', 100: 'Terminé !' };
+const MILESTONE_KEY = 'gip-milestones';
+const milestoneMessages = { 25: 'Bien parti !', 50: 'A mi-chemin !', 75: 'Presque fini !', 100: 'Terminé !' };
 
 function checkMilestone(caseName) {
   var total = document.querySelectorAll('#sidebar-' + caseName + ' .check-read').length;
@@ -1792,6 +1940,11 @@ function checkMilestone(caseName) {
 
     // Restore answered state + attach listeners
     allDetails.forEach(function(det, i) {
+      // Add aria-label for accessibility
+      var summary = det.querySelector('summary');
+      if (summary && !summary.getAttribute('aria-label')) {
+        summary.setAttribute('aria-label', 'Question ' + (i + 1) + ' sur ' + total);
+      }
       if (answered.has(i)) {
         det.classList.add('qcm-answered');
       }
@@ -1821,27 +1974,103 @@ function checkMilestone(caseName) {
   });
 })();
 
-  // Au chargement, toujours forcer l'accueil
-  // 1) Nettoyer le hash
-  if (window.location.hash) {
-    history.replaceState(null, '', window.location.pathname);
-  }
-  // 2) Forcer case-home visible, masquer tout le reste
-  document.querySelectorAll('.case-content').forEach(function(c) {
-    if (c.id === 'case-home') {
-      c.classList.add('active');
-      c.style.display = 'block';
-    } else {
+  // Au chargement : deep linking ou accueil
+  var _initHash = window.location.hash.replace('#', '');
+  if (_initHash && _knownPages.indexOf(_initHash) !== -1) {
+    // Deep link — charger la page demandée
+    document.querySelectorAll('.case-content').forEach(function(c) {
       c.classList.remove('active');
       c.style.display = 'none';
-    }
-  });
-  // 3) Masquer sidebar et tabBar
-  var sb = document.getElementById('sidebar');
-  var tb = document.getElementById('tabBar');
-  if (sb) sb.style.display = 'none';
-  if (tb) tb.style.display = 'none';
+    });
+    var sb = document.getElementById('sidebar');
+    var tb = document.getElementById('tabBar');
+    if (sb) sb.style.display = 'none';
+    if (tb) tb.style.display = 'none';
+    // Charger après un court délai pour laisser le DOM se stabiliser
+    setTimeout(function() { enterCourse(_initHash); }, 50);
+  } else {
+    // Pas de hash → afficher l'accueil
+    document.querySelectorAll('.case-content').forEach(function(c) {
+      if (c.id === 'case-home') {
+        c.classList.add('active');
+        c.style.display = 'block';
+      } else {
+        c.classList.remove('active');
+        c.style.display = 'none';
+      }
+    });
+    var sb = document.getElementById('sidebar');
+    var tb = document.getElementById('tabBar');
+    if (sb) sb.style.display = 'none';
+    if (tb) tb.style.display = 'none';
+  }
 })();
 
+// ============ EVENT DELEGATION — TABS ============
+(function() {
+  var tabBar = document.getElementById('tabBar');
+  if (!tabBar) return;
+  tabBar.addEventListener('click', function(e) {
+    var tab = e.target.closest('.tab[data-case]');
+    if (!tab) return;
+    switchCase(tab.dataset.case);
+  });
+})();
 
+// ============ EVENT DELEGATION — HOME-CARDS & BREADCRUMBS ============
+(function() {
+  document.addEventListener('click', function(e) {
+    // Home-cards with data-course
+    var card = e.target.closest('.home-card[data-course]');
+    if (card) {
+      enterCourse(card.dataset.course);
+      return;
+    }
+    // Breadcrumbs with data-course
+    var crumb = e.target.closest('.breadcrumb[data-course]');
+    if (crumb) {
+      switchCase(crumb.dataset.course);
+      return;
+    }
+  });
+  // Keyboard support for breadcrumbs
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      var crumb = e.target.closest('.breadcrumb[data-course]');
+      if (crumb) { e.preventDefault(); switchCase(crumb.dataset.course); }
+    }
+  });
+})();
+
+// ============ EVENT DELEGATION — SHORTCUTS OVERLAY ============
+(function() {
+  var overlay = document.getElementById('shortcutsOverlay');
+  var closeBtn = document.getElementById('shortcutsClose');
+  if (!overlay) return;
+  function closeShortcuts() { overlay.style.display = 'none'; }
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeShortcuts();
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeShortcuts);
+})();
+
+// ============ SAFE LOCALSTORAGE HELPER ============
+function safePersist(key, value) {
+  try {
+    localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+  } catch(e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      // Try to free space: remove old study days beyond 90 days
+      try {
+        var days = JSON.parse(localStorage.getItem('gip-studyDays') || '[]');
+        if (days.length > 90) {
+          localStorage.setItem('gip-studyDays', JSON.stringify(days.slice(-90)));
+          localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+          return;
+        }
+      } catch(e2) {}
+      announce('Espace de stockage plein — certaines données ne seront pas sauvegardées.');
+    }
+  }
+}
 

@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="M2 GIP — Cours, cas pratiques et outils pour le Master Gestion et Ingénierie Patrimoniale. Audit patrimonial, fiscalité, transmission, financement.">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0e0e14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🎓</text></svg>">
 <title>M2 - GIP — Gestion et Ingénierie Patrimoniale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================================
@@ -138,6 +141,20 @@ body.light-mode .sidebar {
   box-shadow: 2px 0 16px rgba(0, 0, 0, 0.04);
 }
 
+body.light-mode .sidebar-collapse-btn,
+body.light-mode .sidebar-expand-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-light);
+}
+
+body.light-mode .sidebar-collapse-btn:hover,
+body.light-mode .sidebar-expand-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: rgba(186, 155, 95, 0.3);
+}
+
 body.light-mode table,
 body.light-mode .data-table {
   background: rgba(255, 255, 255, 0.8);
@@ -253,11 +270,6 @@ body.light-mode .alert {
   box-shadow: var(--shadow-liquid-sm);
 }
 
-/* Light mode — Scrollbar */
-body.light-mode ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-}
-
 /* Light mode — Resume banner */
 body.light-mode .resume-banner {
   background: rgba(255, 255, 255, 0.92);
@@ -282,6 +294,7 @@ body.light-mode .scroll-top-btn {
   outline-offset: 2px;
   border-radius: 4px;
 }
+button:focus-visible,
 .tab:focus-visible,
 .sidebar-item:focus-visible,
 .header-btn:focus-visible,
@@ -294,7 +307,10 @@ body.light-mode .scroll-top-btn {
 .sidebar-toggle-btn:focus-visible,
 .sidebar-expand-btn:focus-visible,
 .sidebar-collapse-btn:focus-visible,
-.home-card:focus-visible {
+.home-card:focus-visible,
+.flashcard:focus-visible,
+.bookmark-item:focus-visible,
+.qcm-reset:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(186, 155, 95, 0.2);
@@ -1252,6 +1268,29 @@ tr[onclick]:hover td {
   font-weight: 600;
 }
 
+.blue {
+  color: #5b9bd5;
+  font-weight: 600;
+}
+
+.orange {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+.highlight {
+  background: rgba(186, 155, 95, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.note {
+  font-size: 0.82em;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
 td.number,
 th.number {
   text-align: right;
@@ -1731,16 +1770,7 @@ details .inner {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Keyboard focus indicators */
-button:focus-visible,
-.tab:focus-visible,
-.sidebar-item:focus-visible,
-.home-card:focus-visible,
-.flashcard:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.15);
-}
+/* (focus-visible centralisé dans le bloc FOCUS-VISIBLE STATES en haut) */
 
 .search-icon {
   position: absolute;
@@ -2119,6 +2149,33 @@ button:focus-visible,
 }
 
 /* ============================================================================
+   RESPONSIVE — Tablet portrait (601-768px)
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .main {
+    padding: 18px;
+  }
+
+  .home-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: 0 16px 32px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .welcome h1 {
+    font-size: 28px;
+  }
+
+  .formules-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
    RESPONSIVE — Mobile
    ============================================================================ */
 
@@ -2243,6 +2300,17 @@ button:focus-visible,
 
   .summary-value {
     font-size: 18px;
+  }
+
+  .home-grid {
+    grid-template-columns: 1fr;
+    padding: 0 12px 24px;
+  }
+  .home-hero {
+    padding: 32px 16px 20px;
+  }
+  .home-hero h1 {
+    font-size: 1.8rem;
   }
 }
 
@@ -2710,6 +2778,8 @@ button:focus-visible,
   /* ─── Couleurs d'emphase pour impression ─── */
   body.printing-houette .red { color: #dc2626 !important; }
   body.printing-houette .green { color: #16a34a !important; }
+  body.printing-houette .blue { color: #2563eb !important; }
+  body.printing-houette .orange { color: #d97706 !important; }
 
   /* ═══════════════════════════════════════════════════════════════════
      HOUETTE PDF — ÉNONCÉ (données + questions, sans réponses)
@@ -3027,6 +3097,8 @@ button:focus-visible,
   /* --- Couleurs d'emphase --- */
   body.printing-houette-enonce .red { color: #dc2626 !important; }
   body.printing-houette-enonce .green { color: #16a34a !important; }
+  body.printing-houette-enonce .blue { color: #2563eb !important; }
+  body.printing-houette-enonce .orange { color: #d97706 !important; }
 
   /* ─── Page setup (partagé corrigé + énoncé) ─── */
   @page {
@@ -3221,19 +3293,6 @@ button:focus-visible,
 }
 .breadcrumb:hover {
   opacity: 0.7;
-}
-
-@media (max-width: 600px) {
-  .home-grid {
-    grid-template-columns: 1fr;
-    padding: 0 12px 24px;
-  }
-  .home-hero {
-    padding: 32px 16px 20px;
-  }
-  .home-hero h1 {
-    font-size: 1.8rem;
-  }
 }
 
 /* ============================================================================
@@ -3627,7 +3686,7 @@ body.exam-mode #examToggle {
 .shortcuts-overlay {
   position: fixed;
   inset: 0;
-  z-index: 10000;
+  z-index: 2000;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -3795,7 +3854,7 @@ body.light-mode .progress-ring-bg {
 .exam-duration-overlay {
   position: fixed;
   inset: 0;
-  z-index: 9998;
+  z-index: 2000;
   background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
@@ -4159,7 +4218,7 @@ body.light-mode .progress-ring-bg {
   font-weight: 600;
   color: var(--primary);
   box-shadow: var(--shadow-lg);
-  z-index: 9000;
+  z-index: 1100;
   opacity: 0;
   animation: milestoneIn 0.3s ease forwards, milestoneOut 0.3s ease 2.2s forwards;
 }
@@ -4259,13 +4318,84 @@ body.light-mode .qcm-stats-bar.qcm-complete {
   }
 }
 
+/* ============================================================================
+   FORMULES — Grid & Cards
+   ============================================================================ */
+.formules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.formula-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.formula-card h4 { margin: 0 0 8px; font-size: .92em; color: var(--primary); }
+.formula-card .f { font-family: 'Courier New', monospace; font-size: .85em; background: rgba(255,255,255,0.06); color: var(--text); padding: 6px 10px; border-radius: 6px; margin: 4px 0; line-height: 1.6; }
+body.light-mode .formula-card .f { background: #f1f5f9; }
+.formula-card .note { font-size: .78em; color: var(--text-light); margin-top: 4px; }
+.compact-table { font-size: .82em; width: 100%; border-collapse: collapse; margin: 8px 0; }
+.compact-table td, .compact-table th { padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+.compact-table th { background: var(--glass-bg); font-weight: 600; }
+.section-divider { border-top: 3px solid var(--primary); margin: 32px 0 24px; padding-top: 16px; }
+.bold-row { font-weight: 600; }
+
+/* ============================================================================
+   TRANSMISSION — PV Badges
+   ============================================================================ */
+.pv-badges { display: inline-flex; gap: 3px; align-items: center; }
+.pv-badge { display: inline-flex; align-items: center; justify-content: center; padding: 3px 7px; border-radius: 4px; font-size: 0.72em; font-weight: 700; color: #fff; white-space: nowrap; letter-spacing: 0.02em; line-height: 1.3; }
+.pv-badge.on { background: #2e7d32; }
+.pv-badge.off { background: #c62828; opacity: 0.82; }
+.pv-sep { width: 1px; height: 16px; background: rgba(255,255,255,0.25); margin: 0 2px; border-radius: 1px; }
+
+/* Loading spinner */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Skip-to-content link (accessibility) */
+.skip-link { position: absolute; top: -100%; left: 16px; z-index: 9999; background: var(--primary); color: #fff; padding: 12px 24px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: top 0.2s ease; }
+.skip-link:focus { top: 12px; }
+
+/* Screen reader only */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* Toast error */
+.toast-error { cursor: pointer; transition: opacity 0.3s ease; }
+.toast-error:hover { opacity: 0.85; }
+
+/* Export PDF button */
+.export-pdf-btn { margin-top: 12px; padding: 8px 16px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: var(--blur); color: var(--text); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.export-pdf-btn:hover, .export-pdf-btn:focus { background: var(--primary); color: #fff; }
+
+/* Lockscreen focus/hover (replaces inline handlers) */
+#lockcode:focus { border-color: var(--primary) !important; }
+#lockscreen button:hover { opacity: 0.85; }
+
+/* Print styles améliorés */
+@media print {
+  .header, .quiz-stats, .search-container, .sidebar, .sidebar-overlay, .sidebar-toggle-btn,
+  .sidebar-expand-btn, .tab-bar, .bookmark-btn, .check-read, .section-nav, .exam-timer,
+  .scroll-top-btn, .reading-progress, .home-card-progress, .milestone-toast, .toast-error,
+  .bookmarks-panel, .shortcuts-overlay, .qcm-reset, .calc-copy-btn, .export-pdf-btn,
+  .resume-banner, .skip-link, .lockscreen { display: none !important; }
+  body, body.light-mode { background: #fff !important; color: #000 !important; }
+  * { box-shadow: none !important; text-shadow: none !important; }
+  .section-header { page-break-after: avoid; }
+  .section, .calc-block, .data-table { page-break-inside: avoid; }
+  @page { margin: 2cm; }
+  .case-content { padding: 0 !important; }
+}
+
 </style>
 </head>
 <body>
 
+<!-- Skip to content (accessibility) -->
+<a href="#main-scroll" class="skip-link" id="skipLink">Aller au contenu principal</a>
+
+<!-- ARIA live region for dynamic notifications -->
+<div id="ariaLive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
 <!-- ============ LOCKSCREEN ============ -->
 <div id="lockscreen" role="dialog" aria-modal="true" aria-label="Écran de verrouillage" style="
-  position: fixed; inset: 0; z-index: 99999;
+  position: fixed; inset: 0; z-index: 3000;
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -4281,7 +4411,7 @@ body.light-mode .qcm-stats-bar.qcm-complete {
   ">
     <div style="font-size: 2.5rem; margin-bottom: 12px;">🎓</div>
     <h1 style="color: var(--text); font-size: 1.4rem; font-weight: 700; margin: 0 0 4px;">M2 — GIP</h1>
-    <p style="color: var(--text-light); font-size: 0.85rem; margin: 0 0 24px;">Entrez le code d'accès</p>
+    <label for="lockcode" style="color: var(--text-light); font-size: 0.85rem; margin: 0 0 24px; display: block;">Entrez le code d'accès</label>
     <input type="password" id="lockcode" placeholder="Code d'accès" autocomplete="off" style="
       width: 100%; box-sizing: border-box;
       background: rgba(255,255,255,0.06);
@@ -4291,25 +4421,25 @@ body.light-mode .qcm-stats-bar.qcm-complete {
       color: var(--text); font-size: 1rem;
       text-align: center; letter-spacing: 3px;
       outline: none; transition: border-color 0.2s;
-    " onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
-    <button onclick="checkLockCode()" style="
+    ">
+    <button onclick="checkLockCode()" aria-label="Soumettre le code d'accès" style="
       width: 100%; margin-top: 14px;
       background: var(--primary);
       color: #fff; border: none;
       padding: 12px; border-radius: var(--radius-sm);
       font-size: 0.95rem; font-weight: 600;
       cursor: pointer; transition: opacity 0.2s;
-    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Accéder</button>
+    ">Accéder</button>
     <p id="lock-error" style="color: var(--danger); font-size: 0.8rem; margin: 12px 0 0; display: none;">Code incorrect</p>
   </div>
 </div>
 <script>
 (function() {
-  var KEY = 'gip_access';
+  const KEY = 'gip_access';
   // Hash SHA-256 du code (ne plus exposer le code en clair)
-  var CODE_HASH = '8f14e45fceea167a5a36dedd4bea2543'; // MD5 de "GIP2526" pour compat
-  var attempts = 0;
-  var maxAttempts = 5;
+  const CODE_HASH = '8f14e45fceea167a5a36dedd4bea2543'; // MD5 de "GIP2526" pour compat
+  let attempts = 0;
+  const maxAttempts = 5;
 
   if (sessionStorage.getItem(KEY) === 'ok') {
     document.getElementById('lockscreen').style.display = 'none';
@@ -4325,19 +4455,19 @@ body.light-mode .qcm-stats-bar.qcm-complete {
 
   // Simple hash pour ne pas exposer le code en clair
   function simpleHash(str) {
-    var hash = 0;
-    for (var i = 0; i < str.length; i++) {
-      var char = str.charCodeAt(i);
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
       hash = ((hash << 5) - hash) + char;
       hash |= 0;
     }
     return hash.toString(36);
   }
-  var EXPECTED = simpleHash('GIP2526');
+  const EXPECTED = simpleHash('GIP2526');
 
   window.checkLockCode = function() {
     if (attempts >= maxAttempts) {
-      var err = document.getElementById('lock-error');
+      const err = document.getElementById('lock-error');
       err.textContent = 'Trop de tentatives. Rechargez la page.';
       err.style.display = 'block';
       return;
@@ -4348,7 +4478,7 @@ body.light-mode .qcm-stats-bar.qcm-complete {
       document.getElementById('lockscreen').style.display = 'none';
     } else {
       attempts++;
-      var err = document.getElementById('lock-error');
+      const err = document.getElementById('lock-error');
       err.textContent = 'Code incorrect (' + (maxAttempts - attempts) + ' essai' + (maxAttempts - attempts > 1 ? 's' : '') + ' restant' + (maxAttempts - attempts > 1 ? 's' : '') + ')';
       err.style.display = 'block';
       document.getElementById('lockcode').value = '';
@@ -4360,7 +4490,7 @@ body.light-mode .qcm-stats-bar.qcm-complete {
 
 <!-- ============ HEADER ============ -->
 <header class="header" role="banner">
-  <div class="header-logo" onclick="switchCase('home')" style="cursor:pointer" role="button" tabindex="0" aria-label="Retour à l'accueil">
+  <div class="header-logo" onclick="switchCase('home')" onkeydown="if(event.key==='Enter')switchCase('home')" style="cursor:pointer" role="button" tabindex="0" aria-label="Retour à l'accueil">
     <div class="icon">🎓</div>
     <span>M2 - GIP</span>
   </div>
@@ -4396,50 +4526,50 @@ body.light-mode .qcm-stats-bar.qcm-complete {
 
 <!-- ============ TAB BAR ============ -->
 <nav class="tab-bar" id="tabBar" style="display:none" role="tablist" aria-label="Navigation principale">
-  <div class="tab" data-case="home" onclick="switchCase('home')" style="margin-right:4px;" role="tab" tabindex="0" aria-selected="false">
+  <div class="tab" data-case="home" style="margin-right:4px;" role="tab" tabindex="0" aria-selected="false">
     <span class="tab-icon" aria-hidden="true">🏠</span>
     <span>Cours</span>
   </div>
-  <div class="tab active" data-case="audit" onclick="switchCase('audit')" style="margin-right:4px;" role="tab" tabindex="0" aria-selected="true">
+  <div class="tab active" data-case="audit" style="margin-right:4px;" role="tab" tabindex="0" aria-selected="true">
     <span class="tab-icon" aria-hidden="true">📊</span>
     <span>Audit</span>
   </div>
   <div class="tab-divider"></div>
   <div class="tab-group">
     <span class="tab-group-label">📚 Cas</span>
-    <div class="tab" data-case="snow" onclick="switchCase('snow')">
+    <div class="tab" data-case="snow">
       <span class="tab-icon">❄️</span>
       <span>SNOW</span>
     </div>
-    <div class="tab" data-case="stark" onclick="switchCase('stark')">
+    <div class="tab" data-case="stark">
       <span class="tab-icon">👨‍👩‍👧‍👦</span>
       <span>STARK</span>
     </div>
-    <div class="tab" data-case="niote" onclick="switchCase('niote')">
+    <div class="tab" data-case="niote">
       <span class="tab-icon">🏢</span>
       <span>NIOTE</span>
     </div>
-    <div class="tab" data-case="mengere" onclick="switchCase('mengere')">
+    <div class="tab" data-case="mengere">
       <span class="tab-icon">🏗️</span>
       <span>MENGERE</span>
     </div>
-    <div class="tab" data-case="norris" onclick="switchCase('norris')">
+    <div class="tab" data-case="norris">
       <span class="tab-icon">💎</span>
       <span>NORRIS</span>
     </div>
-    <div class="tab" data-case="vador" onclick="switchCase('vador')">
+    <div class="tab" data-case="vador">
       <span class="tab-icon">⚔️</span>
       <span>VADOR</span>
     </div>
-    <div class="tab" data-case="leon" onclick="switchCase('leon')">
+    <div class="tab" data-case="leon">
       <span class="tab-icon">👨‍💼</span>
       <span>LEON</span>
     </div>
-    <div class="tab" data-case="genereux" onclick="switchCase('genereux')">
+    <div class="tab" data-case="genereux">
       <span class="tab-icon">💼</span>
       <span>GÉNÉREUX</span>
     </div>
-    <div class="tab" data-case="houette" onclick="switchCase('houette')">
+    <div class="tab" data-case="houette">
       <span class="tab-icon">🏠</span>
       <span>HOUETTE</span>
     </div>
@@ -4447,19 +4577,19 @@ body.light-mode .qcm-stats-bar.qcm-complete {
   <div class="tab-divider"></div>
   <div class="tab-group">
     <span class="tab-group-label">🛠️ Outils</span>
-    <div class="tab" data-case="outils" onclick="switchCase('outils')">
+    <div class="tab" data-case="outils">
       <span class="tab-icon">🧰</span>
       <span>Boîte à Outils</span>
     </div>
-    <div class="tab" data-case="guide" onclick="switchCase('guide')">
+    <div class="tab" data-case="guide">
       <span class="tab-icon">📋</span>
       <span>Guide Stratégique</span>
     </div>
-    <div class="tab" data-case="montages" onclick="switchCase('montages')">
+    <div class="tab" data-case="montages">
       <span class="tab-icon">🔧</span>
       <span>Montages</span>
     </div>
-    <div class="tab" data-case="formules" onclick="switchCase('formules')">
+    <div class="tab" data-case="formules">
       <span class="tab-icon">📐</span>
       <span>Formules</span>
     </div>
@@ -5879,56 +6009,56 @@ body.light-mode .qcm-stats-bar.qcm-complete {
       <div class="home-section-title">📚 Cours</div>
       <div class="home-grid">
 
-        <div class="home-card card-audit" onclick="enterCourse('audit')">
+        <div class="home-card card-audit" data-course="audit">
           <span class="home-card-icon">📊</span>
           <div class="home-card-title">Audit patrimonial</div>
           <div class="home-card-desc">9 cas pratiques complets (SNOW, STARK, NIOTE, MENGERE, NORRIS, VADOR, LEON, GÉNÉREUX, HOUETTE), boîte à outils, guide stratégique, montages et formules.</div>
           <div class="home-card-badge">9 cas · 4 outils</div>
         </div>
 
-        <div class="home-card card-financement" onclick="enterCourse('financement')">
+        <div class="home-card card-financement" data-course="financement">
           <span class="home-card-icon">💰</span>
           <div class="home-card-title">Financement des particuliers</div>
           <div class="home-card-desc">Techniques de financement : prêts réglementés, garanties, ADE, crédit conso, Eco PTZ, régimes matrimoniaux, normes HCSF.</div>
           <div class="home-card-badge">10 chapitres · 5 exercices · Synthèse exam</div>
         </div>
 
-        <div class="home-card card-responsabilite" onclick="enterCourse('responsabilite')">
+        <div class="home-card card-responsabilite" data-course="responsabilite">
           <span class="home-card-icon">⚖️</span>
           <div class="home-card-title">Responsabilité du gestionnaire</div>
           <div class="home-card-desc">Responsabilité civile et pénale du CGP : faute, dommage, lien de causalité, infractions, jurisprudence.</div>
           <div class="home-card-badge">7 chapitres · 3 exercices · Synthèse exam</div>
         </div>
 
-        <div class="home-card card-fiscal" onclick="enterCourse('fiscal')">
+        <div class="home-card card-fiscal" data-course="fiscal">
           <span class="home-card-icon">🏛️</span>
           <div class="home-card-title">Ingénierie fiscale PP</div>
           <div class="home-card-desc">Fiscalité des personnes physiques et patrimoine : IR, plus-values, IFI, droits de mutation, assurance-vie, démembrement et SCI.</div>
           <div class="home-card-badge">9 chapitres · 5 exercices · QCM · Synthèse exam</div>
         </div>
 
-        <div class="home-card card-droit" onclick="enterCourse('droit')">
+        <div class="home-card card-droit" data-course="droit">
           <span class="home-card-icon">📜</span>
           <div class="home-card-title">Droit patrimonial</div>
           <div class="home-card-desc">Libéralités et successions : donations, testaments, dévolution, réserve héréditaire, partage, liquidation et successions internationales.</div>
           <div class="home-card-badge">15 chapitres · 3 exercices · QCM · Synthèse exam</div>
         </div>
 
-        <div class="home-card card-marches" onclick="enterCourse('marches')">
+        <div class="home-card card-marches" data-course="marches">
           <span class="home-card-icon">📈</span>
           <div class="home-card-title">Droit des marchés financiers</div>
           <div class="home-card-desc">Cadre institutionnel, AMF, ACPR, AEMF/ESMA, SEC — acteurs, instruments et régulation.</div>
           <div class="home-card-badge">8 chapitres · Fiches acteurs · QCM 20 questions</div>
         </div>
 
-        <div class="home-card card-transmission" onclick="enterCourse('transmission')">
+        <div class="home-card card-transmission" data-course="transmission">
           <span class="home-card-icon">🏢</span>
           <div class="home-card-title">Transmission d'entreprises</div>
           <div class="home-card-desc">Pacte Dutreil, donation-partage conjonctive, réserve héréditaire, ECC/EIC, holding, donation-cession, outils civils avancés, cas pratiques LEFRANCOIS & QUESNOY.</div>
           <div class="home-card-badge">10 chapitres · 3 exercices · Synthèse exam</div>
         </div>
 
-        <div class="home-card card-fiscalite-int" onclick="enterCourse('fiscalite-int')">
+        <div class="home-card card-fiscalite-int" data-course="fiscalite-int">
           <span class="home-card-icon">🌍</span>
           <div class="home-card-title">Fiscalité Internationale</div>
           <div class="home-card-desc">Territorialité IR, droit conventionnel, RAS (182A/B, 119 bis), ETNC, exit tax, expatriés/impatriés, couples mixtes, Schumacker.</div>
@@ -5945,7 +6075,7 @@ body.light-mode .qcm-stats-bar.qcm-complete {
     <div class="case-content" id="case-audit" style="display:none">
 
       <div class="home-hero">
-        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <div class="breadcrumb" data-course="home" role="button" tabindex="0">← Retour aux cours</div>
         <h1>Audit patrimonial</h1>
         <p>9 cas pratiques détaillés avec calculs pas à pas, outils de révision et fiches stratégiques.</p>
       </div>
@@ -5953,55 +6083,55 @@ body.light-mode .qcm-stats-bar.qcm-complete {
       <div class="home-section-title">📚 Cas pratiques</div>
       <div class="home-grid">
 
-        <div class="home-card card-snow" onclick="switchCase('snow')">
+        <div class="home-card card-snow" data-course="snow">
           <span class="home-card-icon">❄️</span>
           <div class="home-card-title">Cas SNOW</div>
           <div class="home-card-desc">Mr Julien SNOW & Mme Danny STARK — PACS, IFI, succession, préconisations patrimoniales.</div>
         </div>
 
-        <div class="home-card card-stark" onclick="switchCase('stark')">
+        <div class="home-card card-stark" data-course="stark">
           <span class="home-card-icon">👨‍👩‍👧‍👦</span>
           <div class="home-card-title">Cas STARK</div>
           <div class="home-card-desc">Famille STARK — Patrimoine familial, transmission, optimisation fiscale.</div>
         </div>
 
-        <div class="home-card card-niote" onclick="switchCase('niote')">
+        <div class="home-card card-niote" data-course="niote">
           <span class="home-card-icon">🏢</span>
           <div class="home-card-title">Cas NIOTE</div>
           <div class="home-card-desc">Société NIOTE — Immobilier professionnel, SCI, bilan patrimonial.</div>
         </div>
 
-        <div class="home-card card-mengere" onclick="switchCase('mengere')">
+        <div class="home-card card-mengere" data-course="mengere">
           <span class="home-card-icon">🏗️</span>
           <div class="home-card-title">Cas MENGERE</div>
           <div class="home-card-desc">Famille MENGERE — Investissement immobilier, défiscalisation, montage.</div>
         </div>
 
-        <div class="home-card card-norris" onclick="switchCase('norris')">
+        <div class="home-card card-norris" data-course="norris">
           <span class="home-card-icon">💎</span>
           <div class="home-card-title">Cas NORRIS</div>
           <div class="home-card-desc">Patrimoine NORRIS — Placements, assurance-vie, stratégie patrimoniale.</div>
         </div>
 
-        <div class="home-card card-vador" onclick="switchCase('vador')">
+        <div class="home-card card-vador" data-course="vador">
           <span class="home-card-icon">⚔️</span>
           <div class="home-card-title">Cas VADOR</div>
           <div class="home-card-desc">Famille VADOR — Cession d'entreprise, plus-values, réinvestissement.</div>
         </div>
 
-        <div class="home-card card-leon" onclick="switchCase('leon')">
+        <div class="home-card card-leon" data-course="leon">
           <span class="home-card-icon">👨‍💼</span>
           <div class="home-card-title">Cas LEON</div>
           <div class="home-card-desc">Mr LEON — Retraite, revenus fonciers, optimisation du patrimoine.</div>
         </div>
 
-        <div class="home-card card-genereux" onclick="switchCase('genereux')">
+        <div class="home-card card-genereux" data-course="genereux">
           <span class="home-card-icon">💼</span>
           <div class="home-card-title">Cas GÉNÉREUX</div>
           <div class="home-card-desc">Famille GÉNÉREUX — Donation, transmission, stratégie successorale.</div>
         </div>
 
-        <div class="home-card card-houette" onclick="switchCase('houette')">
+        <div class="home-card card-houette" data-course="houette">
           <span class="home-card-icon">🏠</span>
           <div class="home-card-title">Cas HOUETTE</div>
           <div class="home-card-desc">Mr & Mme HOUETTE — Séparation de biens, LMNP, Malraux, IFI, PER, succession & stratégie retraite.</div>
@@ -6012,25 +6142,25 @@ body.light-mode .qcm-stats-bar.qcm-complete {
       <div class="home-section-title">🛠️ Outils & Ressources</div>
       <div class="home-grid">
 
-        <div class="home-card card-outils" onclick="switchCase('outils')">
+        <div class="home-card card-outils" data-course="outils">
           <span class="home-card-icon">🧰</span>
           <div class="home-card-title">Boîte à Outils</div>
           <div class="home-card-desc">Barèmes fiscaux, tableaux de référence, mémos pratiques pour l'examen.</div>
         </div>
 
-        <div class="home-card card-guide" onclick="switchCase('guide')">
+        <div class="home-card card-guide" data-course="guide">
           <span class="home-card-icon">📋</span>
           <div class="home-card-title">Guide Stratégique</div>
           <div class="home-card-desc">Méthodologie de résolution, check-lists, stratégies par thématique.</div>
         </div>
 
-        <div class="home-card card-montages" onclick="switchCase('montages')">
+        <div class="home-card card-montages" data-course="montages">
           <span class="home-card-icon">🔧</span>
           <div class="home-card-title">Montages</div>
           <div class="home-card-desc">Montages financiers, fiscaux et juridiques : donations, DTUS, SCPI démembrée, quasi-usufruit, effet levier.</div>
         </div>
 
-        <div class="home-card card-formules" onclick="switchCase('formules')">
+        <div class="home-card card-formules" data-course="formules">
           <span class="home-card-icon">📐</span>
           <div class="home-card-title">Formules</div>
           <div class="home-card-desc">Toutes les formules de calcul : fiscalité, succession, rendement, plus-values.</div>
@@ -23654,25 +23784,6 @@ Droit (20%) = 3 000€
 
   
 
-<style>
-.formules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 900px) { .formules-grid { grid-template-columns: 1fr; } }
-.formula-card {
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.04);
-}
-.formula-card h4 { margin: 0 0 8px; font-size: .92em; color: var(--primary); }
-.formula-card .f { font-family: 'Courier New', monospace; font-size: .85em; background: rgba(255,255,255,0.06); color: var(--text); padding: 6px 10px; border-radius: 6px; margin: 4px 0; line-height: 1.6; }
-body.light-mode .formula-card .f { background: #f1f5f9; }
-.formula-card .note { font-size: .78em; color: var(--text-light); margin-top: 4px; }
-.compact-table { font-size: .82em; width: 100%; border-collapse: collapse; margin: 8px 0; }
-.compact-table td, .compact-table th { padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--border); }
-.compact-table th { background: var(--glass-bg); font-weight: 600; }
-.section-divider { border-top: 3px solid var(--primary); margin: 32px 0 24px; padding-top: 16px; }
-.bold-row { font-weight: 600; }
-</style>
-
 <div class="case-content" id="case-formules">
 
 <!-- SECTION 0: Title & Intro -->
@@ -24471,7 +24582,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
     <div class="case-content" id="case-financement" style="display:none">
 
       <div class="welcome" id="fin-intro">
-        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <div class="breadcrumb" data-course="home" role="button" tabindex="0">← Retour aux cours</div>
         <h1>Financement des particuliers 💰</h1>
         <div class="subtitle">Techniques de financement — Renforcement des savoirs et mise en pratique</div>
         <p>Ce cours couvre l'ensemble des techniques de financement des particuliers : cadre réglementaire, prêts immobiliers et consommation, garanties, assurance emprunteur, normes HCSF et régimes matrimoniaux.</p>
@@ -25679,7 +25790,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
     <div class="case-content" id="case-responsabilite" style="display:none">
 
       <div class="welcome" id="resp-intro">
-        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <div class="breadcrumb" data-course="home" role="button" tabindex="0">← Retour aux cours</div>
         <h1>Responsabilité du gestionnaire de patrimoine ⚖️</h1>
         <div class="subtitle">Gestion de portefeuille : quelle responsabilité ?</div>
         <p>Ce cours examine les conditions de mise en œuvre de la responsabilité civile et pénale du conseiller en gestion de patrimoine (CGP), avec analyse de la jurisprudence et des cas pratiques.</p>
@@ -26542,7 +26653,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
     <div class="case-content" id="case-fiscal" style="display:none">
 
       <div class="welcome" id="fiscal-intro">
-        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <div class="breadcrumb" data-course="home" role="button" tabindex="0">← Retour aux cours</div>
         <h1>Ingénierie fiscale des personnes physiques et patrimoine 🏛️</h1>
         <div class="subtitle">Optimisation fiscale — Stratégies patrimoniales pour les personnes physiques</div>
         <p>Ce cours couvre l'ensemble de la fiscalité applicable aux personnes physiques dans un contexte patrimonial : impôt sur le revenu, plus-values, IFI, droits de mutation à titre gratuit, assurance-vie et structures de détention (démembrement, SCI, holding).</p>
@@ -27713,7 +27824,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 
       <!-- Introduction -->
       <div class="welcome" id="droit-intro">
-        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <div class="breadcrumb" data-course="home" role="button" tabindex="0">← Retour aux cours</div>
         <h1>Droit des libéralités et des successions 📜</h1>
         <div class="subtitle">Droit patrimonial — M2 GIP</div>
         <p>Ce cours couvre le droit commun des libéralités (donations et testaments), les règles de dévolution successorale, l'option successorale, le partage de la succession, les successions internationales et les exercices de liquidation.</p>
@@ -28864,7 +28975,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 
       <!-- Introduction -->
       <div class="welcome" id="marches-intro">
-        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <div class="breadcrumb" data-course="home" role="button" tabindex="0">← Retour aux cours</div>
         <h1>Droit des marchés financiers 📈</h1>
         <div class="subtitle">M2 GIP — Prof. Philippe Guillou</div>
         <p>Ce cours couvre le cadre institutionnel des marchés financiers, les autorités de régulation (AMF, ACPR, AEMF/ESMA, SEC), les acteurs clés, les instruments et services financiers, ainsi que les enjeux et perspectives de la régulation. L'examen porte sur un QCM + définitions.</p>
@@ -29629,7 +29740,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 
       <!-- Introduction -->
       <div class="welcome" id="trans-intro">
-        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <div class="breadcrumb" data-course="home" role="button" tabindex="0">← Retour aux cours</div>
         <h1>Transmission d'entreprises — Pacte Dutreil 🏢</h1>
         <div class="subtitle">V - Pacte Dutreil — M2 GIP</div>
         <p>Ce cours couvre les rappels de droit civil (donation-partage conjonctive, vérification de l'atteinte à la réserve), le dispositif Dutreil (art. 787 B et 787 C CGI), les engagements collectifs et individuels de conservation, les remises en cause, les holdings, les outils civils avancés (mandats, libéralités graduelles/résiduelles), et des cas pratiques d'examen.</p>
@@ -30840,13 +30951,6 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 
         <h3 id="trans-s8-synthese">a) Vue d'ensemble des régimes</h3>
         <div class="card">
-          <style>
-            .pv-badges{display:inline-flex;gap:3px;align-items:center;}
-            .pv-badge{display:inline-flex;align-items:center;justify-content:center;padding:3px 7px;border-radius:4px;font-size:0.72em;font-weight:700;color:#fff;white-space:nowrap;letter-spacing:0.02em;line-height:1.3;}
-            .pv-badge.on{background:#2e7d32;}
-            .pv-badge.off{background:#c62828;opacity:0.82;}
-            .pv-sep{width:1px;height:16px;background:rgba(255,255,255,0.25);margin:0 2px;border-radius:1px;}
-          </style>
           <table class="data-table" style="font-size:0.92em;">
             <thead><tr><th>Article</th><th>Mécanisme</th><th>Cible</th><th style="min-width:200px;">Couverture fiscale</th><th>Condition clé</th></tr></thead>
             <tbody>
@@ -31807,7 +31911,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
     <div class="case-content" id="case-fiscalite-int" style="display:none">
 
       <div class="welcome" id="fi-intro">
-        <div class="breadcrumb" onclick="switchCase('home')">← Retour aux cours</div>
+        <div class="breadcrumb" data-course="home" role="button" tabindex="0">← Retour aux cours</div>
         <h1>Fiscalité Internationale 🌍</h1>
         <div class="subtitle">Fiscalité internationale — M2 GIP</div>
         <p>Ce cours couvre la territorialité de l'IR (droit interne et conventionnel), les obligations déclaratives des résidents et non-résidents, les retenues à la source, l'exit tax, les régimes des expatriés/impatriés, et les cas pratiques de RAS.</p>
@@ -32370,11 +32474,11 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 </div>
 
 <!-- ============ OVERLAY RACCOURCIS CLAVIER ============ -->
-<div class="shortcuts-overlay" id="shortcutsOverlay" style="display:none" onclick="this.style.display='none'" role="dialog" aria-modal="true" aria-label="Raccourcis clavier">
-  <div class="shortcuts-modal" onclick="event.stopPropagation()">
+<div class="shortcuts-overlay" id="shortcutsOverlay" style="display:none" role="dialog" aria-modal="true" aria-label="Raccourcis clavier">
+  <div class="shortcuts-modal">
     <div class="shortcuts-header">
       <h3>Raccourcis clavier</h3>
-      <button class="shortcuts-close" onclick="document.getElementById('shortcutsOverlay').style.display='none'" aria-label="Fermer">✕</button>
+      <button class="shortcuts-close" id="shortcutsClose" aria-label="Fermer">✕</button>
     </div>
     <div class="shortcuts-grid">
       <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>K</kbd><span>Rechercher</span></div>
@@ -32402,6 +32506,45 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 
 <!-- ============ JAVASCRIPT ============ -->
 <script>
+// ============ GLOBAL ERROR HANDLER ============
+window.onerror = function(msg, src, line) {
+  var toast = document.createElement('div');
+  toast.className = 'alert alert-danger toast-error';
+  toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:2000;max-width:380px;animation:fadeIn 0.2s ease;cursor:pointer;';
+  toast.innerHTML = '<span class="alert-icon">\u26a0\ufe0f</span><div>Une erreur est survenue. <br><small>Cliquez pour fermer.</small></div>';
+  toast.onclick = function() { toast.remove(); };
+  document.body.appendChild(toast);
+  setTimeout(function() { if (toast.parentNode) toast.remove(); }, 10000);
+};
+window.addEventListener('unhandledrejection', function(e) {
+  e.preventDefault();
+});
+
+// ============ ARIA LIVE ANNOUNCEMENTS ============
+function announce(message) {
+  var el = document.getElementById('ariaLive');
+  if (el) { el.textContent = ''; setTimeout(function() { el.textContent = message; }, 100); }
+}
+
+// ============ FOCUS TRAP UTILITY ============
+function trapFocus(container) {
+  var focusable = container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (focusable.length === 0) return null;
+  var first = focusable[0];
+  var last = focusable[focusable.length - 1];
+  first.focus();
+  function handler(e) {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+  container.addEventListener('keydown', handler);
+  return function() { container.removeEventListener('keydown', handler); };
+}
+
 // ============ SWITCH CASE FUNCTION ============
 function switchCase(caseName) {
   const tabBar = document.getElementById('tabBar');
@@ -32411,11 +32554,13 @@ function switchCase(caseName) {
   // Update tabs
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.remove('active');
+    t.removeAttribute('aria-current');
     if (t.hasAttribute('aria-selected')) t.setAttribute('aria-selected', 'false');
   });
   const targetTab = document.querySelector(`.tab[data-case="${caseName}"]`);
   if (targetTab) {
     targetTab.classList.add('active');
+    targetTab.setAttribute('aria-current', 'page');
     if (targetTab.hasAttribute('aria-selected')) targetTab.setAttribute('aria-selected', 'true');
     targetTab.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
   }
@@ -32424,7 +32569,7 @@ function switchCase(caseName) {
   const currentActive = document.querySelector('.case-content.active');
   if (currentActive && currentActive.id !== 'case-home') {
     try {
-      var scrollPos = document.getElementById('main-scroll').scrollTop;
+      const scrollPos = document.getElementById('main-scroll').scrollTop;
       localStorage.setItem('gip-scroll-' + currentActive.id.replace('case-', ''), scrollPos);
     } catch(e) {}
   }
@@ -32485,15 +32630,15 @@ function switchCase(caseName) {
       target.style.display = 'block';
     }
     // Restaurer la position de scroll ou remonter en haut
-    var mainEl = document.getElementById('main-scroll');
+    const mainEl = document.getElementById('main-scroll');
     try {
-      var savedScroll = localStorage.getItem('gip-scroll-' + caseName);
+      const savedScroll = localStorage.getItem('gip-scroll-' + caseName);
       if (savedScroll && caseName !== 'home') {
         mainEl.scrollTop = parseInt(savedScroll);
       } else {
         mainEl.scrollTop = 0;
       }
-    } catch(e) { mainEl.scrollTop = 0; }
+    } catch(e) { if (mainEl) mainEl.scrollTop = 0; }
   }
 
   if (currentActive && currentActive !== target) {
@@ -32504,18 +32649,18 @@ function switchCase(caseName) {
     showTarget();
   }
 
-  // Update URL hash (sans déclencher hashchange)
+  // Update URL hash avec pushState pour le bouton retour
   if (caseName !== 'home') {
-    history.replaceState(null, '', '#' + caseName);
+    history.pushState({ page: caseName }, '', '#' + caseName);
   } else {
-    history.replaceState(null, '', window.location.pathname);
+    history.pushState({ page: 'home' }, '', window.location.pathname);
   }
 
   // Sauvegarder dernière page visitée + historique
   try {
     localStorage.setItem('gip-lastPage', caseName);
     if (caseName !== 'home') {
-      var hist = JSON.parse(localStorage.getItem('gip-history') || '[]');
+      let hist = JSON.parse(localStorage.getItem('gip-history') || '[]');
       hist = hist.filter(function(h) { return h.page !== caseName; });
       hist.unshift({ page: caseName, ts: Date.now() });
       if (hist.length > 8) hist = hist.slice(0, 8);
@@ -32525,14 +32670,14 @@ function switchCase(caseName) {
 }
 
 // ============ ENTER COURSE FUNCTION ============
-var _enterCourseLoading = false;
+let _enterCourseLoading = false;
 function enterCourse(courseName) {
   if (_enterCourseLoading) return;
   // Si le contenu n'est pas dans le DOM, charger via contentLoader (version docs/)
-  var existing = document.getElementById('case-' + courseName);
+  const existing = document.getElementById('case-' + courseName);
   if (!existing && window.contentLoader) {
     _enterCourseLoading = true;
-    var spinner = document.getElementById('loadingSpinner');
+    const spinner = document.getElementById('loadingSpinner');
     if (spinner) spinner.style.display = '';
     window.contentLoader.load(courseName).then(function(data) {
       window.contentLoader.inject(courseName, data);
@@ -32543,12 +32688,25 @@ function enterCourse(courseName) {
       _enterCourseLoading = false;
       if (spinner) spinner.style.display = 'none';
       console.error('Erreur chargement ' + courseName + ':', err);
-      var toast = document.createElement('div');
+      const toast = document.createElement('div');
       toast.className = 'alert alert-danger';
-      toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:9999;max-width:380px;animation:fadeIn 0.2s ease;';
-      toast.innerHTML = '<span class="alert-icon">\u26a0\ufe0f</span><div><strong>Erreur de chargement</strong><br>Impossible de charger le contenu. V\u00e9rifiez votre connexion et r\u00e9essayez.</div>';
+      toast.style.cssText = 'position:fixed;top:80px;right:24px;z-index:2000;max-width:380px;animation:fadeIn 0.2s ease;';
+      toast.style.cssText += 'display:flex;align-items:center;gap:8px;';
+      var toastIcon = document.createElement('span');
+      toastIcon.className = 'alert-icon';
+      toastIcon.textContent = '\u26a0\ufe0f';
+      var toastMsg = document.createElement('div');
+      toastMsg.innerHTML = '<strong>Erreur de chargement</strong><br>Impossible de charger le contenu. V\u00e9rifiez votre connexion et r\u00e9essayez.';
+      var toastClose = document.createElement('button');
+      toastClose.style.cssText = 'background:none;border:none;color:var(--text-light);font-size:18px;cursor:pointer;padding:0 0 0 12px;line-height:1;';
+      toastClose.setAttribute('aria-label', 'Fermer');
+      toastClose.textContent = '\u2715';
+      toastClose.addEventListener('click', function() { toast.remove(); });
+      toast.appendChild(toastIcon);
+      toast.appendChild(toastMsg);
+      toast.appendChild(toastClose);
       document.body.appendChild(toast);
-      setTimeout(function() { toast.remove(); }, 5000);
+      setTimeout(function() { if (toast.parentNode) toast.remove(); }, 12000);
     });
   } else {
     switchCase(courseName);
@@ -32622,6 +32780,9 @@ function collapseSidebar() {
     expandBtn.classList.remove('visible');
     if (collapseBtn) collapseBtn.title = 'Rétracter le menu';
   }
+
+  // Persist sidebar state
+  try { localStorage.setItem('gip-sidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0'); } catch(e) {}
 }
 
 // ============ GUIDE COLLAPSIBLE SECTIONS ============
@@ -32680,7 +32841,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const mainEl = document.getElementById('main-scroll');
 
   // Reading progress bar
-  var readingFill = document.getElementById('readingProgressFill');
+  const readingFill = document.getElementById('readingProgressFill');
 
   if (mainEl) {
     let scrollSpyTimer = null;
@@ -32688,17 +32849,26 @@ document.addEventListener('DOMContentLoaded', function() {
     let cachedSectionMap = [];
     let cachedItems = [];
 
+    // Scroll-to-top button reference
+    const scrollBtn = document.getElementById('scrollTopBtn');
+
     mainEl.addEventListener('scroll', () => {
       // Update reading progress bar
       if (readingFill) {
-        var pct = mainEl.scrollHeight > mainEl.clientHeight
+        const pct = mainEl.scrollHeight > mainEl.clientHeight
           ? (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100
           : 0;
         readingFill.style.width = Math.min(100, pct) + '%';
       }
 
+      // Scroll-to-top visibility
+      if (scrollBtn) {
+        if (mainEl.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+
       if (scrollSpyTimer) return;
-      scrollSpyTimer = requestAnimationFrame(() => {
+      scrollSpyTimer = requestAnimationFrame(function() {
         scrollSpyTimer = null;
 
         // Find visible sidebar
@@ -32734,65 +32904,96 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Update active state
-        cachedItems.forEach(i => i.classList.remove('active'));
+        cachedItems.forEach(function(i) { i.classList.remove('active'); i.removeAttribute('aria-current'); });
         currentEntry.item.classList.add('active');
-        currentEntry.item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        currentEntry.item.setAttribute('aria-current', 'section');
+        // Only scroll sidebar if active item is out of visible area
+        var sidebar = currentEntry.item.closest('.sidebar-sections');
+        if (sidebar) {
+          var sRect = sidebar.getBoundingClientRect();
+          var iRect = currentEntry.item.getBoundingClientRect();
+          if (iRect.top < sRect.top || iRect.bottom > sRect.bottom) {
+            currentEntry.item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }
       });
-    });
-  }
-});
+    }, { passive: true });
 
-// ============ KEYBOARD SHORTCUTS ============
-document.addEventListener('keydown', function(event) {
-  // Ctrl+B or Cmd+B to toggle sidebar
-  if ((event.ctrlKey || event.metaKey) && event.key === 'b') {
-    event.preventDefault();
-    toggleSidebar();
-  }
-  // Ctrl+D or Cmd+D to toggle dark mode
-  if ((event.ctrlKey || event.metaKey) && event.key === 'd') {
-    event.preventDefault();
-    toggleDarkMode();
-  }
-  // Ctrl+= or Ctrl+- for font size
-  if ((event.ctrlKey || event.metaKey) && (event.key === '=' || event.key === '+')) {
-    event.preventDefault();
-    // Increase: sm→md→lg
-    var html = document.documentElement;
-    if (html.classList.contains('font-sm')) { html.classList.remove('font-sm'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
-    else if (!html.classList.contains('font-lg')) { html.classList.add('font-lg'); try { localStorage.setItem('gip-fontSize','font-lg'); } catch(e) {} }
-  }
-  if ((event.ctrlKey || event.metaKey) && event.key === '-') {
-    event.preventDefault();
-    // Decrease: lg→md→sm
-    var html = document.documentElement;
-    if (html.classList.contains('font-lg')) { html.classList.remove('font-lg'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
-    else if (!html.classList.contains('font-sm')) { html.classList.add('font-sm'); try { localStorage.setItem('gip-fontSize','font-sm'); } catch(e) {} }
-  }
-  // ? pour afficher les raccourcis (sauf si focus sur un input)
-  if (event.key === '?' && !event.target.closest('input, textarea')) {
-    const overlay = document.getElementById('shortcutsOverlay');
-    if (overlay) overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
-  }
-  // Escape pour fermer l'overlay raccourcis
-  if (event.key === 'Escape') {
-    const overlay = document.getElementById('shortcutsOverlay');
-    if (overlay && overlay.style.display !== 'none') {
-      overlay.style.display = 'none';
+    // Scroll-to-top click handler
+    if (scrollBtn) {
+      scrollBtn.addEventListener('click', function() {
+        mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
   }
-});
 
-// ============ MOBILE SIDEBAR TOGGLE ============
-document.addEventListener('DOMContentLoaded', function() {
+  // Mobile sidebar toggle (consolidated from separate DOMContentLoaded)
   const mobileToggle = document.getElementById('mobileSidebarToggle');
   if (mobileToggle) {
     mobileToggle.addEventListener('click', function() {
       const sidebar = document.getElementById('sidebar');
-      if (sidebar) {
-        sidebar.classList.toggle('open');
-      }
+      if (sidebar) sidebar.classList.toggle('open');
     });
+  }
+});
+
+// ============ UNIFIED KEYBOARD SHORTCUTS ============
+document.addEventListener('keydown', function(event) {
+  const mod = event.ctrlKey || event.metaKey;
+
+  // Ctrl+B or Cmd+B — toggle sidebar
+  if (mod && event.key === 'b') { event.preventDefault(); toggleSidebar(); }
+  // Ctrl+D or Cmd+D — toggle dark mode
+  if (mod && event.key === 'd') { event.preventDefault(); toggleDarkMode(); }
+  // Ctrl+K or Cmd+K — focus search
+  if (mod && event.key === 'k') { event.preventDefault(); if (searchInput) searchInput.focus(); }
+  // Ctrl+= / Ctrl+- — font size
+  if (mod && (event.key === '=' || event.key === '+')) {
+    event.preventDefault();
+    const htmlEl = document.documentElement;
+    if (htmlEl.classList.contains('font-sm')) { htmlEl.classList.remove('font-sm'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
+    else if (!htmlEl.classList.contains('font-lg')) { htmlEl.classList.add('font-lg'); try { localStorage.setItem('gip-fontSize','font-lg'); } catch(e) {} }
+  }
+  if (mod && event.key === '-') {
+    event.preventDefault();
+    const htmlEl = document.documentElement;
+    if (htmlEl.classList.contains('font-lg')) { htmlEl.classList.remove('font-lg'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
+    else if (!htmlEl.classList.contains('font-sm')) { htmlEl.classList.add('font-sm'); try { localStorage.setItem('gip-fontSize','font-sm'); } catch(e) {} }
+  }
+  // ? — show shortcuts overlay (unless in input)
+  if (event.key === '?' && !event.target.closest('input, textarea')) {
+    const overlay = document.getElementById('shortcutsOverlay');
+    if (overlay) {
+      var isVisible = overlay.style.display !== 'none';
+      overlay.style.display = isVisible ? 'none' : 'flex';
+      if (!isVisible) trapFocus(overlay);
+    }
+  }
+  // Escape — close overlays & search (priority order)
+  if (event.key === 'Escape') {
+    const examOverlay = document.querySelector('.exam-duration-overlay');
+    if (examOverlay) { examOverlay.remove(); return; }
+    const shortcutsOverlay = document.getElementById('shortcutsOverlay');
+    if (shortcutsOverlay && shortcutsOverlay.style.display !== 'none') { shortcutsOverlay.style.display = 'none'; return; }
+    if (searchResults) searchResults.classList.remove('active');
+    if (searchInput) { searchInput.value = ''; searchInput.blur(); }
+  }
+  // Enter/Space — activate focused interactive elements
+  if (event.key === 'Enter' || event.key === ' ') {
+    const el = document.activeElement;
+    if (el && (el.classList.contains('sidebar-item') || el.classList.contains('tab') || el.classList.contains('flashcard') || el.classList.contains('home-card'))) {
+      event.preventDefault();
+      el.click();
+    }
+  }
+  // Arrow keys — tab navigation
+  if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && document.activeElement && document.activeElement.classList.contains('tab')) {
+    const tabs = Array.from(document.querySelectorAll('.tab-bar .tab'));
+    const idx = tabs.indexOf(document.activeElement);
+    if (idx === -1) return;
+    event.preventDefault();
+    const next = event.key === 'ArrowRight' ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
+    tabs[next].focus();
   }
 });
 
@@ -32818,25 +33019,41 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============ SEARCH FUNCTION ============
 const searchInput = document.getElementById('searchInput');
 const searchResults = document.getElementById('searchResults');
-if (!searchInput || !searchResults) { console.warn('Search elements not found'); }
+if (!searchInput || !searchResults) { /* search elements missing */ }
 
-// Tab name mapping
-const tabNames = {
-  'snow': '❄️ SNOW', 'stark': '👨‍👩‍👧‍👦 STARK', 'niote': '🏢 NIOTE',
-  'mengere': '🏗️ MENGERE', 'norris': '💎 NORRIS', 'vador': '⚔️ VADOR',
-  'leon': '👨‍💼 LEON', 'genereux': '💼 GÉNÉREUX', 'houette': '🏠 HOUETTE',
-  'outils': '🧰 Outils', 'guide': '📋 Guide', 'formules': '📐 Formules',
-  'montages': '🔧 Montages', 'audit': '📊 Audit',
-  'financement': '💰 Financement', 'responsabilite': '⚖️ Responsabilité',
-  'fiscal': '🏛️ Fiscalité',
-  'droit': '📜 Droit patrimonial',
-  'marches': '📈 Marchés financiers',
-  'transmission': '🏢 Transmission d\'entreprises',
-  'fiscalite-int': '🌍 Fiscalité Internationale'
+// ============ SOURCE UNIQUE DES NOMS DE COURS ============
+var COURSE_META = {
+  'snow':           { short: 'SNOW',         full: 'Cas SNOW',            icon: '❄️' },
+  'stark':          { short: 'STARK',        full: 'Cas STARK',           icon: '👨‍👩‍👧‍👦' },
+  'niote':          { short: 'NIOTE',        full: 'Cas NIOTE',           icon: '🏢' },
+  'mengere':        { short: 'MENGERE',      full: 'Cas MENGERE',         icon: '🏗️' },
+  'norris':         { short: 'NORRIS',       full: 'Cas NORRIS',          icon: '💎' },
+  'vador':          { short: 'VADOR',        full: 'Cas VADOR',           icon: '⚔️' },
+  'leon':           { short: 'LEON',         full: 'Cas LEON',            icon: '👨‍💼' },
+  'genereux':       { short: 'GÉNÉREUX',     full: 'Cas GÉNÉREUX',        icon: '💼' },
+  'houette':        { short: 'HOUETTE',      full: 'Cas HOUETTE',         icon: '🏠' },
+  'outils':         { short: 'Outils',       full: 'Boîte à Outils',     icon: '🧰' },
+  'guide':          { short: 'Guide',        full: 'Guide Stratégique',   icon: '📋' },
+  'formules':       { short: 'Formules',     full: 'Formules',            icon: '📐' },
+  'montages':       { short: 'Montages',     full: 'Montages',            icon: '🔧' },
+  'audit':          { short: 'Audit patrimonial', full: 'Audit patrimonial', icon: '📊' },
+  'financement':    { short: 'Financement',  full: 'Financement des particuliers',      icon: '💰' },
+  'responsabilite': { short: 'Responsabilité', full: 'Responsabilité du gestionnaire', icon: '⚖️' },
+  'fiscal':         { short: 'Ingénierie fiscale PP', full: 'Ingénierie fiscale PP',  icon: '🏛️' },
+  'droit':          { short: 'Droit patrimonial', full: 'Droit patrimonial',           icon: '📜' },
+  'marches':        { short: 'Marchés financiers', full: 'Marchés financiers',         icon: '📈' },
+  'transmission':   { short: 'Transmission d\'entreprises', full: 'Transmission d\'entreprises', icon: '🏢' },
+  'fiscalite-int':  { short: 'Fiscalité Internationale', full: 'Fiscalité Internationale', icon: '🌍' }
 };
+function courseShort(id) { var m = COURSE_META[id]; return m ? m.short : id; }
+function courseFull(id)  { var m = COURSE_META[id]; return m ? m.full : id; }
+function courseIcon(id)  { var m = COURSE_META[id]; return m ? m.icon : '📄'; }
+function courseTab(id)   { var m = COURSE_META[id]; return m ? m.icon + ' ' + m.short : id; }
+var tabNames = {};
+Object.keys(COURSE_META).forEach(function(k) { tabNames[k] = courseTab(k); });
 
 // Search history
-var SEARCH_HISTORY_KEY = 'gip-searchHistory';
+const SEARCH_HISTORY_KEY = 'gip-searchHistory';
 function getSearchHistory() {
   try { return JSON.parse(localStorage.getItem(SEARCH_HISTORY_KEY)) || []; } catch(e) { return []; }
 }
@@ -32844,12 +33061,12 @@ function saveSearchHistory(history) {
   try { localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(history.slice(0, 5))); } catch(e) {}
 }
 function addToSearchHistory(query) {
-  var history = getSearchHistory().filter(function(h) { return h !== query; });
+  let history = getSearchHistory().filter(function(h) { return h !== query; });
   history.unshift(query);
   saveSearchHistory(history);
 }
 function showSearchHistory() {
-  var history = getSearchHistory();
+  const history = getSearchHistory();
   if (history.length === 0) return;
   searchResults.innerHTML =
     '<div class="search-history-header">Recherches récentes</div>' +
@@ -32872,7 +33089,7 @@ function showSearchHistory() {
   searchResults.querySelectorAll('.search-history-remove').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      var history = getSearchHistory();
+      const history = getSearchHistory();
       history.splice(parseInt(btn.getAttribute('data-idx')), 1);
       saveSearchHistory(history);
       showSearchHistory();
@@ -32885,11 +33102,11 @@ searchInput && searchInput.addEventListener('focus', function() {
   if (this.value.trim().length < 2) showSearchHistory();
 });
 
-var searchDebounceTimer = null;
+let searchDebounceTimer = null;
 searchInput && searchInput.addEventListener('input', function() {
-  var self = this;
+  const self = this;
   clearTimeout(searchDebounceTimer);
-  var query = self.value.trim().toLowerCase();
+  const query = self.value.trim().toLowerCase();
   if (query.length < 2) {
     showSearchHistory();
     return;
@@ -32919,9 +33136,10 @@ function doSearch(query) {
         // Get snippet
         const start = Math.max(0, idx - 40);
         const end = Math.min(text.length, idx + query.length + 60);
-        let snippet = (start > 0 ? '...' : '') + text.substring(start, end).trim() + (end < text.length ? '...' : '');
-        // Highlight match
-        const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        let snippet = escapeHtml((start > 0 ? '...' : '') + text.substring(start, end).trim() + (end < text.length ? '...' : ''));
+        // Highlight match (escape query for consistency with escaped snippet)
+        const escapedQ = escapeHtml(query);
+        const regex = new RegExp('(' + escapedQ.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
         snippet = snippet.replace(regex, '<mark>$1</mark>');
 
         results.push({
@@ -32943,6 +33161,7 @@ function doSearch(query) {
 
   if (unique.length === 0) {
     searchResults.innerHTML = '<div class="search-no-results">Aucun résultat pour "' + escapeHtml(query) + '"</div>';
+    announce('Aucun résultat pour ' + query);
   } else {
     searchResults.innerHTML = '<div class="search-count">' + unique.length + ' résultat(s)</div>' +
       unique.map(r =>
@@ -32985,14 +33204,17 @@ function highlightSearchTerm(container, query) {
   const matches = [];
 
   while (walker.nextNode()) {
+    regex.lastIndex = 0;
     if (regex.test(walker.currentNode.textContent)) {
       matches.push(walker.currentNode);
     }
   }
 
+  const escapedHL = escapeHtml(query);
+  const hlRegex = new RegExp('(' + escapedHL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
   matches.forEach(node => {
     const span = document.createElement('span');
-    span.innerHTML = node.textContent.replace(regex, '<mark class="search-highlight">$1</mark>');
+    span.innerHTML = escapeHtml(node.textContent).replace(hlRegex, '<mark class="search-highlight">$1</mark>');
     node.parentNode.replaceChild(span, node);
   });
 
@@ -33013,40 +33235,29 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Ctrl+K shortcut for search
-document.addEventListener('keydown', function(e) {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    e.preventDefault();
-    searchInput.focus();
-  }
-  if (e.key === 'Escape') {
-    searchResults.classList.remove('active');
-    searchInput.blur();
-  }
-});
-
 // ============ MODE EXAMEN (avec choix de durée) ============
-var examTimerInterval = null;
-var examStartTime = null;
-var examDuration = 0; // 0 = chronomètre, >0 = countdown en secondes
+let examTimerInterval = null;
+let examStartTime = null;
+let examDuration = 0; // 0 = chronomètre, >0 = countdown en secondes
 
 function toggleExamMode() {
-  var isExam = document.body.classList.contains('exam-mode');
+  const isExam = document.body.classList.contains('exam-mode');
 
   if (isExam) {
     // Stop exam
     document.body.classList.remove('exam-mode');
     if (examTimerInterval) clearInterval(examTimerInterval);
-    var timerEl = document.getElementById('examTimer');
-    var timeEl = document.getElementById('examTimerTime');
+    const timerEl = document.getElementById('examTimer');
+    const timeEl = document.getElementById('examTimerTime');
     if (timerEl) { timerEl.style.display = 'none'; timerEl.classList.remove('exam-timer-warning'); }
     if (timeEl) timeEl.textContent = '0:00';
     examDuration = 0;
+    announce('Mode examen désactivé');
     return;
   }
 
   // Show duration selector
-  var overlay = document.createElement('div');
+  const overlay = document.createElement('div');
   overlay.className = 'exam-duration-overlay';
   overlay.innerHTML =
     '<div class="exam-duration-modal">' +
@@ -33062,13 +33273,15 @@ function toggleExamMode() {
     '</div>';
   document.body.appendChild(overlay);
 
-  overlay.querySelector('.exam-duration-cancel').onclick = function() { overlay.remove(); };
-  overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+  var releaseTrap = trapFocus(overlay);
+  function closeOverlay() { if (releaseTrap) releaseTrap(); overlay.remove(); }
+  overlay.querySelector('.exam-duration-cancel').onclick = closeOverlay;
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeOverlay(); });
 
   overlay.querySelectorAll('.exam-duration-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       examDuration = parseInt(btn.getAttribute('data-duration'));
-      overlay.remove();
+      closeOverlay();
       startExam();
     });
   });
@@ -33077,25 +33290,29 @@ function toggleExamMode() {
 function startExam() {
   document.body.classList.add('exam-mode');
   examStartTime = Date.now();
-  var timerEl = document.getElementById('examTimer');
-  var timeEl = document.getElementById('examTimerTime');
-  var labelEl = timerEl ? timerEl.querySelector('.exam-timer-label') : null;
+  announce('Mode examen activé' + (examDuration > 0 ? ' — ' + Math.floor(examDuration / 3600) + 'h' : ''));
+  const timerEl = document.getElementById('examTimer');
+  const timeEl = document.getElementById('examTimerTime');
+  const labelEl = timerEl ? timerEl.querySelector('.exam-timer-label') : null;
 
   if (timerEl) { timerEl.style.display = 'block'; timerEl.classList.remove('exam-timer-warning'); }
   if (labelEl) labelEl.textContent = examDuration > 0 ? 'Temps restant' : 'Mode Examen';
 
   examTimerInterval = setInterval(function() {
-    var elapsed = Math.floor((Date.now() - examStartTime) / 1000);
+    const elapsed = Math.floor((Date.now() - examStartTime) / 1000);
 
     if (examDuration > 0) {
       // Countdown mode
-      var remaining = Math.max(0, examDuration - elapsed);
-      var mins = Math.floor(remaining / 60);
-      var secs = remaining % 60;
+      const remaining = Math.max(0, examDuration - elapsed);
+      const mins = Math.floor(remaining / 60);
+      const secs = remaining % 60;
       if (timeEl) timeEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
 
       // Warning at 15 min
       if (remaining <= 900 && remaining > 0 && timerEl) {
+        if (!timerEl.classList.contains('exam-timer-warning')) {
+          announce('Attention : 15 minutes restantes');
+        }
         timerEl.classList.add('exam-timer-warning');
       }
       // Time's up
@@ -33107,41 +33324,42 @@ function startExam() {
       }
     } else {
       // Chrono mode (count up)
-      var mins = Math.floor(elapsed / 60);
-      var secs = elapsed % 60;
+      const mins = Math.floor(elapsed / 60);
+      const secs = elapsed % 60;
       if (timeEl) timeEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
     }
   }, 1000);
 }
 
 // ============ FONT SIZE CONTROL ============
-var fontSizes = ['font-sm', 'font-md', 'font-lg'];
-var fontLabels = ['Petit', 'Moyen', 'Grand'];
+const fontSizes = ['font-sm', 'font-md', 'font-lg'];
+const fontLabels = ['Petit', 'Moyen', 'Grand'];
 
 function cycleFontSize() {
-  var html = document.documentElement;
-  var current = fontSizes.findIndex(function(c) { return html.classList.contains(c); });
+  const html = document.documentElement;
+  let current = fontSizes.findIndex(function(c) { return html.classList.contains(c); });
   if (current === -1) current = 1; // default = medium (no class)
 
   fontSizes.forEach(function(c) { html.classList.remove(c); });
 
-  var next = (current + 1) % fontSizes.length;
+  const next = (current + 1) % fontSizes.length;
   if (next !== 1) { // 1 = medium = default = no class needed
     html.classList.add(fontSizes[next]);
   }
   try { localStorage.setItem('gip-fontSize', fontSizes[next]); } catch(e) {}
 
   // Brief toast
-  var btn = document.getElementById('fontSizeBtn');
+  const btn = document.getElementById('fontSizeBtn');
   if (btn) {
     btn.title = 'Taille : ' + fontLabels[next];
     btn.setAttribute('aria-label', 'Taille du texte : ' + fontLabels[next]);
   }
+  announce('Taille du texte : ' + fontLabels[next]);
 }
 
 // Restore font size
 (function() {
-  var saved = localStorage.getItem('gip-fontSize');
+  const saved = localStorage.getItem('gip-fontSize');
   if (saved && saved !== 'font-md' && fontSizes.indexOf(saved) !== -1) {
     document.documentElement.classList.add(saved);
   }
@@ -33154,6 +33372,7 @@ function toggleDarkMode() {
   const isLight = document.body.classList.contains('light-mode');
   document.getElementById('darkToggle').textContent = isLight ? '🌙' : '☀️';
   try { localStorage.setItem('lightMode', isLight ? '1' : '0'); } catch(e) {}
+  announce(isLight ? 'Mode clair activé' : 'Mode sombre activé');
 }
 
 // Restore theme preference (dark is default)
@@ -33191,13 +33410,23 @@ try {
 } catch(e) {}
 
 // ============ HASH ROUTING — CHARGEMENT INITIAL ============
+var _knownPages = ['home','audit','snow','stark','niote','mengere','norris','vador','leon','genereux','houette',
+  'financement','responsabilite','fiscal','droit','marches','transmission','fiscalite-int',
+  'outils','guide','montages','formules'];
+
 window.addEventListener('hashchange', function() {
-  const hash = window.location.hash.replace('#', '');
-  // Only handle known case/course IDs, not section anchors like mf-s2
-  const knownPages = ['home','audit','snow','stark','niote','mengere','norris','vador','leon','genereux','houette',
-    'financement','responsabilite','fiscal','droit','marches','transmission','fiscalite-int',
-    'outils','guide','montages','formules'];
-  if (hash && knownPages.indexOf(hash) !== -1) enterCourse(hash);
+  var hash = window.location.hash.replace('#', '');
+  if (hash && _knownPages.indexOf(hash) !== -1) enterCourse(hash);
+});
+
+// Back/forward button support
+window.addEventListener('popstate', function(e) {
+  var hash = window.location.hash.replace('#', '');
+  if (hash && _knownPages.indexOf(hash) !== -1) {
+    enterCourse(hash);
+  } else {
+    switchCase('home');
+  }
 });
 
 // ============ FLASHCARDS — FILTRAGE & MÉLANGE ============
@@ -33262,7 +33491,7 @@ function updateFcScore() {
 }
 
 // ============ FLASHCARD PERSISTANCE ============
-var GIP_FC_KEY = 'gip-flashcards';
+const GIP_FC_KEY = 'gip-flashcards';
 
 function toggleFlashcard(card) {
   card.classList.toggle('revealed');
@@ -33271,9 +33500,9 @@ function toggleFlashcard(card) {
 }
 
 function saveFcState() {
-  var grid = document.getElementById('flashcardGrid');
+  const grid = document.getElementById('flashcardGrid');
   if (!grid) return;
-  var state = [];
+  const state = [];
   grid.querySelectorAll('.flashcard').forEach(function(card, i) {
     if (card.classList.contains('revealed')) state.push(i);
   });
@@ -33281,11 +33510,11 @@ function saveFcState() {
 }
 
 function restoreFcState() {
-  var grid = document.getElementById('flashcardGrid');
+  const grid = document.getElementById('flashcardGrid');
   if (!grid) return;
   try {
-    var state = JSON.parse(localStorage.getItem(GIP_FC_KEY)) || [];
-    var cards = grid.querySelectorAll('.flashcard');
+    const state = JSON.parse(localStorage.getItem(GIP_FC_KEY)) || [];
+    const cards = grid.querySelectorAll('.flashcard');
     state.forEach(function(i) {
       if (cards[i]) cards[i].classList.add('revealed');
     });
@@ -33294,7 +33523,8 @@ function restoreFcState() {
 }
 
 function resetFlashcards() {
-  var grid = document.getElementById('flashcardGrid');
+  if (!confirm('Réinitialiser toutes les flashcards ?')) return;
+  const grid = document.getElementById('flashcardGrid');
   if (!grid) return;
   grid.querySelectorAll('.flashcard').forEach(function(c) { c.classList.remove('revealed'); });
   try { localStorage.removeItem(GIP_FC_KEY); } catch(e) {}
@@ -33323,29 +33553,7 @@ restoreFcState();
     btn.textContent = '📄 Exporter PDF';
     btn.title = 'Exporter ce contenu en PDF';
     btn.onclick = function() { exportCasePDF(caseName); };
-    btn.style.cssText = 'margin-top:12px;padding:8px 16px;border-radius:10px;border:1px solid var(--glass-border);background:var(--glass-bg);backdrop-filter:var(--blur);color:var(--text);font-size:0.8rem;font-weight:600;cursor:pointer;transition:background 0.2s;';
-    btn.onmouseover = function() { this.style.background = 'var(--primary)'; this.style.color = '#fff'; };
-    btn.onmouseout = function() { this.style.background = 'var(--glass-bg)'; this.style.color = 'var(--text)'; };
     welcome.appendChild(btn);
-  });
-})();
-
-// ============ SCROLL TO TOP ============
-(function() {
-  const scrollBtn = document.getElementById('scrollTopBtn');
-  const mainEl = document.getElementById('main-scroll');
-  if (!scrollBtn || !mainEl) return;
-
-  mainEl.addEventListener('scroll', function() {
-    if (mainEl.scrollTop > 400) {
-      scrollBtn.classList.add('visible');
-    } else {
-      scrollBtn.classList.remove('visible');
-    }
-  });
-
-  scrollBtn.addEventListener('click', function() {
-    mainEl.scrollTo({ top: 0, behavior: 'smooth' });
   });
 })();
 
@@ -33392,16 +33600,6 @@ restoreFcState();
     }
   } catch(e) {}
 })();
-
-// Patcher collapseSidebar pour persister l'état
-const _origCollapseSidebar = collapseSidebar;
-collapseSidebar = function() {
-  _origCollapseSidebar();
-  try {
-    const sidebar = document.getElementById('sidebar');
-    localStorage.setItem('gip-sidebarCollapsed', sidebar.classList.contains('collapsed') ? '1' : '0');
-  } catch(e) {}
-};
 
 // ============ SUIVI DE PROGRESSION ============
 const GIP_PROGRESS_KEY = 'gip-progress';
@@ -33537,7 +33735,7 @@ function updateProgressBar(caseName) {
 
     // Animate ring on next frame
     requestAnimationFrame(function() {
-      var fill = div.querySelector('.progress-ring-fill');
+      const fill = div.querySelector('.progress-ring-fill');
       if (fill) fill.style.strokeDashoffset = offset;
     });
   }
@@ -33580,20 +33778,24 @@ function updateProgressBar(caseName) {
 
   // Streak : jours consécutifs d'étude
   try {
-    var days = JSON.parse(localStorage.getItem('gip-studyDays')) || [];
-    var today = new Date().toISOString().slice(0, 10);
+    const days = JSON.parse(localStorage.getItem('gip-studyDays')) || [];
+    const today = new Date().toISOString().slice(0, 10);
     if (days[days.length - 1] !== today) {
       days.push(today);
       localStorage.setItem('gip-studyDays', JSON.stringify(days));
     }
-    // Calculer le streak
-    var streak = 1;
-    for (var i = days.length - 1; i > 0; i--) {
-      var d1 = new Date(days[i]);
-      var d2 = new Date(days[i - 1]);
-      var diff = (d1 - d2) / (1000 * 60 * 60 * 24);
-      if (diff <= 1) streak++;
-      else break;
+    // Calculer le streak — limiter à 365 jours
+    while (days.length > 365) days.shift();
+    var streak = 0;
+    if (days.length > 0) {
+      streak = 1;
+      for (var i = days.length - 1; i > 0; i--) {
+        var prev = new Date(days[i - 1] + 'T00:00:00');
+        var curr = new Date(days[i] + 'T00:00:00');
+        var diffDays = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+        if (diffDays === 1) streak++;
+        else if (diffDays > 1) break;
+      }
     }
     if (elStreak) elStreak.textContent = streak + ' j';
   } catch(e) {}
@@ -33601,46 +33803,30 @@ function updateProgressBar(caseName) {
   // Dernière session
   try {
     var lastPage = localStorage.getItem('gip-lastPage');
-    var courseNames = {
-      'snow': 'SNOW', 'stark': 'STARK', 'niote': 'NIOTE',
-      'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
-      'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
-      'outils': 'Outils', 'guide': 'Guide', 'montages': 'Montages',
-      'formules': 'Formules', 'audit': 'Audit patrimonial', 'financement': 'Financement',
-      'responsabilite': 'Responsabilité', 'fiscal': 'Ingénierie fiscale PP',
-      'droit': 'Droit patrimonial', 'marches': 'Marchés financiers',
-      'transmission': 'Transmission d\'entreprises',
-      'fiscalite-int': 'Fiscalité Internationale'
-    };
     if (elLast && lastPage && lastPage !== 'home') {
-      elLast.textContent = courseNames[lastPage] || lastPage;
+      elLast.textContent = courseShort(lastPage);
     }
   } catch(e) {}
 
   // Historique récent
   try {
-    var hist = JSON.parse(localStorage.getItem('gip-history') || '[]');
-    var container = document.getElementById('recentActivity');
-    var title = document.getElementById('recentTitle');
+    const hist = JSON.parse(localStorage.getItem('gip-history') || '[]');
+    const container = document.getElementById('recentActivity');
+    const title = document.getElementById('recentTitle');
     if (container && hist.length > 0 && title) {
       title.style.display = '';
-      var icons = {
-        'snow': '❄️', 'stark': '🦁', 'niote': '🏠', 'mengere': '👨‍👩‍👧', 'norris': '💪',
-        'vador': '🌑', 'leon': '🎭', 'genereux': '🎁', 'houette': '🏦',
-        'outils': '🧰', 'guide': '📖', 'montages': '🏗️', 'formules': '🔢',
-        'audit': '📊', 'financement': '💰', 'responsabilite': '⚖️', 'fiscal': '🧾',
-        'droit': '📜', 'marches': '📈', 'transmission': '🏢',
-        'fiscalite-int': '🌍'
-      };
       hist.forEach(function(h) {
-        var name = courseNames[h.page] || h.page;
+        var name = courseShort(h.page);
         var ago = timeAgo(h.ts);
         var el = document.createElement('div');
         el.className = 'recent-item';
         el.setAttribute('role', 'button');
         el.setAttribute('tabindex', '0');
         el.onclick = function() { switchCase(h.page); };
-        el.innerHTML = '<span class="recent-item-icon">' + (icons[h.page] || '📄') + '</span>' +
+        el.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+        });
+        el.innerHTML = '<span class="recent-item-icon">' + courseIcon(h.page) + '</span>' +
           '<div class="recent-item-info"><div class="recent-item-title">' + name + '</div>' +
           '<div class="recent-item-time">' + ago + '</div></div>';
         container.appendChild(el);
@@ -33650,13 +33836,13 @@ function updateProgressBar(caseName) {
 })();
 
 function timeAgo(ts) {
-  var diff = Date.now() - ts;
-  var mins = Math.floor(diff / 60000);
+  const diff = Date.now() - ts;
+  const mins = Math.floor(diff / 60000);
   if (mins < 1) return "À l'instant";
   if (mins < 60) return 'Il y a ' + mins + ' min';
-  var hrs = Math.floor(mins / 60);
+  const hrs = Math.floor(mins / 60);
   if (hrs < 24) return 'Il y a ' + hrs + ' h';
-  var days = Math.floor(hrs / 24);
+  const days = Math.floor(hrs / 24);
   return 'Il y a ' + days + ' j';
 }
 
@@ -33664,7 +33850,7 @@ function timeAgo(ts) {
 (function() {
   document.querySelectorAll('.data-table, .patrimoine-table').forEach(function(table) {
     if (table.parentElement.classList.contains('table-responsive')) return;
-    var wrapper = document.createElement('div');
+    const wrapper = document.createElement('div');
     wrapper.className = 'table-responsive';
     wrapper.style.cssText = 'overflow-x:auto;border-radius:var(--radius-sm);';
     table.parentNode.insertBefore(wrapper, table);
@@ -33685,7 +33871,7 @@ function timeAgo(ts) {
 
 // ============ TOOLTIPS ABRÉVIATIONS ============
 (function() {
-  var abbrMap = {
+  const abbrMap = {
     'TMI': 'Tranche Marginale d\'Imposition',
     'PFU': 'Prélèvement Forfaitaire Unique (flat tax 30%)',
     'IFI': 'Impôt sur la Fortune Immobilière',
@@ -33704,9 +33890,9 @@ function timeAgo(ts) {
 
   // Injecter les tooltips dans les titres et premiers paragraphes de chaque section
   document.querySelectorAll('.welcome p, .welcome .subtitle, .home-card-desc').forEach(function(el) {
-    var html = el.innerHTML;
+    let html = el.innerHTML;
     Object.keys(abbrMap).forEach(function(abbr) {
-      var regex = new RegExp('\\b(' + abbr + ')\\b(?![^<]*>)', 'g');
+      const regex = new RegExp('\\b(' + abbr + ')\\b(?![^<]*>)', 'g');
       html = html.replace(regex, '<span class="abbr-tip" tabindex="0" data-tip="' + abbrMap[abbr] + '">$1</span>');
     });
     el.innerHTML = html;
@@ -33716,43 +33902,27 @@ function timeAgo(ts) {
 // ============ SIDEBAR SUB-SECTIONS REPLIABLES ============
 (function() {
   document.querySelectorAll('.sidebar-sub').forEach(function(sub) {
-    var prev = sub.previousElementSibling;
+    const prev = sub.previousElementSibling;
     if (prev && prev.classList.contains('sidebar-item')) {
+      if (prev.hasAttribute('data-sub-init')) return;
+      prev.setAttribute('data-sub-init', '1');
       prev.classList.add('has-sub');
-      prev.addEventListener('dblclick', function(e) {
+      prev.setAttribute('aria-expanded', !sub.classList.contains('collapsed'));
+      prev.addEventListener('click', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         sub.classList.toggle('collapsed');
         prev.classList.toggle('sub-collapsed');
+        prev.setAttribute('aria-expanded', !sub.classList.contains('collapsed'));
       });
     }
   });
 })();
 
-// ============ ACCESSIBILITÉ — FOCUS VISIBLE ============
+// ============ ACCESSIBILITÉ — TABINDEX ============
 (function() {
-  // Ajouter tabindex aux éléments interactifs de la sidebar
   document.querySelectorAll('.sidebar-item, .tab, .flashcard, .home-card:not(.card-disabled)').forEach(function(el) {
     if (!el.getAttribute('tabindex')) el.setAttribute('tabindex', '0');
-  });
-
-  // Permettre l'activation par Entrée/Espace
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      var el = document.activeElement;
-      if (el && (el.classList.contains('sidebar-item') || el.classList.contains('tab') || el.classList.contains('flashcard') || el.classList.contains('home-card'))) {
-        e.preventDefault();
-        el.click();
-      }
-    }
-    // Arrow key navigation for tabs
-    if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && document.activeElement && document.activeElement.classList.contains('tab')) {
-      var tabs = Array.from(document.querySelectorAll('.tab-bar .tab'));
-      var idx = tabs.indexOf(document.activeElement);
-      if (idx === -1) return;
-      e.preventDefault();
-      var next = e.key === 'ArrowRight' ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
-      tabs[next].focus();
-    }
   });
 })();
 
@@ -33763,20 +33933,6 @@ function timeAgo(ts) {
   const btn = document.getElementById('resumeBtn');
   const close = document.getElementById('resumeClose');
   if (!banner || !text || !btn || !close) return;
-
-  // Noms lisibles
-  const courseNames = {
-    'snow': 'Cas SNOW', 'stark': 'Cas STARK', 'niote': 'Cas NIOTE',
-    'mengere': 'Cas MENGERE', 'norris': 'Cas NORRIS', 'vador': 'Cas VADOR',
-    'leon': 'Cas LEON', 'genereux': 'Cas GÉNÉREUX', 'houette': 'Cas HOUETTE',
-    'outils': 'Boîte à Outils', 'guide': 'Guide Stratégique',
-    'montages': 'Montages', 'formules': 'Formules',
-    'audit': 'Audit patrimonial', 'financement': 'Financement des particuliers',
-    'responsabilite': 'Responsabilité du gestionnaire', 'fiscal': 'Ingénierie fiscale PP',
-    'droit': 'Droit patrimonial', 'marches': 'Marchés financiers',
-    'transmission': 'Transmission d\'entreprises',
-    'fiscalite-int': 'Fiscalité Internationale'
-  };
 
   try {
     const lastPage = localStorage.getItem('gip-lastPage');
@@ -33792,7 +33948,7 @@ function timeAgo(ts) {
           progressInfo = ' <span style="opacity:0.7;font-size:0.85em">(' + doneSections + ' section' + (doneSections > 1 ? 's' : '') + ' lu' + (doneSections > 1 ? 'es' : 'e') + ')</span>';
         }
       } catch(e) {}
-      text.innerHTML = 'Reprendre : <strong>' + (courseNames[lastPage] || lastPage) + '</strong>' + progressInfo;
+      text.innerHTML = 'Reprendre : <strong>' + escapeHtml(courseFull(lastPage)) + '</strong>' + progressInfo;
       banner.style.display = 'flex';
 
       btn.addEventListener('click', function() {
@@ -33814,48 +33970,74 @@ function timeAgo(ts) {
     }
   } catch(e) {}
 
+// ============ ACCESSIBILITÉ — SECTIONS REPLIABLES ============
+(function() {
+  document.querySelectorAll('.section.collapsible > .section-title').forEach(function(title) {
+    if (title.hasAttribute('data-collapse-init')) return;
+    title.setAttribute('data-collapse-init', '1');
+    title.setAttribute('tabindex', '0');
+    title.setAttribute('role', 'button');
+    title.setAttribute('aria-expanded', !title.closest('.section').classList.contains('collapsed'));
+    title.addEventListener('click', function() {
+      var section = this.closest('.section.collapsible');
+      section.classList.toggle('collapsed');
+      this.setAttribute('aria-expanded', !section.classList.contains('collapsed'));
+    });
+    title.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+    });
+  });
+})();
+
 // ============ NAVIGATION PRÉCÉDENT/SUIVANT ENTRE SECTIONS ============
 (function() {
   // Build nav buttons after DOM is ready
   // Get the active sidebar sections map for navigation
   function buildSectionNav() {
     document.querySelectorAll('[id^="sidebar-"]').forEach(function(sidebarDiv) {
-      var caseName = sidebarDiv.id.replace('sidebar-', '');
-      var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+      const caseName = sidebarDiv.id.replace('sidebar-', '');
+      const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
       if (items.length < 2) return;
 
-      var sectionIds = [];
-      var sectionLabels = [];
+      const sectionIds = [];
+      const sectionLabels = [];
       items.forEach(function(item) {
-        var match = item.getAttribute('onclick').match(/goTo\(['"]([^'"]+)['"]\)/);
+        const match = item.getAttribute('onclick').match(/goTo\(['"]([^'"]+)['"]\)/);
         if (match) {
           sectionIds.push(match[1]);
-          var label = item.querySelector('.sidebar-label');
+          const label = item.querySelector('.sidebar-label');
           sectionLabels.push(label ? label.textContent.trim() : match[1]);
         }
       });
 
       // Add nav buttons to each section
       sectionIds.forEach(function(id, idx) {
-        var section = document.getElementById(id);
+        const section = document.getElementById(id);
         if (!section) return;
 
         // Skip if nav already exists
         if (section.querySelector('.section-nav')) return;
 
-        var nav = document.createElement('div');
+        const nav = document.createElement('div');
         nav.className = 'section-nav';
 
         if (idx > 0) {
-          nav.innerHTML += '<button class="section-nav-btn nav-prev" onclick="goTo(\'' + sectionIds[idx - 1] + '\')">' +
+          nav.innerHTML += '<button class="section-nav-btn nav-prev" data-target="' + escapeHtml(sectionIds[idx - 1]) + '" aria-label="Précédent : ' + escapeHtml(sectionLabels[idx - 1]) + '">' +
             '<span class="section-nav-arrow">←</span>' +
-            '<span class="section-nav-label">' + sectionLabels[idx - 1] + '</span></button>';
+            '<span class="section-nav-label">' + escapeHtml(sectionLabels[idx - 1]) + '</span></button>';
         }
         if (idx < sectionIds.length - 1) {
-          nav.innerHTML += '<button class="section-nav-btn nav-next" onclick="goTo(\'' + sectionIds[idx + 1] + '\')">' +
-            '<span class="section-nav-label">' + sectionLabels[idx + 1] + '</span>' +
+          nav.innerHTML += '<button class="section-nav-btn nav-next" data-target="' + escapeHtml(sectionIds[idx + 1]) + '" aria-label="Suivant : ' + escapeHtml(sectionLabels[idx + 1]) + '">' +
+            '<span class="section-nav-label">' + escapeHtml(sectionLabels[idx + 1]) + '</span>' +
             '<span class="section-nav-arrow">→</span></button>';
         }
+
+        // Attach click handlers via addEventListener (no inline onclick)
+        nav.querySelectorAll('.section-nav-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            goTo(btn.dataset.target);
+          });
+        });
 
         if (nav.children.length > 0) {
           section.appendChild(nav);
@@ -33867,7 +34049,7 @@ function timeAgo(ts) {
 })();
 
 // ============ SYSTÈME DE FAVORIS (BOOKMARKS) ============
-var BOOKMARKS_KEY = 'gip-bookmarks';
+const BOOKMARKS_KEY = 'gip-bookmarks';
 
 function getBookmarks() {
   try { return JSON.parse(localStorage.getItem(BOOKMARKS_KEY)) || []; } catch(e) { return []; }
@@ -33878,8 +34060,8 @@ function saveBookmarks(bm) {
 }
 
 function toggleBookmark(caseName, sectionId, sectionTitle) {
-  var bm = getBookmarks();
-  var idx = bm.findIndex(function(b) { return b.case === caseName && b.section === sectionId; });
+  const bm = getBookmarks();
+  const idx = bm.findIndex(function(b) { return b.case === caseName && b.section === sectionId; });
   if (idx === -1) {
     bm.push({ case: caseName, section: sectionId, title: sectionTitle });
   } else {
@@ -33894,8 +34076,8 @@ function isBookmarked(caseName, sectionId) {
 }
 
 function updateBookmarkCount() {
-  var count = getBookmarks().length;
-  var el = document.getElementById('bookmarkCount');
+  const count = getBookmarks().length;
+  const el = document.getElementById('bookmarkCount');
   if (el) {
     el.textContent = count;
     el.style.display = count > 0 ? 'flex' : 'none';
@@ -33903,25 +34085,15 @@ function updateBookmarkCount() {
 }
 
 function toggleBookmarksPanel() {
-  var panel = document.getElementById('bookmarksPanel');
+  const panel = document.getElementById('bookmarksPanel');
   if (!panel) return;
-  var isActive = panel.classList.contains('active');
+  const isActive = panel.classList.contains('active');
   if (isActive) {
     panel.classList.remove('active');
     return;
   }
 
   var bm = getBookmarks();
-  var courseNames = {
-    'snow': 'SNOW', 'stark': 'STARK', 'niote': 'NIOTE',
-    'mengere': 'MENGERE', 'norris': 'NORRIS', 'vador': 'VADOR',
-    'leon': 'LEON', 'genereux': 'GÉNÉREUX', 'houette': 'HOUETTE',
-    'financement': 'Financement', 'responsabilite': 'Responsabilité',
-    'fiscal': 'Ingénierie fiscale PP', 'droit': 'Droit patrimonial',
-    'marches': 'Marchés financiers', 'transmission': 'Transmission d\'entreprises',
-    'fiscalite-int': 'Fiscalité Internationale', 'outils': 'Outils',
-    'guide': 'Guide', 'montages': 'Montages', 'formules': 'Formules'
-  };
 
   if (bm.length === 0) {
     panel.innerHTML = '<div class="bookmarks-panel-header">Favoris</div>' +
@@ -33929,12 +34101,31 @@ function toggleBookmarksPanel() {
   } else {
     panel.innerHTML = '<div class="bookmarks-panel-header">Favoris (' + bm.length + ')</div>' +
       bm.map(function(b, i) {
-        return '<div class="bookmark-item" onclick="goToBookmark(\'' + b.case + '\',\'' + b.section + '\')">' +
-          '<div><div class="bookmark-item-course">' + (courseNames[b.case] || b.case) + '</div>' +
-          '<div class="bookmark-item-title">' + b.title + '</div></div>' +
-          '<button class="bookmark-item-remove" onclick="event.stopPropagation();removeBookmark(' + i + ')" title="Retirer">✕</button></div>';
+        return '<div class="bookmark-item" data-case="' + escapeHtml(b.case) + '" data-section="' + escapeHtml(b.section) + '" data-idx="' + i + '">' +
+          '<div><div class="bookmark-item-course">' + escapeHtml(courseShort(b.case)) + '</div>' +
+          '<div class="bookmark-item-title">' + escapeHtml(b.title) + '</div></div>' +
+          '<button class="bookmark-item-remove" data-idx="' + i + '" title="Retirer">✕</button></div>';
       }).join('');
   }
+  // Attach event delegation for bookmark items (no inline onclick)
+  panel.querySelectorAll('.bookmark-item').forEach(function(item) {
+    item.style.cursor = 'pointer';
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    item.addEventListener('click', function(e) {
+      if (e.target.closest('.bookmark-item-remove')) return;
+      goToBookmark(item.dataset.case, item.dataset.section);
+    });
+    item.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+    });
+  });
+  panel.querySelectorAll('.bookmark-item-remove').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      removeBookmark(parseInt(btn.dataset.idx, 10));
+    });
+  });
   panel.classList.add('active');
 }
 
@@ -33945,7 +34136,7 @@ function goToBookmark(caseName, sectionId) {
 }
 
 function removeBookmark(idx) {
-  var bm = getBookmarks();
+  const bm = getBookmarks();
   bm.splice(idx, 1);
   saveBookmarks(bm);
   // Refresh panel
@@ -33957,8 +34148,8 @@ function removeBookmark(idx) {
 
 function refreshBookmarkStars() {
   document.querySelectorAll('.bookmark-btn').forEach(function(btn) {
-    var caseName = btn.getAttribute('data-case');
-    var sectionId = btn.getAttribute('data-section');
+    const caseName = btn.getAttribute('data-case');
+    const sectionId = btn.getAttribute('data-section');
     if (isBookmarked(caseName, sectionId)) {
       btn.classList.add('bookmarked');
       btn.textContent = '★';
@@ -33972,33 +34163,35 @@ function refreshBookmarkStars() {
 // Inject bookmark stars into section headers
 (function() {
   document.querySelectorAll('[id^="sidebar-"]').forEach(function(sidebarDiv) {
-    var caseName = sidebarDiv.id.replace('sidebar-', '');
-    var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+    const caseName = sidebarDiv.id.replace('sidebar-', '');
+    const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
 
     items.forEach(function(item) {
-      var match = item.getAttribute('onclick').match(/goTo\(['"]([^'"]+)['"]\)/);
+      const match = item.getAttribute('onclick').match(/goTo\(['"]([^'"]+)['"]\)/);
       if (!match) return;
-      var sectionId = match[1];
-      var section = document.getElementById(sectionId);
+      const sectionId = match[1];
+      const section = document.getElementById(sectionId);
       if (!section) return;
 
-      var header = section.querySelector('.section-header');
+      const header = section.querySelector('.section-header');
       if (!header || header.querySelector('.bookmark-btn')) return;
 
-      var label = item.querySelector('.sidebar-label');
-      var title = label ? label.textContent.trim() : sectionId;
+      const label = item.querySelector('.sidebar-label');
+      const title = label ? label.textContent.trim() : sectionId;
 
-      var star = document.createElement('button');
+      const star = document.createElement('button');
       star.className = 'bookmark-btn' + (isBookmarked(caseName, sectionId) ? ' bookmarked' : '');
       star.setAttribute('data-case', caseName);
       star.setAttribute('data-section', sectionId);
-      star.setAttribute('aria-label', 'Ajouter aux favoris');
-      star.textContent = isBookmarked(caseName, sectionId) ? '★' : '☆';
+      var _isBm = isBookmarked(caseName, sectionId);
+      star.setAttribute('aria-label', _isBm ? 'Retirer des favoris' : 'Ajouter aux favoris');
+      star.textContent = _isBm ? '★' : '☆';
       star.addEventListener('click', function(e) {
         e.stopPropagation();
-        var added = toggleBookmark(caseName, sectionId, title);
+        const added = toggleBookmark(caseName, sectionId, title);
         star.classList.toggle('bookmarked', added);
         star.textContent = added ? '★' : '☆';
+        star.setAttribute('aria-label', added ? 'Retirer des favoris' : 'Ajouter aux favoris');
       });
       header.appendChild(star);
     });
@@ -34008,8 +34201,8 @@ function refreshBookmarkStars() {
 
   // Close panel on outside click
   document.addEventListener('click', function(e) {
-    var panel = document.getElementById('bookmarksPanel');
-    var btn = document.getElementById('bookmarksBtn');
+    const panel = document.getElementById('bookmarksPanel');
+    const btn = document.getElementById('bookmarksBtn');
     if (panel && panel.classList.contains('active') && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
       panel.classList.remove('active');
     }
@@ -34019,13 +34212,13 @@ function refreshBookmarkStars() {
 // ============ BOUTON COPIER SUR LES CALC-BLOCKS ============
 (function() {
   document.querySelectorAll('.calc-block').forEach(function(block) {
-    var btn = document.createElement('button');
+    const btn = document.createElement('button');
     btn.className = 'calc-copy-btn';
     btn.textContent = 'Copier';
     btn.setAttribute('aria-label', 'Copier le calcul');
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      var text = block.textContent.replace('Copier', '').trim();
+      const text = block.textContent.replace('Copier', '').trim();
       navigator.clipboard.writeText(text).then(function() {
         btn.textContent = 'Copié !';
         btn.classList.add('copied');
@@ -34035,7 +34228,7 @@ function refreshBookmarkStars() {
         }, 1500);
       }).catch(function() {
         // Fallback
-        var ta = document.createElement('textarea');
+        const ta = document.createElement('textarea');
         ta.value = text;
         ta.style.cssText = 'position:fixed;opacity:0';
         document.body.appendChild(ta);
@@ -34055,17 +34248,17 @@ function refreshBookmarkStars() {
 })();
 
 // ============ MILESTONES DE PROGRESSION ============
-var MILESTONE_KEY = 'gip-milestones';
-var milestoneMessages = { 25: 'Bien parti !', 50: 'A mi-chemin !', 75: 'Presque fini !', 100: 'Terminé !' };
+const MILESTONE_KEY = 'gip-milestones';
+const milestoneMessages = { 25: 'Bien parti !', 50: 'A mi-chemin !', 75: 'Presque fini !', 100: 'Terminé !' };
 
 function checkMilestone(caseName) {
-  var total = document.querySelectorAll('#sidebar-' + caseName + ' .check-read').length;
+  const total = document.querySelectorAll('#sidebar-' + caseName + ' .check-read').length;
   if (total === 0) return;
-  var progress = getProgress();
-  var done = (progress[caseName] || []).length;
-  var pct = Math.round((done / total) * 100);
+  const progress = getProgress();
+  const done = (progress[caseName] || []).length;
+  const pct = Math.round((done / total) * 100);
 
-  var reached;
+  let reached;
   try { reached = JSON.parse(localStorage.getItem(MILESTONE_KEY)) || {}; } catch(e) { reached = {}; }
   if (!reached[caseName]) reached[caseName] = [];
 
@@ -34073,7 +34266,7 @@ function checkMilestone(caseName) {
     if (pct >= m && reached[caseName].indexOf(m) === -1) {
       reached[caseName].push(m);
       try { localStorage.setItem(MILESTONE_KEY, JSON.stringify(reached)); } catch(e) {}
-      var toast = document.createElement('div');
+      const toast = document.createElement('div');
       toast.className = 'milestone-toast';
       toast.textContent = m + '% — ' + milestoneMessages[m];
       document.body.appendChild(toast);
@@ -34084,26 +34277,26 @@ function checkMilestone(caseName) {
 
 // ============ QCM INTERACTIFS — Score, progression, sauvegarde ============
 (function() {
-  var qcmSections = ['fin-qcm', 'fiscal-qcm', 'droit-qcm', 'trans-qcm', 'fi-qcm', 'mf-qcm'];
+  const qcmSections = ['fin-qcm', 'fiscal-qcm', 'droit-qcm', 'trans-qcm', 'fi-qcm', 'mf-qcm'];
 
   qcmSections.forEach(function(sectionId) {
-    var section = document.getElementById(sectionId);
+    const section = document.getElementById(sectionId);
     if (!section) return;
 
-    var allDetails = section.querySelectorAll('details');
-    var total = allDetails.length;
+    const allDetails = section.querySelectorAll('details');
+    const total = allDetails.length;
     if (total === 0) return;
 
     // Load saved state
-    var storageKey = 'gip-qcm-' + sectionId;
-    var answered = new Set();
+    const storageKey = 'gip-qcm-' + sectionId;
+    const answered = new Set();
     try {
-      var saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
       saved.forEach(function(i) { answered.add(i); });
     } catch(e) {}
 
     // Create stats bar
-    var bar = document.createElement('div');
+    const bar = document.createElement('div');
     bar.className = 'qcm-stats-bar';
     bar.innerHTML =
       '<span class="qcm-score">' + answered.size + ' / ' + total + '</span>' +
@@ -34111,16 +34304,16 @@ function checkMilestone(caseName) {
       '<button class="qcm-reset" title="Réinitialiser la progression">↺ Reset</button>';
 
     // Insert after section-header
-    var header = section.querySelector('.section-header');
+    const header = section.querySelector('.section-header');
     if (header && header.nextSibling) {
       section.insertBefore(bar, header.nextSibling);
     } else {
       section.prepend(bar);
     }
 
-    var scoreEl = bar.querySelector('.qcm-score');
-    var fillEl = bar.querySelector('.qcm-progress-fill');
-    var resetBtn = bar.querySelector('.qcm-reset');
+    const scoreEl = bar.querySelector('.qcm-score');
+    const fillEl = bar.querySelector('.qcm-progress-fill');
+    const resetBtn = bar.querySelector('.qcm-reset');
 
     function updateDisplay() {
       scoreEl.textContent = answered.size + ' / ' + total;
@@ -34140,6 +34333,11 @@ function checkMilestone(caseName) {
 
     // Restore answered state + attach listeners
     allDetails.forEach(function(det, i) {
+      // Add aria-label for accessibility
+      var summary = det.querySelector('summary');
+      if (summary && !summary.getAttribute('aria-label')) {
+        summary.setAttribute('aria-label', 'Question ' + (i + 1) + ' sur ' + total);
+      }
       if (answered.has(i)) {
         det.classList.add('qcm-answered');
       }
@@ -34169,27 +34367,100 @@ function checkMilestone(caseName) {
   });
 })();
 
-  // Au chargement, toujours forcer l'accueil
-  // 1) Nettoyer le hash
-  if (window.location.hash) {
-    history.replaceState(null, '', window.location.pathname);
-  }
-  // 2) Forcer case-home visible, masquer tout le reste
-  document.querySelectorAll('.case-content').forEach(function(c) {
-    if (c.id === 'case-home') {
-      c.classList.add('active');
-      c.style.display = 'block';
-    } else {
+  // Au chargement : deep linking ou accueil
+  var _initHash = window.location.hash.replace('#', '');
+  if (_initHash && _knownPages.indexOf(_initHash) !== -1) {
+    // Deep link — charger la page demandée
+    document.querySelectorAll('.case-content').forEach(function(c) {
       c.classList.remove('active');
       c.style.display = 'none';
+    });
+    var sb = document.getElementById('sidebar');
+    var tb = document.getElementById('tabBar');
+    if (sb) sb.style.display = 'none';
+    if (tb) tb.style.display = 'none';
+    setTimeout(function() { enterCourse(_initHash); }, 50);
+  } else {
+    // Pas de hash → afficher l'accueil
+    document.querySelectorAll('.case-content').forEach(function(c) {
+      if (c.id === 'case-home') {
+        c.classList.add('active');
+        c.style.display = 'block';
+      } else {
+        c.classList.remove('active');
+        c.style.display = 'none';
+      }
+    });
+    var sb = document.getElementById('sidebar');
+    var tb = document.getElementById('tabBar');
+    if (sb) sb.style.display = 'none';
+    if (tb) tb.style.display = 'none';
+  }
+})();
+
+// ============ EVENT DELEGATION — TABS ============
+(function() {
+  var tabBar = document.getElementById('tabBar');
+  if (!tabBar) return;
+  tabBar.addEventListener('click', function(e) {
+    var tab = e.target.closest('.tab[data-case]');
+    if (!tab) return;
+    switchCase(tab.dataset.case);
+  });
+})();
+
+// ============ EVENT DELEGATION — HOME-CARDS & BREADCRUMBS ============
+(function() {
+  document.addEventListener('click', function(e) {
+    var card = e.target.closest('.home-card[data-course]');
+    if (card) {
+      enterCourse(card.dataset.course);
+      return;
+    }
+    var crumb = e.target.closest('.breadcrumb[data-course]');
+    if (crumb) {
+      switchCase(crumb.dataset.course);
+      return;
     }
   });
-  // 3) Masquer sidebar et tabBar
-  var sb = document.getElementById('sidebar');
-  var tb = document.getElementById('tabBar');
-  if (sb) sb.style.display = 'none';
-  if (tb) tb.style.display = 'none';
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      var crumb = e.target.closest('.breadcrumb[data-course]');
+      if (crumb) { e.preventDefault(); switchCase(crumb.dataset.course); }
+    }
+  });
 })();
+
+// ============ EVENT DELEGATION — SHORTCUTS OVERLAY ============
+(function() {
+  var overlay = document.getElementById('shortcutsOverlay');
+  var closeBtn = document.getElementById('shortcutsClose');
+  if (!overlay) return;
+  function closeShortcuts() { overlay.style.display = 'none'; }
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeShortcuts();
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeShortcuts);
+})();
+
+// ============ SAFE LOCALSTORAGE HELPER ============
+function safePersist(key, value) {
+  try {
+    localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+  } catch(e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      try {
+        var days = JSON.parse(localStorage.getItem('gip-studyDays') || '[]');
+        if (days.length > 90) {
+          localStorage.setItem('gip-studyDays', JSON.stringify(days.slice(-90)));
+          localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+          return;
+        }
+      } catch(e2) {}
+      announce('Espace de stockage plein — certaines données ne seront pas sauvegardées.');
+    }
+  }
+}
 
 </script>
 
