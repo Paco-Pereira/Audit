@@ -177,17 +177,22 @@ function switchCase(caseName) {
 }
 
 // ============ ENTER COURSE FUNCTION ============
+var _enterCourseLoading = false;
 function enterCourse(courseName) {
+  if (_enterCourseLoading) return;
   // Si le contenu n'est pas dans le DOM, charger via contentLoader (version docs/)
   var existing = document.getElementById('case-' + courseName);
   if (!existing && window.contentLoader) {
+    _enterCourseLoading = true;
     var spinner = document.getElementById('loadingSpinner');
     if (spinner) spinner.style.display = '';
     window.contentLoader.load(courseName).then(function(data) {
       window.contentLoader.inject(courseName, data);
       if (spinner) spinner.style.display = 'none';
+      _enterCourseLoading = false;
       switchCase(courseName);
     }).catch(function(err) {
+      _enterCourseLoading = false;
       if (spinner) spinner.style.display = 'none';
       console.error('Erreur chargement ' + courseName + ':', err);
       var toast = document.createElement('div');
@@ -406,15 +411,15 @@ document.addEventListener('keydown', function(event) {
     event.preventDefault();
     // Increase: sm→md→lg
     var html = document.documentElement;
-    if (html.classList.contains('font-sm')) { html.classList.remove('font-sm'); localStorage.setItem('gip-fontSize','font-md'); }
-    else if (!html.classList.contains('font-lg')) { html.classList.add('font-lg'); localStorage.setItem('gip-fontSize','font-lg'); }
+    if (html.classList.contains('font-sm')) { html.classList.remove('font-sm'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
+    else if (!html.classList.contains('font-lg')) { html.classList.add('font-lg'); try { localStorage.setItem('gip-fontSize','font-lg'); } catch(e) {} }
   }
   if ((event.ctrlKey || event.metaKey) && event.key === '-') {
     event.preventDefault();
     // Decrease: lg→md→sm
     var html = document.documentElement;
-    if (html.classList.contains('font-lg')) { html.classList.remove('font-lg'); localStorage.setItem('gip-fontSize','font-md'); }
-    else if (!html.classList.contains('font-sm')) { html.classList.add('font-sm'); localStorage.setItem('gip-fontSize','font-sm'); }
+    if (html.classList.contains('font-lg')) { html.classList.remove('font-lg'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
+    else if (!html.classList.contains('font-sm')) { html.classList.add('font-sm'); try { localStorage.setItem('gip-fontSize','font-sm'); } catch(e) {} }
   }
   // ? pour afficher les raccourcis (sauf si focus sur un input)
   if (event.key === '?' && !event.target.closest('input, textarea')) {
@@ -503,7 +508,7 @@ function showSearchHistory() {
     history.map(function(h, i) {
       return '<div class="search-history-item" data-query="' + h.replace(/"/g, '&quot;') + '">' +
         '<span class="search-history-icon">🕐</span>' +
-        '<span class="search-history-text">' + h + '</span>' +
+        '<span class="search-history-text">' + escapeHtml(h) + '</span>' +
         '<button class="search-history-remove" data-idx="' + i + '" title="Supprimer">✕</button>' +
         '</div>';
     }).join('');
@@ -546,6 +551,10 @@ searchInput && searchInput.addEventListener('input', function() {
   }, 250);
 });
 
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 function doSearch(query) {
   if (query.length < 2) return;
   const results = [];
@@ -585,7 +594,7 @@ function doSearch(query) {
   });
 
   if (unique.length === 0) {
-    searchResults.innerHTML = '<div class="search-no-results">Aucun résultat pour "' + query + '"</div>';
+    searchResults.innerHTML = '<div class="search-no-results">Aucun résultat pour "' + escapeHtml(query) + '"</div>';
   } else {
     searchResults.innerHTML = '<div class="search-count">' + unique.length + ' résultat(s)</div>' +
       unique.map(r =>
@@ -772,7 +781,7 @@ function cycleFontSize() {
   if (next !== 1) { // 1 = medium = default = no class needed
     html.classList.add(fontSizes[next]);
   }
-  localStorage.setItem('gip-fontSize', fontSizes[next]);
+  try { localStorage.setItem('gip-fontSize', fontSizes[next]); } catch(e) {}
 
   // Brief toast
   var btn = document.getElementById('fontSizeBtn');
@@ -836,7 +845,11 @@ try {
 // ============ HASH ROUTING — CHARGEMENT INITIAL ============
 window.addEventListener('hashchange', function() {
   const hash = window.location.hash.replace('#', '');
-  if (hash) enterCourse(hash);
+  // Only handle known case/course IDs, not section anchors like mf-s2
+  const knownPages = ['home','audit','snow','stark','niote','mengere','norris','vador','leon','genereux','houette',
+    'financement','responsabilite','fiscal','droit','marches','transmission','fiscalite-int',
+    'outils','guide','montages','formules'];
+  if (hash && knownPages.indexOf(hash) !== -1) enterCourse(hash);
 });
 
 // ============ FLASHCARDS — FILTRAGE & MÉLANGE ============

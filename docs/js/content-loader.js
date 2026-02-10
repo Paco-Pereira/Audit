@@ -18,24 +18,24 @@ class ContentLoader {
   async load(caseId) {
     // Return cached data if available
     if (this.cache.has(caseId)) {
-      console.log(`📦 Loading ${caseId} from cache`);
+      // cached
       return this.cache.get(caseId);
     }
 
     // Return existing promise if already loading
     if (this.loading.has(caseId)) {
-      console.log(`⏳ ${caseId} already loading, waiting...`);
+      // dedup
       return this.loading.get(caseId);
     }
 
     // Start loading
-    console.log(`🌐 Fetching ${caseId}...`);
+    // fetch
     const promise = this.fetchWithRetry(`content/${this.getPath(caseId)}.json`)
       .then(response => response.json())
       .then(data => {
         this.cache.set(caseId, data);
         this.loading.delete(caseId);
-        console.log(`✅ ${caseId} loaded successfully`);
+        // loaded
         return data;
       })
       .catch(error => {
@@ -70,7 +70,7 @@ class ContentLoader {
         }
         // Exponential backoff: 1s, 2s, 4s
         const delay = 1000 * Math.pow(2, i);
-        console.log(`⚠️  Retry ${i + 1}/${retries} in ${delay}ms...`);
+        // retry
         await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
@@ -154,7 +154,7 @@ class ContentLoader {
       }
     }
 
-    console.log(`✨ ${caseId} injected into DOM`);
+    // injected
   }
 
   /**
@@ -167,7 +167,7 @@ class ContentLoader {
     let html = `<div id="sidebar-${caseId}" class="sidebar-sections" style="display:none;">`;
 
     sidebarData.items.forEach(item => {
-      html += `<a href="#${item.id}" class="sidebar-item" onclick="goTo('${item.id}')">`;
+      html += `<a href="#${item.id}" class="sidebar-item" onclick="goTo('${item.id}'); return false;">`;
 
       if (item.num) {
         html += `<span class="sidebar-num">${item.num}</span>`;
@@ -205,7 +205,7 @@ class ContentLoader {
    * @param {string[]} caseIds - Array of case IDs to preload
    */
   async preload(caseIds) {
-    console.log(`🚀 Preloading ${caseIds.length} cases...`);
+    // preload
     await Promise.all(caseIds.map(id => this.load(id).catch(e => {
       console.warn(`Failed to preload ${id}:`, e);
     })));
@@ -218,7 +218,7 @@ class ContentLoader {
     this.cache.clear();
     this.loading.clear();
     this.manifest = null;
-    console.log('🗑️  Cache cleared');
+    // cleared
   }
 
   /**
@@ -243,4 +243,4 @@ if (typeof window !== 'undefined') {
   window.ContentLoader = ContentLoader;
 }
 
-console.log('✅ ContentLoader initialized');
+// ContentLoader ready

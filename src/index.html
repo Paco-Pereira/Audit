@@ -123,8 +123,7 @@ body.light-mode .header {
   border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
-body.light-mode .header-logo,
-body.light-mode .header-btn {
+body.light-mode .header-logo {
   color: var(--text);
 }
 
@@ -1083,6 +1082,12 @@ strong {
   box-shadow: var(--shadow-liquid-lg);
   border-color: var(--glass-border-hover);
   transform: translateY(-1px);
+}
+
+.card p,
+.glass-card p,
+.alert p {
+  max-width: none;
 }
 
 /* ============================================================================
@@ -10226,7 +10231,7 @@ body.light-mode .qcm-stats-bar.qcm-complete {
     </tr>
   </table>
 
-  <h3>Analyse de Capacité Financière</h3>
+  <h3 id="norr-s3-solde">Analyse de Capacité Financière</h3>
 
   <table>
     <tr>
@@ -10415,7 +10420,7 @@ body.light-mode .qcm-stats-bar.qcm-complete {
       <div><strong>Différence avec corrigé (50 335 €):</strong> La divergence provient des charges foncières exactes (travaux, intérêts, assurances) non détaillées en cas simplifié. Le calcul méthodologique reste applicable; seul le montant de foncier net varie selon charges réelles.</div>
     </div>
 
-    <h3>Synthèse des prélèvements obligatoires</h3>
+    <h3 id="norr-s3-ps">Synthèse des prélèvements obligatoires</h3>
 
     <table>
       <tr>
@@ -21303,15 +21308,15 @@ Droit (20%) = 3 000€
         <tr><td>Résidence principale</td><td style="text-align:right">650 000</td><td style="text-align:right">—</td><td></td><td style="text-align:right">650 000</td></tr>
         <tr><td>4 Studios Nice (LMNP)</td><td style="text-align:right">600 000</td><td style="text-align:right">—</td><td></td><td style="text-align:right">600 000</td></tr>
         <tr><td>NP Chalet Cortina</td><td style="text-align:right">—</td><td style="text-align:right">900 000</td><td></td><td style="text-align:right">900 000</td></tr>
-        <tr style="font-weight:600; background: rgba(var(--primary-rgb), 0.08);"><td><strong>Sous-total Immobilier</strong></td><td style="text-align:right">1 250 000</td><td style="text-align:right">900 000</td><td style="text-align:right"><span class="red"><strong>90%</strong></span></td><td style="text-align:right">2 150 000</td></tr>
+        <tr style="font-weight:600; background: rgba(186, 155, 95, 0.08);"><td><strong>Sous-total Immobilier</strong></td><td style="text-align:right">1 250 000</td><td style="text-align:right">900 000</td><td style="text-align:right"><span class="red"><strong>90%</strong></span></td><td style="text-align:right">2 150 000</td></tr>
         <tr><td>Assurance Vie (2010)</td><td style="text-align:right">—</td><td style="text-align:right">50 000</td><td></td><td style="text-align:right">50 000</td></tr>
-        <tr style="background: rgba(var(--primary-rgb), 0.04);"><td><strong>Sous-total AV</strong></td><td style="text-align:right">—</td><td style="text-align:right">50 000</td><td style="text-align:right">2%</td><td style="text-align:right">50 000</td></tr>
+        <tr style="background: rgba(186, 155, 95, 0.04);"><td><strong>Sous-total AV</strong></td><td style="text-align:right">—</td><td style="text-align:right">50 000</td><td style="text-align:right">2%</td><td style="text-align:right">50 000</td></tr>
         <tr><td>CTO (actions, achat 30k€ en 2008)</td><td style="text-align:right">100 000</td><td style="text-align:right">—</td><td></td><td style="text-align:right">100 000</td></tr>
-        <tr style="background: rgba(var(--primary-rgb), 0.04);"><td><strong>Sous-total VM</strong></td><td style="text-align:right">100 000</td><td style="text-align:right">—</td><td style="text-align:right">4%</td><td style="text-align:right">100 000</td></tr>
+        <tr style="background: rgba(186, 155, 95, 0.04);"><td><strong>Sous-total VM</strong></td><td style="text-align:right">100 000</td><td style="text-align:right">—</td><td style="text-align:right">4%</td><td style="text-align:right">100 000</td></tr>
         <tr><td>Livret A</td><td style="text-align:right">23 000</td><td style="text-align:right">22 000</td><td></td><td style="text-align:right">45 000</td></tr>
         <tr><td>LDDS</td><td style="text-align:right">12 000</td><td style="text-align:right">12 000</td><td></td><td style="text-align:right">24 000</td></tr>
         <tr><td>Compte courant</td><td style="text-align:right">20 000</td><td style="text-align:right">5 000</td><td></td><td style="text-align:right">25 000</td></tr>
-        <tr style="background: rgba(var(--primary-rgb), 0.04);"><td><strong>Sous-total Disponibilités</strong></td><td style="text-align:right">55 000</td><td style="text-align:right">39 000</td><td style="text-align:right">4%</td><td style="text-align:right">94 000</td></tr>
+        <tr style="background: rgba(186, 155, 95, 0.04);"><td><strong>Sous-total Disponibilités</strong></td><td style="text-align:right">55 000</td><td style="text-align:right">39 000</td><td style="text-align:right">4%</td><td style="text-align:right">94 000</td></tr>
         <tr class="bold-row" style="font-size: 1.05em;"><td><strong>TOTAL</strong></td><td style="text-align:right"><strong>1 405 000</strong></td><td style="text-align:right"><strong>989 000</strong></td><td style="text-align:right"><strong>100%</strong></td><td style="text-align:right"><strong>2 394 000</strong></td></tr>
       </tbody>
     </table>
@@ -23663,7 +23668,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
 .formula-card .note { font-size: .78em; color: var(--text-light); margin-top: 4px; }
 .compact-table { font-size: .82em; width: 100%; border-collapse: collapse; margin: 8px 0; }
 .compact-table td, .compact-table th { padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--border); }
-.compact-table th { background: var(--bg-light); font-weight: 600; }
+.compact-table th { background: var(--glass-bg); font-weight: 600; }
 .section-divider { border-top: 3px solid var(--primary); margin: 32px 0 24px; padding-top: 16px; }
 .bold-row { font-weight: 600; }
 </style>
@@ -24153,19 +24158,19 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <td><strong>1 742€</strong> de réduction forfaitaire par ½ part additionnelle (plafond QF <strong>1 791€</strong>)</td>
         <td>—</td>
       </tr>
-      <tr style="font-size: .8em; background: rgba(var(--primary-rgb), 0.08);">
+      <tr style="font-size: .8em; background: rgba(186, 155, 95, 0.08);">
         <td><strong>Malraux</strong></td>
         <td><strong>22% / 30%</strong></td>
         <td>Max 400 000€ travaux / 4 ans · 5 500€/m²</td>
         <td><span class="green"><strong>HORS</strong></span></td>
       </tr>
-      <tr style="font-size: .8em; background: rgba(var(--primary-rgb), 0.08);">
+      <tr style="font-size: .8em; background: rgba(186, 155, 95, 0.08);">
         <td><strong>Girardin (outre-mer)</strong></td>
         <td><strong>30%</strong></td>
         <td>Max 2 538€/m² · Plafond alternatif <strong>18 000€</strong></td>
         <td><span class="green"><strong>HORS</strong></span></td>
       </tr>
-      <tr style="font-size: .8em; background: rgba(var(--primary-rgb), 0.08);">
+      <tr style="font-size: .8em; background: rgba(186, 155, 95, 0.08);">
         <td><strong>Monuments Historiques</strong></td>
         <td>100% travaux</td>
         <td>Conservation 15 ans. Déduction sans plafond</td>
@@ -25519,12 +25524,12 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
               <div class="calc-block">
                 <div class="calc-step">Assurance groupe (sur capital initial)</div>
                 200 000 × 0,36% = 720€/an → <strong>60€/mois</strong><br>
-                <span style="color:var(--text-muted);">Coût constant sur toute la durée</span>
+                <span style="color:var(--text-light);">Coût constant sur toute la durée</span>
               </div>
               <div class="calc-block">
                 <div class="calc-step">Délégation externe (sur CRD)</div>
                 200 000 × 0,18% = 360€/an → <strong>30€/mois</strong><br>
-                <span style="color:var(--text-muted);">Coût dégressif (baisse avec le CRD)</span>
+                <span style="color:var(--text-light);">Coût dégressif (baisse avec le CRD)</span>
               </div>
               <div class="calc-result">Économie année 1 : <strong>360€/an</strong>. Sur 20 ans, l'écart se creuse considérablement en faveur de la délégation.</div>
 
@@ -30734,7 +30739,7 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
             <div class="calc-step">Étape 3 : Financement</div>
             La Holding emprunte 800 000 € (taux 3%, 7 ans)<br>
             Remboursement annuel ≈ 126 000 € → couvert par les dividendes de la SARL<br>
-            <span style="color:var(--text-muted);">Régime mère-fille : dividendes quasi-exonérés (quote-part de 5%)</span>
+            <span style="color:var(--text-light);">Régime mère-fille : dividendes quasi-exonérés (quote-part de 5%)</span>
           </div>
           <div class="alert alert-success"><strong>Résultat :</strong> M. MARTIN récupère 572 000 € nets de liquidités, conserve le contrôle de la SARL via la Holding (100%), et peut préparer la transmission aux enfants en donnant des parts de la Holding (avec Dutreil).</div>
         </div>
@@ -32520,17 +32525,22 @@ function switchCase(caseName) {
 }
 
 // ============ ENTER COURSE FUNCTION ============
+var _enterCourseLoading = false;
 function enterCourse(courseName) {
+  if (_enterCourseLoading) return;
   // Si le contenu n'est pas dans le DOM, charger via contentLoader (version docs/)
   var existing = document.getElementById('case-' + courseName);
   if (!existing && window.contentLoader) {
+    _enterCourseLoading = true;
     var spinner = document.getElementById('loadingSpinner');
     if (spinner) spinner.style.display = '';
     window.contentLoader.load(courseName).then(function(data) {
       window.contentLoader.inject(courseName, data);
       if (spinner) spinner.style.display = 'none';
+      _enterCourseLoading = false;
       switchCase(courseName);
     }).catch(function(err) {
+      _enterCourseLoading = false;
       if (spinner) spinner.style.display = 'none';
       console.error('Erreur chargement ' + courseName + ':', err);
       var toast = document.createElement('div');
@@ -32749,15 +32759,15 @@ document.addEventListener('keydown', function(event) {
     event.preventDefault();
     // Increase: sm→md→lg
     var html = document.documentElement;
-    if (html.classList.contains('font-sm')) { html.classList.remove('font-sm'); localStorage.setItem('gip-fontSize','font-md'); }
-    else if (!html.classList.contains('font-lg')) { html.classList.add('font-lg'); localStorage.setItem('gip-fontSize','font-lg'); }
+    if (html.classList.contains('font-sm')) { html.classList.remove('font-sm'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
+    else if (!html.classList.contains('font-lg')) { html.classList.add('font-lg'); try { localStorage.setItem('gip-fontSize','font-lg'); } catch(e) {} }
   }
   if ((event.ctrlKey || event.metaKey) && event.key === '-') {
     event.preventDefault();
     // Decrease: lg→md→sm
     var html = document.documentElement;
-    if (html.classList.contains('font-lg')) { html.classList.remove('font-lg'); localStorage.setItem('gip-fontSize','font-md'); }
-    else if (!html.classList.contains('font-sm')) { html.classList.add('font-sm'); localStorage.setItem('gip-fontSize','font-sm'); }
+    if (html.classList.contains('font-lg')) { html.classList.remove('font-lg'); try { localStorage.setItem('gip-fontSize','font-md'); } catch(e) {} }
+    else if (!html.classList.contains('font-sm')) { html.classList.add('font-sm'); try { localStorage.setItem('gip-fontSize','font-sm'); } catch(e) {} }
   }
   // ? pour afficher les raccourcis (sauf si focus sur un input)
   if (event.key === '?' && !event.target.closest('input, textarea')) {
@@ -32846,7 +32856,7 @@ function showSearchHistory() {
     history.map(function(h, i) {
       return '<div class="search-history-item" data-query="' + h.replace(/"/g, '&quot;') + '">' +
         '<span class="search-history-icon">🕐</span>' +
-        '<span class="search-history-text">' + h + '</span>' +
+        '<span class="search-history-text">' + escapeHtml(h) + '</span>' +
         '<button class="search-history-remove" data-idx="' + i + '" title="Supprimer">✕</button>' +
         '</div>';
     }).join('');
@@ -32889,6 +32899,10 @@ searchInput && searchInput.addEventListener('input', function() {
   }, 250);
 });
 
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 function doSearch(query) {
   if (query.length < 2) return;
   const results = [];
@@ -32928,7 +32942,7 @@ function doSearch(query) {
   });
 
   if (unique.length === 0) {
-    searchResults.innerHTML = '<div class="search-no-results">Aucun résultat pour "' + query + '"</div>';
+    searchResults.innerHTML = '<div class="search-no-results">Aucun résultat pour "' + escapeHtml(query) + '"</div>';
   } else {
     searchResults.innerHTML = '<div class="search-count">' + unique.length + ' résultat(s)</div>' +
       unique.map(r =>
@@ -33115,7 +33129,7 @@ function cycleFontSize() {
   if (next !== 1) { // 1 = medium = default = no class needed
     html.classList.add(fontSizes[next]);
   }
-  localStorage.setItem('gip-fontSize', fontSizes[next]);
+  try { localStorage.setItem('gip-fontSize', fontSizes[next]); } catch(e) {}
 
   // Brief toast
   var btn = document.getElementById('fontSizeBtn');
@@ -33179,7 +33193,11 @@ try {
 // ============ HASH ROUTING — CHARGEMENT INITIAL ============
 window.addEventListener('hashchange', function() {
   const hash = window.location.hash.replace('#', '');
-  if (hash) enterCourse(hash);
+  // Only handle known case/course IDs, not section anchors like mf-s2
+  const knownPages = ['home','audit','snow','stark','niote','mengere','norris','vador','leon','genereux','houette',
+    'financement','responsabilite','fiscal','droit','marches','transmission','fiscalite-int',
+    'outils','guide','montages','formules'];
+  if (hash && knownPages.indexOf(hash) !== -1) enterCourse(hash);
 });
 
 // ============ FLASHCARDS — FILTRAGE & MÉLANGE ============
