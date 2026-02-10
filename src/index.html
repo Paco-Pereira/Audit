@@ -3762,6 +3762,83 @@ td.number, th.number {
 }
 
 /* ============================================================================
+   QCM INTERACTIFS — Score bar, answered state, progress
+   ============================================================================ */
+.qcm-stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin: 12px 0 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-liquid-sm);
+  transition: border-color 0.3s, background 0.3s;
+}
+.qcm-stats-bar.qcm-complete {
+  border-color: rgba(186, 155, 95, 0.35);
+  background: rgba(186, 155, 95, 0.06);
+}
+.qcm-score {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--primary);
+  white-space: nowrap;
+  min-width: 60px;
+}
+.qcm-progress-wrap {
+  flex: 1;
+  height: 6px;
+  background: var(--glass-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.qcm-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #d4af37);
+  border-radius: 3px;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 0%;
+}
+.qcm-reset {
+  background: none;
+  border: 1px solid var(--glass-border);
+  color: var(--text-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.qcm-reset:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+/* Answered question indicator */
+details.qcm-answered {
+  border-left: 3px solid var(--primary) !important;
+  background: rgba(186, 155, 95, 0.03);
+  transition: border-color 0.3s, background 0.3s;
+}
+details.qcm-answered > summary::after {
+  content: ' ✓';
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.85em;
+  margin-left: 6px;
+}
+body.light-mode details.qcm-answered {
+  background: rgba(186, 155, 95, 0.05);
+}
+body.light-mode .qcm-stats-bar.qcm-complete {
+  background: rgba(186, 155, 95, 0.08);
+}
+
+/* ============================================================================
    REDUCED MOTION — Accessibility
    ============================================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -32312,6 +32389,93 @@ function timeAgo(ts) {
       }, 8000);
     }
   } catch(e) {}
+
+// ============ QCM INTERACTIFS — Score, progression, sauvegarde ============
+(function() {
+  var qcmSections = ['fin-qcm', 'fiscal-qcm', 'droit-qcm', 'trans-qcm', 'fi-qcm'];
+
+  qcmSections.forEach(function(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (!section) return;
+
+    var allDetails = section.querySelectorAll('details');
+    var total = allDetails.length;
+    if (total === 0) return;
+
+    // Load saved state
+    var storageKey = 'gip-qcm-' + sectionId;
+    var answered = new Set();
+    try {
+      var saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      saved.forEach(function(i) { answered.add(i); });
+    } catch(e) {}
+
+    // Create stats bar
+    var bar = document.createElement('div');
+    bar.className = 'qcm-stats-bar';
+    bar.innerHTML =
+      '<span class="qcm-score">' + answered.size + ' / ' + total + '</span>' +
+      '<div class="qcm-progress-wrap"><div class="qcm-progress-fill"></div></div>' +
+      '<button class="qcm-reset" title="Réinitialiser la progression">↺ Reset</button>';
+
+    // Insert after section-header
+    var header = section.querySelector('.section-header');
+    if (header && header.nextSibling) {
+      section.insertBefore(bar, header.nextSibling);
+    } else {
+      section.prepend(bar);
+    }
+
+    var scoreEl = bar.querySelector('.qcm-score');
+    var fillEl = bar.querySelector('.qcm-progress-fill');
+    var resetBtn = bar.querySelector('.qcm-reset');
+
+    function updateDisplay() {
+      scoreEl.textContent = answered.size + ' / ' + total;
+      fillEl.style.width = (answered.size / total * 100) + '%';
+      // Complete state
+      if (answered.size === total) {
+        bar.classList.add('qcm-complete');
+        scoreEl.textContent = answered.size + ' / ' + total + ' ✓';
+      } else {
+        bar.classList.remove('qcm-complete');
+      }
+      // Save
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(Array.from(answered)));
+      } catch(e) {}
+    }
+
+    // Restore answered state + attach listeners
+    allDetails.forEach(function(det, i) {
+      if (answered.has(i)) {
+        det.classList.add('qcm-answered');
+      }
+
+      det.addEventListener('toggle', function() {
+        if (det.open && !answered.has(i)) {
+          answered.add(i);
+          det.classList.add('qcm-answered');
+          updateDisplay();
+        }
+      });
+    });
+
+    // Reset button
+    resetBtn.addEventListener('click', function() {
+      if (!confirm('Réinitialiser la progression de ce QCM ?')) return;
+      answered.clear();
+      allDetails.forEach(function(det) {
+        det.classList.remove('qcm-answered');
+        det.open = false;
+      });
+      updateDisplay();
+    });
+
+    // Initial display
+    updateDisplay();
+  });
+})();
 
   // Au chargement, toujours forcer l'accueil
   // 1) Nettoyer le hash

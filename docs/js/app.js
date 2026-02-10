@@ -1245,6 +1245,93 @@ function timeAgo(ts) {
     }
   } catch(e) {}
 
+// ============ QCM INTERACTIFS — Score, progression, sauvegarde ============
+(function() {
+  var qcmSections = ['fin-qcm', 'fiscal-qcm', 'droit-qcm', 'trans-qcm', 'fi-qcm'];
+
+  qcmSections.forEach(function(sectionId) {
+    var section = document.getElementById(sectionId);
+    if (!section) return;
+
+    var allDetails = section.querySelectorAll('details');
+    var total = allDetails.length;
+    if (total === 0) return;
+
+    // Load saved state
+    var storageKey = 'gip-qcm-' + sectionId;
+    var answered = new Set();
+    try {
+      var saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      saved.forEach(function(i) { answered.add(i); });
+    } catch(e) {}
+
+    // Create stats bar
+    var bar = document.createElement('div');
+    bar.className = 'qcm-stats-bar';
+    bar.innerHTML =
+      '<span class="qcm-score">' + answered.size + ' / ' + total + '</span>' +
+      '<div class="qcm-progress-wrap"><div class="qcm-progress-fill"></div></div>' +
+      '<button class="qcm-reset" title="Réinitialiser la progression">↺ Reset</button>';
+
+    // Insert after section-header
+    var header = section.querySelector('.section-header');
+    if (header && header.nextSibling) {
+      section.insertBefore(bar, header.nextSibling);
+    } else {
+      section.prepend(bar);
+    }
+
+    var scoreEl = bar.querySelector('.qcm-score');
+    var fillEl = bar.querySelector('.qcm-progress-fill');
+    var resetBtn = bar.querySelector('.qcm-reset');
+
+    function updateDisplay() {
+      scoreEl.textContent = answered.size + ' / ' + total;
+      fillEl.style.width = (answered.size / total * 100) + '%';
+      // Complete state
+      if (answered.size === total) {
+        bar.classList.add('qcm-complete');
+        scoreEl.textContent = answered.size + ' / ' + total + ' ✓';
+      } else {
+        bar.classList.remove('qcm-complete');
+      }
+      // Save
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(Array.from(answered)));
+      } catch(e) {}
+    }
+
+    // Restore answered state + attach listeners
+    allDetails.forEach(function(det, i) {
+      if (answered.has(i)) {
+        det.classList.add('qcm-answered');
+      }
+
+      det.addEventListener('toggle', function() {
+        if (det.open && !answered.has(i)) {
+          answered.add(i);
+          det.classList.add('qcm-answered');
+          updateDisplay();
+        }
+      });
+    });
+
+    // Reset button
+    resetBtn.addEventListener('click', function() {
+      if (!confirm('Réinitialiser la progression de ce QCM ?')) return;
+      answered.clear();
+      allDetails.forEach(function(det) {
+        det.classList.remove('qcm-answered');
+        det.open = false;
+      });
+      updateDisplay();
+    });
+
+    // Initial display
+    updateDisplay();
+  });
+})();
+
   // Au chargement, toujours forcer l'accueil
   // 1) Nettoyer le hash
   if (window.location.hash) {
