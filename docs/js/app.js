@@ -673,12 +673,31 @@ function shuffleFlashcards() {
   if (!grid) return;
   const cards = Array.from(grid.querySelectorAll('.flashcard'));
 
-  // Fisher-Yates shuffle (ne pas reset l'état revealed)
-  for (let i = cards.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    grid.appendChild(cards[j]);
-  }
-  updateFcScore();
+  // Animation fade-out
+  grid.style.transition = 'opacity 0.15s ease';
+  grid.style.opacity = '0';
+
+  setTimeout(function() {
+    // Fisher-Yates shuffle (ne pas reset l'état revealed)
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      grid.appendChild(cards[j]);
+    }
+    updateFcScore();
+
+    // Animation fade-in avec stagger
+    grid.style.opacity = '1';
+    cards.forEach(function(card, i) {
+      card.style.transition = 'none';
+      card.style.opacity = '0';
+      card.style.transform = 'scale(0.95)';
+      setTimeout(function() {
+        card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        card.style.opacity = '1';
+        card.style.transform = '';
+      }, 30 + i * 20);
+    });
+  }, 150);
 }
 
 function updateFcScore() {
