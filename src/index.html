@@ -1223,6 +1223,11 @@ tr:hover td {
   background: rgba(186, 155, 95, 0.04);
 }
 
+tr[onclick]:hover td {
+  background: rgba(186, 155, 95, 0.10);
+  color: var(--primary);
+}
+
 .bold-row td {
   font-weight: 600;
   background: rgba(186, 155, 95, 0.06);
@@ -28867,16 +28872,16 @@ body.light-mode .formula-card .f { background: #f1f5f9; }
         <table class="data-table">
           <thead><tr><th>N°</th><th>Chapitre</th><th>Contenu clé</th></tr></thead>
           <tbody>
-            <tr><td><strong>1</strong></td><td>Histoire des marchés</td><td>Origines, crises boursières historiques, bulles spéculatives</td></tr>
-            <tr><td><strong>2</strong></td><td>Sources du droit & Lamfalussy</td><td>Lois nationales, droit européen, réforme Lamfalussy 4 niveaux</td></tr>
-            <tr><td><strong>3</strong></td><td>Rôle & panorama des acteurs</td><td>Financement, liquidité, acteurs, marchés, instruments</td></tr>
-            <tr><td><strong>4</strong></td><td>La SEC</td><td>Origine, doctrine Full Disclosure, pouvoirs quasi-judiciaires</td></tr>
-            <tr><td><strong>5</strong></td><td>L'AMF</td><td>Missions art. L621-1 CMF, indépendance, pouvoirs</td></tr>
-            <tr><td><strong>6</strong></td><td>L'ACPR</td><td>Création 2010, supervision prudentielle, Bâle III, LCB-FT</td></tr>
-            <tr><td><strong>7</strong></td><td>L'AEMF / ESMA</td><td>Création 2011, harmonisation européenne, supervision directe</td></tr>
-            <tr><td><strong>8</strong></td><td>Collaboration des autorités</td><td>Coopération AMF-ACPR-AEMF, échanges d'informations</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>📋</strong></td><td>Fiches acteurs</td><td>Définitions, rôle, indépendance, champ d'action de chaque autorité</td></tr>
-            <tr style="background:var(--accent-light);"><td><strong>✏️</strong></td><td>QCM</td><td>20+ questions pour préparer l'examen</td></tr>
+            <tr onclick="goTo('mf-s1')" style="cursor:pointer"><td><strong>1</strong></td><td>Histoire des marchés</td><td>Origines, crises boursières historiques, bulles spéculatives</td></tr>
+            <tr onclick="goTo('mf-s2')" style="cursor:pointer"><td><strong>2</strong></td><td>Sources du droit & Lamfalussy</td><td>Lois nationales, droit européen, réforme Lamfalussy 4 niveaux</td></tr>
+            <tr onclick="goTo('mf-s3')" style="cursor:pointer"><td><strong>3</strong></td><td>Rôle & panorama des acteurs</td><td>Financement, liquidité, acteurs, marchés, instruments</td></tr>
+            <tr onclick="goTo('mf-s4')" style="cursor:pointer"><td><strong>4</strong></td><td>La SEC</td><td>Origine, doctrine Full Disclosure, pouvoirs quasi-judiciaires</td></tr>
+            <tr onclick="goTo('mf-s5')" style="cursor:pointer"><td><strong>5</strong></td><td>L'AMF</td><td>Missions art. L621-1 CMF, indépendance, pouvoirs</td></tr>
+            <tr onclick="goTo('mf-s6')" style="cursor:pointer"><td><strong>6</strong></td><td>L'ACPR</td><td>Création 2010, supervision prudentielle, Bâle III, LCB-FT</td></tr>
+            <tr onclick="goTo('mf-s7')" style="cursor:pointer"><td><strong>7</strong></td><td>L'AEMF / ESMA</td><td>Création 2011, harmonisation européenne, supervision directe</td></tr>
+            <tr onclick="goTo('mf-s8')" style="cursor:pointer"><td><strong>8</strong></td><td>Collaboration des autorités</td><td>Coopération AMF-ACPR-AEMF, échanges d'informations</td></tr>
+            <tr onclick="goTo('mf-fiches')" style="cursor:pointer; background:var(--accent-light);"><td><strong>📋</strong></td><td>Fiches acteurs</td><td>Définitions, rôle, indépendance, champ d'action de chaque autorité</td></tr>
+            <tr onclick="goTo('mf-qcm')" style="cursor:pointer; background:var(--accent-light);"><td><strong>✏️</strong></td><td>QCM</td><td>20+ questions pour préparer l'examen</td></tr>
           </tbody>
         </table>
       </div>
