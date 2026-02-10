@@ -1051,15 +1051,26 @@ function timeAgo(ts) {
   return 'Il y a ' + days + ' j';
 }
 
-// ============ TABLES RESPONSIVES (auto-wrap) ============
+// ============ TABLES RESPONSIVES (auto-wrap + scroll indicators) ============
 (function() {
   document.querySelectorAll('.data-table, .patrimoine-table').forEach(function(table) {
     if (table.parentElement.classList.contains('table-responsive')) return;
     var wrapper = document.createElement('div');
     wrapper.className = 'table-responsive';
-    wrapper.style.cssText = 'overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-sm);';
+    wrapper.style.cssText = 'overflow-x:auto;border-radius:var(--radius-sm);';
     table.parentNode.insertBefore(wrapper, table);
     wrapper.appendChild(table);
+    // Detect scroll state
+    function checkScroll() {
+      if (wrapper.scrollWidth > wrapper.clientWidth + 2) {
+        wrapper.classList.add('has-scroll');
+        wrapper.classList.toggle('scrolled-end', wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 2);
+      } else {
+        wrapper.classList.remove('has-scroll', 'scrolled-end');
+      }
+    }
+    wrapper.addEventListener('scroll', checkScroll, { passive: true });
+    setTimeout(checkScroll, 100);
   });
 })();
 

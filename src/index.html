@@ -686,8 +686,18 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 .section.collapsible.collapsed > .section-title::after {
   transform: translateY(-50%) rotate(-90deg);
 }
+.section.collapsible > *:not(.section-title) {
+  overflow: hidden;
+  max-height: 5000px;
+  opacity: 1;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+}
 .section.collapsible.collapsed > *:not(.section-title) {
-  display: none !important;
+  max-height: 0 !important;
+  opacity: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
 }
 .section.collapsible.collapsed {
   padding-bottom: 8px;
@@ -1349,6 +1359,9 @@ tfoot td {
   box-shadow: var(--shadow);
   font-family: var(--font-mono);
   font-size: 13px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .calc-header {
@@ -2009,7 +2022,7 @@ button:focus-visible,
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -3182,7 +3195,7 @@ button:focus-visible,
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .home-card-progress-text {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   color: var(--text-light);
   white-space: nowrap;
   font-weight: 600;
@@ -3686,6 +3699,56 @@ body.exam-mode #examToggle {
 .tab-bar {
   -webkit-mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 24px), transparent);
   mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 24px), transparent);
+}
+
+/* ============================================================================
+   TABLE RESPONSIVE — Scroll indicators + sticky headers
+   ============================================================================ */
+.table-responsive {
+  position: relative;
+  border-radius: var(--radius-sm);
+}
+.table-responsive::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 32px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.15));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.table-responsive.has-scroll::after {
+  opacity: 1;
+}
+.table-responsive.scrolled-end::after {
+  opacity: 0;
+}
+body.light-mode .table-responsive::after {
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06));
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+td.number, th.number {
+  white-space: nowrap;
+}
+
+/* ============================================================================
+   REDUCED MOTION — Accessibility
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 </style>
@@ -32034,15 +32097,26 @@ function timeAgo(ts) {
   return 'Il y a ' + days + ' j';
 }
 
-// ============ TABLES RESPONSIVES (auto-wrap) ============
+// ============ TABLES RESPONSIVES (auto-wrap + scroll indicators) ============
 (function() {
   document.querySelectorAll('.data-table, .patrimoine-table').forEach(function(table) {
     if (table.parentElement.classList.contains('table-responsive')) return;
     var wrapper = document.createElement('div');
     wrapper.className = 'table-responsive';
-    wrapper.style.cssText = 'overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-sm);';
+    wrapper.style.cssText = 'overflow-x:auto;border-radius:var(--radius-sm);';
     table.parentNode.insertBefore(wrapper, table);
     wrapper.appendChild(table);
+    // Detect scroll state
+    function checkScroll() {
+      if (wrapper.scrollWidth > wrapper.clientWidth + 2) {
+        wrapper.classList.add('has-scroll');
+        wrapper.classList.toggle('scrolled-end', wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 2);
+      } else {
+        wrapper.classList.remove('has-scroll', 'scrolled-end');
+      }
+    }
+    wrapper.addEventListener('scroll', checkScroll, { passive: true });
+    setTimeout(checkScroll, 100);
   });
 })();
 
