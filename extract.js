@@ -6,6 +6,11 @@ const cheerio = require('cheerio');
 const { minify } = require('terser');
 const CleanCSS = require('clean-css');
 
+const args = process.argv.slice(2);
+const FORCE_JS = args.includes('--force-js');
+const FORCE_HTML = args.includes('--force-html');
+const FORCE_ALL = args.includes('--force-all');
+
 console.log('🚀 Starting extraction and optimization...\n');
 
 // Configuration
@@ -113,6 +118,77 @@ for (const [caseId, meta] of Object.entries(CASE_MAP)) {
     });
   });
 
+  // Clean inline onclick handlers in content → data attributes
+  caseContent.find('[onclick]').each((i, el) => {
+    const $el = $(el);
+    const onclick = $el.attr('onclick') || '';
+    // goTo('sectionId') → data-goto
+    const goToMatch = onclick.match(/goTo\(['"]([^'"]+)['"]\)/);
+    if (goToMatch) {
+      $el.attr('data-goto', goToMatch[1]);
+      $el.removeAttr('onclick');
+      return;
+    }
+    // switchCase('name') → data-course
+    const switchMatch = onclick.match(/switchCase\(['"]([^'"]+)['"]\)/);
+    if (switchMatch) {
+      $el.attr('data-course', switchMatch[1]);
+      $el.removeAttr('onclick');
+      return;
+    }
+    // toggleFlashcard(this) → data-action
+    if (onclick.includes('toggleFlashcard')) {
+      $el.attr('data-action', 'toggle-flashcard');
+      $el.removeAttr('onclick');
+      return;
+    }
+    // filterFlashcards('tag') → data-action + data-tag
+    const filterMatch = onclick.match(/filterFlashcards\(['"]([^'"]+)['"]\)/);
+    if (filterMatch) {
+      $el.attr('data-action', 'filter-flashcards');
+      $el.attr('data-tag', filterMatch[1]);
+      $el.removeAttr('onclick');
+      return;
+    }
+    // shuffleFlashcards() → data-action
+    if (onclick.includes('shuffleFlashcards')) {
+      $el.attr('data-action', 'shuffle-flashcards');
+      $el.removeAttr('onclick');
+      return;
+    }
+    // resetFlashcards() → data-action
+    if (onclick.includes('resetFlashcards')) {
+      $el.attr('data-action', 'reset-flashcards');
+      $el.removeAttr('onclick');
+      return;
+    }
+    // toggleAllGuideSections('mode') → data-action + data-mode
+    const guideMatch = onclick.match(/toggleAllGuideSections\(['"]([^'"]+)['"]\)/);
+    if (guideMatch) {
+      $el.attr('data-action', 'toggle-all-sections');
+      $el.attr('data-mode', guideMatch[1]);
+      $el.removeAttr('onclick');
+      return;
+    }
+    // this.parentElement.classList.toggle('collapsed') → data-action
+    if (onclick.includes('toggle(') && onclick.includes('collapsed')) {
+      $el.attr('data-action', 'toggle-collapsed');
+      $el.removeAttr('onclick');
+      return;
+    }
+    // exportHouette functions → data-action
+    if (onclick.includes('exportHouetteEnonce')) {
+      $el.attr('data-action', 'export-houette-enonce');
+      $el.removeAttr('onclick');
+      return;
+    }
+    if (onclick.includes('exportHouettePDF')) {
+      $el.attr('data-action', 'export-houette-pdf');
+      $el.removeAttr('onclick');
+      return;
+    }
+  });
+
   // Build case data
   const caseData = {
     id: caseId,
@@ -186,34 +262,21 @@ $('script').each((i, el) => {
   }
 });
 
-// Remove case content from HTML (keep only home and audit)
-console.log('\n✂️  Creating optimized index.html...');
-
-// Remove all case-content except home and audit
-$('.case-content').each((i, el) => {
-  const id = $(el).attr('id');
-  if (id !== 'case-home' && id !== 'case-audit') {
-    $(el).remove();
-  }
-});
-
-// Remove all sidebar sections except home and audit
-$('[id^="sidebar-"]').each((i, el) => {
-  const id = $(el).attr('id');
-  if (id !== 'sidebar-home' && id !== 'sidebar-audit') {
-    $(el).remove();
-  }
-});
-
-// Remove all inline styles and scripts (avoid duplicates)
-$('style').remove();
-$('script').remove();
-
-// Add external CSS link in <head>
-$('head').append('<link rel="stylesheet" href="css/styles.css">');
-
-// Add loading spinner and external scripts at end of <body>
-$('body').append(`
+if (FORCE_HTML || FORCE_ALL) {
+  // Regenerate index.html from src
+  console.log('\n✂️  Creating optimized index.html...');
+  $('.case-content').each((i, el) => {
+    const id = $(el).attr('id');
+    if (id !== 'case-home' && id !== 'case-audit') $(el).remove();
+  });
+  $('[id^="sidebar-"]').each((i, el) => {
+    const id = $(el).attr('id');
+    if (id !== 'sidebar-home' && id !== 'sidebar-audit') $(el).remove();
+  });
+  $('style').remove();
+  $('script').remove();
+  $('head').append('<link rel="stylesheet" href="css/styles.css">');
+  $('body').append(`
 <div id="loadingSpinner" style="display:none; position:fixed; top:50%; left:50%;
      transform:translate(-50%,-50%); z-index:2000;
      background:var(--glass-bg); backdrop-filter:var(--blur);
@@ -225,34 +288,31 @@ $('body').append(`
 <script src="js/content-loader.js"></script>
 <script src="js/app.js"></script>
 `);
-
-// Write optimized index.html
-const optimizedHTML = $.html();
-fs.writeFileSync(
-  path.join(DIST_PATH, 'index.html'),
-  optimizedHTML
-);
+  fs.writeFileSync(path.join(DIST_PATH, 'index.html'), $.html());
+  const optimizedSize = fs.statSync(path.join(DIST_PATH, 'index.html')).size;
+  console.log(`✅ index.html regenerated (${(optimizedSize / 1024).toFixed(0)} KB)`);
+  console.log('   ⚠️  Note: aria-labels and a11y attributes may need to be re-applied');
+} else {
+  console.log('\n✂️  index.html: preserved (use --force-html to regenerate from src)');
+}
 
 const originalSize = fs.statSync(SRC_PATH).size;
-const optimizedSize = fs.statSync(path.join(DIST_PATH, 'index.html')).size;
-console.log(`✅ index.html optimized: ${(originalSize / 1024 / 1024).toFixed(2)} MB → ${(optimizedSize / 1024).toFixed(0)} KB (-${Math.round((1 - optimizedSize / originalSize) * 100)}%)`);
 
-// Write app.js (will be modified next)
-console.log('\n⚙️  Processing JavaScript...');
-fs.writeFileSync(
-  path.join(DIST_PATH, 'js/app.js'),
-  jsContent
-);
-console.log('✅ app.js extracted');
+if (FORCE_JS || FORCE_ALL) {
+  console.log('\n⚙️  Extracting JavaScript from src...');
+  fs.writeFileSync(path.join(DIST_PATH, 'js/app.js'), jsContent);
+  console.log('✅ app.js regenerated from src');
+  console.log('   ⚠️  Note: audit fixes (event delegation, a11y, etc.) will need to be re-applied');
+} else {
+  console.log('\n⚙️  app.js: preserved (use --force-js to regenerate from src)');
+}
 
 // Summary
 console.log('\n' + '='.repeat(60));
 console.log('✨ Build completed successfully!\n');
 console.log('📊 Summary:');
 console.log(`   - Cases extracted: ${manifest.cases.length}`);
-console.log(`   - Original size: ${(originalSize / 1024 / 1024).toFixed(2)} MB`);
-console.log(`   - Optimized size: ${(optimizedSize / 1024).toFixed(0)} KB`);
-console.log(`   - Reduction: ${Math.round((1 - optimizedSize / originalSize) * 100)}%`);
+console.log(`   - Source size: ${(originalSize / 1024 / 1024).toFixed(2)} MB`);
 console.log('\n💡 Next steps:');
 console.log('   - Run: npm run dev');
 console.log('   - Test in browser: http://localhost:8080');

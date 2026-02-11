@@ -49,7 +49,7 @@
       text-align: center; letter-spacing: 3px;
       outline: none; transition: border-color 0.2s;
     ">
-    <button onclick="checkLockCode()" aria-label="Soumettre le code d'accès" style="
+    <button id="lockSubmitBtn" aria-label="Soumettre le code d'accès" style="
       width: 100%; margin-top: 14px;
       background: var(--primary);
       color: #fff; border: none;
@@ -64,7 +64,7 @@
 
 <!-- ============ HEADER ============ -->
 <header class="header" role="banner">
-  <div class="header-logo" onclick="switchCase('home')" onkeydown="if(event.key==='Enter')switchCase('home')" style="cursor:pointer" role="button" tabindex="0" aria-label="Retour à l'accueil">
+  <div class="header-logo" id="headerLogo" style="cursor:pointer" role="button" tabindex="0" aria-label="Retour à l'accueil">
     <div class="icon">🎓</div>
     <span>M2 - GIP</span>
   </div>
@@ -78,23 +78,23 @@
 </div>
 
 <!-- Exam mode toggle -->
-<button class="header-btn" id="examToggle" onclick="toggleExamMode()" title="Mode examen" aria-label="Mode examen"><span aria-hidden="true">📝</span></button>
+<button class="header-btn" id="examToggle" title="Mode examen" aria-label="Mode examen"><span aria-hidden="true">📝</span></button>
 
 <!-- Dark mode toggle -->
-<button class="header-btn" id="darkToggle" onclick="toggleDarkMode()" title="Mode sombre" aria-label="Mode sombre"><span aria-hidden="true">🌙</span></button>
+<button class="header-btn" id="darkToggle" title="Mode sombre" aria-label="Mode sombre"><span aria-hidden="true">🌙</span></button>
 
 <!-- Font size -->
-<button class="header-btn" id="fontSizeBtn" onclick="cycleFontSize()" title="Taille du texte" aria-label="Changer la taille du texte"><span class="font-size-btn-text">Aa</span></button>
+<button class="header-btn" id="fontSizeBtn" title="Taille du texte" aria-label="Changer la taille du texte"><span class="font-size-btn-text">Aa</span></button>
 
 <!-- Bookmarks -->
 <div class="bookmark-header-wrapper">
-  <button class="header-btn" id="bookmarksBtn" onclick="toggleBookmarksPanel()" title="Favoris" aria-label="Afficher les favoris"><span aria-hidden="true">★</span></button>
+  <button class="header-btn" id="bookmarksBtn" title="Favoris" aria-label="Afficher les favoris"><span aria-hidden="true">★</span></button>
   <span class="bookmark-count" id="bookmarkCount" style="display:none">0</span>
   <div class="bookmarks-panel" id="bookmarksPanel" role="listbox" aria-label="Sections favorites"></div>
 </div>
 
 <!-- Print button -->
-<button class="header-btn" onclick="window.print()" title="Imprimer" aria-label="Imprimer"><span aria-hidden="true">🖨️</span></button>
+<button class="header-btn" id="printBtn" title="Imprimer" aria-label="Imprimer"><span aria-hidden="true">🖨️</span></button>
   </div>
 </header>
 
@@ -170,18 +170,18 @@
   </div>
 </nav>
 
-<button class="sidebar-toggle-btn" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Ouvrir le menu" aria-label="Ouvrir le menu latéral" aria-expanded="false" aria-controls="sidebar">☰</button>
+<button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Ouvrir le menu" aria-label="Ouvrir le menu latéral" aria-expanded="false" aria-controls="sidebar">☰</button>
 
 <!-- Floating expand button (visible when sidebar collapsed) -->
-<button class="sidebar-expand-btn" id="sidebarExpandBtn" onclick="collapseSidebar()" title="Afficher le menu" aria-label="Afficher le menu latéral" aria-controls="sidebar">☰</button>
+<button class="sidebar-expand-btn" id="sidebarExpandBtn" title="Afficher le menu" aria-label="Afficher le menu latéral" aria-controls="sidebar">☰</button>
 
 <!-- ============ APP BODY ============ -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 <div class="app-body">
 
   <!-- ===== SIDEBAR ===== -->
   <nav class="sidebar" id="sidebar" style="display:none" aria-label="Sommaire du cas">
-    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="collapseSidebar()" title="Rétracter le menu" aria-label="Rétracter le menu latéral">◀</button>
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Rétracter le menu" aria-label="Rétracter le menu latéral">◀</button>
     <!-- Snow sidebar -->
     
 
@@ -583,7 +583,7 @@
 <div class="exam-timer" id="examTimer" style="display:none" role="timer" aria-live="polite" aria-atomic="true">
   <div class="exam-timer-label">Mode Examen</div>
   <div class="exam-timer-time" id="examTimerTime" aria-label="Temps écoulé">0:00</div>
-  <button class="exam-timer-stop" onclick="toggleExamMode()" aria-label="Terminer le mode examen">Terminer</button>
+  <button class="exam-timer-stop" id="examTimerStop" aria-label="Terminer le mode examen">Terminer</button>
 </div>
 
 <!-- ============ BOUTON SCROLL TO TOP ============ -->
