@@ -835,7 +835,7 @@ function doSearch(query) {
 function goToSearch(tab, sectionId) {
   const query = searchInput.value.trim();
   if (query.length >= 2) addToSearchHistory(query);
-  switchCase(tab);
+  enterCourse(tab);
   searchResults.classList.remove('active');
   searchInput.value = '';
   setTimeout(() => {
@@ -1517,7 +1517,7 @@ initProgressChecks();
         el.className = 'recent-item';
         el.setAttribute('role', 'button');
         el.setAttribute('tabindex', '0');
-        el.onclick = function() { switchCase(h.page); };
+        el.onclick = function() { enterCourse(h.page); };
         el.addEventListener('keydown', function(e) {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
         });
@@ -1818,7 +1818,7 @@ function toggleBookmarksPanel() {
 
 function goToBookmark(caseName, sectionId) {
   document.getElementById('bookmarksPanel').classList.remove('active');
-  switchCase(caseName);
+  enterCourse(caseName);
   setTimeout(function() { goTo(sectionId); }, 150);
 }
 
@@ -2090,7 +2090,7 @@ function checkMilestone(caseName) {
   tabBar.addEventListener('click', function(e) {
     var tab = e.target.closest('.tab[data-case]');
     if (!tab) return;
-    switchCase(tab.dataset.case);
+    enterCourse(tab.dataset.case);
   });
 })();
 
