@@ -121,7 +121,7 @@ function switchCase(caseName) {
     if (sidebar) {
       sidebar.style.display = 'block';
       // Auto-activer le premier item du sidebar
-      const firstItem = sidebar.querySelector('.sidebar-item[onclick]');
+      const firstItem = sidebar.querySelector('.sidebar-item[onclick], .sidebar-item[data-goto]');
       if (firstItem) {
         sidebar.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
         firstItem.classList.add('active');
@@ -219,8 +219,13 @@ function enterCourse(courseName) {
     var spinner = document.getElementById('loadingSpinner');
     if (spinner) spinner.style.display = '';
     window.contentLoader.load(courseName).then(function(data) {
-      window.contentLoader.inject(courseName, data);
-      initDynamicContent(courseName);
+      try {
+        window.contentLoader.inject(courseName, data);
+        initDynamicContent(courseName);
+      } catch(injectErr) {
+        console.error('Erreur injection ' + courseName + ':', injectErr);
+        throw injectErr;
+      }
       if (spinner) spinner.style.display = 'none';
       _enterCourseLoading = false;
       switchCase(courseName);
@@ -374,9 +379,13 @@ function goTo(id, evt) {
     if (activeSidebar) {
       activeSidebar.querySelectorAll('.sidebar-item').forEach(i => {
         i.classList.remove('active');
-        const onclick = i.getAttribute('onclick');
-        if (onclick && onclick.includes("'" + id + "'")) {
+        if (i.dataset.goto === id) {
           i.classList.add('active');
+        } else {
+          const onclick = i.getAttribute('onclick');
+          if (onclick && onclick.includes("'" + id + "'")) {
+            i.classList.add('active');
+          }
         }
       });
     }
@@ -405,6 +414,12 @@ document.addEventListener('DOMContentLoaded', function() {
   if (sidebarInit) sidebarInit.style.display = 'none';
   document.querySelectorAll('[id^="sidebar-"]').forEach(s => s.style.display = 'none');
 
+  // Make home cards keyboard-accessible
+  document.querySelectorAll('.home-card[data-course]').forEach(function(card) {
+    if (!card.getAttribute('tabindex')) card.setAttribute('tabindex', '0');
+    if (!card.getAttribute('role')) card.setAttribute('role', 'button');
+  });
+
   const mainEl = document.getElementById('main-scroll');
 
   // Reading progress bar
@@ -420,23 +435,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollBtn = document.getElementById('scrollTopBtn');
 
     mainEl.addEventListener('scroll', () => {
-      // Update reading progress bar
-      if (readingFill) {
-        var pct = mainEl.scrollHeight > mainEl.clientHeight
-          ? (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100
-          : 0;
-        readingFill.style.width = Math.min(100, pct) + '%';
-      }
-
-      // Scroll-to-top visibility
-      if (scrollBtn) {
-        if (mainEl.scrollTop > 400) scrollBtn.classList.add('visible');
-        else scrollBtn.classList.remove('visible');
-      }
-
       if (scrollSpyTimer) return;
       scrollSpyTimer = requestAnimationFrame(function() {
         scrollSpyTimer = null;
+
+        // Update reading progress bar
+        if (readingFill) {
+          var pct = mainEl.scrollHeight > mainEl.clientHeight
+            ? (mainEl.scrollTop / (mainEl.scrollHeight - mainEl.clientHeight)) * 100
+            : 0;
+          readingFill.style.width = Math.min(100, pct) + '%';
+        }
+
+        // Scroll-to-top visibility
+        if (scrollBtn) {
+          if (mainEl.scrollTop > 400) scrollBtn.classList.add('visible');
+          else scrollBtn.classList.remove('visible');
+        }
 
         // Find visible sidebar
         const activeSidebar = document.querySelector('[id^="sidebar-"]:not([style*="display: none"]):not([style*="display:none"])');
@@ -445,13 +460,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Rebuild cache only when sidebar changes
         if (activeSidebar.id !== cachedSidebarId) {
           cachedSidebarId = activeSidebar.id;
-          cachedItems = activeSidebar.querySelectorAll('.sidebar-item[onclick]');
+          cachedItems = activeSidebar.querySelectorAll('.sidebar-item[onclick], .sidebar-item[data-goto]');
           cachedSectionMap = [];
           cachedItems.forEach(item => {
-            const match = item.getAttribute('onclick').match(/(?:goTo|scrollToSection)\(['"]([^'"]+)['"]\)/);
-            if (match) {
-              const el = document.getElementById(match[1]);
-              if (el) cachedSectionMap.push({ id: match[1], el: el, item: item });
+            const gotoId = item.dataset.goto || (item.getAttribute('onclick') || '').replace(/.*(?:goTo|scrollToSection)\(['"]([^'"]+)['"]\).*/, '$1');
+            if (gotoId) {
+              const el = document.getElementById(gotoId);
+              if (el) cachedSectionMap.push({ id: gotoId, el: el, item: item });
             }
           });
         }
@@ -532,16 +547,21 @@ document.addEventListener('keydown', function(event) {
     var overlay = document.getElementById('shortcutsOverlay');
     if (overlay) {
       var isVisible = overlay.style.display !== 'none';
-      overlay.style.display = isVisible ? 'none' : 'flex';
-      if (!isVisible) trapFocus(overlay);
+      if (isVisible) {
+        overlay.style.display = 'none';
+        if (overlay._releaseTrap) { overlay._releaseTrap(); overlay._releaseTrap = null; }
+      } else {
+        overlay.style.display = 'flex';
+        overlay._releaseTrap = trapFocus(overlay);
+      }
     }
   }
   // Escape — close overlays & search (priority order)
   if (event.key === 'Escape') {
     var examOverlay = document.querySelector('.exam-duration-overlay');
-    if (examOverlay) { examOverlay.remove(); return; }
+    if (examOverlay) { if (examOverlay._releaseTrap) examOverlay._releaseTrap(); examOverlay.remove(); return; }
     var overlay = document.getElementById('shortcutsOverlay');
-    if (overlay && overlay.style.display !== 'none') { overlay.style.display = 'none'; return; }
+    if (overlay && overlay.style.display !== 'none') { overlay.style.display = 'none'; if (overlay._releaseTrap) { overlay._releaseTrap(); overlay._releaseTrap = null; } return; }
     if (searchResults) searchResults.classList.remove('active');
     if (searchInput) { searchInput.value = ''; searchInput.blur(); }
   }
@@ -613,6 +633,35 @@ const searchInput = document.getElementById('searchInput');
 const searchResults = document.getElementById('searchResults');
 if (!searchInput || !searchResults) { /* search elements missing */ }
 
+// Event delegation for search results and search history
+if (searchResults) {
+  searchResults.addEventListener('click', function(e) {
+    // Search result item click
+    var resultItem = e.target.closest('.search-result-item[data-tab]');
+    if (resultItem) {
+      goToSearch(resultItem.dataset.tab, resultItem.dataset.section);
+      return;
+    }
+    // Search history remove button
+    var removeBtn = e.target.closest('.search-history-remove');
+    if (removeBtn) {
+      e.stopPropagation();
+      var history = getSearchHistory();
+      history.splice(parseInt(removeBtn.dataset.idx, 10), 1);
+      saveSearchHistory(history);
+      showSearchHistory();
+      if (history.length === 0) searchResults.classList.remove('active');
+      return;
+    }
+    // Search history item click
+    var historyItem = e.target.closest('.search-history-item[data-query]');
+    if (historyItem) {
+      searchInput.value = historyItem.dataset.query;
+      searchInput.dispatchEvent(new Event('input'));
+    }
+  });
+}
+
 // ============ SOURCE UNIQUE DES NOMS DE COURS ============
 var COURSE_META = {
   'snow':           { short: 'SNOW',         full: 'Cas SNOW',            icon: '❄️' },
@@ -674,24 +723,6 @@ function showSearchHistory() {
         '</div>';
     }).join('');
   searchResults.classList.add('active');
-
-  searchResults.querySelectorAll('.search-history-item').forEach(function(item) {
-    item.addEventListener('click', function(e) {
-      if (e.target.classList.contains('search-history-remove')) return;
-      searchInput.value = item.getAttribute('data-query');
-      searchInput.dispatchEvent(new Event('input'));
-    });
-  });
-  searchResults.querySelectorAll('.search-history-remove').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var history = getSearchHistory();
-      history.splice(parseInt(btn.getAttribute('data-idx')), 1);
-      saveSearchHistory(history);
-      showSearchHistory();
-      if (history.length === 0) searchResults.classList.remove('active');
-    });
-  });
 }
 
 searchInput && searchInput.addEventListener('focus', function() {
@@ -719,21 +750,22 @@ function escapeHtml(str) {
 function doSearch(query) {
   if (query.length < 2) return;
   const results = [];
-  document.querySelectorAll('.case-content').forEach(caseEl => {
+  const caseEls = document.querySelectorAll('.case-content');
+  for (let ci = 0; ci < caseEls.length && results.length < 20; ci++) {
+    const caseEl = caseEls[ci];
     const caseName = caseEl.id.replace('case-', '');
     const sections = caseEl.querySelectorAll('[id]');
 
-    sections.forEach(section => {
+    for (let si = 0; si < sections.length && results.length < 20; si++) {
+      const section = sections[si];
       const text = section.textContent || '';
       const lowerText = text.toLowerCase();
       const idx = lowerText.indexOf(query);
 
-      if (idx !== -1 && results.length < 20) {
-        // Get snippet
+      if (idx !== -1) {
         const start = Math.max(0, idx - 40);
         const end = Math.min(text.length, idx + query.length + 60);
         let snippet = escapeHtml((start > 0 ? '...' : '') + text.substring(start, end).trim() + (end < text.length ? '...' : ''));
-        // Highlight match (escape query for consistency with escaped snippet)
         var escapedQ = escapeHtml(query);
         const regex = new RegExp('(' + escapedQ.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
         snippet = snippet.replace(regex, '<mark>$1</mark>');
@@ -744,8 +776,8 @@ function doSearch(query) {
           snippet: snippet
         });
       }
-    });
-  });
+    }
+  }
 
   // Remove duplicate section IDs (keep first match per section)
   const seen = new Set();
@@ -761,11 +793,12 @@ function doSearch(query) {
   } else {
     searchResults.innerHTML = '<div class="search-count">' + unique.length + ' résultat(s)</div>' +
       unique.map(r =>
-        '<div class="search-result-item" onclick="goToSearch(\'' + r.tab + '\',\'' + r.sectionId + '\')">' +
+        '<div class="search-result-item" data-tab="' + escapeHtml(r.tab) + '" data-section="' + escapeHtml(r.sectionId) + '">' +
         '<div class="search-result-tab">' + (tabNames[r.tab] || r.tab) + '</div>' +
         '<div class="search-result-text">' + r.snippet + '</div>' +
         '</div>'
       ).join('');
+    announce(unique.length + ' résultat' + (unique.length > 1 ? 's' : ''));
   }
 
   searchResults.classList.add('active');
@@ -870,6 +903,7 @@ function toggleExamMode() {
   document.body.appendChild(overlay);
 
   var releaseTrap = trapFocus(overlay);
+  overlay._releaseTrap = releaseTrap;
   function closeOverlay() { if (releaseTrap) releaseTrap(); overlay.remove(); }
   overlay.querySelector('.exam-duration-cancel').onclick = closeOverlay;
   overlay.addEventListener('click', function(e) { if (e.target === overlay) closeOverlay(); });
@@ -891,7 +925,13 @@ function startExam() {
   var timeEl = document.getElementById('examTimerTime');
   var labelEl = timerEl ? timerEl.querySelector('.exam-timer-label') : null;
 
-  if (timerEl) { timerEl.style.display = 'block'; timerEl.classList.remove('exam-timer-warning'); }
+  if (timerEl) {
+    timerEl.style.display = 'block';
+    timerEl.classList.remove('exam-timer-warning');
+    timerEl.setAttribute('role', 'timer');
+    timerEl.setAttribute('aria-live', 'polite');
+    timerEl.setAttribute('aria-label', 'Chronomètre examen');
+  }
   if (labelEl) labelEl.textContent = examDuration > 0 ? 'Temps restant' : 'Mode Examen';
 
   examTimerInterval = setInterval(function() {
@@ -1277,14 +1317,16 @@ function initProgressChecks(targetCase) {
     var caseName = sidebarDiv.id.replace('sidebar-', '');
     // Éviter de doubler les checks
     if (sidebarDiv.querySelector('.check-read')) return;
-    var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+    var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"], .sidebar-item[data-goto]');
     if (items.length === 0) return;
 
     items.forEach(function(item) {
-      var onclick = item.getAttribute('onclick') || '';
-      var match = onclick.match(/goTo\('([^']+)'\)/);
-      if (!match) return;
-      var sectionId = match[1];
+      var sectionId = item.dataset.goto;
+      if (!sectionId) {
+        var match = (item.getAttribute('onclick') || '').match(/goTo\('([^']+)'\)/);
+        if (match) sectionId = match[1];
+      }
+      if (!sectionId) return;
 
       var check = document.createElement('span');
       check.className = 'check-read';
@@ -1331,7 +1373,7 @@ initProgressChecks();
     caseNames.forEach(name => {
       const sidebarDiv = document.getElementById('sidebar-' + name);
       if (!sidebarDiv) return;
-      const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+      const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"], .sidebar-item[data-goto]');
       totalSections += items.length;
       doneSections += (progress[name] || []).length;
     });
@@ -1382,7 +1424,7 @@ initProgressChecks();
 
   document.querySelectorAll('[id^="sidebar-"]').forEach(sidebarDiv => {
     const caseName = sidebarDiv.id.replace('sidebar-', '');
-    const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+    const items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"], .sidebar-item[data-goto]');
     totalSections += items.length;
     doneSections += (progress[caseName] || []).length;
   });
@@ -1601,6 +1643,7 @@ initResponsiveTables();
       }
     }
   } catch(e) {}
+})();
 
 // ============ NAVIGATION PRÉCÉDENT/SUIVANT ENTRE SECTIONS ============
 (function() {
@@ -1608,17 +1651,21 @@ initResponsiveTables();
     var selector = targetCase ? '#sidebar-' + targetCase : '[id^="sidebar-"]';
     document.querySelectorAll(selector).forEach(function(sidebarDiv) {
       var caseName = sidebarDiv.id.replace('sidebar-', '');
-      var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+      var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"], .sidebar-item[data-goto]');
       if (items.length < 2) return;
 
       var sectionIds = [];
       var sectionLabels = [];
       items.forEach(function(item) {
-        var match = item.getAttribute('onclick').match(/goTo\(['"]([^'"]+)['"]\)/);
-        if (match) {
-          sectionIds.push(match[1]);
+        var sectionId = item.dataset.goto;
+        if (!sectionId) {
+          var match = (item.getAttribute('onclick') || '').match(/goTo\(['"]([^'"]+)['"]\)/);
+          if (match) sectionId = match[1];
+        }
+        if (sectionId) {
+          sectionIds.push(sectionId);
           var label = item.querySelector('.sidebar-label');
-          sectionLabels.push(label ? label.textContent.trim() : match[1]);
+          sectionLabels.push(label ? label.textContent.trim() : sectionId);
         }
       });
 
@@ -1697,17 +1744,8 @@ function updateBookmarkCount() {
   }
 }
 
-function toggleBookmarksPanel() {
-  var panel = document.getElementById('bookmarksPanel');
-  if (!panel) return;
-  var isActive = panel.classList.contains('active');
-  if (isActive) {
-    panel.classList.remove('active');
-    return;
-  }
-
+function renderBookmarksPanel(panel) {
   var bm = getBookmarks();
-
   if (bm.length === 0) {
     panel.innerHTML = '<div class="bookmarks-panel-header">Favoris</div>' +
       '<div class="bookmarks-empty">Aucun favori.<br><small>Cliquez ★ dans une section pour l\'ajouter.</small></div>';
@@ -1720,7 +1758,6 @@ function toggleBookmarksPanel() {
           '<button class="bookmark-item-remove" data-idx="' + i + '" title="Retirer">✕</button></div>';
       }).join('');
   }
-  // Attach event delegation for bookmark items (no inline onclick)
   panel.querySelectorAll('.bookmark-item').forEach(function(item) {
     item.style.cursor = 'pointer';
     item.setAttribute('role', 'button');
@@ -1739,6 +1776,16 @@ function toggleBookmarksPanel() {
       removeBookmark(parseInt(btn.dataset.idx, 10));
     });
   });
+}
+
+function toggleBookmarksPanel() {
+  var panel = document.getElementById('bookmarksPanel');
+  if (!panel) return;
+  if (panel.classList.contains('active')) {
+    panel.classList.remove('active');
+    return;
+  }
+  renderBookmarksPanel(panel);
   panel.classList.add('active');
 }
 
@@ -1752,10 +1799,11 @@ function removeBookmark(idx) {
   var bm = getBookmarks();
   bm.splice(idx, 1);
   saveBookmarks(bm);
-  // Refresh panel
-  toggleBookmarksPanel();
-  toggleBookmarksPanel();
-  // Update star buttons
+  // Refresh panel content in place (no close/reopen flicker)
+  var panel = document.getElementById('bookmarksPanel');
+  if (panel && panel.classList.contains('active')) {
+    renderBookmarksPanel(panel);
+  }
   refreshBookmarkStars();
 }
 
@@ -1778,12 +1826,15 @@ function initBookmarkStars(targetCase) {
   var selector = targetCase ? '#sidebar-' + targetCase : '[id^="sidebar-"]';
   document.querySelectorAll(selector).forEach(function(sidebarDiv) {
     var caseName = sidebarDiv.id.replace('sidebar-', '');
-    var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"]');
+    var items = sidebarDiv.querySelectorAll('.sidebar-item[onclick*="goTo"], .sidebar-item[data-goto]');
 
     items.forEach(function(item) {
-      var match = item.getAttribute('onclick').match(/goTo\(['"]([^'"]+)['"]\)/);
-      if (!match) return;
-      var sectionId = match[1];
+      var sectionId = item.dataset.goto;
+      if (!sectionId) {
+        var match = (item.getAttribute('onclick') || '').match(/goTo\(['"]([^'"]+)['"]\)/);
+        if (match) sectionId = match[1];
+      }
+      if (!sectionId) return;
       var section = document.getElementById(sectionId);
       if (!section) return;
 
@@ -1976,7 +2027,8 @@ function checkMilestone(caseName) {
   });
 })();
 
-  // Au chargement : deep linking ou accueil
+// ============ DEEP LINKING / ACCUEIL ============
+(function() {
   var _initHash = window.location.hash.replace('#', '');
   if (_initHash && _knownPages.indexOf(_initHash) !== -1) {
     // Deep link — charger la page demandée
@@ -2028,6 +2080,13 @@ function checkMilestone(caseName) {
       enterCourse(card.dataset.course);
       return;
     }
+    // Sidebar items with data-goto (dynamically loaded content)
+    var sidebarItem = e.target.closest('.sidebar-item[data-goto]');
+    if (sidebarItem) {
+      e.preventDefault();
+      goTo(sidebarItem.dataset.goto);
+      return;
+    }
     // Breadcrumbs with data-course
     var crumb = e.target.closest('.breadcrumb[data-course]');
     if (crumb) {
@@ -2056,23 +2115,5 @@ function checkMilestone(caseName) {
   if (closeBtn) closeBtn.addEventListener('click', closeShortcuts);
 })();
 
-// ============ SAFE LOCALSTORAGE HELPER ============
-function safePersist(key, value) {
-  try {
-    localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
-  } catch(e) {
-    if (e.name === 'QuotaExceededError' || e.code === 22) {
-      // Try to free space: remove old study days beyond 90 days
-      try {
-        var days = JSON.parse(localStorage.getItem('gip-studyDays') || '[]');
-        if (days.length > 90) {
-          localStorage.setItem('gip-studyDays', JSON.stringify(days.slice(-90)));
-          localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
-          return;
-        }
-      } catch(e2) {}
-      announce('Espace de stockage plein — certaines données ne seront pas sauvegardées.');
-    }
-  }
-}
+
 

@@ -167,7 +167,7 @@ class ContentLoader {
     let html = `<div id="sidebar-${caseId}" class="sidebar-sections" style="display:none;">`;
 
     sidebarData.items.forEach(item => {
-      html += `<a href="#${item.id}" class="sidebar-item" onclick="goTo('${item.id}'); return false;">`;
+      html += `<a href="#${item.id}" class="sidebar-item" data-goto="${item.id}">`;
 
       if (item.num) {
         html += `<span class="sidebar-num">${item.num}</span>`;
